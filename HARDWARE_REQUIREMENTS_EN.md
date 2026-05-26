@@ -169,4 +169,4 @@ Questions about your setup?
 - **macOS**: Send output of `system_profiler SPHardwareDataType`
 - **Linux**: Send output of `lscpu`, `free -h`, `nvidia-smi`
 
-**Contact**: info@acornjuice.com
+**Contact**: use the **Contact us** form on the AccuVideo site (footer link).

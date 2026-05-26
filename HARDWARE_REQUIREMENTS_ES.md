@@ -169,4 +169,4 @@ Antes de instalar AccuVideo, verifica:
 - **macOS**: Envía salida de `system_profiler SPHardwareDataType`
 - **Linux**: Envía salida de `lscpu`, `free -h`, `nvidia-smi`
 
-**Contacto**: info@acornjuice.com
+**Contacto**: usa el formulario **Contacta** en la web de AccuVideo (enlace en el footer).

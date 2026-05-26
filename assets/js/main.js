@@ -11,6 +11,39 @@
   // to enable the endpoint. After that, every submission lands as a regular email.
   const TRIAL_FORM_EMAIL = 'info@acornjuice.com';
 
+  // Stripe Payment Links — create one per (edition.plan.billing) combination in the Stripe Dashboard
+  // (https://dashboard.stripe.com/payment-links) and paste each URL below. While a key is null the form
+  // will tell the user that combination isn't online yet and to email us.
+  //
+  // The submitted hardware ID is appended as `client_reference_id` (visible in the Checkout Session
+  // and in webhooks), and the email as `prefilled_email`.
+  const STRIPE_LINKS = {
+    'basic.starter.monthly':     null,
+    'basic.starter.annual':      null,
+    'basic.personal.monthly':    null,
+    'basic.personal.annual':     null,
+    'basic.freelance.monthly':   null,
+    'basic.freelance.annual':    null,
+    'basic.academy.monthly':     null,
+    'basic.academy.annual':      null,
+    'basic.academyplus.monthly': null,
+    'basic.academyplus.annual':  null,
+    'basic.enterprise.monthly':  null,
+    'basic.enterprise.annual':   null,
+    'pro.starter.monthly':       null,
+    'pro.starter.annual':        null,
+    'pro.personal.monthly':      null,
+    'pro.personal.annual':       null,
+    'pro.freelance.monthly':     null,
+    'pro.freelance.annual':      null,
+    'pro.academy.monthly':       null,
+    'pro.academy.annual':        null,
+    'pro.academyplus.monthly':   null,
+    'pro.academyplus.annual':    null,
+    'pro.enterprise.monthly':    null,
+    'pro.enterprise.annual':     null,
+  };
+
   const i18n = {
     en: {
       'meta.title': 'AccuVideo — Find the moment',
@@ -148,8 +181,6 @@
       'pricing.pro.academy.cap_basic': 'Up to 1 000 videos · 10 000 points',
       'pricing.pro.academyplus.cap_basic': 'Up to 3 000 videos · 30 000 points',
       'pricing.pro.enterprise.cap_basic': 'Up to 10 000 videos · 100 000 points',
-      'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A%0AThanks%21',
-      'pricing.subscribe.mailto': 'mailto:info@acornjuice.com?subject=AccuVideo%20subscription%20request&body=Hi%2C%0A%0AI%27d%20like%20to%20subscribe%20to%20an%20AccuVideo%20plan.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Edition%3A%20%5Bbasic%20%2F%20pro%5D%0A-%20Billing%3A%20%5Bmonthly%20%2F%20annual%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20see%20Settings%20%E2%86%92%20Account%20in%20AccuVideo%5D%0A%0APlease%20send%20payment%20instructions.%20Thanks%21',
       'pricing.basic.group': 'For individuals, students and families',
       'pricing.basic.starter.name': 'Starter',
       'pricing.basic.starter.price_monthly': '11.99',
@@ -189,13 +220,13 @@
       'pricing.license.title': 'How to get your trial license',
       'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days · Basic edition by default (Pro on request)',
       'pricing.license.step1': 'Download the AccuVideo installer for your edition (Basic or Pro) from the <a href="#download">Download</a> section below.',
-      'pricing.license.step2': 'Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> with two things: your <strong>operating system</strong> (Windows 10 / 11, macOS…) and the <strong>plan</strong> you want to try. We send back your 30-day trial license — paste it into AccuVideo and you\'re in. <strong>No hardware ID needed for the trial.</strong>',
+      'pricing.license.step2': 'Open the <a href="#" data-open-form="trial">trial request form</a> (or click <strong>Request trial license</strong> on any plan above) and tell us your <strong>operating system</strong> and the <strong>plan</strong> you want to try. We email back your 30-day trial license within 2 business days — paste it into AccuVideo and you\'re in. <strong>No hardware ID needed for the trial.</strong>',
       'pricing.license.notes': 'The trial runs for 30 days and the cap above is shared across all plans. When you\'re ready to subscribe, see below — paid plans are tied to your machine\'s hardware ID for security.',
       'pricing.subscribe.title': 'Ready to subscribe to a plan?',
       'pricing.subscribe.intro': 'Paid plans are activated against your machine\'s <strong>hardware ID</strong>, so each license stays bound to one specific computer.',
       'pricing.subscribe.step1': 'Install AccuVideo on the machine you\'ll use as the indexer / server (the one with the GPU for Pro).',
       'pricing.subscribe.step2': 'Open <strong>Settings → Account</strong> and copy your <strong>hardware ID</strong>. It\'s a short alphanumeric string unique to that machine.',
-      'pricing.subscribe.step3': 'Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> with your <strong>hardware ID</strong>, <strong>operating system</strong>, chosen <strong>plan</strong> and <strong>billing period</strong> (monthly / annual). We send back payment instructions and your full license.',
+      'pricing.subscribe.step3': 'Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card above). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. Your license activates automatically once payment clears.',
       'pricing.subscribe.notes': 'Each paid license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (15 / 45 / 150); viewers connect to your server and <strong>don\'t consume their own license</strong>.',
       'pricing.subscribe.cta': 'Request subscription',
 
@@ -210,7 +241,7 @@
       'download.pro_mac': 'macOS Apple Silicon · Coming soon',
       'download.subnote_link': 'View all release files',
       'download.subnote_suffix': ' — changelog, hashes, older versions.',
-      'download.note': 'Need an Intel macOS build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request">info@acornjuice.com</a>.',
+      'download.note': 'Need an Intel macOS build, an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.',
 
       'req.title': 'System requirements',
       'req.sub': 'AccuVideo Basic runs on commodity laptops. Pro adds visual ingestion (Florence-2), which is GPU-bound — those specs are higher.',
@@ -229,20 +260,54 @@
       'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
 
       'contact.title': 'Request your trial license',
-      'contact.sub': 'We\'ll email it back within 1 business day.',
+      'contact.sub': 'We\'ll email it back within 2 business days.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edition',
       'contact.field.os': 'Operating system',
       'contact.field.notes': 'Notes',
       'contact.submit': 'Send request',
-      'contact.fallback': 'Or email us directly:',
       'contact.status.sending': 'Sending…',
-      'contact.status.success': 'Request sent! We\'ll email you back within 1 business day.',
-      'contact.status.error': 'Error sending. Please email info@acornjuice.com directly.',
-      'contact.status.network': 'Network error. Please email info@acornjuice.com directly.',
+      'contact.status.success': 'Request sent! We\'ll email you back within 2 business days.',
+      'contact.status.error': 'Error sending. Please try again in a moment.',
+      'contact.status.network': 'Network error. Please check your connection and try again.',
       'contact.status.notconfigured': 'Form not configured. Paste your Web3Forms access key in main.js (WEB3FORMS_KEY).',
 
+      'subscribe.cta_card': 'Subscribe to this plan →',
+      'subscribe.title': 'Subscribe to AccuVideo',
+      'subscribe.sub': 'Fill in your details — we\'ll redirect you to Stripe to complete payment.',
+      'subscribe.field.email': 'Email',
+      'subscribe.field.hwid': 'Hardware ID',
+      'subscribe.field.hwid_hint': 'Open AccuVideo → Settings → Account to copy your hardware ID. The license will be bound to this machine.',
+      'subscribe.field.plan': 'Plan',
+      'subscribe.field.edition': 'Edition',
+      'subscribe.field.billing': 'Billing',
+      'subscribe.billing.monthly': 'Monthly',
+      'subscribe.billing.annual': 'Annual (2 months free)',
+      'subscribe.submit': 'Continue to payment',
+      'subscribe.fallback': 'Trouble with payment?',
+      'subscribe.fallback_cta': 'Contact us',
+      'subscribe.status.processing': 'Generating payment link…',
+      'subscribe.status.redirecting': 'Opening Stripe checkout in a new tab…',
+      'subscribe.status.notconfigured': 'This plan isn\'t available for online checkout yet. Use the contact form and we\'ll send you a manual payment link.',
+      'subscribe.status.popup_blocked': 'Your browser blocked the new tab. Allow pop-ups for this site, or click here: ',
+
+      'contactus.title': 'Contact us',
+      'contactus.sub': 'Send us a message — we reply within 2 business days.',
+      'contactus.field.name': 'Name',
+      'contactus.field.email': 'Email',
+      'contactus.field.subject': 'Subject',
+      'contactus.field.message': 'Message',
+      'contactus.submit': 'Send message',
+      'contactus.status.sending': 'Sending…',
+      'contactus.status.success': 'Message sent! We\'ll reply within 2 business days.',
+      'contactus.status.error': 'Error sending. Please try again in a moment.',
+      'contactus.status.network': 'Network error. Please check your connection and try again.',
+      'contactus.topic.enterprise': 'Enterprise enquiry',
+      'contactus.topic.payment': 'Subscription / payment issue',
+      'contactus.topic.intelmac': 'Intel macOS build request',
+
+      'footer.contact': 'Contact us',
       'footer.docs': 'Documentation',
       'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md'
     },
@@ -382,8 +447,6 @@
       'pricing.pro.academy.cap_basic': 'Hasta 1 000 vídeos · 10 000 puntos',
       'pricing.pro.academyplus.cap_basic': 'Hasta 3 000 vídeos · 30 000 puntos',
       'pricing.pro.enterprise.cap_basic': 'Hasta 10 000 vídeos · 100 000 puntos',
-      'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=Solicitud%20licencia%20trial%20AccuVideo&body=Hola%2C%0A%0AQuer%C3%ADa%20solicitar%20una%20licencia%20trial%20de%2030%20d%C3%ADas%20para%20AccuVideo.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Sistema%20operativo%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A%0A%C2%A1Gracias%21',
-      'pricing.subscribe.mailto': 'mailto:info@acornjuice.com?subject=Solicitud%20suscripci%C3%B3n%20AccuVideo&body=Hola%2C%0A%0AQuer%C3%ADa%20suscribirme%20a%20un%20plan%20de%20AccuVideo.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Edici%C3%B3n%3A%20%5Bbasic%20%2F%20pro%5D%0A-%20Facturaci%C3%B3n%3A%20%5Bmensual%20%2F%20anual%5D%0A-%20Sistema%20operativo%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpega%20aqu%C3%AD%20%E2%80%94%20ver%20Ajustes%20%E2%86%92%20Cuenta%20en%20AccuVideo%5D%0A%0APor%20favor%20env%C3%ADame%20instrucciones%20de%20pago.%20%C2%A1Gracias%21',
       'pricing.basic.group': 'Para particulares, estudiantes y familias',
       'pricing.basic.starter.name': 'Starter',
       'pricing.basic.starter.price_monthly': '11,99',
@@ -423,13 +486,13 @@
       'pricing.license.title': 'Cómo conseguir tu licencia trial',
       'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días · edición Basic por defecto (Pro a petición)',
       'pricing.license.step1': 'Descarga el instalador de AccuVideo para tu edición (Basic o Pro) desde la sección <a href="#download">Descarga</a> de abajo.',
-      'pricing.license.step2': 'Escríbenos a <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> con dos cosas: tu <strong>sistema operativo</strong> (Windows 10 / 11, macOS…) y el <strong>plan</strong> que quieres probar. Te enviamos tu licencia trial de 30 días — la pegas en AccuVideo y listo. <strong>No hace falta hardware ID para la trial.</strong>',
+      'pricing.license.step2': 'Abre el <a href="#" data-open-form="trial">formulario de solicitud de trial</a> (o pulsa <strong>Solicitar licencia trial</strong> en cualquier plan de arriba) e indícanos tu <strong>sistema operativo</strong> y el <strong>plan</strong> que quieres probar. Te enviamos por email tu licencia trial de 30 días en hasta 2 días laborables — la pegas en AccuVideo y listo. <strong>No hace falta hardware ID para la trial.</strong>',
       'pricing.license.notes': 'La trial dura 30 días y el cap de arriba se aplica a todos los planes. Cuando quieras suscribirte, mira más abajo — los planes de pago van ligados al hardware ID de tu equipo por seguridad.',
       'pricing.subscribe.title': '¿Listo para suscribirte a un plan?',
       'pricing.subscribe.intro': 'Los planes de pago se activan contra el <strong>hardware ID</strong> de tu equipo, así cada licencia queda vinculada a una máquina específica.',
       'pricing.subscribe.step1': 'Instala AccuVideo en la máquina que vas a usar como indexador / servidor (la que tenga la GPU para Pro).',
       'pricing.subscribe.step2': 'Abre <strong>Ajustes → Cuenta</strong> y copia tu <strong>hardware ID</strong>. Es una cadena alfanumérica corta única de esa máquina.',
-      'pricing.subscribe.step3': 'Escríbenos a <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> con tu <strong>hardware ID</strong>, <strong>sistema operativo</strong>, <strong>plan</strong> elegido y <strong>periodo de facturación</strong> (mensual / anual). Te enviamos las instrucciones de pago y tu licencia completa.',
+      'pricing.subscribe.step3': 'Abre el <a href="#" data-open-form="subscribe">formulario de suscripción</a> (o pulsa <strong>Suscribirse a este plan</strong> en cualquier tarjeta de arriba). Pega tu <strong>hardware ID</strong>, elige <strong>plan</strong>, <strong>edición</strong> y <strong>periodo de facturación</strong> (mensual / anual), y te llevamos al checkout de Stripe. Tu licencia se activa automáticamente al confirmar el pago.',
       'pricing.subscribe.notes': 'Cada licencia de pago está vinculada a ese hardware ID — un indexador / servidor por seat. ¿Cambias de equipo o reinstalas el SO? Escríbenos con el nuevo hardware ID y la re-emitimos sin preguntas. Los planes Pro incluyen clientes en LAN (15 / 45 / 150); los clientes se conectan a tu servidor y <strong>no consumen licencia propia</strong>.',
       'pricing.subscribe.cta': 'Solicitar suscripción',
 
@@ -444,7 +507,7 @@
       'download.pro_mac': 'macOS Apple Silicon · Próximamente',
       'download.subnote_link': 'Ver todos los ficheros del release',
       'download.subnote_suffix': ' — changelog, hashes, versiones anteriores.',
-      'download.note': '¿Necesitas un build para macOS Intel, una licencia enterprise o tienes una duda primero? Escribe a <a href="mailto:info@acornjuice.com?subject=Consulta%20AccuVideo">info@acornjuice.com</a>.',
+      'download.note': '¿Necesitas un build para macOS Intel, una licencia enterprise o tienes una duda primero? <a href="#" data-open-form="contactus">Escríbenos</a>.',
 
       'req.title': 'Requisitos del sistema',
       'req.sub': 'AccuVideo Basic corre en portátiles normales. Pro añade ingesta visual (Florence-2), que depende de GPU — sus requisitos son mayores.',
@@ -463,20 +526,54 @@
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
 
       'contact.title': 'Solicita tu licencia trial',
-      'contact.sub': 'Te la enviamos por email en 1 día laborable.',
+      'contact.sub': 'Te la enviamos por email en hasta 2 días laborables.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edición',
       'contact.field.os': 'Sistema operativo',
       'contact.field.notes': 'Notas',
       'contact.submit': 'Enviar solicitud',
-      'contact.fallback': 'O escríbenos directamente:',
       'contact.status.sending': 'Enviando…',
-      'contact.status.success': '¡Solicitud enviada! Te respondemos por email en 1 día laborable.',
-      'contact.status.error': 'Error al enviar. Escribe directamente a info@acornjuice.com.',
-      'contact.status.network': 'Error de red. Escribe directamente a info@acornjuice.com.',
+      'contact.status.success': '¡Solicitud enviada! Te respondemos por email en hasta 2 días laborables.',
+      'contact.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
+      'contact.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
       'contact.status.notconfigured': 'Formulario sin configurar. Pega tu access key de Web3Forms en main.js (WEB3FORMS_KEY).',
 
+      'subscribe.cta_card': 'Suscribirse a este plan →',
+      'subscribe.title': 'Suscríbete a AccuVideo',
+      'subscribe.sub': 'Rellena tus datos — te llevamos a Stripe para completar el pago.',
+      'subscribe.field.email': 'Email',
+      'subscribe.field.hwid': 'Hardware ID',
+      'subscribe.field.hwid_hint': 'Abre AccuVideo → Ajustes → Cuenta para copiar tu hardware ID. La licencia quedará vinculada a esta máquina.',
+      'subscribe.field.plan': 'Plan',
+      'subscribe.field.edition': 'Edición',
+      'subscribe.field.billing': 'Facturación',
+      'subscribe.billing.monthly': 'Mensual',
+      'subscribe.billing.annual': 'Anual (2 meses gratis)',
+      'subscribe.submit': 'Continuar al pago',
+      'subscribe.fallback': '¿Problemas con el pago?',
+      'subscribe.fallback_cta': 'Escríbenos',
+      'subscribe.status.processing': 'Generando enlace de pago…',
+      'subscribe.status.redirecting': 'Abriendo el checkout de Stripe en una pestaña nueva…',
+      'subscribe.status.notconfigured': 'Este plan aún no está disponible para pago online. Usa el formulario de contacto y te enviamos un enlace de pago manual.',
+      'subscribe.status.popup_blocked': 'Tu navegador bloqueó la pestaña nueva. Permite pop-ups para este sitio o pincha aquí: ',
+
+      'contactus.title': 'Contacta con nosotros',
+      'contactus.sub': 'Escríbenos un mensaje — te respondemos en hasta 2 días laborables.',
+      'contactus.field.name': 'Nombre',
+      'contactus.field.email': 'Email',
+      'contactus.field.subject': 'Asunto',
+      'contactus.field.message': 'Mensaje',
+      'contactus.submit': 'Enviar mensaje',
+      'contactus.status.sending': 'Enviando…',
+      'contactus.status.success': '¡Mensaje enviado! Te respondemos en hasta 2 días laborables.',
+      'contactus.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
+      'contactus.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
+      'contactus.topic.enterprise': 'Consulta enterprise',
+      'contactus.topic.payment': 'Suscripción / problema de pago',
+      'contactus.topic.intelmac': 'Solicitud build macOS Intel',
+
+      'footer.contact': 'Contacta',
       'footer.docs': 'Documentación',
       'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md'
     }
@@ -698,21 +795,21 @@
       if (e.key === 'Escape' && !modal.hidden) closeContactModal();
     });
 
-    document.querySelectorAll('a[href*="mailto:info@acornjuice.com"]').forEach((a) => {
-      const href = a.getAttribute('href') || '';
-      if (!/trial/i.test(href)) return;
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        let plan = '';
-        let edition = 'basic';
-        const card = a.closest('.price-card');
-        if (card) {
-          const name = card.querySelector('.price-name');
-          if (name) plan = name.textContent.trim();
-          edition = card.getAttribute('data-edition') || 'basic';
-        }
-        openContactModal(plan, edition);
-      });
+    // Event delegation: covers both the static price-card CTAs and any link injected
+    // via i18n innerHTML re-render (e.g. inside pricing.license.step2).
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-form="trial"]');
+      if (!trigger) return;
+      e.preventDefault();
+      let plan = '';
+      let edition = 'basic';
+      const card = trigger.closest('.price-card');
+      if (card) {
+        const name = card.querySelector('.price-name');
+        if (name) plan = name.textContent.trim();
+        edition = card.getAttribute('data-edition') || 'basic';
+      }
+      openContactModal(plan, edition);
     });
 
     const form = document.getElementById('contact-form');
@@ -762,6 +859,236 @@
     });
   }
 
+  function openSubscribeModal(plan, edition) {
+    const modal = document.getElementById('subscribe-modal');
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const planSelect = modal.querySelector('select[name="plan"]');
+    if (planSelect && plan) {
+      const match = Array.from(planSelect.options).find((o) => o.value === plan);
+      if (match) planSelect.value = match.value;
+    }
+    const editionSelect = modal.querySelector('select[name="edition"]');
+    if (editionSelect) editionSelect.value = edition === 'pro' ? 'pro' : 'basic';
+    const firstField = modal.querySelector('input[name="email"]');
+    if (firstField) setTimeout(() => firstField.focus(), 50);
+  }
+
+  function closeSubscribeModal() {
+    const modal = document.getElementById('subscribe-modal');
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    const status = document.getElementById('subscribe-form-status');
+    if (status) { status.innerHTML = ''; status.className = 'contact-form-status'; }
+  }
+
+  function buildStripeUrl(baseUrl, email, hwid) {
+    const url = new URL(baseUrl);
+    url.searchParams.set('prefilled_email', email);
+    url.searchParams.set('client_reference_id', hwid);
+    return url.toString();
+  }
+
+  function bindSubscribeModal() {
+    const modal = document.getElementById('subscribe-modal');
+    if (!modal) return;
+
+    modal.querySelectorAll('[data-close]').forEach((el) => {
+      el.addEventListener('click', closeSubscribeModal);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeSubscribeModal();
+    });
+
+    // Event delegation: covers per-card subscribe buttons, the bottom subscribe CTA,
+    // and any link injected via i18n innerHTML (e.g. inside pricing.subscribe.step3).
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-form="subscribe"], [data-action="subscribe"], .pricing-subscribe-cta');
+      if (!trigger) return;
+      e.preventDefault();
+      let plan = '';
+      let edition = 'basic';
+      const card = trigger.closest('.price-card');
+      if (card) {
+        plan = card.getAttribute('data-plan') || '';
+        edition = card.getAttribute('data-edition') || 'basic';
+      }
+      openSubscribeModal(plan, edition);
+    });
+
+    const form = document.getElementById('subscribe-form');
+    const status = document.getElementById('subscribe-form-status');
+    if (!form || !status) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = new FormData(form);
+      const email = String(data.get('email') || '').trim();
+      const hwid = String(data.get('hwid') || '').trim();
+      const plan = String(data.get('plan') || '');
+      const edition = String(data.get('edition') || '');
+      const billing = String(data.get('billing') || '');
+      const key = edition + '.' + plan + '.' + billing;
+      const baseUrl = STRIPE_LINKS[key];
+
+      status.innerHTML = '';
+      status.textContent = tt('subscribe.status.processing');
+      status.className = 'contact-form-status';
+
+      if (!baseUrl) {
+        status.textContent = tt('subscribe.status.notconfigured');
+        status.className = 'contact-form-status error';
+        return;
+      }
+
+      // Fire-and-forget notification email so we know who's about to pay.
+      try {
+        fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            hardware_id: hwid,
+            plan: plan,
+            edition: edition,
+            billing: billing,
+            _subject: 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing,
+            _template: 'table',
+            _captcha: 'false',
+          }),
+        }).catch(() => {});
+      } catch (_) { /* ignore */ }
+
+      const checkoutUrl = buildStripeUrl(baseUrl, email, hwid);
+      const win = window.open(checkoutUrl, '_blank', 'noopener');
+      if (win) {
+        status.textContent = tt('subscribe.status.redirecting');
+        status.className = 'contact-form-status success';
+      } else {
+        // Popup blocked — render a clickable fallback link.
+        const fallback = document.createElement('a');
+        fallback.href = checkoutUrl;
+        fallback.target = '_blank';
+        fallback.rel = 'noopener';
+        fallback.textContent = checkoutUrl;
+        status.textContent = tt('subscribe.status.popup_blocked');
+        status.appendChild(fallback);
+        status.className = 'contact-form-status error';
+      }
+    });
+  }
+
+  function bindDownloadTracking() {
+    if (typeof window.gtag !== 'function') return;
+    const links = document.querySelectorAll('a[href*="releases/latest/download"]');
+    links.forEach((a) => {
+      a.addEventListener('click', () => {
+        const file = a.href.split('/').pop();
+        window.gtag('event', 'download_click', {
+          file_name: file,
+          edition: /Pro/i.test(file) ? 'pro' : 'basic',
+          os: /\.msi$/i.test(file) ? 'windows' : 'other',
+        });
+      });
+    });
+  }
+
+  function openContactUsModal(topic) {
+    const modal = document.getElementById('contactus-modal');
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const subjectInput = modal.querySelector('input[name="subject"]');
+    if (subjectInput && topic) {
+      const topicLabel = tt('contactus.topic.' + topic);
+      if (topicLabel && topicLabel !== 'contactus.topic.' + topic) {
+        subjectInput.value = topicLabel;
+      }
+    }
+    const firstField = modal.querySelector('input[name="name"], input[name="email"]');
+    if (firstField) setTimeout(() => firstField.focus(), 50);
+  }
+
+  function closeContactUsModal() {
+    const modal = document.getElementById('contactus-modal');
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    const status = document.getElementById('contactus-form-status');
+    if (status) { status.textContent = ''; status.className = 'contact-form-status'; }
+  }
+
+  function bindContactUsModal() {
+    const modal = document.getElementById('contactus-modal');
+    if (!modal) return;
+
+    modal.querySelectorAll('[data-close]').forEach((el) => {
+      el.addEventListener('click', closeContactUsModal);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeContactUsModal();
+    });
+
+    document.querySelectorAll('[data-open-form="contactus"]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const topic = el.getAttribute('data-form-topic') || '';
+        openContactUsModal(topic);
+      });
+    });
+
+    const form = document.getElementById('contactus-form');
+    const status = document.getElementById('contactus-form-status');
+    if (!form || !status) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = new FormData(form);
+      const payload = {
+        name: data.get('name') || '',
+        email: data.get('email') || '',
+        subject: data.get('subject') || '',
+        message: data.get('message') || '',
+        _subject: 'AccuVideo contact: ' + (data.get('subject') || 'general'),
+        _template: 'table',
+        _captcha: 'false',
+      };
+      status.textContent = tt('contactus.status.sending');
+      status.className = 'contact-form-status';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const json = await res.json();
+        const ok = json.success === true || json.success === 'true';
+        if (ok) {
+          status.textContent = tt('contactus.status.success');
+          status.className = 'contact-form-status success';
+          form.reset();
+          setTimeout(closeContactUsModal, 3500);
+        } else {
+          status.textContent = json.message || tt('contactus.status.error');
+          status.className = 'contact-form-status error';
+        }
+      } catch (_) {
+        status.textContent = tt('contactus.status.network');
+        status.className = 'contact-form-status error';
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     applyTheme(detectInitialTheme());
     applyLang(detectInitialLang());
@@ -770,6 +1097,9 @@
     bindPriceToggle();
     bindEditionTabs();
     bindContactModal();
+    bindSubscribeModal();
+    bindContactUsModal();
+    bindDownloadTracking();
     setFooterYear();
   });
 })();
