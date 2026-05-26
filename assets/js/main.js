@@ -6,6 +6,11 @@
   const STORAGE_KEY_THEME = 'accuvideo-theme';
   const SUPPORTED_THEMES = ['dark', 'light'];
 
+  // Trial-license form submits to Formsubmit.co (free, no signup).
+  // FIRST submission triggers an activation email to this address — click the link in it
+  // to enable the endpoint. After that, every submission lands as a regular email.
+  const TRIAL_FORM_EMAIL = 'info@acornjuice.com';
+
   const i18n = {
     en: {
       'meta.title': 'AccuVideo — Find the moment',
@@ -92,6 +97,7 @@
       'editions.basic.f2': 'On-screen text indexing — slides, captions, signs, code on a whiteboard',
       'editions.basic.f3': 'In-app ingestion — drop a folder, watch it index',
       'editions.basic.f4': 'Single-machine use, EN/ES UI, dark and light themes',
+      'editions.basic.f5': 'Multilingual transcription — pick the audio language (or auto-detect); optional translation for cross-language search',
       'editions.basic.bestfor': '<strong>Best for:</strong> students, individuals and families with a modest video collection.',
       'editions.basic.cta_win': 'Windows · .msi',
       'editions.basic.cta_mac': 'macOS · Coming soon',
@@ -103,6 +109,7 @@
       'editions.pro.f4': '<strong>AccuVideoIngest CLI</strong> — headless batch tool to index hundreds of files in one command, with progress logs and resume on failure',
       'editions.pro.f5': 'Scheduled / overnight batches — automate nightly ingestion via Task Scheduler (Windows); ideal for growing archives',
       'editions.pro.f6': 'Multi-client LAN streaming — serve concurrent viewers from one machine',
+      'editions.pro.f7': 'Ideal for processing videos without audio — visual indexing covers them on its own',
       'editions.pro.bestfor': '<strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.',
       'editions.pro.cta_win': 'Windows · .msi',
       'editions.pro.cta_mac': 'macOS · Coming soon',
@@ -116,37 +123,63 @@
       'pricing.toggle.hint': '💰 Annual billing = 2 months free',
       'pricing.badge.popular': 'Most popular',
       'pricing.cta_trial': 'Request trial license',
-      'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21',
-      'pricing.basic.group': 'Basic — for individuals, students and families',
+      'pricing.points.info': 'Points are the searchable segments per video — roughly 1 point per 6 seconds of indexed content (audio, on-screen text or visual frames). ~10 points per minute on average.',
+      'pricing.basic.starter.tooltip_annual': 'Annual: €104.90/year — save 17%',
+      'pricing.basic.personal.tooltip_annual': 'Annual: €224.90/year — save 17%',
+      'pricing.basic.freelance.tooltip_annual': 'Annual: €749.90/year — save 17%',
+      'pricing.pro.academy.tooltip_annual': 'Annual: €1499.90/year — save 17%',
+      'pricing.pro.academyplus.tooltip_annual': 'Annual: €3299.90/year — save 17%',
+      'pricing.pro.enterprise.tooltip_annual': 'Annual: €8249.90/year — save 17%',
+      'pricing.edition.basic': 'Basic',
+      'pricing.edition.pro': 'Pro',
+      'pricing.tooltip_annual_fmt': 'Annual: €{value}/year — save 17%',
+      'pricing.basic.starter.price_monthly_pro': '15.99',
+      'pricing.basic.starter.price_annual_pro': '159.90',
+      'pricing.basic.personal.price_monthly_pro': '33.99',
+      'pricing.basic.personal.price_annual_pro': '339.90',
+      'pricing.basic.freelance.price_monthly_pro': '82.99',
+      'pricing.basic.freelance.price_annual_pro': '829.90',
+      'pricing.pro.academy.price_monthly_pro': '224.99',
+      'pricing.pro.academy.price_annual_pro': '2249.90',
+      'pricing.pro.academyplus.price_monthly_pro': '494.99',
+      'pricing.pro.academyplus.price_annual_pro': '4949.90',
+      'pricing.pro.enterprise.price_monthly_pro': '1237.99',
+      'pricing.pro.enterprise.price_annual_pro': '12379.90',
+      'pricing.pro.academy.cap_basic': 'Up to 1 000 videos · 10 000 points',
+      'pricing.pro.academyplus.cap_basic': 'Up to 3 000 videos · 30 000 points',
+      'pricing.pro.enterprise.cap_basic': 'Up to 10 000 videos · 100 000 points',
+      'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A%0AThanks%21',
+      'pricing.subscribe.mailto': 'mailto:info@acornjuice.com?subject=AccuVideo%20subscription%20request&body=Hi%2C%0A%0AI%27d%20like%20to%20subscribe%20to%20an%20AccuVideo%20plan.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Edition%3A%20%5Bbasic%20%2F%20pro%5D%0A-%20Billing%3A%20%5Bmonthly%20%2F%20annual%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20see%20Settings%20%E2%86%92%20Account%20in%20AccuVideo%5D%0A%0APlease%20send%20payment%20instructions.%20Thanks%21',
+      'pricing.basic.group': 'For individuals, students and families',
       'pricing.basic.starter.name': 'Starter',
-      'pricing.basic.starter.price_monthly': '10.49',
-      'pricing.basic.starter.price_annual': '104.90',
-      'pricing.basic.starter.cap': 'Up to 100 videos · 5 000 points',
+      'pricing.basic.starter.price_monthly': '11.99',
+      'pricing.basic.starter.price_annual': '119.90',
+      'pricing.basic.starter.cap': 'Up to 100 videos · 1 000 points',
       'pricing.basic.personal.name': 'Personal',
-      'pricing.basic.personal.price_monthly': '22.49',
-      'pricing.basic.personal.price_annual': '224.90',
-      'pricing.basic.personal.cap': 'Up to 500 videos · 20 000 points',
+      'pricing.basic.personal.price_monthly': '24.99',
+      'pricing.basic.personal.price_annual': '249.90',
+      'pricing.basic.personal.cap': 'Up to 300 videos · 3 000 points',
       'pricing.basic.freelance.name': 'Freelance',
-      'pricing.basic.freelance.price_monthly': '74.99',
-      'pricing.basic.freelance.price_annual': '749.90',
-      'pricing.basic.freelance.cap': 'Up to 3 000 videos · 120 000 points',
+      'pricing.basic.freelance.price_monthly': '54.99',
+      'pricing.basic.freelance.price_annual': '549.90',
+      'pricing.basic.freelance.cap': 'Up to 500 videos · 5 000 points',
       'pricing.basic.feat1': 'Audio + on-screen text search',
       'pricing.basic.feat2': '1 user · 1 machine',
       'pricing.basic.feat3': 'EN / ES interface',
-      'pricing.pro.group': 'Pro — for academies, businesses and schools',
+      'pricing.pro.group': 'For academies, businesses and schools',
       'pricing.pro.academy.name': 'Academy',
       'pricing.pro.academy.price_monthly': '149.99',
       'pricing.pro.academy.price_annual': '1499.90',
-      'pricing.pro.academy.cap': 'Up to 1 000 videos · 40 000 points · 5 concurrent viewers',
+      'pricing.pro.academy.cap': 'Up to 1 000 videos · 10 000 points · 15 concurrent viewers',
       'pricing.pro.academyplus.name': 'Academy Plus',
       'pricing.pro.academyplus.price_monthly': '329.99',
       'pricing.pro.academyplus.price_annual': '3299.90',
-      'pricing.pro.academyplus.cap': 'Up to 3 000 videos · 120 000 points · 15 concurrent viewers',
+      'pricing.pro.academyplus.cap': 'Up to 3 000 videos · 30 000 points · 45 concurrent viewers',
       'pricing.pro.enterprise.name': 'Enterprise',
       'pricing.pro.enterprise.price_monthly': '824.99',
       'pricing.pro.enterprise.price_annual': '8249.90',
-      'pricing.pro.enterprise.cap': 'Up to 10 000 videos · 400 000 points · 50 concurrent viewers',
-      'pricing.pro.feat1': 'Everything in Basic + visual search',
+      'pricing.pro.enterprise.cap': 'Up to 10 000 videos · 100 000 points · 150 concurrent viewers',
+      'pricing.pro.feat1': 'Visual content search (Florence-2)',
       'pricing.pro.feat2': 'AccuVideoIngest CLI · scheduled batches',
       'pricing.pro.feat3': 'Multi-client LAN streaming',
       'pricing.consult.title': 'Need a bigger setup?',
@@ -154,15 +187,21 @@
       'pricing.consult.cta': 'Talk to Acorn Juice Solutions',
       'pricing.footnote': 'All plans include the 30-day free trial. Prices in EUR, VAT not included. Annual billing available — contact us for a quote.',
       'pricing.license.title': 'How to get your trial license',
-      'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days',
+      'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days · Basic edition by default (Pro on request)',
       'pricing.license.step1': 'Download the AccuVideo installer for your edition (Basic or Pro) from the <a href="#download">Download</a> section below.',
-      'pricing.license.step2': 'Run the installer. On first launch, AccuVideo shows your <strong>hardware ID</strong> on the activation screen — copy it.',
-      'pricing.license.step3': 'Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> with three things: your <strong>hardware ID</strong>, your <strong>operating system</strong> (Windows 10 / 11, macOS…) and the <strong>plan</strong> you want to try. We send back your 30-day trial license — paste it into AccuVideo and you\'re in.',
-      'pricing.license.notes': 'Each license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (5 / 15 / 50); viewers connect to your server and <strong>don\'t consume their own license</strong>.',
+      'pricing.license.step2': 'Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> with two things: your <strong>operating system</strong> (Windows 10 / 11, macOS…) and the <strong>plan</strong> you want to try. We send back your 30-day trial license — paste it into AccuVideo and you\'re in. <strong>No hardware ID needed for the trial.</strong>',
+      'pricing.license.notes': 'The trial runs for 30 days and the cap above is shared across all plans. When you\'re ready to subscribe, see below — paid plans are tied to your machine\'s hardware ID for security.',
+      'pricing.subscribe.title': 'Ready to subscribe to a plan?',
+      'pricing.subscribe.intro': 'Paid plans are activated against your machine\'s <strong>hardware ID</strong>, so each license stays bound to one specific computer.',
+      'pricing.subscribe.step1': 'Install AccuVideo on the machine you\'ll use as the indexer / server (the one with the GPU for Pro).',
+      'pricing.subscribe.step2': 'Open <strong>Settings → Account</strong> and copy your <strong>hardware ID</strong>. It\'s a short alphanumeric string unique to that machine.',
+      'pricing.subscribe.step3': 'Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> with your <strong>hardware ID</strong>, <strong>operating system</strong>, chosen <strong>plan</strong> and <strong>billing period</strong> (monthly / annual). We send back payment instructions and your full license.',
+      'pricing.subscribe.notes': 'Each paid license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (15 / 45 / 150); viewers connect to your server and <strong>don\'t consume their own license</strong>.',
+      'pricing.subscribe.cta': 'Request subscription',
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows builds available now. macOS (Apple Silicon) coming soon. Intel macOS builds available on request during the pilot.',
-      'download.trial_note': '📧 First time? <a href="#pricing">Request your trial license first</a> — the installer asks for a license tied to your hardware ID to activate.',
+      'download.trial_note': '📧 First time? <a href="#pricing">Request your trial license first</a> — the installer asks for a license key on first launch.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -188,6 +227,21 @@
       'req.rec.disk': 'Disk: SSD for OS + models; HDD or SSD for the video library',
       'req.rec.net': 'Network: stable connection for the managed vector DB',
       'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
+
+      'contact.title': 'Request your trial license',
+      'contact.sub': 'We\'ll email it back within 1 business day.',
+      'contact.field.email': 'Email',
+      'contact.field.plan': 'Plan',
+      'contact.field.edition': 'Edition',
+      'contact.field.os': 'Operating system',
+      'contact.field.notes': 'Notes',
+      'contact.submit': 'Send request',
+      'contact.fallback': 'Or email us directly:',
+      'contact.status.sending': 'Sending…',
+      'contact.status.success': 'Request sent! We\'ll email you back within 1 business day.',
+      'contact.status.error': 'Error sending. Please email info@acornjuice.com directly.',
+      'contact.status.network': 'Network error. Please email info@acornjuice.com directly.',
+      'contact.status.notconfigured': 'Form not configured. Paste your Web3Forms access key in main.js (WEB3FORMS_KEY).',
 
       'footer.docs': 'Documentation',
       'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md'
@@ -277,6 +331,7 @@
       'editions.basic.f2': 'Indexación de texto en pantalla — diapositivas, rótulos, carteles, código en una pizarra',
       'editions.basic.f3': 'Ingesta desde la app — suelta una carpeta y mírala indexarse',
       'editions.basic.f4': 'Uso en una sola máquina, UI EN/ES, tema claro y oscuro',
+      'editions.basic.f5': 'Transcripción multilingüe — elige el idioma del audio (o auto-detección); traducción opcional para búsqueda multiidioma',
       'editions.basic.bestfor': '<strong>Ideal para:</strong> estudiantes, particulares y familias con una videoteca modesta.',
       'editions.basic.cta_win': 'Windows · .msi',
       'editions.basic.cta_mac': 'macOS · Próximamente',
@@ -288,6 +343,7 @@
       'editions.pro.f4': '<strong>CLI AccuVideoIngest</strong> — herramienta headless por lotes que indexa cientos de ficheros en un solo comando, con logs de progreso y reanudación tras fallos',
       'editions.pro.f5': 'Lotes programados / nocturnos — automatiza la ingesta diaria con el Programador de tareas (Windows); ideal para archivos que crecen',
       'editions.pro.f6': 'Streaming multi-cliente en LAN — sirve a varios clientes simultáneos desde una misma máquina',
+      'editions.pro.f7': 'Ideal para procesar vídeos sin audio — la indexación visual los cubre por sí sola',
       'editions.pro.bestfor': '<strong>Ideal para:</strong> academias online, formación corporativa, colegios, archivos familiares grandes y cualquier escenario multi-usuario.',
       'editions.pro.cta_win': 'Windows · .msi',
       'editions.pro.cta_mac': 'macOS · Próximamente',
@@ -301,37 +357,63 @@
       'pricing.toggle.hint': '💰 Pago anual = 2 meses gratis',
       'pricing.badge.popular': 'Más popular',
       'pricing.cta_trial': 'Solicitar licencia trial',
-      'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=Solicitud%20licencia%20trial%20AccuVideo&body=Hola%2C%0A%0AQuer%C3%ADa%20solicitar%20una%20licencia%20trial%20de%2030%20d%C3%ADas%20para%20AccuVideo.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Sistema%20operativo%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpega%20aqu%C3%AD%20%E2%80%94%20lo%20ver%C3%A1s%20en%20el%20primer%20arranque%20de%20AccuVideo%5D%0A%0A%C2%A1Gracias%21',
-      'pricing.basic.group': 'Basic — para particulares, estudiantes y familias',
+      'pricing.points.info': 'Los puntos son los fragmentos buscables por vídeo — aprox. 1 punto por cada 6 segundos de contenido indexado (audio, texto en pantalla o frames visuales). ~10 puntos por minuto de media.',
+      'pricing.basic.starter.tooltip_annual': 'Anual: 104,90 €/año — ahorras 17%',
+      'pricing.basic.personal.tooltip_annual': 'Anual: 224,90 €/año — ahorras 17%',
+      'pricing.basic.freelance.tooltip_annual': 'Anual: 749,90 €/año — ahorras 17%',
+      'pricing.pro.academy.tooltip_annual': 'Anual: 1499,90 €/año — ahorras 17%',
+      'pricing.pro.academyplus.tooltip_annual': 'Anual: 3299,90 €/año — ahorras 17%',
+      'pricing.pro.enterprise.tooltip_annual': 'Anual: 8249,90 €/año — ahorras 17%',
+      'pricing.edition.basic': 'Basic',
+      'pricing.edition.pro': 'Pro',
+      'pricing.tooltip_annual_fmt': 'Anual: {value} €/año — ahorras 17%',
+      'pricing.basic.starter.price_monthly_pro': '15,99',
+      'pricing.basic.starter.price_annual_pro': '159,90',
+      'pricing.basic.personal.price_monthly_pro': '33,99',
+      'pricing.basic.personal.price_annual_pro': '339,90',
+      'pricing.basic.freelance.price_monthly_pro': '82,99',
+      'pricing.basic.freelance.price_annual_pro': '829,90',
+      'pricing.pro.academy.price_monthly_pro': '224,99',
+      'pricing.pro.academy.price_annual_pro': '2249,90',
+      'pricing.pro.academyplus.price_monthly_pro': '494,99',
+      'pricing.pro.academyplus.price_annual_pro': '4949,90',
+      'pricing.pro.enterprise.price_monthly_pro': '1237,99',
+      'pricing.pro.enterprise.price_annual_pro': '12379,90',
+      'pricing.pro.academy.cap_basic': 'Hasta 1 000 vídeos · 10 000 puntos',
+      'pricing.pro.academyplus.cap_basic': 'Hasta 3 000 vídeos · 30 000 puntos',
+      'pricing.pro.enterprise.cap_basic': 'Hasta 10 000 vídeos · 100 000 puntos',
+      'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=Solicitud%20licencia%20trial%20AccuVideo&body=Hola%2C%0A%0AQuer%C3%ADa%20solicitar%20una%20licencia%20trial%20de%2030%20d%C3%ADas%20para%20AccuVideo.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Sistema%20operativo%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A%0A%C2%A1Gracias%21',
+      'pricing.subscribe.mailto': 'mailto:info@acornjuice.com?subject=Solicitud%20suscripci%C3%B3n%20AccuVideo&body=Hola%2C%0A%0AQuer%C3%ADa%20suscribirme%20a%20un%20plan%20de%20AccuVideo.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Edici%C3%B3n%3A%20%5Bbasic%20%2F%20pro%5D%0A-%20Facturaci%C3%B3n%3A%20%5Bmensual%20%2F%20anual%5D%0A-%20Sistema%20operativo%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpega%20aqu%C3%AD%20%E2%80%94%20ver%20Ajustes%20%E2%86%92%20Cuenta%20en%20AccuVideo%5D%0A%0APor%20favor%20env%C3%ADame%20instrucciones%20de%20pago.%20%C2%A1Gracias%21',
+      'pricing.basic.group': 'Para particulares, estudiantes y familias',
       'pricing.basic.starter.name': 'Starter',
-      'pricing.basic.starter.price_monthly': '10,49',
-      'pricing.basic.starter.price_annual': '104,90',
-      'pricing.basic.starter.cap': 'Hasta 100 vídeos · 5 000 puntos',
+      'pricing.basic.starter.price_monthly': '11,99',
+      'pricing.basic.starter.price_annual': '119,90',
+      'pricing.basic.starter.cap': 'Hasta 100 vídeos · 1 000 puntos',
       'pricing.basic.personal.name': 'Personal',
-      'pricing.basic.personal.price_monthly': '22,49',
-      'pricing.basic.personal.price_annual': '224,90',
-      'pricing.basic.personal.cap': 'Hasta 500 vídeos · 20 000 puntos',
+      'pricing.basic.personal.price_monthly': '24,99',
+      'pricing.basic.personal.price_annual': '249,90',
+      'pricing.basic.personal.cap': 'Hasta 300 vídeos · 3 000 puntos',
       'pricing.basic.freelance.name': 'Freelance',
-      'pricing.basic.freelance.price_monthly': '74,99',
-      'pricing.basic.freelance.price_annual': '749,90',
-      'pricing.basic.freelance.cap': 'Hasta 3 000 vídeos · 120 000 puntos',
+      'pricing.basic.freelance.price_monthly': '54,99',
+      'pricing.basic.freelance.price_annual': '549,90',
+      'pricing.basic.freelance.cap': 'Hasta 500 vídeos · 5 000 puntos',
       'pricing.basic.feat1': 'Búsqueda en audio + texto en pantalla',
       'pricing.basic.feat2': '1 usuario · 1 máquina',
       'pricing.basic.feat3': 'Interfaz EN / ES',
-      'pricing.pro.group': 'Pro — para academias, empresas y colegios',
+      'pricing.pro.group': 'Para academias, empresas y colegios',
       'pricing.pro.academy.name': 'Academy',
       'pricing.pro.academy.price_monthly': '149,99',
       'pricing.pro.academy.price_annual': '1499,90',
-      'pricing.pro.academy.cap': 'Hasta 1 000 vídeos · 40 000 puntos · 5 clientes LAN',
+      'pricing.pro.academy.cap': 'Hasta 1 000 vídeos · 10 000 puntos · 15 clientes LAN',
       'pricing.pro.academyplus.name': 'Academy Plus',
       'pricing.pro.academyplus.price_monthly': '329,99',
       'pricing.pro.academyplus.price_annual': '3299,90',
-      'pricing.pro.academyplus.cap': 'Hasta 3 000 vídeos · 120 000 puntos · 15 clientes LAN',
+      'pricing.pro.academyplus.cap': 'Hasta 3 000 vídeos · 30 000 puntos · 45 clientes LAN',
       'pricing.pro.enterprise.name': 'Enterprise',
       'pricing.pro.enterprise.price_monthly': '824,99',
       'pricing.pro.enterprise.price_annual': '8249,90',
-      'pricing.pro.enterprise.cap': 'Hasta 10 000 vídeos · 400 000 puntos · 50 clientes LAN',
-      'pricing.pro.feat1': 'Todo lo de Basic + búsqueda visual',
+      'pricing.pro.enterprise.cap': 'Hasta 10 000 vídeos · 100 000 puntos · 150 clientes LAN',
+      'pricing.pro.feat1': 'Búsqueda de contenido visual (Florence-2)',
       'pricing.pro.feat2': 'CLI AccuVideoIngest · lotes programados',
       'pricing.pro.feat3': 'Streaming multi-cliente en LAN',
       'pricing.consult.title': '¿Necesitas algo más grande?',
@@ -339,15 +421,21 @@
       'pricing.consult.cta': 'Consultar con Acorn Juice Solutions',
       'pricing.footnote': 'Todos los planes incluyen los 30 días de prueba gratuita. Precios en EUR, IVA no incluido. Facturación anual disponible — escríbenos para presupuesto.',
       'pricing.license.title': 'Cómo conseguir tu licencia trial',
-      'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días',
+      'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días · edición Basic por defecto (Pro a petición)',
       'pricing.license.step1': 'Descarga el instalador de AccuVideo para tu edición (Basic o Pro) desde la sección <a href="#download">Descarga</a> de abajo.',
-      'pricing.license.step2': 'Ejecuta el instalador. En el primer arranque, AccuVideo te muestra tu <strong>hardware ID</strong> en la pantalla de activación — cópialo.',
-      'pricing.license.step3': 'Escríbenos a <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> con tres cosas: tu <strong>hardware ID</strong>, tu <strong>sistema operativo</strong> (Windows 10 / 11, macOS…) y el <strong>plan</strong> que quieres probar. Te enviamos tu licencia trial de 30 días — la pegas en AccuVideo y listo.',
-      'pricing.license.notes': 'Cada licencia está vinculada a ese hardware ID — un indexador / servidor por seat. ¿Cambias de equipo o reinstalas el SO? Escríbenos con el nuevo hardware ID y la re-emitimos sin preguntas. Los planes Pro incluyen clientes en LAN (5 / 15 / 50); los clientes se conectan a tu servidor y <strong>no consumen licencia propia</strong>.',
+      'pricing.license.step2': 'Escríbenos a <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> con dos cosas: tu <strong>sistema operativo</strong> (Windows 10 / 11, macOS…) y el <strong>plan</strong> que quieres probar. Te enviamos tu licencia trial de 30 días — la pegas en AccuVideo y listo. <strong>No hace falta hardware ID para la trial.</strong>',
+      'pricing.license.notes': 'La trial dura 30 días y el cap de arriba se aplica a todos los planes. Cuando quieras suscribirte, mira más abajo — los planes de pago van ligados al hardware ID de tu equipo por seguridad.',
+      'pricing.subscribe.title': '¿Listo para suscribirte a un plan?',
+      'pricing.subscribe.intro': 'Los planes de pago se activan contra el <strong>hardware ID</strong> de tu equipo, así cada licencia queda vinculada a una máquina específica.',
+      'pricing.subscribe.step1': 'Instala AccuVideo en la máquina que vas a usar como indexador / servidor (la que tenga la GPU para Pro).',
+      'pricing.subscribe.step2': 'Abre <strong>Ajustes → Cuenta</strong> y copia tu <strong>hardware ID</strong>. Es una cadena alfanumérica corta única de esa máquina.',
+      'pricing.subscribe.step3': 'Escríbenos a <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> con tu <strong>hardware ID</strong>, <strong>sistema operativo</strong>, <strong>plan</strong> elegido y <strong>periodo de facturación</strong> (mensual / anual). Te enviamos las instrucciones de pago y tu licencia completa.',
+      'pricing.subscribe.notes': 'Cada licencia de pago está vinculada a ese hardware ID — un indexador / servidor por seat. ¿Cambias de equipo o reinstalas el SO? Escríbenos con el nuevo hardware ID y la re-emitimos sin preguntas. Los planes Pro incluyen clientes en LAN (15 / 45 / 150); los clientes se conectan a tu servidor y <strong>no consumen licencia propia</strong>.',
+      'pricing.subscribe.cta': 'Solicitar suscripción',
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows disponibles ya. macOS (Apple Silicon) próximamente. Builds para macOS Intel disponibles bajo petición durante el piloto.',
-      'download.trial_note': '📧 ¿Primera vez? <a href="#pricing">Solicita primero tu licencia trial</a> — el instalador pide una licencia ligada a tu hardware ID para activarse.',
+      'download.trial_note': '📧 ¿Primera vez? <a href="#pricing">Solicita primero tu licencia trial</a> — el instalador pide la clave de licencia en el primer arranque.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -373,6 +461,21 @@
       'req.rec.disk': 'Disco: SSD para SO + modelos; HDD o SSD para la videoteca',
       'req.rec.net': 'Red: conexión estable para el DB vectorial gestionado',
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
+
+      'contact.title': 'Solicita tu licencia trial',
+      'contact.sub': 'Te la enviamos por email en 1 día laborable.',
+      'contact.field.email': 'Email',
+      'contact.field.plan': 'Plan',
+      'contact.field.edition': 'Edición',
+      'contact.field.os': 'Sistema operativo',
+      'contact.field.notes': 'Notas',
+      'contact.submit': 'Enviar solicitud',
+      'contact.fallback': 'O escríbenos directamente:',
+      'contact.status.sending': 'Enviando…',
+      'contact.status.success': '¡Solicitud enviada! Te respondemos por email en 1 día laborable.',
+      'contact.status.error': 'Error al enviar. Escribe directamente a info@acornjuice.com.',
+      'contact.status.network': 'Error de red. Escribe directamente a info@acornjuice.com.',
+      'contact.status.notconfigured': 'Formulario sin configurar. Pega tu access key de Web3Forms en main.js (WEB3FORMS_KEY).',
 
       'footer.docs': 'Documentación',
       'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md'
@@ -411,6 +514,23 @@
       const value = dict[key];
       if (value !== undefined) el.setAttribute('href', value);
     });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const value = dict[key];
+      if (value !== undefined) el.setAttribute('placeholder', value);
+    });
+
+    document.querySelectorAll('[data-i18n-tooltip]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-tooltip');
+      const value = dict[key];
+      if (value !== undefined) {
+        el.setAttribute('data-tooltip', value);
+        el.setAttribute('title', value);
+      }
+    });
+
+    document.querySelectorAll('.price-card').forEach(applyEditionToCard);
 
     const heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
@@ -461,6 +581,63 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
+  function applyEditionToCard(card) {
+    const edition = card.getAttribute('data-edition') || 'basic';
+    const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
+    const dict = i18n[lang] || {};
+
+    const priceNum = card.querySelector('.price-num');
+    if (priceNum) {
+      const baseKey = priceNum.getAttribute('data-i18n');
+      const proKey = baseKey ? baseKey + '_pro' : null;
+      const useKey = edition === 'pro' && proKey && dict[proKey] !== undefined ? proKey : baseKey;
+      if (useKey && dict[useKey] !== undefined) priceNum.textContent = dict[useKey];
+    }
+
+    const annualIcon = card.querySelector('.info-icon[data-annual-key]');
+    if (annualIcon) {
+      const baseKey = annualIcon.getAttribute('data-annual-key');
+      const proKey = baseKey + '_pro';
+      const useKey = edition === 'pro' && dict[proKey] !== undefined ? proKey : baseKey;
+      const value = dict[useKey];
+      if (value !== undefined) {
+        const tmpl = dict['pricing.tooltip_annual_fmt'] || 'Annual: €{value}/year — save 17%';
+        const text = tmpl.replace('{value}', value);
+        annualIcon.setAttribute('data-tooltip', text);
+        annualIcon.setAttribute('title', text);
+      }
+    }
+
+    const capSpan = card.querySelector('.price-cap span[data-i18n]');
+    if (capSpan) {
+      const baseKey = capSpan.getAttribute('data-i18n');
+      const basicKey = baseKey + '_basic';
+      const useKey = edition === 'basic' && dict[basicKey] !== undefined ? basicKey : baseKey;
+      if (dict[useKey] !== undefined) capSpan.innerHTML = dict[useKey];
+    }
+
+    card.querySelectorAll('.price-tab').forEach((t) => {
+      const active = t.getAttribute('data-edition') === edition;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  }
+
+  function bindEditionTabs() {
+    document.querySelectorAll('.price-card').forEach((card) => {
+      card.querySelectorAll('.price-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const edition = tab.getAttribute('data-edition');
+          if (edition) {
+            card.setAttribute('data-edition', edition);
+            applyEditionToCard(card);
+          }
+        });
+      });
+      applyEditionToCard(card);
+    });
+  }
+
   function bindPriceToggle() {
     const buttons = document.querySelectorAll('.price-toggle-btn');
     if (!buttons.length) return;
@@ -478,12 +655,121 @@
     });
   }
 
+  function tt(key) {
+    const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
+    return (i18n[lang] && i18n[lang][key]) || (i18n.en && i18n.en[key]) || key;
+  }
+
+  function openContactModal(plan, edition) {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if (plan) {
+      const planSelect = modal.querySelector('select[name="plan"]');
+      if (planSelect) {
+        const match = Array.from(planSelect.options).find((o) => o.value === plan || o.textContent.trim() === plan);
+        if (match) planSelect.value = match.value || match.textContent.trim();
+      }
+    }
+    const editionSelect = modal.querySelector('select[name="edition"]');
+    if (editionSelect) editionSelect.value = edition === 'pro' ? 'Pro' : 'Basic';
+    const firstField = modal.querySelector('input, select, textarea');
+    if (firstField) setTimeout(() => firstField.focus(), 50);
+  }
+
+  function closeContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    const status = document.getElementById('contact-form-status');
+    if (status) { status.textContent = ''; status.className = 'contact-form-status'; }
+  }
+
+  function bindContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+
+    modal.querySelectorAll('[data-close]').forEach((el) => {
+      el.addEventListener('click', closeContactModal);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeContactModal();
+    });
+
+    document.querySelectorAll('a[href*="mailto:info@acornjuice.com"]').forEach((a) => {
+      const href = a.getAttribute('href') || '';
+      if (!/trial/i.test(href)) return;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        let plan = '';
+        let edition = 'basic';
+        const card = a.closest('.price-card');
+        if (card) {
+          const name = card.querySelector('.price-name');
+          if (name) plan = name.textContent.trim();
+          edition = card.getAttribute('data-edition') || 'basic';
+        }
+        openContactModal(plan, edition);
+      });
+    });
+
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('contact-form-status');
+    if (!form || !status) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const data = new FormData(form);
+      const payload = {
+        email: data.get('email') || '',
+        plan: data.get('plan') || '',
+        edition: data.get('edition') || '',
+        os: data.get('os') || '',
+        message: data.get('message') || '',
+        _subject: 'AccuVideo trial license request',
+        _template: 'table',
+        _captcha: 'false',
+      };
+      status.textContent = tt('contact.status.sending');
+      status.className = 'contact-form-status';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const json = await res.json();
+        const ok = json.success === true || json.success === 'true';
+        if (ok) {
+          status.textContent = tt('contact.status.success');
+          status.className = 'contact-form-status success';
+          form.reset();
+          setTimeout(closeContactModal, 3500);
+        } else {
+          status.textContent = json.message || tt('contact.status.error');
+          status.className = 'contact-form-status error';
+        }
+      } catch (_) {
+        status.textContent = tt('contact.status.network');
+        status.className = 'contact-form-status error';
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     applyTheme(detectInitialTheme());
     applyLang(detectInitialLang());
     bindToggle();
     bindThemeToggle();
     bindPriceToggle();
+    bindEditionTabs();
+    bindContactModal();
     setFooterYear();
   });
 })();
