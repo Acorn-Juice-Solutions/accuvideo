@@ -4,6 +4,8 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 
 > **📌 Note**: AccuVideo bundles **FFmpeg** for video re-encoding. Search vectors are stored in an **external managed DB**. The hardware requirements below refer **only to the local machine** running AccuVideo. The DB consumes no significant local resources (only a stable network connection).
 
+> **⚠️ GPU / CUDA acceleration**: The current version of AccuVideo **runs on CPU only**. GPU acceleration (CUDA on NVIDIA, MPS on Apple Silicon) is **planned for a future release**. GPU/CUDA references in this document describe the requirements expected once that support lands — for now they are **informational** and not needed to run AccuVideo.
+
 ---
 
 ## 🖥️ Windows
@@ -13,7 +15,7 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Intel Core i5 (8th gen) / AMD Ryzen 5 2600 or better |
 | **RAM** | 8 GB DDR4 |
-| **GPU** | Integrated (Intel UHD / AMD Radeon) — audio + search only; no visual ingestion |
+| **GPU** | Integrated (Intel UHD / AMD Radeon) — all ingestion runs on CPU in this release |
 | **Storage (OS + AccuVideo + models)** | SSD 128 GB with at least 50 GB free |
 | **Storage (Videos)** | Configurable — from 50 GB (HDD or SSD) |
 | **Network** | Ethernet or WiFi 2.4/5 GHz |
@@ -23,13 +25,13 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Intel Core i7 (10th gen+) / AMD Ryzen 7 3700X or better |
 | **RAM** | 16 GB DDR4 |
-| **GPU** | NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ (CUDA for visual ingestion) |
+| **GPU** | *(Future)* NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ — intended for upcoming CUDA support. Not used in the current release |
 | **Storage (OS + models)** | NVMe SSD 256 GB |
 | **Storage (Videos)** | HDD 1-2 TB or SATA SSD — NVMe adds nothing for playback |
 | **Network** | Gigabit Ethernet (1 Gbps) or WiFi 5/6 |
 
 ### Windows Notes
-- **PyTorch CPU vs CUDA**: CUDA acceleration requires an NVIDIA GPU with ≥6 GB VRAM (Florence-2 fits in 6 GB). Without a GPU, visual ingestion runs on CPU but is very slow.
+- **PyTorch CPU vs CUDA**: The current release uses **PyTorch CPU**: all ingestion (audio and visual) runs on CPU. CUDA support is **planned for a future release** and will require an NVIDIA GPU with ≥6 GB VRAM (Florence-2 fits in 6 GB). For now, visual ingestion works but is slow — consider overnight batches.
 - **FFmpeg**: Bundled with AccuVideo — accelerates video re-encoding
 - **DB**: External managed service (no local resource use). Requires a stable network connection.
 - **AI models**: BGE-M3 (~800 MB), Florence-2 (~2.6 GB), Whisper (~1.5 GB)
@@ -54,14 +56,14 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Apple Silicon M2 / M3 or Intel Core i7 (10th gen+) |
 | **RAM** | 16 GB unified (M-series) or DDR4 (Intel) |
-| **GPU** | Apple Neural Engine + MPS (M1+) — no extra dedicated GPU needed |
+| **GPU** | Apple Neural Engine — *(MPS planned for a future release; the current version runs on CPU)* |
 | **Storage (OS + models)** | SSD 256 GB |
 | **Storage (Videos)** | External USB-C HDD 1-2 TB or internal SSD |
 | **Network** | WiFi 5/6 or Gigabit Ethernet (adapter) |
 
 ### macOS Notes
-- **Apple Silicon (M1/M2/M3)**: Native PyTorch + Accelerate framework → very efficient
-- **Intel Mac**: PyTorch x86_64 + optional eGPU (AMD Radeon RX 6600 XT+)
+- **Apple Silicon (M1/M2/M3)**: Native PyTorch + Accelerate framework → efficient on CPU. **MPS acceleration is planned for a future release**.
+- **Intel Mac**: PyTorch x86_64 on CPU. eGPU support (AMD Radeon RX 6600 XT+) **is not available in this release**.
 - **Deployment target**: x86_64 macOS 10.12+, ARM64 macOS 13.0+
 - **FFmpeg**: Bundled with AccuVideo
 - **Thermal management**: M-series stays cool (~70°C under load)
@@ -76,7 +78,7 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Intel Core i5 / AMD Ryzen 5 2600 or better |
 | **RAM** | 8 GB DDR4 |
-| **GPU** | Integrated (audio + search only) or optional NVIDIA for visual ingestion |
+| **GPU** | Integrated — all ingestion runs on CPU in this release |
 | **Storage (OS + models)** | SSD 128 GB with 50 GB free |
 | **Storage (Videos)** | Configurable — from 50 GB (HDD or SSD) |
 | **Network** | Ethernet or WiFi |
@@ -86,24 +88,24 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Desktop: Core i7 / Ryzen 7. Server: Xeon Silver 4310+ / EPYC 7402+ |
 | **RAM** | 16 GB (desktop) / 32 GB DDR4 ECC (server) |
-| **GPU** | RTX 3060 12 GB / RTX 4060 (desktop). Server: NVIDIA L4, A4000 or RTX 4070 Ti+ |
+| **GPU** | *(Future)* RTX 3060 12 GB / RTX 4060 (desktop). Server: NVIDIA L4, A4000 or RTX 4070 Ti+ — intended for upcoming CUDA support; not used in the current release |
 | **Storage (OS + models)** | NVMe SSD 256 GB |
 | **Storage (Videos)** | HDD 2 TB+ or SATA SSD (optional RAID on server) |
 | **Network** | 1 Gbps Ethernet (desktop) / 2.5-10 Gbps (server with many clients) |
 
 ### Linux Notes
-- **CUDA setup**: `nvidia-smi` must show the GPU; requires NVIDIA driver 525+
-- **PyTorch**: Use prebuilt CUDA 12.4 binaries for best performance
+- **CUDA**: **Not supported in this release** — all ingestion runs on CPU. When CUDA support ships in a future release, `nvidia-smi` will need to report the GPU and NVIDIA driver 525+ will be required.
+- **PyTorch**: CPU binaries are used today. CUDA 12.4 binaries will be introduced once GPU support is available.
 - **FFmpeg**: Bundled with AccuVideo
 - **DB**: External managed service. HTTPS endpoint configured in the app.
 - **Multithreading**: For a server with 6+ concurrent clients, set WAITRESS_THREADS=20+
-- **Monitoring**: `nvidia-smi dmon` / `htop` to watch RAM and GPU
+- **Monitoring**: `htop` to watch CPU and RAM (`nvidia-smi dmon` only becomes useful once GPU support lands)
 
 ---
 
 ## 📊 Quick Comparison
 
-### Video Ingestion (Transcription + Embedding)
+### Video Ingestion (Transcription + Embedding) — CPU only
 | Operation | Estimated time (on recommended config) |
 |-----------|----------------------------------------|
 | 1h video (audio) | 16-24 min (CPU) |
@@ -112,7 +114,7 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 | Batch 10 videos × 1h (visual) | ~152h 30min (~6.4 days) |
 | Batch 10 videos × 1h (audio only) | ~3h (CPU) |
 
-> **Visual processing note**: The Florence-2 model analyses frame by frame, which leads to long runtimes even on powerful hardware. Consider limiting visual analysis to key videos or running it in overnight batches.
+> **Visual processing note**: The Florence-2 model analyses frame by frame on CPU, which leads to long runtimes even on powerful hardware. Consider limiting visual analysis to key videos or running it in overnight batches. These times **will drop significantly once CUDA support is available** in a future release.
 
 ### Runtime RAM Footprint
 | Phase | Typical use |
@@ -133,20 +135,19 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 - SSD for OS + models; HDD for videos
 
 ### 👨‍💼 Small Team (3-5 concurrent clients)
-**Recommended config**: **Recommended + GPU**
-- Desktop/mini-PC with i7+ CPU and a dedicated GPU
+**Recommended config**: **Recommended (CPU only)**
+- Desktop/mini-PC with i7+ CPU (a dedicated GPU **adds nothing** in this release; it will matter once CUDA support ships)
 - WAITRESS_THREADS = 12-14
 - 16 GB RAM minimum
 - NVMe SSD for models; HDD for videos
 
 ### 🏢 Enterprise / School (10+ concurrent clients)
-**Recommended config**: **Linux server + dedicated GPU**
-- Server with Xeon Silver / Scalable or Ryzen EPYC CPU
-- NVIDIA L4, A4000 or RTX 4090 GPU (24 GB VRAM allows large batches)
+**Recommended config**: **Linux server (powerful CPU)**
+- Server with Xeon Silver / Scalable or Ryzen EPYC CPU — ingestion runs on CPU, so prioritise cores and clock speed
 - 32+ GB RAM (ECC recommended for 24/7 server)
 - HDD/SSD for videos; NVMe only for OS + models
-- A100/H100 only if you need massive parallel visual ingestion (very large datasets)
 - Load balancer if running multiple servers
+- *(Future)* NVIDIA L4, A4000, RTX 4070 Ti+ or RTX 4090 (24 GB VRAM) GPUs will become recommended once CUDA support is available. A100/H100 will be reserved for massive parallel visual ingestion on very large datasets.
 
 ---
 
@@ -158,15 +159,15 @@ Before installing AccuVideo, verify:
 - [ ] **Free RAM**: At least 6 GB available during ingestion
 - [ ] **Network**: Stable connection for the managed DB and LAN streaming
 - [ ] **Permissions**: RW access to the video folder
-- [ ] **GPU (optional)**: NVIDIA driver 525+ with ≥6 GB VRAM if using CUDA visual ingestion
+- [ ] **GPU**: Not needed in this release (all ingestion runs on CPU). *Once CUDA support ships in a future release, NVIDIA driver 525+ with ≥6 GB VRAM will be recommended.*
 
 ---
 
 ## 📞 Support
 
 Questions about your setup?
-- **Windows**: Send output of `systeminfo` + `nvidia-smi`
+- **Windows**: Send output of `systeminfo`
 - **macOS**: Send output of `system_profiler SPHardwareDataType`
-- **Linux**: Send output of `lscpu`, `free -h`, `nvidia-smi`
+- **Linux**: Send output of `lscpu`, `free -h`
 
 **Contact**: use the **Contact us** form on the AccuVideo site (footer link).

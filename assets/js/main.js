@@ -9,7 +9,10 @@
   // Trial-license form submits to Formsubmit.co (free, no signup).
   // FIRST submission triggers an activation email to this address — click the link in it
   // to enable the endpoint. After that, every submission lands as a regular email.
-  const TRIAL_FORM_EMAIL = 'info@acornjuice.com';
+  // Built at runtime from fragments so the literal email address never appears in the
+  // page source — defeats naive regex email scrapers (DevTools Network tab still shows
+  // the destination URL of the POST, so this is anti-bot only, not anti-user).
+  const TRIAL_FORM_EMAIL = ['info', 'acornjuice.com'].join('@');
 
   // Stripe Payment Links — create one per (edition.plan.billing) combination in the Stripe Dashboard
   // (https://dashboard.stripe.com/payment-links) and paste each URL below. While a key is null the form
@@ -18,30 +21,30 @@
   // The submitted hardware ID is appended as `client_reference_id` (visible in the Checkout Session
   // and in webhooks), and the email as `prefilled_email`.
   const STRIPE_LINKS = {
-    'basic.starter.monthly':     null,
-    'basic.starter.annual':      null,
-    'basic.personal.monthly':    null,
-    'basic.personal.annual':     null,
-    'basic.freelance.monthly':   null,
-    'basic.freelance.annual':    null,
-    'basic.academy.monthly':     null,
-    'basic.academy.annual':      null,
-    'basic.academyplus.monthly': null,
-    'basic.academyplus.annual':  null,
-    'basic.enterprise.monthly':  null,
-    'basic.enterprise.annual':   null,
-    'pro.starter.monthly':       null,
-    'pro.starter.annual':        null,
-    'pro.personal.monthly':      null,
-    'pro.personal.annual':       null,
-    'pro.freelance.monthly':     null,
-    'pro.freelance.annual':      null,
-    'pro.academy.monthly':       null,
-    'pro.academy.annual':        null,
-    'pro.academyplus.monthly':   null,
-    'pro.academyplus.annual':    null,
-    'pro.enterprise.monthly':    null,
-    'pro.enterprise.annual':     null,
+    'basic.starter.monthly':     'https://buy.stripe.com/test_bJe6oHcTV0GhdIU4pOeQM03',
+    'basic.starter.annual':      'https://buy.stripe.com/test_3cI8wPaLNcoZdIUg8weQM00',
+    'basic.personal.monthly':    'https://buy.stripe.com/test_cNi5kDaLNdt3bAM8G4eQM06',
+    'basic.personal.annual':     'https://buy.stripe.com/test_6oUeVd9HJagR20c3lKeQM0o',
+    'basic.freelance.monthly':   'https://buy.stripe.com/test_eVqfZhg67agRcEQ2hGeQM08',
+    'basic.freelance.annual':    'https://buy.stripe.com/test_6oUdR92fhcoZfR29K8eQM0a',
+    'basic.academy.monthly':     'https://buy.stripe.com/test_eVq5kD8DFagRgV6cWkeQM0c',
+    'basic.academy.annual':      'https://buy.stripe.com/test_6oUdR95rt0GhcEQ4pOeQM0e',
+    'basic.academyplus.monthly': 'https://buy.stripe.com/test_fZu8wP079dt3fR2aOceQM0g',
+    'basic.academyplus.annual':  'https://buy.stripe.com/test_28EaEXcTV4WxbAMg8weQM0i',
+    'basic.enterprise.monthly':  'https://buy.stripe.com/test_9B6eVdf23agR48k8G4eQM0k',
+    'basic.enterprise.annual':   'https://buy.stripe.com/test_dRmdR99HJ88J9sEbSgeQM0m',
+    'pro.starter.monthly':       'https://buy.stripe.com/test_cNi00jg670GhfR29K8eQM02',
+    'pro.starter.annual':        'https://buy.stripe.com/test_00wdR9bPR2OpbAM5tSeQM01',
+    'pro.personal.monthly':      'https://buy.stripe.com/test_cNi5kD2fh3St6gsbSgeQM07',
+    'pro.personal.annual':       'https://buy.stripe.com/test_9B6fZh5rtdt3cEQaOceQM04',
+    'pro.freelance.monthly':     'https://buy.stripe.com/test_14AbJ1f23gFffR2g8weQM09',
+    'pro.freelance.annual':      'https://buy.stripe.com/test_5kQfZh5rt60B20cbSgeQM0b',
+    'pro.academy.monthly':       'https://buy.stripe.com/test_5kQdR99HJ60B34g9K8eQM0d',
+    'pro.academy.annual':        'https://buy.stripe.com/test_cNi28r9HJ88J9sEf4seQM0f',
+    'pro.academyplus.monthly':   'https://buy.stripe.com/test_aFa7sLcTVgFf7kwbSgeQM0h',
+    'pro.academyplus.annual':    'https://buy.stripe.com/test_dRm3cv3jlagRawI5tSeQM0j',
+    'pro.enterprise.monthly':    'https://buy.stripe.com/test_eVqaEX9HJ9cNbAMf4seQM0l',
+    'pro.enterprise.annual':     'https://buy.stripe.com/test_3cIeVdf23gFf5co7C0eQM0n',
   };
 
   const i18n = {
@@ -224,14 +227,14 @@
       'pricing.license.notes': 'The trial runs for 30 days and the cap above is shared across all plans. When you\'re ready to subscribe, see below — paid plans are tied to your machine\'s hardware ID for security.',
       'pricing.subscribe.title': 'Ready to subscribe to a plan?',
       'pricing.subscribe.intro': 'Paid plans are activated against your machine\'s <strong>hardware ID</strong>, so each license stays bound to one specific computer.',
-      'pricing.subscribe.step1': 'Install AccuVideo on the machine you\'ll use as the indexer / server (the one with the GPU for Pro).',
+      'pricing.subscribe.step1': 'Install AccuVideo on the machine you\'ll use as the indexer / server.',
       'pricing.subscribe.step2': 'Open <strong>Settings → Account</strong> and copy your <strong>hardware ID</strong>. It\'s a short alphanumeric string unique to that machine.',
       'pricing.subscribe.step3': 'Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card above). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. Your license activates automatically once payment clears.',
       'pricing.subscribe.notes': 'Each paid license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (15 / 45 / 150); viewers connect to your server and <strong>don\'t consume their own license</strong>.',
       'pricing.subscribe.cta': 'Request subscription',
 
       'download.title': 'Download AccuVideo',
-      'download.body': 'Windows builds available now. macOS (Apple Silicon) coming soon. Intel macOS builds available on request during the pilot.',
+      'download.body': 'Windows builds available now. macOS (Apple Silicon) coming soon. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
       'download.trial_note': '📧 First time? <a href="#pricing">Request your trial license first</a> — the installer asks for a license key on first launch.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
@@ -241,10 +244,10 @@
       'download.pro_mac': 'macOS Apple Silicon · Coming soon',
       'download.subnote_link': 'View all release files',
       'download.subnote_suffix': ' — changelog, hashes, older versions.',
-      'download.note': 'Need an Intel macOS build, an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.',
+      'download.note': 'Need a Basic build for Intel macOS, an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.',
 
       'req.title': 'System requirements',
-      'req.sub': 'AccuVideo Basic runs on commodity laptops. Pro adds visual ingestion (Florence-2), which is GPU-bound — those specs are higher.',
+      'req.sub': 'AccuVideo Basic runs on commodity laptops. Pro adds visual ingestion (Florence-2). The current release runs on CPU only — GPU acceleration (CUDA / MPS) is planned for a future version.',
       'req.min.title': 'Basic — audio + on-screen text',
       'req.min.cpu': 'CPU: Intel i5 (8th gen) / Ryzen 5 2600+ / Apple Silicon M1',
       'req.min.ram': 'RAM: 8 GB',
@@ -254,7 +257,7 @@
       'req.rec.title': 'Pro — adds visual ingestion',
       'req.rec.cpu': 'CPU: Intel i7 (10th gen+) / Ryzen 7+ / Apple Silicon M2+',
       'req.rec.ram': 'RAM: 16 GB (32 GB for batch / multi-client)',
-      'req.rec.gpu': 'GPU: NVIDIA RTX 3060 12 GB / RTX 4060+ with CUDA (≥6 GB VRAM) — required for visual indexing at usable speed',
+      'req.rec.gpu': 'GPU: not required in this release — all processing runs on CPU. Future versions will support NVIDIA GPUs (≥6 GB VRAM) via CUDA for faster visual indexing.',
       'req.rec.disk': 'Disk: SSD for OS + models; HDD or SSD for the video library',
       'req.rec.net': 'Network: stable connection for the managed vector DB',
       'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
@@ -272,6 +275,7 @@
       'contact.status.error': 'Error sending. Please try again in a moment.',
       'contact.status.network': 'Network error. Please check your connection and try again.',
       'contact.status.notconfigured': 'Form not configured. Paste your Web3Forms access key in main.js (WEB3FORMS_KEY).',
+      'contact.autoresponse': 'Hi! We\'ve received your AccuVideo trial license request. We\'ll review it and email your 30-day trial license within 2 business days.\n\nIf you don\'t hear back, please check your spam folder or write to us again.\n\n— The AccuVideo team',
 
       'subscribe.cta_card': 'Subscribe to this plan →',
       'subscribe.title': 'Subscribe to AccuVideo',
@@ -303,9 +307,21 @@
       'contactus.status.success': 'Message sent! We\'ll reply within 2 business days.',
       'contactus.status.error': 'Error sending. Please try again in a moment.',
       'contactus.status.network': 'Network error. Please check your connection and try again.',
-      'contactus.topic.enterprise': 'Enterprise enquiry',
-      'contactus.topic.payment': 'Subscription / payment issue',
-      'contactus.topic.intelmac': 'Intel macOS build request',
+      'contactus.subject.placeholder': '— Select a category —',
+      'contactus.subject.technical': 'Technical enquiry',
+      'contactus.subject.commercial': 'Sales enquiry',
+      'contactus.subject.support': 'Support',
+      'contactus.subject.other': 'Other',
+      'contactus.autoresponse': 'Hi! We\'ve received your message and will reply within 2 business days.\n\nIf the matter is urgent, just reply to this email with more detail.\n\n— The AccuVideo team',
+
+      'thanks.meta_title': 'Thanks — AccuVideo',
+      'thanks.title': 'Thanks! We got your request.',
+      'thanks.title_subscribe': 'Payment confirmed — welcome to AccuVideo!',
+      'thanks.body_trial': 'We\'ll review your trial license request and email it back within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
+      'thanks.body_contactus': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
+      'thanks.body_subscribe': 'Your subscription is active. We\'ll email your AccuVideo license — tied to the hardware ID you provided — within 2 business days. Stripe has also sent you a payment receipt; if you don\'t see it, check your spam folder.',
+      'thanks.body_generic': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation email — if you don\'t see it, check your spam folder.',
+      'thanks.cta': 'Back to home',
 
       'footer.contact': 'Contact us',
       'footer.docs': 'Documentation',
@@ -490,14 +506,14 @@
       'pricing.license.notes': 'La trial dura 30 días y el cap de arriba se aplica a todos los planes. Cuando quieras suscribirte, mira más abajo — los planes de pago van ligados al hardware ID de tu equipo por seguridad.',
       'pricing.subscribe.title': '¿Listo para suscribirte a un plan?',
       'pricing.subscribe.intro': 'Los planes de pago se activan contra el <strong>hardware ID</strong> de tu equipo, así cada licencia queda vinculada a una máquina específica.',
-      'pricing.subscribe.step1': 'Instala AccuVideo en la máquina que vas a usar como indexador / servidor (la que tenga la GPU para Pro).',
+      'pricing.subscribe.step1': 'Instala AccuVideo en la máquina que vas a usar como indexador / servidor.',
       'pricing.subscribe.step2': 'Abre <strong>Ajustes → Cuenta</strong> y copia tu <strong>hardware ID</strong>. Es una cadena alfanumérica corta única de esa máquina.',
       'pricing.subscribe.step3': 'Abre el <a href="#" data-open-form="subscribe">formulario de suscripción</a> (o pulsa <strong>Suscribirse a este plan</strong> en cualquier tarjeta de arriba). Pega tu <strong>hardware ID</strong>, elige <strong>plan</strong>, <strong>edición</strong> y <strong>periodo de facturación</strong> (mensual / anual), y te llevamos al checkout de Stripe. Tu licencia se activa automáticamente al confirmar el pago.',
       'pricing.subscribe.notes': 'Cada licencia de pago está vinculada a ese hardware ID — un indexador / servidor por seat. ¿Cambias de equipo o reinstalas el SO? Escríbenos con el nuevo hardware ID y la re-emitimos sin preguntas. Los planes Pro incluyen clientes en LAN (15 / 45 / 150); los clientes se conectan a tu servidor y <strong>no consumen licencia propia</strong>.',
       'pricing.subscribe.cta': 'Solicitar suscripción',
 
       'download.title': 'Descarga AccuVideo',
-      'download.body': 'Builds para Windows disponibles ya. macOS (Apple Silicon) próximamente. Builds para macOS Intel disponibles bajo petición durante el piloto.',
+      'download.body': 'Builds para Windows disponibles ya. macOS (Apple Silicon) próximamente. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
       'download.trial_note': '📧 ¿Primera vez? <a href="#pricing">Solicita primero tu licencia trial</a> — el instalador pide la clave de licencia en el primer arranque.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
@@ -507,10 +523,10 @@
       'download.pro_mac': 'macOS Apple Silicon · Próximamente',
       'download.subnote_link': 'Ver todos los ficheros del release',
       'download.subnote_suffix': ' — changelog, hashes, versiones anteriores.',
-      'download.note': '¿Necesitas un build para macOS Intel, una licencia enterprise o tienes una duda primero? <a href="#" data-open-form="contactus">Escríbenos</a>.',
+      'download.note': '¿Necesitas un build Basic para macOS Intel, una licencia enterprise o tienes una duda primero? <a href="#" data-open-form="contactus">Escríbenos</a>.',
 
       'req.title': 'Requisitos del sistema',
-      'req.sub': 'AccuVideo Basic corre en portátiles normales. Pro añade ingesta visual (Florence-2), que depende de GPU — sus requisitos son mayores.',
+      'req.sub': 'AccuVideo Basic corre en portátiles normales. Pro añade ingesta visual (Florence-2). La versión actual funciona sólo en CPU — la aceleración por GPU (CUDA / MPS) llegará en una futura versión.',
       'req.min.title': 'Basic — audio + texto en pantalla',
       'req.min.cpu': 'CPU: Intel i5 (8.ª gen) / Ryzen 5 2600+ / Apple Silicon M1',
       'req.min.ram': 'RAM: 8 GB',
@@ -520,7 +536,7 @@
       'req.rec.title': 'Pro — añade ingesta visual',
       'req.rec.cpu': 'CPU: Intel i7 (10.ª gen+) / Ryzen 7+ / Apple Silicon M2+',
       'req.rec.ram': 'RAM: 16 GB (32 GB para batch / multi-cliente)',
-      'req.rec.gpu': 'GPU: NVIDIA RTX 3060 12 GB / RTX 4060+ con CUDA (≥6 GB VRAM) — necesaria para indexación visual a velocidad razonable',
+      'req.rec.gpu': 'GPU: no necesaria en esta versión — todo el procesado corre en CPU. Próximas versiones soportarán GPUs NVIDIA (≥6 GB VRAM) vía CUDA para indexación visual más rápida.',
       'req.rec.disk': 'Disco: SSD para SO + modelos; HDD o SSD para la videoteca',
       'req.rec.net': 'Red: conexión estable para el DB vectorial gestionado',
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
@@ -538,6 +554,7 @@
       'contact.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
       'contact.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
       'contact.status.notconfigured': 'Formulario sin configurar. Pega tu access key de Web3Forms en main.js (WEB3FORMS_KEY).',
+      'contact.autoresponse': '¡Hola! Hemos recibido tu solicitud de licencia trial de AccuVideo. La revisaremos y te enviaremos tu licencia trial de 30 días en hasta 2 días laborables.\n\nSi no recibes respuesta, revisa la carpeta de spam o vuelve a escribirnos.\n\n— El equipo de AccuVideo',
 
       'subscribe.cta_card': 'Suscribirse a este plan →',
       'subscribe.title': 'Suscríbete a AccuVideo',
@@ -569,9 +586,21 @@
       'contactus.status.success': '¡Mensaje enviado! Te respondemos en hasta 2 días laborables.',
       'contactus.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
       'contactus.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
-      'contactus.topic.enterprise': 'Consulta enterprise',
-      'contactus.topic.payment': 'Suscripción / problema de pago',
-      'contactus.topic.intelmac': 'Solicitud build macOS Intel',
+      'contactus.subject.placeholder': '— Selecciona una categoría —',
+      'contactus.subject.technical': 'Consulta técnica',
+      'contactus.subject.commercial': 'Consulta comercial',
+      'contactus.subject.support': 'Soporte',
+      'contactus.subject.other': 'Otro',
+      'contactus.autoresponse': '¡Hola! Hemos recibido tu mensaje y te responderemos en hasta 2 días laborables.\n\nSi se trata de algo urgente, responde a este email con más detalle.\n\n— El equipo de AccuVideo',
+
+      'thanks.meta_title': 'Gracias — AccuVideo',
+      'thanks.title': '¡Gracias! Hemos recibido tu petición.',
+      'thanks.title_subscribe': 'Pago confirmado — ¡bienvenido a AccuVideo!',
+      'thanks.body_trial': 'Revisaremos tu solicitud y te enviaremos por email tu licencia trial en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_contactus': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_subscribe': 'Tu suscripción está activa. Te enviaremos por email tu licencia de AccuVideo — vinculada al hardware ID que indicaste — en hasta 2 días laborables. Stripe también te ha enviado un recibo de pago; si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_generic': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
+      'thanks.cta': 'Volver al inicio',
 
       'footer.contact': 'Contacta',
       'footer.docs': 'Documentación',
@@ -832,6 +861,7 @@
         _subject: 'AccuVideo trial license request',
         _template: 'table',
         _captcha: 'false',
+        _autoresponse: tt('contact.autoresponse'),
       };
       status.textContent = tt('contact.status.sending');
       status.className = 'contact-form-status';
@@ -844,10 +874,8 @@
         const json = await res.json();
         const ok = json.success === true || json.success === 'true';
         if (ok) {
-          status.textContent = tt('contact.status.success');
-          status.className = 'contact-form-status success';
           form.reset();
-          setTimeout(closeContactModal, 3500);
+          window.location.assign('thanks.html?form=trial');
         } else {
           status.textContent = json.message || tt('contact.status.error');
           status.className = 'contact-form-status error';
@@ -999,18 +1027,33 @@
     });
   }
 
+  // Triggers that open the contact form carry an optional `data-form-topic` attribute.
+  // We map each topic to a default category for the subject dropdown, and stash the topic
+  // on the form so the submit handler can prefix the email subject (e.g. enterprise → "Consulta Enterprise - …").
+  const CONTACTUS_TOPIC_TO_CATEGORY = {
+    enterprise: 'commercial',
+    payment: 'support',
+    intelmac: 'support',
+  };
+
   function openContactUsModal(topic) {
     const modal = document.getElementById('contactus-modal');
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
-    const subjectInput = modal.querySelector('input[name="subject"]');
-    if (subjectInput && topic) {
-      const topicLabel = tt('contactus.topic.' + topic);
-      if (topicLabel && topicLabel !== 'contactus.topic.' + topic) {
-        subjectInput.value = topicLabel;
-      }
+
+    const form = modal.querySelector('#contactus-form');
+    if (form) {
+      if (topic) form.setAttribute('data-topic', topic);
+      else form.removeAttribute('data-topic');
     }
+
+    const subjectSelect = modal.querySelector('select[name="subject"]');
+    if (subjectSelect) {
+      const category = topic ? CONTACTUS_TOPIC_TO_CATEGORY[topic] : '';
+      subjectSelect.value = category || '';
+    }
+
     const firstField = modal.querySelector('input[name="name"], input[name="email"]');
     if (firstField) setTimeout(() => firstField.focus(), 50);
   }
@@ -1054,14 +1097,26 @@
         return;
       }
       const data = new FormData(form);
+      const categoryValue = String(data.get('subject') || '');
+      const categoryLabel = categoryValue
+        ? tt('contactus.subject.' + categoryValue)
+        : '';
+      const topic = form.getAttribute('data-topic') || '';
+      // Enterprise enquiries get a stable prefix so they're easy to filter in the inbox,
+      // regardless of which category the user picks. Kept in Spanish on purpose — it's
+      // an internal classification tag, not a user-facing string.
+      const subjectLine = topic === 'enterprise'
+        ? 'Consulta Enterprise - ' + categoryLabel
+        : categoryLabel;
       const payload = {
         name: data.get('name') || '',
         email: data.get('email') || '',
-        subject: data.get('subject') || '',
+        category: categoryLabel,
         message: data.get('message') || '',
-        _subject: 'AccuVideo contact: ' + (data.get('subject') || 'general'),
+        _subject: 'AccuVideo: ' + subjectLine,
         _template: 'table',
         _captcha: 'false',
+        _autoresponse: tt('contactus.autoresponse'),
       };
       status.textContent = tt('contactus.status.sending');
       status.className = 'contact-form-status';
@@ -1074,10 +1129,8 @@
         const json = await res.json();
         const ok = json.success === true || json.success === 'true';
         if (ok) {
-          status.textContent = tt('contactus.status.success');
-          status.className = 'contact-form-status success';
           form.reset();
-          setTimeout(closeContactUsModal, 3500);
+          window.location.assign('thanks.html?form=contactus');
         } else {
           status.textContent = json.message || tt('contactus.status.error');
           status.className = 'contact-form-status error';

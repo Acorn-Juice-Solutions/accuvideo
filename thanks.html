@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title data-i18n="thanks.meta_title">Thanks — AccuVideo</title>
+  <link rel="icon" href="assets/img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true });
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a href="index.html" class="brand">
+      <img src="assets/img/AccuVideo_Logo.png" alt="AccuVideo" class="brand-logo">
+      <span class="brand-name">AccuVideo</span>
+    </a>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Theme">
+        <span class="theme-icon-sun" aria-hidden="true">☀</span><span class="theme-icon-moon" aria-hidden="true">☾</span>
+      </button>
+      <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Language">
+        <span class="lang-en">EN</span><span class="lang-sep">·</span><span class="lang-es">ES</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="thanks-main">
+  <section class="thanks-section">
+    <div class="container">
+      <div class="thanks-card">
+        <div class="thanks-icon" aria-hidden="true">✓</div>
+        <h1 data-i18n="thanks.title">Thanks! We got your request.</h1>
+        <p id="thanks-body" data-i18n="thanks.body_generic">We'll get back to you within 2 business days. We've also sent you a confirmation email — if you don't see it, check your spam folder.</p>
+        <a href="index.html" class="btn btn-primary" data-i18n="thanks.cta">Back to home</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="footer-brand">
+      <img src="assets/img/AccuVideo_Logo.png" alt="" class="brand-logo">
+      <div>
+        <div class="footer-product">AccuVideo</div>
+        <div class="footer-company">© <span id="footer-year">2026</span> Acorn Juice Solutions S.L.</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="footer.docs">Home</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Swap the body copy + title based on which form sent us here (?form=trial|contactus|subscribe).
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const form = params.get('form');
+    const body = document.getElementById('thanks-body');
+    const title = document.querySelector('.thanks-card h1');
+    const bodyMap = {
+      trial: 'thanks.body_trial',
+      contactus: 'thanks.body_contactus',
+      subscribe: 'thanks.body_subscribe',
+    };
+    const titleMap = { subscribe: 'thanks.title_subscribe' };
+    if (body) body.setAttribute('data-i18n', bodyMap[form] || 'thanks.body_generic');
+    if (title && titleMap[form]) title.setAttribute('data-i18n', titleMap[form]);
+  })();
+</script>
+</body>
+</html>
