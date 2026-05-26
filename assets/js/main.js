@@ -11,6 +11,7 @@
 
       'nav.features': 'Features',
       'nav.how': 'How it works',
+      'nav.ingest': 'Ingestion',
       'nav.editions': 'Editions',
       'nav.requirements': 'Requirements',
       'nav.cta': 'Try free',
@@ -47,6 +48,20 @@
       'how.s3.title': 'Ask, and land on the second',
       'how.s3.body': 'Type a question. Pick the result. The player opens at the exact frame that answers it — with seek-back controls if you want context.',
 
+      'ingest.title': 'Two ways to add videos',
+      'ingest.sub': 'Pick whichever fits how your library is organised. You can mix and match — folders for the big archive, drag-and-drop for one-off files.',
+      'ingest.folder.title': 'Select a folder',
+      'ingest.folder.lead': 'Point AccuVideo at one or more folders on your disk.',
+      'ingest.folder.b1': 'Videos are indexed <strong>in place</strong> — nothing is copied or moved.',
+      'ingest.folder.b2': 'Zero extra disk usage beyond the index itself.',
+      'ingest.folder.b3': 'Ideal for organised libraries and large archives on internal drives, NAS or external disks.',
+      'ingest.drop.title': 'Drag &amp; drop videos',
+      'ingest.drop.lead': 'Drop individual files straight into the app window.',
+      'ingest.drop.b1': 'Files are <strong>copied into a managed temporary folder</strong> — your video is duplicated on disk.',
+      'ingest.drop.b2': 'Convenient when files are scattered, on removable media, or you just want to try the app on a single clip.',
+      'ingest.drop.b3': 'Heads-up: large drops can grow that managed folder significantly.',
+      'ingest.drop.tip': '💡 You can reclaim that space any time from <strong>Settings → Storage</strong>: clear the temporary copies without losing your index or search results.',
+
       'usecases.title': 'Built for archives that nobody has time to rewatch',
       'usecases.academy.title': 'Online academies',
       'usecases.academy.body': 'Hundreds of lessons. One query, one minute.',
@@ -59,6 +74,12 @@
 
       'local.title': '100% local. Your videos never leave your machine.',
       'local.body': 'No cloud upload of your content. No subscription to read your own archive. Indexing, transcription, vision and search all run on your hardware.',
+      'privacy.local.title': 'Videos stay on your disk',
+      'privacy.local.body': 'The actual MP4, MKV and friends never get uploaded anywhere. Transcription, on-screen text reading and visual analysis all run on your own CPU/GPU — no cloud step, no third-party server seeing your footage.',
+      'privacy.points.title': 'Only abstract points reach the index',
+      'privacy.points.body': 'What goes into the vector database are <strong>embeddings</strong> — high-dimensional numerical points derived from your content. They power the semantic search but can\'t be reversed into watchable video, readable transcripts or recognisable frames.',
+      'privacy.isolation.title': 'Your collection, only yours',
+      'privacy.isolation.body': '<strong>Every user gets a fully isolated collection</strong>, keyed to their license. No other AccuVideo user can query your library, see your snippets, or even know that your collection exists. Multi-tenant by design, single-tenant in practice.',
 
       'editions.title': 'Two editions',
       'editions.sub': 'Both editions share the same local-first search experience. Basic covers spoken words and on-screen text. Pro adds visual understanding, a CLI for batch ingestion of large archives, and multi-client LAN streaming.',
@@ -70,7 +91,7 @@
       'editions.basic.f4': 'Single-machine use, EN/ES UI, dark and light themes',
       'editions.basic.bestfor': '<strong>Best for:</strong> students, individuals and families with a modest video collection.',
       'editions.basic.cta_win': 'Windows · .msi',
-      'editions.basic.cta_mac': 'macOS ARM · .dmg',
+      'editions.basic.cta_mac': 'macOS · Coming soon',
       'editions.pro.title': 'Pro',
       'editions.pro.tag': 'For academies, businesses, schools and large archives',
       'editions.pro.f1': 'Everything in Basic',
@@ -81,16 +102,16 @@
       'editions.pro.f6': 'Multi-client LAN streaming — serve concurrent viewers from one machine',
       'editions.pro.bestfor': '<strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.',
       'editions.pro.cta_win': 'Windows · .msi',
-      'editions.pro.cta_mac': 'macOS ARM · .dmg',
+      'editions.pro.cta_mac': 'macOS · Coming soon',
 
       'download.title': 'Download AccuVideo',
-      'download.body': '30-day free trial. Direct downloads for Windows and macOS (Apple Silicon). Intel macOS and Linux builds available on request during the pilot.',
+      'download.body': '30-day free trial. Windows builds available now. macOS (Apple Silicon) coming soon. Intel macOS and Linux builds available on request during the pilot.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
-      'download.basic_mac': 'macOS Apple Silicon · .dmg',
+      'download.basic_mac': 'macOS Apple Silicon · Coming soon',
       'download.pro_win': 'Windows · .msi',
-      'download.pro_mac': 'macOS Apple Silicon · .dmg',
+      'download.pro_mac': 'macOS Apple Silicon · Coming soon',
       'download.subnote_link': 'View all release files',
       'download.subnote_suffix': ' — changelog, hashes, older versions.',
       'download.note': 'Need an Intel macOS build, a Linux build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request">info@acornjuice.com</a>.',
@@ -120,6 +141,7 @@
 
       'nav.features': 'Características',
       'nav.how': 'Cómo funciona',
+      'nav.ingest': 'Ingesta',
       'nav.editions': 'Ediciones',
       'nav.requirements': 'Requisitos',
       'nav.cta': 'Probar gratis',
@@ -156,6 +178,20 @@
       'how.s3.title': 'Pregunta y aterriza en el segundo',
       'how.s3.body': 'Escribe una pregunta. Elige el resultado. El reproductor abre el fragmento exacto que la responde — con controles de retroceso si necesitas contexto.',
 
+      'ingest.title': 'Dos formas de añadir vídeos',
+      'ingest.sub': 'Elige la que mejor encaje con cómo tienes organizada tu videoteca. Puedes combinar ambas — carpetas para el archivo grande y arrastrar y soltar para ficheros sueltos.',
+      'ingest.folder.title': 'Seleccionar una carpeta',
+      'ingest.folder.lead': 'Apunta AccuVideo a una o varias carpetas de tu disco.',
+      'ingest.folder.b1': 'Los vídeos se indexan <strong>en su sitio</strong> — no se copian ni se mueven.',
+      'ingest.folder.b2': 'Cero uso extra de disco más allá del propio índice.',
+      'ingest.folder.b3': 'Ideal para bibliotecas organizadas y archivos grandes en discos internos, NAS o discos externos.',
+      'ingest.drop.title': 'Arrastrar y soltar vídeos',
+      'ingest.drop.lead': 'Suelta ficheros sueltos directamente sobre la ventana de la app.',
+      'ingest.drop.b1': 'Los ficheros se <strong>copian a una carpeta temporal gestionada</strong> — tu vídeo se duplica en disco.',
+      'ingest.drop.b2': 'Cómodo cuando los ficheros están dispersos, están en un dispositivo extraíble o solo quieres probar la app con un clip.',
+      'ingest.drop.b3': 'Aviso: soltar muchos vídeos puede hacer crecer bastante esa carpeta gestionada.',
+      'ingest.drop.tip': '💡 Puedes liberar ese espacio cuando quieras desde <strong>Ajustes → Almacenamiento</strong>: borra las copias temporales sin perder el índice ni los resultados de búsqueda.',
+
       'usecases.title': 'Pensado para archivos que nadie tiene tiempo de volver a ver',
       'usecases.academy.title': 'Academias online',
       'usecases.academy.body': 'Cientos de clases. Una consulta, un minuto.',
@@ -168,6 +204,12 @@
 
       'local.title': '100% local. Tus vídeos no salen de tu equipo.',
       'local.body': 'Sin subida de tu contenido a la nube. Sin suscripción para leer tu propio archivo. La indexación, transcripción, visión y búsqueda corren en tu hardware.',
+      'privacy.local.title': 'Los vídeos se quedan en tu disco',
+      'privacy.local.body': 'Los MP4, MKV y compañía no se suben a ningún sitio. La transcripción, lectura de texto en pantalla y análisis visual corren en tu propia CPU/GPU — sin paso por la nube, sin ningún servidor de terceros viendo tus vídeos.',
+      'privacy.points.title': 'En el índice solo entran puntos abstractos',
+      'privacy.points.body': 'Lo que se guarda en la base de datos vectorial son <strong>embeddings</strong> — puntos numéricos de alta dimensión derivados de tu contenido. Hacen posible la búsqueda semántica pero no se pueden revertir a vídeo reproducible, transcripciones legibles ni frames reconocibles.',
+      'privacy.isolation.title': 'Tu colección, solo tuya',
+      'privacy.isolation.body': '<strong>Cada usuario tiene una colección totalmente aislada</strong>, ligada a su licencia. Ningún otro usuario de AccuVideo puede consultar tu biblioteca, ver tus fragmentos ni siquiera saber que tu colección existe. Multi-tenant por diseño, single-tenant en la práctica.',
 
       'editions.title': 'Dos ediciones',
       'editions.sub': 'Ambas ediciones comparten la misma experiencia de búsqueda local. Basic cubre palabras habladas y texto en pantalla. Pro añade comprensión visual, una CLI para ingesta por lotes de archivos grandes y streaming multi-cliente en la LAN.',
@@ -179,7 +221,7 @@
       'editions.basic.f4': 'Uso en una sola máquina, UI EN/ES, tema claro y oscuro',
       'editions.basic.bestfor': '<strong>Ideal para:</strong> estudiantes, particulares y familias con una videoteca modesta.',
       'editions.basic.cta_win': 'Windows · .msi',
-      'editions.basic.cta_mac': 'macOS ARM · .dmg',
+      'editions.basic.cta_mac': 'macOS · Próximamente',
       'editions.pro.title': 'Pro',
       'editions.pro.tag': 'Para academias, empresas, colegios y archivos grandes',
       'editions.pro.f1': 'Todo lo de Basic',
@@ -190,16 +232,16 @@
       'editions.pro.f6': 'Streaming multi-cliente en LAN — sirve a varios espectadores simultáneos desde una misma máquina',
       'editions.pro.bestfor': '<strong>Ideal para:</strong> academias online, formación corporativa, colegios, archivos familiares grandes y cualquier escenario multi-usuario.',
       'editions.pro.cta_win': 'Windows · .msi',
-      'editions.pro.cta_mac': 'macOS ARM · .dmg',
+      'editions.pro.cta_mac': 'macOS · Próximamente',
 
       'download.title': 'Descarga AccuVideo',
-      'download.body': '30 días de prueba gratuita. Descargas directas para Windows y macOS (Apple Silicon). Builds para macOS Intel y Linux disponibles bajo petición durante el piloto.',
+      'download.body': '30 días de prueba gratuita. Builds para Windows disponibles ya. macOS (Apple Silicon) próximamente. Builds para macOS Intel y Linux disponibles bajo petición durante el piloto.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
-      'download.basic_mac': 'macOS Apple Silicon · .dmg',
+      'download.basic_mac': 'macOS Apple Silicon · Próximamente',
       'download.pro_win': 'Windows · .msi',
-      'download.pro_mac': 'macOS Apple Silicon · .dmg',
+      'download.pro_mac': 'macOS Apple Silicon · Próximamente',
       'download.subnote_link': 'Ver todos los ficheros del release',
       'download.subnote_suffix': ' — changelog, hashes, versiones anteriores.',
       'download.note': '¿Necesitas un build para macOS Intel, un build para Linux, una licencia enterprise o tienes una duda primero? Escribe a <a href="mailto:info@acornjuice.com?subject=Consulta%20AccuVideo">info@acornjuice.com</a>.',
@@ -258,8 +300,15 @@
       if (value !== undefined) el.setAttribute('href', value);
     });
 
-    const mockQuery = document.getElementById('mock-query');
-    if (mockQuery) mockQuery.textContent = dict['mock.query'];
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      const desired = `assets/videos/demo-${lang}.mp4`;
+      if (heroVideo.getAttribute('src') !== desired) {
+        heroVideo.setAttribute('src', desired);
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
+    }
 
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) { /* ignore */ }
   }

@@ -166,6 +166,13 @@ html[lang="es"] .lang-toggle .lang-es { color: var(--cyan); }
 .btn-sm { padding: 8px 14px; font-size: 13px; }
 .btn-lg { padding: 14px 22px; font-size: 16px; }
 
+.btn-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.4);
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -226,6 +233,18 @@ html[lang="es"] .lang-toggle .lang-es { color: var(--cyan); }
 /* Hero mock */
 
 .hero-visual { display: flex; justify-content: center; }
+
+.hero-video-frame {
+  width: 100%;
+  max-width: 560px;
+  background: var(--navy-800);
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  box-shadow: var(--shadow-1), var(--shadow-glow);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+.hero-video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
 
 .mock {
   width: 100%;
@@ -423,6 +442,83 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .how-steps h3 { margin: 0 0 8px; font-size: 17px; }
 .how-steps p { margin: 0; color: var(--text-dim); font-size: 15px; }
 
+/* ---------- Ingestion ---------- */
+
+.ingest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.ingest-card {
+  background: var(--navy-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ingest-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(34, 211, 238, 0.1);
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.ingest-card h3 { margin: 0 0 6px; font-size: 18px; }
+
+.ingest-lead {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+  font-size: 15px;
+}
+
+.ingest-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingest-card li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+.ingest-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+.ingest-card li strong { color: var(--text); font-weight: 600; }
+
+.ingest-tip {
+  margin: auto 0 0;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text-dim);
+  background: rgba(245, 182, 66, 0.08);
+  border: 1px solid rgba(245, 182, 66, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.ingest-tip strong { color: var(--gold); font-weight: 600; }
+
 /* ---------- Use cases ---------- */
 
 .usecase-grid {
@@ -466,6 +562,53 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   color: var(--text-dim);
   max-width: 64ch;
   margin-inline: auto;
+}
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.privacy-card {
+  background: var(--navy-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+
+.privacy-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(34, 211, 238, 0.1);
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.privacy-card h3 { margin: 0 0 8px; font-size: 16px; }
+
+.privacy-card p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.privacy-card p strong { color: var(--text); font-weight: 600; }
+
+.privacy-card-accent {
+  border-color: rgba(168, 85, 247, 0.45);
+  background:
+    radial-gradient(420px 160px at 90% 0%, rgba(168, 85, 247, 0.12), transparent 70%),
+    var(--navy-800);
+}
+
+.privacy-card-accent .privacy-icon {
+  background: rgba(168, 85, 247, 0.15);
 }
 
 /* ---------- Editions ---------- */
@@ -687,7 +830,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 @media (max-width: 880px) {
   .hero { padding: 56px 0 40px; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-  .feature-grid, .how-steps, .req-grid, .edition-grid { grid-template-columns: 1fr; }
+  .feature-grid, .how-steps, .req-grid, .edition-grid, .ingest-grid, .privacy-grid { grid-template-columns: 1fr; }
   .usecase-grid { grid-template-columns: repeat(2, 1fr); }
   .site-nav { display: none; }
   section { padding: 56px 0; }

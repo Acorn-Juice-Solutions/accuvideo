@@ -26,6 +26,7 @@
     <nav class="site-nav" aria-label="Primary">
       <a href="#features" data-i18n="nav.features">Features</a>
       <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#ingest" data-i18n="nav.ingest">Ingestion</a>
       <a href="#editions" data-i18n="nav.editions">Editions</a>
       <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
     </nav>
@@ -53,39 +54,12 @@
         <p class="hero-note" data-i18n="hero.note">100% local · Windows · macOS (Apple Silicon)</p>
       </div>
       <div class="hero-visual">
-        <div class="mock">
-          <div class="mock-bar">
-            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-            <span class="mock-title">AccuVideo</span>
-          </div>
-          <div class="mock-search">
-            <span class="mock-search-icon">⌕</span>
-            <span class="mock-search-text" id="mock-query">explain gradient descent</span>
-            <span class="mock-caret"></span>
-          </div>
-          <div class="mock-results">
-            <div class="mock-result">
-              <div class="mock-thumb"></div>
-              <div class="mock-meta">
-                <div class="mock-meta-title" data-i18n="mock.result1.title">ML Lecture 04 — Optimization</div>
-                <div class="mock-meta-sub"><span class="mock-ts">12:47</span> <span class="mock-tag" data-i18n="mock.tag.audio">audio</span></div>
-              </div>
-            </div>
-            <div class="mock-result">
-              <div class="mock-thumb thumb-2"></div>
-              <div class="mock-meta">
-                <div class="mock-meta-title" data-i18n="mock.result2.title">Whiteboard derivation</div>
-                <div class="mock-meta-sub"><span class="mock-ts">28:03</span> <span class="mock-tag visual" data-i18n="mock.tag.visual">visual</span></div>
-              </div>
-            </div>
-            <div class="mock-result">
-              <div class="mock-thumb thumb-3"></div>
-              <div class="mock-meta">
-                <div class="mock-meta-title" data-i18n="mock.result3.title">Slide: loss function</div>
-                <div class="mock-meta-sub"><span class="mock-ts">41:22</span> <span class="mock-tag text" data-i18n="mock.tag.text">on-screen text</span></div>
-              </div>
-            </div>
-          </div>
+        <div class="hero-video-frame">
+          <video id="hero-video" class="hero-video"
+                 autoplay muted loop playsinline controls
+                 preload="metadata"
+                 poster="assets/videos/demo-poster.jpg"
+                 aria-label="AccuVideo demo"></video>
         </div>
       </div>
     </div>
@@ -138,6 +112,36 @@
     </div>
   </section>
 
+  <section id="ingest" class="ingest">
+    <div class="container">
+      <h2 class="section-title" data-i18n="ingest.title">Two ways to add videos</h2>
+      <p class="section-sub" data-i18n="ingest.sub">Pick whichever fits how your library is organised. You can mix and match — folders for the big archive, drag-and-drop for one-off files.</p>
+      <div class="ingest-grid">
+        <article class="ingest-card">
+          <div class="ingest-icon" aria-hidden="true">📁</div>
+          <h3 data-i18n="ingest.folder.title">Select a folder</h3>
+          <p class="ingest-lead" data-i18n="ingest.folder.lead">Point AccuVideo at one or more folders on your disk.</p>
+          <ul>
+            <li data-i18n="ingest.folder.b1">Videos are indexed <strong>in place</strong> — nothing is copied or moved.</li>
+            <li data-i18n="ingest.folder.b2">Zero extra disk usage beyond the index itself.</li>
+            <li data-i18n="ingest.folder.b3">Ideal for organised libraries and large archives on internal drives, NAS or external disks.</li>
+          </ul>
+        </article>
+        <article class="ingest-card">
+          <div class="ingest-icon" aria-hidden="true">✥</div>
+          <h3 data-i18n="ingest.drop.title">Drag &amp; drop videos</h3>
+          <p class="ingest-lead" data-i18n="ingest.drop.lead">Drop individual files straight into the app window.</p>
+          <ul>
+            <li data-i18n="ingest.drop.b1">Files are <strong>copied into a managed temporary folder</strong> — your video is duplicated on disk.</li>
+            <li data-i18n="ingest.drop.b2">Convenient when files are scattered, on removable media, or you just want to try the app on a single clip.</li>
+            <li data-i18n="ingest.drop.b3">Heads-up: large drops can grow that managed folder significantly.</li>
+          </ul>
+          <p class="ingest-tip" data-i18n="ingest.drop.tip">💡 You can reclaim that space any time from <strong>Settings → Storage</strong>: clear the temporary copies without losing your index or search results.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="usecases">
     <div class="container">
       <h2 class="section-title" data-i18n="usecases.title">Built for archives that nobody has time to rewatch</h2>
@@ -151,9 +155,28 @@
   </section>
 
   <section class="local">
-    <div class="container local-banner">
-      <h2 data-i18n="local.title">100% local. Your videos never leave your machine.</h2>
-      <p data-i18n="local.body">No cloud upload of your content. No subscription to read your own archive. Indexing, transcription, vision and search all run on your hardware.</p>
+    <div class="container">
+      <div class="local-banner">
+        <h2 data-i18n="local.title">100% local. Your videos never leave your machine.</h2>
+        <p data-i18n="local.body">No cloud upload of your content. No subscription to read your own archive. Indexing, transcription, vision and search all run on your hardware.</p>
+      </div>
+      <div class="privacy-grid">
+        <article class="privacy-card">
+          <div class="privacy-icon" aria-hidden="true">🖥</div>
+          <h3 data-i18n="privacy.local.title">Videos stay on your disk</h3>
+          <p data-i18n="privacy.local.body">The actual MP4, MKV and friends never get uploaded anywhere. Transcription, on-screen text reading and visual analysis all run on your own CPU/GPU — no cloud step, no third-party server seeing your footage.</p>
+        </article>
+        <article class="privacy-card">
+          <div class="privacy-icon" aria-hidden="true">📍</div>
+          <h3 data-i18n="privacy.points.title">Only abstract points reach the index</h3>
+          <p data-i18n="privacy.points.body">What goes into the vector database are <strong>embeddings</strong> — high-dimensional numerical points derived from your content. They power the semantic search but can't be reversed into watchable video, readable transcripts or recognisable frames.</p>
+        </article>
+        <article class="privacy-card privacy-card-accent">
+          <div class="privacy-icon" aria-hidden="true">🔒</div>
+          <h3 data-i18n="privacy.isolation.title">Your collection, only yours</h3>
+          <p data-i18n="privacy.isolation.body"><strong>Every user gets a fully isolated collection</strong>, keyed to their license. No other AccuVideo user can query your library, see your snippets, or even know that your collection exists. Multi-tenant by design, single-tenant in practice.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -174,7 +197,7 @@
           <p class="edition-bestfor" data-i18n="editions.basic.bestfor"><strong>Best for:</strong> students, individuals and families with a modest video collection.</p>
           <div class="edition-ctas">
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="editions.basic.cta_win">Windows · .msi</a>
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic-mac-arm64.dmg" class="btn btn-ghost" data-i18n="editions.basic.cta_mac">macOS ARM · .dmg</a>
+            <span class="btn btn-ghost btn-disabled" aria-disabled="true" data-i18n="editions.basic.cta_mac">macOS · Coming soon</span>
           </div>
         </article>
         <article class="edition edition-pro">
@@ -191,7 +214,7 @@
           <p class="edition-bestfor" data-i18n="editions.pro.bestfor"><strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.</p>
           <div class="edition-ctas">
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="editions.pro.cta_win">Windows · .msi</a>
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro-mac-arm64.dmg" class="btn btn-primary" data-i18n="editions.pro.cta_mac">macOS ARM · .dmg</a>
+            <span class="btn btn-primary btn-disabled" aria-disabled="true" data-i18n="editions.pro.cta_mac">macOS · Coming soon</span>
           </div>
         </article>
       </div>
@@ -207,14 +230,14 @@
           <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
           <div class="download-row-ctas">
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="download.basic_win">Windows · .msi</a>
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic-mac-arm64.dmg" class="btn btn-ghost" data-i18n="download.basic_mac">macOS Apple Silicon · .dmg</a>
+            <span class="btn btn-ghost btn-disabled" aria-disabled="true" data-i18n="download.basic_mac">macOS Apple Silicon · Coming soon</span>
           </div>
         </div>
         <div class="download-row">
           <div class="download-row-label" data-i18n="download.row_pro">Pro</div>
           <div class="download-row-ctas">
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="download.pro_win">Windows · .msi</a>
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro-mac-arm64.dmg" class="btn btn-primary" data-i18n="download.pro_mac">macOS Apple Silicon · .dmg</a>
+            <span class="btn btn-primary btn-disabled" aria-disabled="true" data-i18n="download.pro_mac">macOS Apple Silicon · Coming soon</span>
           </div>
         </div>
       </div>
