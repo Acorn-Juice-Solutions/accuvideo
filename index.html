@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="meta.title">AccuVideo — Find the moment</title>
+  <meta name="description" data-i18n="meta.description" content="Semantic search over your video library. Ask in plain language, jump to the exact second. 100% local — your videos never leave your machine.">
+  <meta property="og:title" content="AccuVideo — Find the moment">
+  <meta property="og:description" content="Semantic search over your video library. Ask in plain language, jump to the exact second.">
+  <meta property="og:image" content="assets/img/AccuVideo_Logo.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a href="#top" class="brand">
+      <img src="assets/img/AccuVideo_Logo.png" alt="AccuVideo" class="brand-logo">
+      <span class="brand-name">AccuVideo</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#editions" data-i18n="nav.editions">Editions</a>
+      <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Language">
+        <span class="lang-en">EN</span><span class="lang-sep">·</span><span class="lang-es">ES</span>
+      </button>
+      <a href="#download" class="btn btn-primary btn-sm" data-i18n="nav.cta">Try free</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero.eyebrow">By Acorn Juice Solutions</p>
+        <h1 data-i18n="hero.title">Stop scrubbing the timeline. <span class="accent">Just ask.</span></h1>
+        <p class="lede" data-i18n="hero.lede">AccuVideo searches your entire video library by what people say, what's on screen, and what's visible on camera — and lands you on the exact second.</p>
+        <div class="hero-ctas">
+          <a href="#download" class="btn btn-primary" data-i18n="hero.cta_primary">Download · 30-day free trial</a>
+          <a href="#how" class="btn btn-ghost" data-i18n="hero.cta_secondary">See how it works</a>
+        </div>
+        <p class="hero-note" data-i18n="hero.note">100% local · Windows · macOS · Linux</p>
+      </div>
+      <div class="hero-visual">
+        <div class="mock">
+          <div class="mock-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="mock-title">AccuVideo</span>
+          </div>
+          <div class="mock-search">
+            <span class="mock-search-icon">⌕</span>
+            <span class="mock-search-text" id="mock-query">explain gradient descent</span>
+            <span class="mock-caret"></span>
+          </div>
+          <div class="mock-results">
+            <div class="mock-result">
+              <div class="mock-thumb"></div>
+              <div class="mock-meta">
+                <div class="mock-meta-title" data-i18n="mock.result1.title">ML Lecture 04 — Optimization</div>
+                <div class="mock-meta-sub"><span class="mock-ts">12:47</span> <span class="mock-tag" data-i18n="mock.tag.audio">audio</span></div>
+              </div>
+            </div>
+            <div class="mock-result">
+              <div class="mock-thumb thumb-2"></div>
+              <div class="mock-meta">
+                <div class="mock-meta-title" data-i18n="mock.result2.title">Whiteboard derivation</div>
+                <div class="mock-meta-sub"><span class="mock-ts">28:03</span> <span class="mock-tag visual" data-i18n="mock.tag.visual">visual</span></div>
+              </div>
+            </div>
+            <div class="mock-result">
+              <div class="mock-thumb thumb-3"></div>
+              <div class="mock-meta">
+                <div class="mock-meta-title" data-i18n="mock.result3.title">Slide: loss function</div>
+                <div class="mock-meta-sub"><span class="mock-ts">41:22</span> <span class="mock-tag text" data-i18n="mock.tag.text">on-screen text</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title" data-i18n="features.title">Three ways to find the moment</h2>
+      <p class="section-sub" data-i18n="features.sub">AccuVideo indexes every layer of your videos and lets you search across them in plain language.</p>
+      <div class="feature-grid">
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">🎙</div>
+          <h3 data-i18n="features.audio.title">Spoken words</h3>
+          <p data-i18n="features.audio.body">Whisper transcribes every video locally. Search the dialogue, the lecture, the meeting — and jump to the second it was said.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">🔤</div>
+          <h3 data-i18n="features.text.title">On-screen text</h3>
+          <p data-i18n="features.text.body">Slides, captions, signs, code on a whiteboard. AccuVideo reads what's printed on screen and makes it searchable.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon" aria-hidden="true">👁</div>
+          <h3 data-i18n="features.visual.title">Visual content</h3>
+          <p data-i18n="features.visual.body">A vision-language model describes what's actually in the frame — "kids blowing out candles", "dance scene", "whiteboard formula".</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="how">
+    <div class="container">
+      <h2 class="section-title" data-i18n="how.title">How it works</h2>
+      <ol class="how-steps">
+        <li>
+          <span class="step-num">1</span>
+          <h3 data-i18n="how.s1.title">Point AccuVideo at your videos</h3>
+          <p data-i18n="how.s1.body">Pick one or more folders on your machine. AccuVideo handles MP4, MKV, AVI, MOV, WMV, FLV, WebM, M4V, TS, MPEG.</p>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <h3 data-i18n="how.s2.title">Index locally</h3>
+          <p data-i18n="how.s2.body">Transcripts, on-screen text, and visual descriptions are computed on your machine. Embeddings go into a vector index — your raw video never leaves.</p>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <h3 data-i18n="how.s3.title">Ask, and land on the second</h3>
+          <p data-i18n="how.s3.body">Type a question. Pick the result. The player opens at the exact frame that answers it — with seek-back controls if you want context.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="usecases">
+    <div class="container">
+      <h2 class="section-title" data-i18n="usecases.title">Built for archives that nobody has time to rewatch</h2>
+      <div class="usecase-grid">
+        <div class="usecase"><strong data-i18n="usecases.academy.title">Online academies</strong><p data-i18n="usecases.academy.body">Hundreds of lessons. One query, one minute.</p></div>
+        <div class="usecase"><strong data-i18n="usecases.corp.title">Corporate training</strong><p data-i18n="usecases.corp.body">Skip to the slide in a 3-hour all-hands.</p></div>
+        <div class="usecase"><strong data-i18n="usecases.student.title">Students</strong><p data-i18n="usecases.student.body">Find the moment your professor covered <em>that</em> concept.</p></div>
+        <div class="usecase"><strong data-i18n="usecases.family.title">Families & prosumers</strong><p data-i18n="usecases.family.body">Years of footage on a hard drive. Search them like memories, not files.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="local">
+    <div class="container local-banner">
+      <h2 data-i18n="local.title">100% local. Your videos never leave your machine.</h2>
+      <p data-i18n="local.body">No cloud upload of your content. No subscription to read your own archive. Indexing, transcription, vision and search all run on your hardware.</p>
+    </div>
+  </section>
+
+  <section id="editions" class="editions">
+    <div class="container">
+      <h2 class="section-title" data-i18n="editions.title">Two editions</h2>
+      <p class="section-sub" data-i18n="editions.sub">Both editions include the search experience. Pro adds visual understanding and a dedicated CLI ingestion pipeline.</p>
+      <div class="edition-grid">
+        <article class="edition">
+          <h3 data-i18n="editions.basic.title">Basic</h3>
+          <p class="edition-tag" data-i18n="editions.basic.tag">For individuals and small libraries</p>
+          <ul>
+            <li data-i18n="editions.basic.f1">Semantic search over spoken words</li>
+            <li data-i18n="editions.basic.f2">On-screen text indexing</li>
+            <li data-i18n="editions.basic.f3">In-app ingestion</li>
+            <li data-i18n="editions.basic.f4">Local-first, dark and light themes, EN + ES UI</li>
+          </ul>
+        </article>
+        <article class="edition edition-pro">
+          <h3 data-i18n="editions.pro.title">Pro</h3>
+          <p class="edition-tag" data-i18n="editions.pro.tag">For academies, businesses and serious archives</p>
+          <ul>
+            <li data-i18n="editions.pro.f1">Everything in Basic</li>
+            <li data-i18n="editions.pro.f2">Visual content search (Florence-2)</li>
+            <li data-i18n="editions.pro.f3">Cross-modal re-ranking</li>
+            <li data-i18n="editions.pro.f4">AccuVideoIngest CLI for batch / scheduled ingestion</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="download">
+    <div class="container download-card">
+      <h2 data-i18n="download.title">Download AccuVideo</h2>
+      <p data-i18n="download.body">30-day free trial. Windows MSI installer; macOS and Linux builds available on request during the pilot.</p>
+      <div class="download-ctas">
+        <a id="download-link" href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest" class="btn btn-primary btn-lg" data-i18n="download.cta_releases">Get the latest release</a>
+        <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request" class="btn btn-ghost btn-lg" data-i18n="download.cta_contact">Request a trial license</a>
+      </div>
+      <p class="download-note" data-i18n="download.note">Need a non-Windows build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>.</p>
+    </div>
+  </section>
+
+  <section id="requirements" class="requirements">
+    <div class="container">
+      <h2 class="section-title" data-i18n="req.title">System requirements</h2>
+      <p class="section-sub" data-i18n="req.sub">AccuVideo runs on commodity laptops. Visual indexing benefits from a recent GPU.</p>
+      <div class="req-grid">
+        <div class="req">
+          <h3 data-i18n="req.min.title">Minimum</h3>
+          <ul>
+            <li data-i18n="req.min.cpu">CPU: Intel i5 (8th gen) / Ryzen 5 2600+</li>
+            <li data-i18n="req.min.ram">RAM: 8 GB</li>
+            <li data-i18n="req.min.gpu">GPU: integrated</li>
+            <li data-i18n="req.min.disk">Disk: SSD ~50 GB free</li>
+            <li data-i18n="req.min.os">OS: Windows 10/11, macOS 12+, Ubuntu 20.04+</li>
+          </ul>
+        </div>
+        <div class="req req-recommended">
+          <h3 data-i18n="req.rec.title">Recommended</h3>
+          <ul>
+            <li data-i18n="req.rec.cpu">CPU: Intel i7 (10th gen+) / Ryzen 7+ / Apple Silicon M2+</li>
+            <li data-i18n="req.rec.ram">RAM: 16 GB</li>
+            <li data-i18n="req.rec.gpu">GPU: NVIDIA RTX 3060 Ti+ for visual ingestion</li>
+            <li data-i18n="req.rec.disk">Disk: NVMe SSD 500 GB+ for the video library</li>
+            <li data-i18n="req.rec.net">Network: stable connection for the managed vector DB</li>
+          </ul>
+        </div>
+      </div>
+      <p class="req-footnote" data-i18n="req.footnote">Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS.md">hardware requirements doc</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="footer-brand">
+      <img src="assets/img/AccuVideo_Logo.png" alt="" class="brand-logo">
+      <div>
+        <div class="footer-product">AccuVideo</div>
+        <div class="footer-company">© <span id="footer-year">2026</span> Acorn Juice Solutions S.L.</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>
+      <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS.md" data-i18n="footer.docs">Documentation</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
