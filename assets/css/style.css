@@ -481,6 +481,8 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 32px;
+  display: flex;
+  flex-direction: column;
 }
 
 .edition h3 {
@@ -497,10 +499,22 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .edition ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.edition-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.edition-ctas .btn {
+  font-size: 14px;
+  padding: 10px 14px;
 }
 
 .edition li {
@@ -554,12 +568,48 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   margin: 0 0 28px;
 }
 
-.download-ctas {
+.download-matrix {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  margin: 8px 0 22px;
+}
+
+.download-row {
+  display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.download-row-label {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  color: var(--text);
+  min-width: 64px;
+}
+
+.download-row-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.download-row .btn {
+  font-size: 14px;
+  padding: 10px 14px;
+}
+
+.download-subnote {
+  color: var(--text-mute);
+  font-size: 14px;
+  margin: 0 0 8px;
 }
 
 .download-note {

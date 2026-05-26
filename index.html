@@ -50,7 +50,7 @@
           <a href="#download" class="btn btn-primary" data-i18n="hero.cta_primary">Download · 30-day free trial</a>
           <a href="#how" class="btn btn-ghost" data-i18n="hero.cta_secondary">See how it works</a>
         </div>
-        <p class="hero-note" data-i18n="hero.note">100% local · Windows · macOS · Linux</p>
+        <p class="hero-note" data-i18n="hero.note">100% local · Windows · macOS (Apple Silicon)</p>
       </div>
       <div class="hero-visual">
         <div class="mock">
@@ -171,6 +171,10 @@
             <li data-i18n="editions.basic.f3">In-app ingestion</li>
             <li data-i18n="editions.basic.f4">Local-first, dark and light themes, EN + ES UI</li>
           </ul>
+          <div class="edition-ctas">
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="editions.basic.cta_win">Windows · .msi</a>
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic-mac-arm64.dmg" class="btn btn-ghost" data-i18n="editions.basic.cta_mac">macOS ARM · .dmg</a>
+          </div>
         </article>
         <article class="edition edition-pro">
           <h3 data-i18n="editions.pro.title">Pro</h3>
@@ -181,6 +185,10 @@
             <li data-i18n="editions.pro.f3">Cross-modal re-ranking</li>
             <li data-i18n="editions.pro.f4">AccuVideoIngest CLI for batch / scheduled ingestion</li>
           </ul>
+          <div class="edition-ctas">
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="editions.pro.cta_win">Windows · .msi</a>
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro-mac-arm64.dmg" class="btn btn-primary" data-i18n="editions.pro.cta_mac">macOS ARM · .dmg</a>
+          </div>
         </article>
       </div>
     </div>
@@ -189,12 +197,25 @@
   <section id="download" class="download">
     <div class="container download-card">
       <h2 data-i18n="download.title">Download AccuVideo</h2>
-      <p data-i18n="download.body">30-day free trial. Windows MSI installer; macOS and Linux builds available on request during the pilot.</p>
-      <div class="download-ctas">
-        <a id="download-link" href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest" class="btn btn-primary btn-lg" data-i18n="download.cta_releases">Get the latest release</a>
-        <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request" class="btn btn-ghost btn-lg" data-i18n="download.cta_contact">Request a trial license</a>
+      <p data-i18n="download.body">30-day free trial. Direct downloads for Windows and macOS (Apple Silicon). Intel macOS and Linux builds available on request during the pilot.</p>
+      <div class="download-matrix">
+        <div class="download-row">
+          <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
+          <div class="download-row-ctas">
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="download.basic_win">Windows · .msi</a>
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic-mac-arm64.dmg" class="btn btn-ghost" data-i18n="download.basic_mac">macOS Apple Silicon · .dmg</a>
+          </div>
+        </div>
+        <div class="download-row">
+          <div class="download-row-label" data-i18n="download.row_pro">Pro</div>
+          <div class="download-row-ctas">
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="download.pro_win">Windows · .msi</a>
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro-mac-arm64.dmg" class="btn btn-primary" data-i18n="download.pro_mac">macOS Apple Silicon · .dmg</a>
+          </div>
+        </div>
       </div>
-      <p class="download-note" data-i18n="download.note">Need a non-Windows build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>.</p>
+      <p class="download-subnote"><a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest" data-i18n="download.subnote_link">View all release files</a><span data-i18n="download.subnote_suffix"> — changelog, hashes, older versions.</span></p>
+      <p class="download-note" data-i18n="download.note">Need an Intel macOS build, a Linux build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request">info@acornjuice.com</a>.</p>
     </div>
   </section>
 
