@@ -105,9 +105,10 @@
       'req.rec.gpu': 'GPU: NVIDIA RTX 3060 Ti+ for visual ingestion',
       'req.rec.disk': 'Disk: NVMe SSD 500 GB+ for the video library',
       'req.rec.net': 'Network: stable connection for the managed vector DB',
-      'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS.md">hardware requirements doc</a>.',
+      'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
 
-      'footer.docs': 'Documentation'
+      'footer.docs': 'Documentation',
+      'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md'
     },
     es: {
       'meta.title': 'AccuVideo — Encuentra el momento',
@@ -209,9 +210,10 @@
       'req.rec.gpu': 'GPU: NVIDIA RTX 3060 Ti+ para ingesta visual',
       'req.rec.disk': 'Disco: SSD NVMe 500 GB+ para la videoteca',
       'req.rec.net': 'Red: conexión estable para el DB vectorial gestionado',
-      'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS.md">documento de requisitos</a>.',
+      'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
 
-      'footer.docs': 'Documentación'
+      'footer.docs': 'Documentación',
+      'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md'
     }
   };
 
@@ -240,6 +242,12 @@
       } else {
         el.innerHTML = value;
       }
+    });
+
+    document.querySelectorAll('[data-i18n-href]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-href');
+      const value = dict[key];
+      if (value !== undefined) el.setAttribute('href', value);
     });
 
     const mockQuery = document.getElementById('mock-query');

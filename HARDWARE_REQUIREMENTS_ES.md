@@ -13,25 +13,23 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 |-----------|----------------|
 | **CPU** | Intel Core i5 (8ª gen) / AMD Ryzen 5 2600 o superior |
 | **RAM** | 8 GB DDR4 |
-| **GPU** | Integrada (Intel UHD / AMD Radeon) — recomendada para reencode |
-| **Almacenamiento (SO)** | SSD 250 GB (Windows 10/11 + AccuVideo) |
-| **Almacenamiento (Modelos)** | SSD 10 GB (modelos IA) |
-| **Almacenamiento (Vídeos)** | Configurable — a partir de 50 GB recomendado |
-| **Red** | Ethernet o WiFi 5 GHz |
+| **GPU** | Integrada (Intel UHD / AMD Radeon) — solo audio + búsqueda; sin ingesta visual |
+| **Almacenamiento (SO + AccuVideo + modelos)** | SSD 128 GB con al menos 50 GB libres |
+| **Almacenamiento (Vídeos)** | Configurable — desde 50 GB (HDD o SSD) |
+| **Red** | Ethernet o WiFi 2.4/5 GHz |
 
 ### Requisitos Recomendados
 | Componente | Especificación |
 |-----------|----------------|
 | **CPU** | Intel Core i7 (10ª gen+) / AMD Ryzen 7 3700X o superior |
-| **RAM** | 16 GB DDR4 o DDR5 |
-| **GPU** | NVIDIA GeForce RTX 3060 Ti+ / AMD Radeon RX 6700 XT+ (CUDA/ROCm para aceleración) |
-| **Almacenamiento (SO)** | SSD NVMe 512 GB |
-| **Almacenamiento (Modelos)** | SSD NVMe 10 GB |
-| **Almacenamiento (Vídeos)** | SSD NVMe 500 GB+ o HDD 2 TB+ |
-| **Red** | Ethernet Gigabit (1 Gbps) |
+| **RAM** | 16 GB DDR4 |
+| **GPU** | NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ (CUDA para ingesta visual) |
+| **Almacenamiento (SO + modelos)** | SSD NVMe 256 GB |
+| **Almacenamiento (Vídeos)** | HDD 1-2 TB o SSD SATA — NVMe no aporta para reproducción |
+| **Red** | Ethernet Gigabit (1 Gbps) o WiFi 5/6 |
 
 ### Notas Windows
-- **PyTorch CPU vs CUDA**: PyTorch con CUDA (12.4) requiere GPU compatible NVIDIA (~8 GB VRAM)
+- **PyTorch CPU vs CUDA**: La aceleración CUDA requiere GPU NVIDIA con ≥6 GB VRAM (Florence-2 cabe en 6 GB). Sin GPU, la ingesta visual se ejecuta en CPU pero es muy lenta.
 - **FFmpeg**: Incluido en el bundle AccuVideo — acelera reencode de vídeos
 - **DB**: Servicio gestionado externo (no consume recursos locales). Requiere conexión de red estable.
 - **Modelos IA**: BGE-M3 (~800 MB), Florence-2 (~2.6 GB), Whisper (~1.5 GB)
@@ -47,21 +45,19 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 | **CPU** | Intel Core i5 (6ª gen+) / Apple Silicon M1 |
 | **RAM** | 8 GB unificada |
 | **GPU** | Integrada (Intel Iris / Apple Neural Engine) |
-| **Almacenamiento (SO)** | SSD 256 GB (macOS 12+) |
-| **Almacenamiento (Modelos)** | SSD 10 GB |
-| **Almacenamiento (Vídeos)** | Configurable — a partir de 50 GB |
-| **Red** | WiFi 5 GHz o Ethernet Thunderbolt |
+| **Almacenamiento (SO + modelos)** | SSD con 50 GB libres (macOS 12+) |
+| **Almacenamiento (Vídeos)** | Configurable — desde 50 GB |
+| **Red** | WiFi 2.4/5 GHz o Ethernet |
 
 ### Requisitos Recomendados
 | Componente | Especificación |
 |-----------|----------------|
-| **CPU** | Apple Silicon M2 Pro/Max o Intel Core i7 (10ª gen+) |
-| **RAM** | 16 GB unificada (M2+) o DDR4/DDR5 (Intel) |
-| **GPU** | Apple Neural Engine (M1+) optimizado; Intel → eGPU opcional |
-| **Almacenamiento (SO)** | SSD NVMe 512 GB |
-| **Almacenamiento (Modelos)** | SSD NVMe 10 GB |
-| **Almacenamiento (Vídeos)** | SSD NVMe 500 GB+ o HDD externo USB-C 2 TB+ |
-| **Red** | Ethernet Gigabit (adaptador Thunderbolt) |
+| **CPU** | Apple Silicon M2 / M3 o Intel Core i7 (10ª gen+) |
+| **RAM** | 16 GB unificada (M-series) o DDR4 (Intel) |
+| **GPU** | Apple Neural Engine + MPS (M1+) — sin GPU dedicada extra |
+| **Almacenamiento (SO + modelos)** | SSD 256 GB |
+| **Almacenamiento (Vídeos)** | HDD externo USB-C 1-2 TB o SSD interno |
+| **Red** | WiFi 5/6 o Ethernet Gigabit (adaptador) |
 
 ### Notas macOS
 - **Apple Silicon (M1/M2/M3)**: PyTorch nativo + aceleración Accelerate framework → muy eficiente
@@ -80,22 +76,20 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 |-----------|----------------|
 | **CPU** | Intel Core i5 / AMD Ryzen 5 2600 o superior |
 | **RAM** | 8 GB DDR4 |
-| **GPU** | Integrada u opcional NVIDIA/AMD compatible con OpenCL |
-| **Almacenamiento (SO)** | SSD 256 GB (Linux + Python + dependencias) |
-| **Almacenamiento (Modelos)** | SSD 10 GB |
-| **Almacenamiento (Vídeos)** | Configurable — a partir de 50 GB |
-| **Red** | Ethernet o WiFi 5 GHz |
+| **GPU** | Integrada (solo audio + búsqueda) u opcional NVIDIA para ingesta visual |
+| **Almacenamiento (SO + modelos)** | SSD 128 GB con 50 GB libres |
+| **Almacenamiento (Vídeos)** | Configurable — desde 50 GB (HDD o SSD) |
+| **Red** | Ethernet o WiFi |
 
 ### Requisitos Recomendados
 | Componente | Especificación |
 |-----------|----------------|
-| **CPU** | Intel Xeon E5-2680+ / AMD EPYC 7402 (servidor) o Core i7/Ryzen 7 (desktop) |
-| **RAM** | 16-32 GB DDR4 ECC (servidor) / DDR5 (desktop) |
-| **GPU** | NVIDIA A100/H100 (datacenter) o RTX 4090 (desktop) con CUDA 12.4 |
-| **Almacenamiento (SO)** | SSD NVMe 512 GB (RAID-1 para servidor) |
-| **Almacenamiento (Modelos)** | SSD NVMe 10 GB |
-| **Almacenamiento (Vídeos)** | SSD NVMe 1 TB+ (RAID-5/6 para servidor) |
-| **Red** | Ethernet 10 Gbps (servidor) / 1 Gbps (desktop) |
+| **CPU** | Desktop: Core i7 / Ryzen 7. Servidor: Xeon Silver 4310+ / EPYC 7402+ |
+| **RAM** | 16 GB (desktop) / 32 GB DDR4 ECC (servidor) |
+| **GPU** | RTX 3060 12 GB / RTX 4060 (desktop). Servidor: NVIDIA L4, A4000 o RTX 4070 Ti+ |
+| **Almacenamiento (SO + modelos)** | SSD NVMe 256 GB |
+| **Almacenamiento (Vídeos)** | HDD 2 TB+ o SSD SATA (RAID opcional en servidor) |
+| **Red** | Ethernet 1 Gbps (desktop) / 2.5-10 Gbps (servidor con muchos clientes) |
 
 ### Notas Linux
 - **CUDA Setup**: `nvidia-smi` debe reportar GPU disponible; requiere NVIDIA driver 525+
@@ -146,11 +140,12 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 - SSD NVMe para modelos; HDD para vídeos
 
 ### 🏢 Empresa / Escuela (10+ clientes concurrentes)
-**Configuración Recomendada**: **Servidor Linux + GPU profesional**
-- Servidor con CPU Xeon / Ryzen EPYC
-- GPU A100/H100 o múltiples RTX 4090
-- 32+ GB RAM (ECC recomendado)
-- RAID-5/6 NVMe + HDD para vídeos
+**Configuración Recomendada**: **Servidor Linux + GPU dedicada**
+- Servidor con CPU Xeon Silver / Scalable o Ryzen EPYC
+- GPU NVIDIA L4, A4000 o RTX 4090 (24 GB VRAM permite batch grandes)
+- 32+ GB RAM (ECC recomendado para servidor 24/7)
+- HDD/SSD para vídeos; NVMe solo para SO + modelos
+- A100/H100 solo si necesitas ingesta visual masiva en paralelo (datasets muy grandes)
 - Load balancer si hay múltiples servidores
 
 ---
@@ -159,12 +154,11 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 
 Antes de instalar AccuVideo, verifica:
 
-- [ ] **Python 3.9+** instalado (`python --version`)
-- [ ] **Almacenamiento**: SSD ~50 GB mínimo (SO + modelos + caché temporal)
+- [ ] **Almacenamiento**: SSD con ~50 GB libres (SO + modelos + caché temporal)
 - [ ] **RAM libre**: Mínimo 6 GB disponible durante ingesta
-- [ ] **Conexión de red**: Ethernet para LAN streaming (opcional WiFi 5 GHz)
+- [ ] **Conexión de red**: Estable para acceder al DB gestionado y streaming LAN
 - [ ] **Permisos**: Acceso RW a carpeta de vídeos
-- [ ] **GPU (opcional)**: NVIDIA driver 525+ si usarás aceleración CUDA
+- [ ] **GPU (opcional)**: NVIDIA driver 525+ con ≥6 GB VRAM si usarás ingesta visual con CUDA
 
 ---
 
