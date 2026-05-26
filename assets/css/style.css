@@ -505,6 +505,18 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   gap: 8px;
 }
 
+.edition-bestfor {
+  margin: 0 0 22px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.edition-bestfor strong { color: var(--text); }
+
 .edition-ctas {
   display: flex;
   flex-wrap: wrap;

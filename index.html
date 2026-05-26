@@ -160,17 +160,18 @@
   <section id="editions" class="editions">
     <div class="container">
       <h2 class="section-title" data-i18n="editions.title">Two editions</h2>
-      <p class="section-sub" data-i18n="editions.sub">Both editions include the search experience. Pro adds visual understanding and a dedicated CLI ingestion pipeline.</p>
+      <p class="section-sub" data-i18n="editions.sub">Both editions share the same local-first search experience. Basic covers spoken words and on-screen text. Pro adds visual understanding, a CLI for batch ingestion of large archives, and multi-client LAN streaming.</p>
       <div class="edition-grid">
         <article class="edition">
           <h3 data-i18n="editions.basic.title">Basic</h3>
-          <p class="edition-tag" data-i18n="editions.basic.tag">For individuals and small libraries</p>
+          <p class="edition-tag" data-i18n="editions.basic.tag">For individuals, students and modest libraries</p>
           <ul>
-            <li data-i18n="editions.basic.f1">Semantic search over spoken words</li>
-            <li data-i18n="editions.basic.f2">On-screen text indexing</li>
-            <li data-i18n="editions.basic.f3">In-app ingestion</li>
-            <li data-i18n="editions.basic.f4">Local-first, dark and light themes, EN + ES UI</li>
+            <li data-i18n="editions.basic.f1">Semantic search over spoken words (Whisper transcription, runs locally)</li>
+            <li data-i18n="editions.basic.f2">On-screen text indexing — slides, captions, signs, code on a whiteboard</li>
+            <li data-i18n="editions.basic.f3">In-app ingestion — drop a folder, watch it index</li>
+            <li data-i18n="editions.basic.f4">Single-machine use, EN/ES UI, dark and light themes</li>
           </ul>
+          <p class="edition-bestfor" data-i18n="editions.basic.bestfor"><strong>Best for:</strong> students, individuals and families with a modest video collection.</p>
           <div class="edition-ctas">
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="editions.basic.cta_win">Windows · .msi</a>
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic-mac-arm64.dmg" class="btn btn-ghost" data-i18n="editions.basic.cta_mac">macOS ARM · .dmg</a>
@@ -178,13 +179,16 @@
         </article>
         <article class="edition edition-pro">
           <h3 data-i18n="editions.pro.title">Pro</h3>
-          <p class="edition-tag" data-i18n="editions.pro.tag">For academies, businesses and serious archives</p>
+          <p class="edition-tag" data-i18n="editions.pro.tag">For academies, businesses, schools and large archives</p>
           <ul>
             <li data-i18n="editions.pro.f1">Everything in Basic</li>
-            <li data-i18n="editions.pro.f2">Visual content search (Florence-2)</li>
-            <li data-i18n="editions.pro.f3">Cross-modal re-ranking</li>
-            <li data-i18n="editions.pro.f4">AccuVideoIngest CLI for batch / scheduled ingestion</li>
+            <li data-i18n="editions.pro.f2">Visual content search (Florence-2) — find scenes by what's actually in the frame</li>
+            <li data-i18n="editions.pro.f3">Cross-modal re-ranking — audio + on-screen text + visual signals fused for sharper results</li>
+            <li data-i18n="editions.pro.f4"><strong>AccuVideoIngest CLI</strong> — headless batch tool to index hundreds of files in one command, with progress logs and resume on failure</li>
+            <li data-i18n="editions.pro.f5">Scheduled / overnight batches — automate nightly ingestion via Task Scheduler (Windows) or cron (Linux/macOS); ideal for growing archives</li>
+            <li data-i18n="editions.pro.f6">Multi-client LAN streaming — serve concurrent viewers from one machine</li>
           </ul>
+          <p class="edition-bestfor" data-i18n="editions.pro.bestfor"><strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.</p>
           <div class="edition-ctas">
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="editions.pro.cta_win">Windows · .msi</a>
             <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro-mac-arm64.dmg" class="btn btn-primary" data-i18n="editions.pro.cta_mac">macOS ARM · .dmg</a>
@@ -222,25 +226,25 @@
   <section id="requirements" class="requirements">
     <div class="container">
       <h2 class="section-title" data-i18n="req.title">System requirements</h2>
-      <p class="section-sub" data-i18n="req.sub">AccuVideo runs on commodity laptops. Visual indexing benefits from a recent GPU.</p>
+      <p class="section-sub" data-i18n="req.sub">AccuVideo Basic runs on commodity laptops. Pro adds visual ingestion (Florence-2), which is GPU-bound — those specs are higher.</p>
       <div class="req-grid">
         <div class="req">
-          <h3 data-i18n="req.min.title">Minimum</h3>
+          <h3 data-i18n="req.min.title">Basic — audio + on-screen text</h3>
           <ul>
-            <li data-i18n="req.min.cpu">CPU: Intel i5 (8th gen) / Ryzen 5 2600+</li>
+            <li data-i18n="req.min.cpu">CPU: Intel i5 (8th gen) / Ryzen 5 2600+ / Apple Silicon M1</li>
             <li data-i18n="req.min.ram">RAM: 8 GB</li>
-            <li data-i18n="req.min.gpu">GPU: integrated</li>
-            <li data-i18n="req.min.disk">Disk: SSD ~50 GB free</li>
+            <li data-i18n="req.min.gpu">GPU: integrated (no dedicated GPU needed)</li>
+            <li data-i18n="req.min.disk">Disk: SSD with ~50 GB free</li>
             <li data-i18n="req.min.os">OS: Windows 10/11, macOS 12+, Ubuntu 20.04+</li>
           </ul>
         </div>
         <div class="req req-recommended">
-          <h3 data-i18n="req.rec.title">Recommended</h3>
+          <h3 data-i18n="req.rec.title">Pro — adds visual ingestion</h3>
           <ul>
             <li data-i18n="req.rec.cpu">CPU: Intel i7 (10th gen+) / Ryzen 7+ / Apple Silicon M2+</li>
-            <li data-i18n="req.rec.ram">RAM: 16 GB</li>
-            <li data-i18n="req.rec.gpu">GPU: NVIDIA RTX 3060 Ti+ for visual ingestion</li>
-            <li data-i18n="req.rec.disk">Disk: NVMe SSD 500 GB+ for the video library</li>
+            <li data-i18n="req.rec.ram">RAM: 16 GB (32 GB for batch / multi-client)</li>
+            <li data-i18n="req.rec.gpu">GPU: NVIDIA RTX 3060 12 GB / RTX 4060+ with CUDA (≥6 GB VRAM) — required for visual indexing at usable speed</li>
+            <li data-i18n="req.rec.disk">Disk: SSD for OS + models; HDD or SSD for the video library</li>
             <li data-i18n="req.rec.net">Network: stable connection for the managed vector DB</li>
           </ul>
         </div>
