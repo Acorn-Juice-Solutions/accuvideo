@@ -698,6 +698,42 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 
 /* ---------- Pricing ---------- */
 
+.price-toggle {
+  display: inline-flex;
+  gap: 4px;
+  margin: 0 auto 36px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+}
+
+.pricing > .container > .price-toggle {
+  display: flex;
+  width: fit-content;
+}
+
+.price-toggle-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.price-toggle-btn:hover { color: var(--text); }
+
+.price-toggle-btn.active {
+  background: var(--cyan);
+  color: #06212A;
+}
+
 .pricing-group-title {
   margin: 8px 0 16px;
   font-size: 16px;

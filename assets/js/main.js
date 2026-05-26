@@ -107,33 +107,42 @@
 
       'pricing.title': 'Plans &amp; pricing',
       'pricing.sub': 'Pick the size that matches your library. Need something bigger? Talk to us.',
-      'pricing.period': '/mo',
+      'pricing.period.monthly': '/mo',
+      'pricing.period.annual': '/yr',
+      'pricing.toggle.monthly': 'Monthly',
+      'pricing.toggle.annual': 'Annual',
       'pricing.badge.popular': 'Most popular',
       'pricing.cta_trial': 'Request trial license',
       'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21',
       'pricing.basic.group': 'Basic — for individuals, students and families',
       'pricing.basic.starter.name': 'Starter',
-      'pricing.basic.starter.price': '4.99',
-      'pricing.basic.starter.cap': 'Up to 50 h of video',
+      'pricing.basic.starter.price_monthly': '10.49',
+      'pricing.basic.starter.price_annual': '125.88',
+      'pricing.basic.starter.cap': 'Up to 100 videos',
       'pricing.basic.personal.name': 'Personal',
-      'pricing.basic.personal.price': '9.99',
-      'pricing.basic.personal.cap': 'Up to 200 h of video',
+      'pricing.basic.personal.price_monthly': '22.49',
+      'pricing.basic.personal.price_annual': '269.88',
+      'pricing.basic.personal.cap': 'Up to 500 videos',
       'pricing.basic.freelance.name': 'Freelance',
-      'pricing.basic.freelance.price': '14.99',
-      'pricing.basic.freelance.cap': 'Up to 500 h of video',
+      'pricing.basic.freelance.price_monthly': '74.99',
+      'pricing.basic.freelance.price_annual': '899.88',
+      'pricing.basic.freelance.cap': 'Up to 3 000 videos',
       'pricing.basic.feat1': 'Audio + on-screen text search',
       'pricing.basic.feat2': '1 user · 1 machine',
       'pricing.basic.feat3': 'EN / ES interface',
       'pricing.pro.group': 'Pro — for academies, businesses and schools',
       'pricing.pro.academy.name': 'Academy',
-      'pricing.pro.academy.price': '29',
-      'pricing.pro.academy.cap': 'Up to 500 h · 5 concurrent viewers',
+      'pricing.pro.academy.price_monthly': '29',
+      'pricing.pro.academy.price_annual': '348',
+      'pricing.pro.academy.cap': 'Up to 500 videos · 5 concurrent viewers',
       'pricing.pro.academyplus.name': 'Academy Plus',
-      'pricing.pro.academyplus.price': '79',
-      'pricing.pro.academyplus.cap': 'Up to 2 000 h · 15 concurrent viewers',
+      'pricing.pro.academyplus.price_monthly': '79',
+      'pricing.pro.academyplus.price_annual': '948',
+      'pricing.pro.academyplus.cap': 'Up to 2 000 videos · 15 concurrent viewers',
       'pricing.pro.enterprise.name': 'Enterprise',
-      'pricing.pro.enterprise.price': '199',
-      'pricing.pro.enterprise.cap': 'Up to 10 000 h · 50 concurrent viewers',
+      'pricing.pro.enterprise.price_monthly': '199',
+      'pricing.pro.enterprise.price_annual': '2388',
+      'pricing.pro.enterprise.cap': 'Up to 10 000 videos · 50 concurrent viewers',
       'pricing.pro.feat1': 'Everything in Basic + visual search',
       'pricing.pro.feat2': 'AccuVideoIngest CLI · scheduled batches',
       'pricing.pro.feat3': 'Multi-client LAN streaming',
@@ -281,33 +290,42 @@
 
       'pricing.title': 'Planes y precios',
       'pricing.sub': 'Elige el tamaño que se ajuste a tu videoteca. ¿Necesitas algo más grande? Hablamos.',
-      'pricing.period': '/mes',
+      'pricing.period.monthly': '/mes',
+      'pricing.period.annual': '/año',
+      'pricing.toggle.monthly': 'Mensual',
+      'pricing.toggle.annual': 'Anual',
       'pricing.badge.popular': 'Más popular',
       'pricing.cta_trial': 'Solicitar licencia trial',
       'pricing.trial.mailto': 'mailto:info@acornjuice.com?subject=Solicitud%20licencia%20trial%20AccuVideo&body=Hola%2C%0A%0AQuer%C3%ADa%20solicitar%20una%20licencia%20trial%20de%2030%20d%C3%ADas%20para%20AccuVideo.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Sistema%20operativo%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpega%20aqu%C3%AD%20%E2%80%94%20lo%20ver%C3%A1s%20en%20el%20primer%20arranque%20de%20AccuVideo%5D%0A%0A%C2%A1Gracias%21',
       'pricing.basic.group': 'Basic — para particulares, estudiantes y familias',
       'pricing.basic.starter.name': 'Starter',
-      'pricing.basic.starter.price': '4,99',
-      'pricing.basic.starter.cap': 'Hasta 50 h de vídeo',
+      'pricing.basic.starter.price_monthly': '10,49',
+      'pricing.basic.starter.price_annual': '125,88',
+      'pricing.basic.starter.cap': 'Hasta 100 vídeos',
       'pricing.basic.personal.name': 'Personal',
-      'pricing.basic.personal.price': '9,99',
-      'pricing.basic.personal.cap': 'Hasta 200 h de vídeo',
+      'pricing.basic.personal.price_monthly': '22,49',
+      'pricing.basic.personal.price_annual': '269,88',
+      'pricing.basic.personal.cap': 'Hasta 500 vídeos',
       'pricing.basic.freelance.name': 'Freelance',
-      'pricing.basic.freelance.price': '14,99',
-      'pricing.basic.freelance.cap': 'Hasta 500 h de vídeo',
+      'pricing.basic.freelance.price_monthly': '74,99',
+      'pricing.basic.freelance.price_annual': '899,88',
+      'pricing.basic.freelance.cap': 'Hasta 3 000 vídeos',
       'pricing.basic.feat1': 'Búsqueda en audio + texto en pantalla',
       'pricing.basic.feat2': '1 usuario · 1 máquina',
       'pricing.basic.feat3': 'Interfaz EN / ES',
       'pricing.pro.group': 'Pro — para academias, empresas y colegios',
       'pricing.pro.academy.name': 'Academy',
-      'pricing.pro.academy.price': '29',
-      'pricing.pro.academy.cap': 'Hasta 500 h · 5 espectadores simultáneos',
+      'pricing.pro.academy.price_monthly': '29',
+      'pricing.pro.academy.price_annual': '348',
+      'pricing.pro.academy.cap': 'Hasta 500 vídeos · 5 espectadores simultáneos',
       'pricing.pro.academyplus.name': 'Academy Plus',
-      'pricing.pro.academyplus.price': '79',
-      'pricing.pro.academyplus.cap': 'Hasta 2 000 h · 15 espectadores simultáneos',
+      'pricing.pro.academyplus.price_monthly': '79',
+      'pricing.pro.academyplus.price_annual': '948',
+      'pricing.pro.academyplus.cap': 'Hasta 2 000 vídeos · 15 espectadores simultáneos',
       'pricing.pro.enterprise.name': 'Enterprise',
-      'pricing.pro.enterprise.price': '199',
-      'pricing.pro.enterprise.cap': 'Hasta 10 000 h · 50 espectadores simultáneos',
+      'pricing.pro.enterprise.price_monthly': '199',
+      'pricing.pro.enterprise.price_annual': '2388',
+      'pricing.pro.enterprise.cap': 'Hasta 10 000 vídeos · 50 espectadores simultáneos',
       'pricing.pro.feat1': 'Todo lo de Basic + búsqueda visual',
       'pricing.pro.feat2': 'CLI AccuVideoIngest · lotes programados',
       'pricing.pro.feat3': 'Streaming multi-cliente en LAN',
@@ -415,9 +433,27 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
+  function bindPriceToggle() {
+    const buttons = document.querySelectorAll('.price-toggle-btn');
+    if (!buttons.length) return;
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const period = btn.dataset.period;
+        buttons.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('.price-monthly').forEach((el) => { el.hidden = period !== 'monthly'; });
+        document.querySelectorAll('.price-annual').forEach((el) => { el.hidden = period !== 'annual'; });
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     applyLang(detectInitialLang());
     bindToggle();
+    bindPriceToggle();
     setFooterYear();
   });
 })();
