@@ -28,6 +28,7 @@
       <a href="#how" data-i18n="nav.how">How it works</a>
       <a href="#ingest" data-i18n="nav.ingest">Ingestion</a>
       <a href="#editions" data-i18n="nav.editions">Editions</a>
+      <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
       <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
     </nav>
     <div class="header-actions">
@@ -208,7 +209,7 @@
             <li data-i18n="editions.pro.f2">Visual content search (Florence-2) — find scenes by what's actually in the frame</li>
             <li data-i18n="editions.pro.f3">Cross-modal re-ranking — audio + on-screen text + visual signals fused for sharper results</li>
             <li data-i18n="editions.pro.f4"><strong>AccuVideoIngest CLI</strong> — headless batch tool to index hundreds of files in one command, with progress logs and resume on failure</li>
-            <li data-i18n="editions.pro.f5">Scheduled / overnight batches — automate nightly ingestion via Task Scheduler (Windows) or cron (Linux/macOS); ideal for growing archives</li>
+            <li data-i18n="editions.pro.f5">Scheduled / overnight batches — automate nightly ingestion via Task Scheduler (Windows); ideal for growing archives</li>
             <li data-i18n="editions.pro.f6">Multi-client LAN streaming — serve concurrent viewers from one machine</li>
           </ul>
           <p class="edition-bestfor" data-i18n="editions.pro.bestfor"><strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.</p>
@@ -221,10 +222,158 @@
     </div>
   </section>
 
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title" data-i18n="pricing.title">Plans &amp; pricing</h2>
+      <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library. Need something bigger? Talk to us.</p>
+
+      <div class="price-toggle" role="tablist" aria-label="Billing period">
+        <button type="button" class="price-toggle-btn active" data-period="monthly" role="tab" aria-selected="true" data-i18n="pricing.toggle.monthly">Monthly</button>
+        <button type="button" class="price-toggle-btn" data-period="annual" role="tab" aria-selected="false" data-i18n="pricing.toggle.annual">Annual</button>
+      </div>
+
+      <h3 class="pricing-group-title" data-i18n="pricing.basic.group">Basic — for individuals, students and families</h3>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h4 class="price-name" data-i18n="pricing.basic.starter.name">Starter</h4>
+          <p class="price-amount price-monthly">
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.starter.price_monthly">10.49</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+          </p>
+          <p class="price-amount price-annual" hidden>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.starter.price_annual">125.88</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+          </p>
+          <p class="price-cap" data-i18n="pricing.basic.starter.cap">Up to 100 videos</p>
+          <ul>
+            <li data-i18n="pricing.basic.feat1">Audio + on-screen text search</li>
+            <li data-i18n="pricing.basic.feat2">1 user · 1 machine</li>
+            <li data-i18n="pricing.basic.feat3">EN / ES interface</li>
+          </ul>
+          <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-i18n-href="pricing.trial.mailto">Request trial license</a>
+        </article>
+        <article class="price-card price-card-featured">
+          <span class="price-badge" data-i18n="pricing.badge.popular">Most popular</span>
+          <h4 class="price-name" data-i18n="pricing.basic.personal.name">Personal</h4>
+          <p class="price-amount price-monthly">
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.personal.price_monthly">22.49</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+          </p>
+          <p class="price-amount price-annual" hidden>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.personal.price_annual">269.88</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+          </p>
+          <p class="price-cap" data-i18n="pricing.basic.personal.cap">Up to 500 videos</p>
+          <ul>
+            <li data-i18n="pricing.basic.feat1">Audio + on-screen text search</li>
+            <li data-i18n="pricing.basic.feat2">1 user · 1 machine</li>
+            <li data-i18n="pricing.basic.feat3">EN / ES interface</li>
+          </ul>
+          <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21" class="btn btn-primary" data-i18n="pricing.cta_trial" data-i18n-href="pricing.trial.mailto">Request trial license</a>
+        </article>
+        <article class="price-card">
+          <h4 class="price-name" data-i18n="pricing.basic.freelance.name">Freelance</h4>
+          <p class="price-amount price-monthly">
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.freelance.price_monthly">74.99</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+          </p>
+          <p class="price-amount price-annual" hidden>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.freelance.price_annual">899.88</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+          </p>
+          <p class="price-cap" data-i18n="pricing.basic.freelance.cap">Up to 3 000 videos</p>
+          <ul>
+            <li data-i18n="pricing.basic.feat1">Audio + on-screen text search</li>
+            <li data-i18n="pricing.basic.feat2">1 user · 1 machine</li>
+            <li data-i18n="pricing.basic.feat3">EN / ES interface</li>
+          </ul>
+          <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-i18n-href="pricing.trial.mailto">Request trial license</a>
+        </article>
+      </div>
+
+      <h3 class="pricing-group-title" data-i18n="pricing.pro.group">Pro — for academies, businesses and schools</h3>
+      <div class="pricing-grid pricing-grid-pro">
+        <article class="price-card">
+          <h4 class="price-name" data-i18n="pricing.pro.academy.name">Academy</h4>
+          <p class="price-amount price-monthly">
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academy.price_monthly">29</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+          </p>
+          <p class="price-amount price-annual" hidden>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academy.price_annual">348</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+          </p>
+          <p class="price-cap" data-i18n="pricing.pro.academy.cap">Up to 500 videos · 5 concurrent viewers</p>
+          <ul>
+            <li data-i18n="pricing.pro.feat1">Everything in Basic + visual search</li>
+            <li data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
+            <li data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
+          </ul>
+          <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-i18n-href="pricing.trial.mailto">Request trial license</a>
+        </article>
+        <article class="price-card price-card-featured">
+          <span class="price-badge" data-i18n="pricing.badge.popular">Most popular</span>
+          <h4 class="price-name" data-i18n="pricing.pro.academyplus.name">Academy Plus</h4>
+          <p class="price-amount price-monthly">
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academyplus.price_monthly">79</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+          </p>
+          <p class="price-amount price-annual" hidden>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academyplus.price_annual">948</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+          </p>
+          <p class="price-cap" data-i18n="pricing.pro.academyplus.cap">Up to 2 000 videos · 15 concurrent viewers</p>
+          <ul>
+            <li data-i18n="pricing.pro.feat1">Everything in Basic + visual search</li>
+            <li data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
+            <li data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
+          </ul>
+          <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21" class="btn btn-primary" data-i18n="pricing.cta_trial" data-i18n-href="pricing.trial.mailto">Request trial license</a>
+        </article>
+        <article class="price-card">
+          <h4 class="price-name" data-i18n="pricing.pro.enterprise.name">Enterprise</h4>
+          <p class="price-amount">
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.enterprise.price">199</span><span class="price-period" data-i18n="pricing.period">/mo</span>
+          </p>
+          <p class="price-cap" data-i18n="pricing.pro.enterprise.cap">Up to 10 000 h · 50 concurrent viewers</p>
+          <ul>
+            <li data-i18n="pricing.pro.feat1">Everything in Basic + visual search</li>
+            <li data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
+            <li data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
+          </ul>
+          <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20license%20request&amp;body=Hi%2C%0A%0AI%27d%20like%20to%20request%20a%2030-day%20AccuVideo%20trial%20license.%0A%0A-%20Plan%3A%20%5Bstarter%20%2F%20personal%20%2F%20freelance%20%2F%20academy%20%2F%20academy%20plus%20%2F%20enterprise%5D%0A-%20Operating%20system%3A%20%5Bwindows%2011%20%2F%20windows%2010%20%2F%20macos%5D%0A-%20Hardware%20ID%3A%20%5Bpaste%20here%20%E2%80%94%20you%27ll%20see%20it%20on%20first%20launch%20of%20AccuVideo%5D%0A%0AThanks%21" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-i18n-href="pricing.trial.mailto">Request trial license</a>
+        </article>
+      </div>
+
+      <div class="pricing-license">
+        <div class="pricing-license-head">
+          <span class="pricing-license-icon" aria-hidden="true">🔑</span>
+          <h3 data-i18n="pricing.license.title">How to get your trial license</h3>
+        </div>
+        <ol class="license-steps">
+          <li>
+            <span class="license-step-num">1</span>
+            <p data-i18n="pricing.license.step1">Download the AccuVideo installer for your edition (Basic or Pro) from the <a href="#download">Download</a> section below.</p>
+          </li>
+          <li>
+            <span class="license-step-num">2</span>
+            <p data-i18n="pricing.license.step2">Run the installer. On first launch, AccuVideo shows your <strong>hardware ID</strong> on the activation screen — copy it.</p>
+          </li>
+          <li>
+            <span class="license-step-num">3</span>
+            <p data-i18n="pricing.license.step3">Email <a href="mailto:info@acornjuice.com">info@acornjuice.com</a> with three things: your <strong>hardware ID</strong>, your <strong>operating system</strong> (Windows 10 / 11, macOS…) and the <strong>plan</strong> you want to try. We send back your 30-day trial license — paste it into AccuVideo and you're in.</p>
+          </li>
+        </ol>
+        <p class="license-notes" data-i18n="pricing.license.notes">Each license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (5 / 15 / 50); viewers connect to your server and <strong>don't consume their own license</strong>.</p>
+      </div>
+
+      <div class="pricing-consult">
+        <div>
+          <h3 data-i18n="pricing.consult.title">Need a bigger setup?</h3>
+          <p data-i18n="pricing.consult.body">Bigger libraries, more concurrent viewers, multi-site deployments or custom integrations — we tailor for it.</p>
+        </div>
+        <a href="mailto:info@acornjuice.com?subject=AccuVideo%20enterprise%20enquiry" class="btn btn-primary" data-i18n="pricing.consult.cta">Talk to Acorn Juice Solutions</a>
+      </div>
+
+      <p class="pricing-footnote" data-i18n="pricing.footnote">All plans include the 30-day free trial. Prices in EUR, VAT not included. Annual billing available — contact us for a quote.</p>
+    </div>
+  </section>
+
   <section id="download" class="download">
     <div class="container download-card">
       <h2 data-i18n="download.title">Download AccuVideo</h2>
-      <p data-i18n="download.body">30-day free trial. Direct downloads for Windows and macOS (Apple Silicon). Intel macOS and Linux builds available on request during the pilot.</p>
+      <p data-i18n="download.body">Windows builds available now. macOS (Apple Silicon) coming soon. Intel macOS builds available on request during the pilot.</p>
+      <p class="download-trial-note" data-i18n="download.trial_note">📧 First time? <a href="#pricing">Request your trial license first</a> — the installer asks for a license tied to your hardware ID to activate.</p>
       <div class="download-matrix">
         <div class="download-row">
           <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
@@ -242,7 +391,7 @@
         </div>
       </div>
       <p class="download-subnote"><a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest" data-i18n="download.subnote_link">View all release files</a><span data-i18n="download.subnote_suffix"> — changelog, hashes, older versions.</span></p>
-      <p class="download-note" data-i18n="download.note">Need an Intel macOS build, a Linux build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request">info@acornjuice.com</a>.</p>
+      <p class="download-note" data-i18n="download.note">Need an Intel macOS build, an enterprise license, or have a question first? Email <a href="mailto:info@acornjuice.com?subject=AccuVideo%20trial%20request">info@acornjuice.com</a>.</p>
     </div>
   </section>
 
@@ -258,7 +407,7 @@
             <li data-i18n="req.min.ram">RAM: 8 GB</li>
             <li data-i18n="req.min.gpu">GPU: integrated (no dedicated GPU needed)</li>
             <li data-i18n="req.min.disk">Disk: SSD with ~50 GB free</li>
-            <li data-i18n="req.min.os">OS: Windows 10/11, macOS 12+, Ubuntu 20.04+</li>
+            <li data-i18n="req.min.os">OS: Windows 10/11, macOS 12+</li>
           </ul>
         </div>
         <div class="req req-recommended">
