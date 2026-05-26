@@ -25,13 +25,16 @@
     </a>
     <nav class="site-nav" aria-label="Primary">
       <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#editions" data-i18n="nav.editions">Editions</a>
       <a href="#how" data-i18n="nav.how">How it works</a>
       <a href="#ingest" data-i18n="nav.ingest">Ingestion</a>
-      <a href="#editions" data-i18n="nav.editions">Editions</a>
       <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
       <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
     </nav>
     <div class="header-actions">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Theme">
+        <span class="theme-icon-sun" aria-hidden="true">☀</span><span class="theme-icon-moon" aria-hidden="true">☾</span>
+      </button>
       <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Language">
         <span class="lang-en">EN</span><span class="lang-sep">·</span><span class="lang-es">ES</span>
       </button>
@@ -85,6 +88,47 @@
           <div class="feature-icon" aria-hidden="true">👁</div>
           <h3 data-i18n="features.visual.title">Visual content</h3>
           <p data-i18n="features.visual.body">A vision-language model describes what's actually in the frame — "kids blowing out candles", "dance scene", "whiteboard formula".</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="editions" class="editions">
+    <div class="container">
+      <h2 class="section-title" data-i18n="editions.title">Two editions</h2>
+      <p class="section-sub" data-i18n="editions.sub">Both editions share the same local-first search experience. Basic covers spoken words and on-screen text. Pro adds visual understanding, a CLI for batch ingestion of large archives, and multi-client LAN streaming.</p>
+      <div class="edition-grid">
+        <article class="edition">
+          <h3 data-i18n="editions.basic.title">Basic</h3>
+          <p class="edition-tag" data-i18n="editions.basic.tag">For individuals, students and modest libraries</p>
+          <ul>
+            <li data-i18n="editions.basic.f1">Semantic search over spoken words (Whisper transcription, runs locally)</li>
+            <li data-i18n="editions.basic.f2">On-screen text indexing — slides, captions, signs, code on a whiteboard</li>
+            <li data-i18n="editions.basic.f3">In-app ingestion — drop a folder, watch it index</li>
+            <li data-i18n="editions.basic.f4">Single-machine use, EN/ES UI, dark and light themes</li>
+          </ul>
+          <p class="edition-bestfor" data-i18n="editions.basic.bestfor"><strong>Best for:</strong> students, individuals and families with a modest video collection.</p>
+          <div class="edition-ctas">
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="editions.basic.cta_win">Windows · .msi</a>
+            <span class="btn btn-ghost btn-disabled" aria-disabled="true" data-i18n="editions.basic.cta_mac">macOS · Coming soon</span>
+          </div>
+        </article>
+        <article class="edition edition-pro">
+          <h3 data-i18n="editions.pro.title">Pro</h3>
+          <p class="edition-tag" data-i18n="editions.pro.tag">For academies, businesses, schools and large archives</p>
+          <ul>
+            <li data-i18n="editions.pro.f1">Everything in Basic</li>
+            <li data-i18n="editions.pro.f2">Visual content search (Florence-2) — find scenes by what's actually in the frame</li>
+            <li data-i18n="editions.pro.f3">Cross-modal re-ranking — audio + on-screen text + visual signals fused for sharper results</li>
+            <li data-i18n="editions.pro.f4"><strong>AccuVideoIngest CLI</strong> — headless batch tool to index hundreds of files in one command, with progress logs and resume on failure</li>
+            <li data-i18n="editions.pro.f5">Scheduled / overnight batches — automate nightly ingestion via Task Scheduler (Windows); ideal for growing archives</li>
+            <li data-i18n="editions.pro.f6">Multi-client LAN streaming — serve concurrent viewers from one machine</li>
+          </ul>
+          <p class="edition-bestfor" data-i18n="editions.pro.bestfor"><strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.</p>
+          <div class="edition-ctas">
+            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="editions.pro.cta_win">Windows · .msi</a>
+            <span class="btn btn-primary btn-disabled" aria-disabled="true" data-i18n="editions.pro.cta_mac">macOS · Coming soon</span>
+          </div>
         </article>
       </div>
     </div>
@@ -150,7 +194,7 @@
         <div class="usecase"><strong data-i18n="usecases.academy.title">Online academies</strong><p data-i18n="usecases.academy.body">Hundreds of lessons. One query, one minute.</p></div>
         <div class="usecase"><strong data-i18n="usecases.corp.title">Corporate training</strong><p data-i18n="usecases.corp.body">Skip to the slide in a 3-hour all-hands.</p></div>
         <div class="usecase"><strong data-i18n="usecases.student.title">Students</strong><p data-i18n="usecases.student.body">Find the moment your professor covered <em>that</em> concept.</p></div>
-        <div class="usecase"><strong data-i18n="usecases.family.title">Families & prosumers</strong><p data-i18n="usecases.family.body">Years of footage on a hard drive. Search them like memories, not files.</p></div>
+        <div class="usecase"><strong data-i18n="usecases.family.title">Families</strong><p data-i18n="usecases.family.body">Years of footage on a hard drive. Search them like memories, not files.</p></div>
       </div>
     </div>
   </section>
@@ -181,55 +225,17 @@
     </div>
   </section>
 
-  <section id="editions" class="editions">
-    <div class="container">
-      <h2 class="section-title" data-i18n="editions.title">Two editions</h2>
-      <p class="section-sub" data-i18n="editions.sub">Both editions share the same local-first search experience. Basic covers spoken words and on-screen text. Pro adds visual understanding, a CLI for batch ingestion of large archives, and multi-client LAN streaming.</p>
-      <div class="edition-grid">
-        <article class="edition">
-          <h3 data-i18n="editions.basic.title">Basic</h3>
-          <p class="edition-tag" data-i18n="editions.basic.tag">For individuals, students and modest libraries</p>
-          <ul>
-            <li data-i18n="editions.basic.f1">Semantic search over spoken words (Whisper transcription, runs locally)</li>
-            <li data-i18n="editions.basic.f2">On-screen text indexing — slides, captions, signs, code on a whiteboard</li>
-            <li data-i18n="editions.basic.f3">In-app ingestion — drop a folder, watch it index</li>
-            <li data-i18n="editions.basic.f4">Single-machine use, EN/ES UI, dark and light themes</li>
-          </ul>
-          <p class="edition-bestfor" data-i18n="editions.basic.bestfor"><strong>Best for:</strong> students, individuals and families with a modest video collection.</p>
-          <div class="edition-ctas">
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoBasic.msi" class="btn btn-ghost" data-i18n="editions.basic.cta_win">Windows · .msi</a>
-            <span class="btn btn-ghost btn-disabled" aria-disabled="true" data-i18n="editions.basic.cta_mac">macOS · Coming soon</span>
-          </div>
-        </article>
-        <article class="edition edition-pro">
-          <h3 data-i18n="editions.pro.title">Pro</h3>
-          <p class="edition-tag" data-i18n="editions.pro.tag">For academies, businesses, schools and large archives</p>
-          <ul>
-            <li data-i18n="editions.pro.f1">Everything in Basic</li>
-            <li data-i18n="editions.pro.f2">Visual content search (Florence-2) — find scenes by what's actually in the frame</li>
-            <li data-i18n="editions.pro.f3">Cross-modal re-ranking — audio + on-screen text + visual signals fused for sharper results</li>
-            <li data-i18n="editions.pro.f4"><strong>AccuVideoIngest CLI</strong> — headless batch tool to index hundreds of files in one command, with progress logs and resume on failure</li>
-            <li data-i18n="editions.pro.f5">Scheduled / overnight batches — automate nightly ingestion via Task Scheduler (Windows); ideal for growing archives</li>
-            <li data-i18n="editions.pro.f6">Multi-client LAN streaming — serve concurrent viewers from one machine</li>
-          </ul>
-          <p class="edition-bestfor" data-i18n="editions.pro.bestfor"><strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.</p>
-          <div class="edition-ctas">
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-i18n="editions.pro.cta_win">Windows · .msi</a>
-            <span class="btn btn-primary btn-disabled" aria-disabled="true" data-i18n="editions.pro.cta_mac">macOS · Coming soon</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <section id="pricing" class="pricing">
     <div class="container">
       <h2 class="section-title" data-i18n="pricing.title">Plans &amp; pricing</h2>
       <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library. Need something bigger? Talk to us.</p>
 
-      <div class="price-toggle" role="tablist" aria-label="Billing period">
-        <button type="button" class="price-toggle-btn active" data-period="monthly" role="tab" aria-selected="true" data-i18n="pricing.toggle.monthly">Monthly</button>
-        <button type="button" class="price-toggle-btn" data-period="annual" role="tab" aria-selected="false" data-i18n="pricing.toggle.annual">Annual</button>
+      <div class="price-toggle-wrap">
+        <div class="price-toggle" role="tablist" aria-label="Billing period">
+          <button type="button" class="price-toggle-btn active" data-period="monthly" role="tab" aria-selected="true" data-i18n="pricing.toggle.monthly">Monthly</button>
+          <button type="button" class="price-toggle-btn" data-period="annual" role="tab" aria-selected="false" data-i18n="pricing.toggle.annual">Annual</button>
+        </div>
+        <p class="price-toggle-hint" data-i18n="pricing.toggle.hint">Annual = 2 months free</p>
       </div>
 
       <h3 class="pricing-group-title" data-i18n="pricing.basic.group">Basic — for individuals, students and families</h3>
@@ -240,9 +246,9 @@
             <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.starter.price_monthly">10.49</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
           </p>
           <p class="price-amount price-annual" hidden>
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.starter.price_annual">125.88</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.starter.price_annual">104.90</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
           </p>
-          <p class="price-cap" data-i18n="pricing.basic.starter.cap">Up to 100 videos</p>
+          <p class="price-cap" data-i18n="pricing.basic.starter.cap">Up to 100 videos · 5 000 points</p>
           <ul>
             <li data-i18n="pricing.basic.feat1">Audio + on-screen text search</li>
             <li data-i18n="pricing.basic.feat2">1 user · 1 machine</li>
@@ -257,9 +263,9 @@
             <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.personal.price_monthly">22.49</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
           </p>
           <p class="price-amount price-annual" hidden>
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.personal.price_annual">269.88</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.personal.price_annual">224.90</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
           </p>
-          <p class="price-cap" data-i18n="pricing.basic.personal.cap">Up to 500 videos</p>
+          <p class="price-cap" data-i18n="pricing.basic.personal.cap">Up to 500 videos · 20 000 points</p>
           <ul>
             <li data-i18n="pricing.basic.feat1">Audio + on-screen text search</li>
             <li data-i18n="pricing.basic.feat2">1 user · 1 machine</li>
@@ -273,9 +279,9 @@
             <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.freelance.price_monthly">74.99</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
           </p>
           <p class="price-amount price-annual" hidden>
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.freelance.price_annual">899.88</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.basic.freelance.price_annual">749.90</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
           </p>
-          <p class="price-cap" data-i18n="pricing.basic.freelance.cap">Up to 3 000 videos</p>
+          <p class="price-cap" data-i18n="pricing.basic.freelance.cap">Up to 3 000 videos · 120 000 points</p>
           <ul>
             <li data-i18n="pricing.basic.feat1">Audio + on-screen text search</li>
             <li data-i18n="pricing.basic.feat2">1 user · 1 machine</li>
@@ -290,12 +296,12 @@
         <article class="price-card">
           <h4 class="price-name" data-i18n="pricing.pro.academy.name">Academy</h4>
           <p class="price-amount price-monthly">
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academy.price_monthly">29</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academy.price_monthly">149.99</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
           </p>
           <p class="price-amount price-annual" hidden>
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academy.price_annual">348</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academy.price_annual">1499.90</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
           </p>
-          <p class="price-cap" data-i18n="pricing.pro.academy.cap">Up to 500 videos · 5 concurrent viewers</p>
+          <p class="price-cap" data-i18n="pricing.pro.academy.cap">Up to 1 000 videos · 40 000 points · 5 concurrent viewers</p>
           <ul>
             <li data-i18n="pricing.pro.feat1">Everything in Basic + visual search</li>
             <li data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
@@ -307,12 +313,12 @@
           <span class="price-badge" data-i18n="pricing.badge.popular">Most popular</span>
           <h4 class="price-name" data-i18n="pricing.pro.academyplus.name">Academy Plus</h4>
           <p class="price-amount price-monthly">
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academyplus.price_monthly">79</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academyplus.price_monthly">329.99</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
           </p>
           <p class="price-amount price-annual" hidden>
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academyplus.price_annual">948</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.academyplus.price_annual">3299.90</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
           </p>
-          <p class="price-cap" data-i18n="pricing.pro.academyplus.cap">Up to 2 000 videos · 15 concurrent viewers</p>
+          <p class="price-cap" data-i18n="pricing.pro.academyplus.cap">Up to 3 000 videos · 120 000 points · 15 concurrent viewers</p>
           <ul>
             <li data-i18n="pricing.pro.feat1">Everything in Basic + visual search</li>
             <li data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
@@ -323,12 +329,12 @@
         <article class="price-card">
           <h4 class="price-name" data-i18n="pricing.pro.enterprise.name">Enterprise</h4>
           <p class="price-amount price-monthly">
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.enterprise.price_monthly">199</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.enterprise.price_monthly">824.99</span><span class="price-period" data-i18n="pricing.period.monthly">/mo</span>
           </p>
           <p class="price-amount price-annual" hidden>
-            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.enterprise.price_annual">2388</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
+            <span class="price-currency">€</span><span class="price-num" data-i18n="pricing.pro.enterprise.price_annual">8249.90</span><span class="price-period" data-i18n="pricing.period.annual">/yr</span>
           </p>
-          <p class="price-cap" data-i18n="pricing.pro.enterprise.cap">Up to 10 000 videos · 50 concurrent viewers</p>
+          <p class="price-cap" data-i18n="pricing.pro.enterprise.cap">Up to 10 000 videos · 400 000 points · 50 concurrent viewers</p>
           <ul>
             <li data-i18n="pricing.pro.feat1">Everything in Basic + visual search</li>
             <li data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
@@ -343,6 +349,7 @@
           <span class="pricing-license-icon" aria-hidden="true">🔑</span>
           <h3 data-i18n="pricing.license.title">How to get your trial license</h3>
         </div>
+        <p class="pricing-license-cap" data-i18n="pricing.license.cap"><strong>Trial:</strong> 50 videos · 500 points · 30 days</p>
         <ol class="license-steps">
           <li>
             <span class="license-step-num">1</span>

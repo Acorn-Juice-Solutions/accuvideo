@@ -16,6 +16,31 @@
   --radius-sm: 8px;
   --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
   --shadow-glow: 0 0 60px rgba(34, 211, 238, 0.18);
+  --header-bg: rgba(11, 18, 32, 0.78);
+  --body-bg: radial-gradient(1200px 600px at 80% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
+             radial-gradient(900px 600px at -10% 10%, rgba(168, 85, 247, 0.07), transparent 60%),
+             var(--navy-900);
+}
+
+:root[data-theme="light"] {
+  --navy-900: #f0f0f8;
+  --navy-800: #ffffff;
+  --navy-700: #e8e8f4;
+  --navy-600: #c4c4dc;
+  --line: rgba(22, 22, 58, 0.10);
+  --line-strong: #c4c4dc;
+  --text: #16163a;
+  --text-dim: #3a3a6a;
+  --text-mute: #5858a0;
+  --cyan: #2050a0;
+  --cyan-dim: #163880;
+  --violet: #7830a0;
+  --shadow-1: 0 10px 30px rgba(22, 22, 58, 0.10);
+  --shadow-glow: 0 0 60px rgba(32, 80, 160, 0.10);
+  --header-bg: rgba(240, 240, 248, 0.82);
+  --body-bg: radial-gradient(1200px 600px at 80% -10%, rgba(32, 80, 160, 0.05), transparent 60%),
+             radial-gradient(900px 600px at -10% 10%, rgba(120, 48, 160, 0.04), transparent 60%),
+             var(--navy-900);
 }
 
 * { box-sizing: border-box; }
@@ -23,9 +48,7 @@ html, body { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: radial-gradient(1200px 600px at 80% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
-              radial-gradient(900px 600px at -10% 10%, rgba(168, 85, 247, 0.07), transparent 60%),
-              var(--navy-900);
+  background: var(--body-bg);
   color: var(--text);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -48,7 +71,7 @@ a:hover { color: #6ee7f3; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 18, 32, 0.78);
+  background: var(--header-bg);
   backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -123,6 +146,26 @@ a:hover { color: #6ee7f3; }
 html[lang="en"] .lang-toggle .lang-en { color: var(--cyan); }
 html[lang="es"] .lang-toggle .lang-es { color: var(--cyan); }
 
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--cyan); }
+.theme-toggle .theme-icon-moon { display: none; }
+html[data-theme="light"] .theme-toggle .theme-icon-sun { display: none; }
+html[data-theme="light"] .theme-toggle .theme-icon-moon { display: inline; }
+
 /* ---------- Buttons ---------- */
 
 .btn {
@@ -151,6 +194,9 @@ html[lang="es"] .lang-toggle .lang-es { color: var(--cyan); }
   background: #6ee7f3;
   color: #06212A;
 }
+
+:root[data-theme="light"] .btn-primary { color: #ffffff; }
+:root[data-theme="light"] .btn-primary:hover { background: #3060c8; color: #ffffff; }
 
 .btn-ghost {
   background: transparent;
@@ -698,19 +744,28 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 
 /* ---------- Pricing ---------- */
 
+.price-toggle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 36px;
+}
+
 .price-toggle {
-  display: inline-flex;
+  display: flex;
   gap: 4px;
-  margin: 0 auto 36px;
   padding: 4px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--line-strong);
   border-radius: 999px;
 }
 
-.pricing > .container > .price-toggle {
-  display: flex;
-  width: fit-content;
+.price-toggle-hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 500;
 }
 
 .price-toggle-btn {
@@ -885,6 +940,14 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   margin: 0;
   font-size: 18px;
 }
+
+.pricing-license-cap {
+  margin: 12px 0 20px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.pricing-license-cap strong { color: var(--cyan); font-weight: 600; }
 
 .license-steps {
   list-style: none;
