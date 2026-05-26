@@ -7,12 +7,9 @@
   const SUPPORTED_THEMES = ['dark', 'light'];
 
   // Trial-license form submits to Formsubmit.co (free, no signup).
-  // FIRST submission triggers an activation email to this address — click the link in it
-  // to enable the endpoint. After that, every submission lands as a regular email.
-  // Built at runtime from fragments so the literal email address never appears in the
-  // page source — defeats naive regex email scrapers (DevTools Network tab still shows
-  // the destination URL of the POST, so this is anti-bot only, not anti-user).
-  const TRIAL_FORM_EMAIL = ['info', 'acornjuice.com'].join('@');
+  // Uses the random hash alias from formsubmit.co/<email> so the destination address
+  // never appears in the page source or network traffic.
+  const TRIAL_FORM_EMAIL = '6cf1f967d0cb185247342a2419502554';
 
   // Stripe Payment Links — create one per (edition.plan.billing) combination in the Stripe Dashboard
   // (https://dashboard.stripe.com/payment-links) and paste each URL below. While a key is null the form
