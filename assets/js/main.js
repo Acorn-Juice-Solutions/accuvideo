@@ -11,37 +11,38 @@
   // never appears in the page source or network traffic.
   const TRIAL_FORM_EMAIL = '6cf1f967d0cb185247342a2419502554';
 
-  // Stripe Payment Links — create one per (edition.plan.billing) combination in the Stripe Dashboard
-  // (https://dashboard.stripe.com/payment-links) and paste each URL below. While a key is null the form
-  // will tell the user that combination isn't online yet and to email us.
+  // Stripe Payment Links — LIVE mode. Create one per (edition.plan.billing) combination in the Stripe
+  // Dashboard with the toggle set to "Live mode" (https://dashboard.stripe.com/payment-links) and paste
+  // each URL below. Live URLs look like `https://buy.stripe.com/<id>` (no `test_` prefix). While a key
+  // is null the form tells the user that combination isn't online yet and to email us.
   //
   // The submitted hardware ID is appended as `client_reference_id` (visible in the Checkout Session
   // and in webhooks), and the email as `prefilled_email`.
   const STRIPE_LINKS = {
-    'basic.starter.monthly':     'https://buy.stripe.com/test_bJe6oHcTV0GhdIU4pOeQM03',
-    'basic.starter.annual':      'https://buy.stripe.com/test_3cI8wPaLNcoZdIUg8weQM00',
-    'basic.personal.monthly':    'https://buy.stripe.com/test_cNi5kDaLNdt3bAM8G4eQM06',
-    'basic.personal.annual':     'https://buy.stripe.com/test_6oUeVd9HJagR20c3lKeQM0o',
-    'basic.freelance.monthly':   'https://buy.stripe.com/test_eVqfZhg67agRcEQ2hGeQM08',
-    'basic.freelance.annual':    'https://buy.stripe.com/test_6oUdR92fhcoZfR29K8eQM0a',
-    'basic.academy.monthly':     'https://buy.stripe.com/test_eVq5kD8DFagRgV6cWkeQM0c',
-    'basic.academy.annual':      'https://buy.stripe.com/test_6oUdR95rt0GhcEQ4pOeQM0e',
-    'basic.academyplus.monthly': 'https://buy.stripe.com/test_fZu8wP079dt3fR2aOceQM0g',
-    'basic.academyplus.annual':  'https://buy.stripe.com/test_28EaEXcTV4WxbAMg8weQM0i',
-    'basic.enterprise.monthly':  'https://buy.stripe.com/test_9B6eVdf23agR48k8G4eQM0k',
-    'basic.enterprise.annual':   'https://buy.stripe.com/test_dRmdR99HJ88J9sEbSgeQM0m',
-    'pro.starter.monthly':       'https://buy.stripe.com/test_cNi00jg670GhfR29K8eQM02',
-    'pro.starter.annual':        'https://buy.stripe.com/test_00wdR9bPR2OpbAM5tSeQM01',
-    'pro.personal.monthly':      'https://buy.stripe.com/test_cNi5kD2fh3St6gsbSgeQM07',
-    'pro.personal.annual':       'https://buy.stripe.com/test_9B6fZh5rtdt3cEQaOceQM04',
-    'pro.freelance.monthly':     'https://buy.stripe.com/test_14AbJ1f23gFffR2g8weQM09',
-    'pro.freelance.annual':      'https://buy.stripe.com/test_5kQfZh5rt60B20cbSgeQM0b',
-    'pro.academy.monthly':       'https://buy.stripe.com/test_5kQdR99HJ60B34g9K8eQM0d',
-    'pro.academy.annual':        'https://buy.stripe.com/test_cNi28r9HJ88J9sEf4seQM0f',
-    'pro.academyplus.monthly':   'https://buy.stripe.com/test_aFa7sLcTVgFf7kwbSgeQM0h',
-    'pro.academyplus.annual':    'https://buy.stripe.com/test_dRm3cv3jlagRawI5tSeQM0j',
-    'pro.enterprise.monthly':    'https://buy.stripe.com/test_eVqaEX9HJ9cNbAMf4seQM0l',
-    'pro.enterprise.annual':     'https://buy.stripe.com/test_3cIeVdf23gFf5co7C0eQM0n',
+    'basic.starter.monthly':     'https://buy.stripe.com/4gM5kD6oPf971G00MvbII0k',
+    'basic.starter.annual':      'https://buy.stripe.com/eVq7sLaF51ihfwQ8eXbII0j',
+    'basic.personal.monthly':    'https://buy.stripe.com/bJedR99B1d0Z1G08eXbII0h',
+    'basic.personal.annual':     'https://buy.stripe.com/3cIdR99B10ed2K49j1bII00',
+    'basic.freelance.monthly':   'https://buy.stripe.com/9B6bJ14gHe53gAU0MvbII09',
+    'basic.freelance.annual':    'https://buy.stripe.com/4gM28reVl3qp4SccvdbII07',
+    'basic.academy.monthly':     'https://buy.stripe.com/eVq4gz7sT5yx98seDlbII08',
+    'basic.academy.annual':      'https://buy.stripe.com/dRm14ncNd0ed3O8an5bII05',
+    'basic.academyplus.monthly': 'https://buy.stripe.com/cNi9AT14v0ed70keDlbII0m',
+    'basic.academyplus.annual':  'https://buy.stripe.com/fZufZh4gH6CBdoI9j1bII02',
+    'basic.enterprise.monthly':  'https://buy.stripe.com/8x2bJ13cD1ihbgAcvdbII03',
+    'basic.enterprise.annual':   'https://buy.stripe.com/cNi9AT8wX0ed3O8an5bII01',
+    'pro.starter.monthly':       'https://buy.stripe.com/14AeVd6oP4utfwQ7aTbII0n',
+    'pro.starter.annual':        'https://buy.stripe.com/eVq7sL7sT9ONbgA2UDbII0l',
+    'pro.personal.monthly':      'https://buy.stripe.com/bJeeVdfZp1ihbgAan5bII0d',
+    'pro.personal.annual':       'https://buy.stripe.com/eVq3cv4gH7GF84o3YHbII0g',
+    'pro.freelance.monthly':     'https://buy.stripe.com/7sYdR9cNdgdb4Sc0MvbII0f',
+    'pro.freelance.annual':      'https://buy.stripe.com/eVq28rdRh6CB2K41QzbII0e',
+    'pro.academy.monthly':       'https://buy.stripe.com/9B628r4gH6CBbgA8eXbII0a',
+    'pro.academy.annual':        'https://buy.stripe.com/7sYeVdfZp5yxdoI52LbII06',
+    'pro.academyplus.monthly':   'https://buy.stripe.com/3cI28r4gH9ONesM8eXbII0i',
+    'pro.academyplus.annual':    'https://buy.stripe.com/3cI28r5kL6CBdoIbr9bII0b',
+    'pro.enterprise.monthly':    'https://buy.stripe.com/28E28r3cD6CB5Wg3YHbII0c',
+    'pro.enterprise.annual':     'https://buy.stripe.com/bJe28r3cD0ed5Wgan5bII04',
   };
 
   const i18n = {
