@@ -5,6 +5,9 @@
   const SUPPORTED = ['en', 'es'];
   const STORAGE_KEY_THEME = 'accuvideo-theme';
   const SUPPORTED_THEMES = ['dark', 'light'];
+  const STORAGE_KEY_CURRENCY = 'accuvideo-currency';
+  const SUPPORTED_CURRENCIES = ['eur', 'usd'];
+  const CURRENCY_SYMBOL = { eur: '€', usd: '$' };
 
   // Trial-license form submits to Formsubmit.co (free, no signup).
   // Uses the random hash alias from formsubmit.co/<email> so the destination address
@@ -167,6 +170,7 @@
       'pricing.edition.basic': 'Basic',
       'pricing.edition.pro': 'Pro',
       'pricing.tooltip_annual_fmt': 'Annual: €{value}/year — save 17%',
+      'pricing.tooltip_annual_fmt_usd': 'Annual: ${value}/year — save 17%',
       'pricing.basic.starter.price_monthly_pro': '15.99',
       'pricing.basic.starter.price_annual_pro': '159.90',
       'pricing.basic.personal.price_monthly_pro': '33.99',
@@ -211,6 +215,31 @@
       'pricing.pro.enterprise.price_monthly': '824.99',
       'pricing.pro.enterprise.price_annual': '8249.90',
       'pricing.pro.enterprise.cap': 'Up to 10 000 videos · 100 000 points · 150 concurrent viewers',
+      // ---- USD prices (must match your Stripe multi-currency Price amounts) ----
+      'pricing.basic.starter.price_monthly_usd':     '11.99',
+      'pricing.basic.starter.price_annual_usd':      '119.90',
+      'pricing.basic.starter.price_monthly_pro_usd': '15.99',
+      'pricing.basic.starter.price_annual_pro_usd':  '159.90',
+      'pricing.basic.personal.price_monthly_usd':    '24.99',
+      'pricing.basic.personal.price_annual_usd':     '249.90',
+      'pricing.basic.personal.price_monthly_pro_usd':'33.99',
+      'pricing.basic.personal.price_annual_pro_usd': '339.90',
+      'pricing.basic.freelance.price_monthly_usd':   '54.99',
+      'pricing.basic.freelance.price_annual_usd':    '549.90',
+      'pricing.basic.freelance.price_monthly_pro_usd':'82.99',
+      'pricing.basic.freelance.price_annual_pro_usd':'829.90',
+      'pricing.pro.academy.price_monthly_usd':       '149.99',
+      'pricing.pro.academy.price_annual_usd':        '1499.90',
+      'pricing.pro.academy.price_monthly_pro_usd':   '224.99',
+      'pricing.pro.academy.price_annual_pro_usd':    '2249.90',
+      'pricing.pro.academyplus.price_monthly_usd':   '329.99',
+      'pricing.pro.academyplus.price_annual_usd':    '3299.90',
+      'pricing.pro.academyplus.price_monthly_pro_usd':'494.99',
+      'pricing.pro.academyplus.price_annual_pro_usd':'4949.90',
+      'pricing.pro.enterprise.price_monthly_usd':    '824.99',
+      'pricing.pro.enterprise.price_annual_usd':     '8249.90',
+      'pricing.pro.enterprise.price_monthly_pro_usd':'1237.99',
+      'pricing.pro.enterprise.price_annual_pro_usd': '12379.90',
       'pricing.pro.feat1': 'Visual content search (Florence-2)',
       'pricing.pro.feat2': 'AccuVideoIngest CLI · scheduled batches',
       'pricing.pro.feat3': 'Multi-client LAN streaming',
@@ -218,6 +247,8 @@
       'pricing.consult.body': 'Bigger libraries, more concurrent viewers, multi-site deployments or custom integrations — we tailor for it.',
       'pricing.consult.cta': 'Talk to Acorn Juice Solutions',
       'pricing.footnote': 'All plans include the 30-day free trial. Prices in EUR, VAT not included. Annual billing available — contact us for a quote.',
+      'pricing.footnote_usd': 'All plans include the 30-day free trial. Prices in USD. Annual billing available — contact us for a quote.',
+      'pricing.currency.switch_label': 'Currency',
       'pricing.license.title': 'How to get your trial license',
       'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days · Basic edition by default (Pro on request)',
       'pricing.license.step1': 'Download the AccuVideo installer for your edition (Basic or Pro) from the <a href="#download">Download</a> section below.',
@@ -446,6 +477,7 @@
       'pricing.edition.basic': 'Basic',
       'pricing.edition.pro': 'Pro',
       'pricing.tooltip_annual_fmt': 'Anual: {value} €/año — ahorras 17%',
+      'pricing.tooltip_annual_fmt_usd': 'Anual: {value} $/año — ahorras 17%',
       'pricing.basic.starter.price_monthly_pro': '15,99',
       'pricing.basic.starter.price_annual_pro': '159,90',
       'pricing.basic.personal.price_monthly_pro': '33,99',
@@ -490,6 +522,31 @@
       'pricing.pro.enterprise.price_monthly': '824,99',
       'pricing.pro.enterprise.price_annual': '8249,90',
       'pricing.pro.enterprise.cap': 'Hasta 10 000 vídeos · 100 000 puntos · 150 clientes LAN',
+      // ---- Precios USD (deben coincidir con los importes USD de tus Prices multidivisa en Stripe) ----
+      'pricing.basic.starter.price_monthly_usd':     '11,99',
+      'pricing.basic.starter.price_annual_usd':      '119,90',
+      'pricing.basic.starter.price_monthly_pro_usd': '15,99',
+      'pricing.basic.starter.price_annual_pro_usd':  '159,90',
+      'pricing.basic.personal.price_monthly_usd':    '24,99',
+      'pricing.basic.personal.price_annual_usd':     '249,90',
+      'pricing.basic.personal.price_monthly_pro_usd':'33,99',
+      'pricing.basic.personal.price_annual_pro_usd': '339,90',
+      'pricing.basic.freelance.price_monthly_usd':   '54,99',
+      'pricing.basic.freelance.price_annual_usd':    '549,90',
+      'pricing.basic.freelance.price_monthly_pro_usd':'82,99',
+      'pricing.basic.freelance.price_annual_pro_usd':'829,90',
+      'pricing.pro.academy.price_monthly_usd':       '149,99',
+      'pricing.pro.academy.price_annual_usd':        '1499,90',
+      'pricing.pro.academy.price_monthly_pro_usd':   '224,99',
+      'pricing.pro.academy.price_annual_pro_usd':    '2249,90',
+      'pricing.pro.academyplus.price_monthly_usd':   '329,99',
+      'pricing.pro.academyplus.price_annual_usd':    '3299,90',
+      'pricing.pro.academyplus.price_monthly_pro_usd':'494,99',
+      'pricing.pro.academyplus.price_annual_pro_usd':'4949,90',
+      'pricing.pro.enterprise.price_monthly_usd':    '824,99',
+      'pricing.pro.enterprise.price_annual_usd':     '8249,90',
+      'pricing.pro.enterprise.price_monthly_pro_usd':'1237,99',
+      'pricing.pro.enterprise.price_annual_pro_usd': '12379,90',
       'pricing.pro.feat1': 'Búsqueda de contenido visual (Florence-2)',
       'pricing.pro.feat2': 'CLI AccuVideoIngest · lotes programados',
       'pricing.pro.feat3': 'Streaming multi-cliente en LAN',
@@ -497,6 +554,8 @@
       'pricing.consult.body': 'Bibliotecas más grandes, más clientes simultáneos, despliegues multi-sede o integraciones a medida — lo adaptamos a ti.',
       'pricing.consult.cta': 'Consultar con Acorn Juice Solutions',
       'pricing.footnote': 'Todos los planes incluyen los 30 días de prueba gratuita. Precios en EUR, IVA no incluido. Facturación anual disponible — escríbenos para presupuesto.',
+      'pricing.footnote_usd': 'Todos los planes incluyen los 30 días de prueba gratuita. Precios en USD. Facturación anual disponible — escríbenos para presupuesto.',
+      'pricing.currency.switch_label': 'Divisa',
       'pricing.license.title': 'Cómo conseguir tu licencia trial',
       'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días · edición Basic por defecto (Pro a petición)',
       'pricing.license.step1': 'Descarga el instalador de AccuVideo para tu edición (Basic o Pro) desde la sección <a href="#download">Descarga</a> de abajo.',
@@ -618,9 +677,12 @@
     if (!SUPPORTED.includes(lang)) lang = 'en';
     document.documentElement.lang = lang;
     const dict = i18n[lang];
+    const currency = currentCurrency();
 
     document.querySelectorAll('[data-i18n]').forEach((el) => {
-      const key = el.getAttribute('data-i18n');
+      const baseKey = el.getAttribute('data-i18n');
+      const curKey = currency === 'usd' ? baseKey + '_usd' : null;
+      const key = (curKey && dict[curKey] !== undefined) ? curKey : baseKey;
       const value = dict[key];
       if (value === undefined) return;
       if (el.tagName === 'META' && el.hasAttribute('content')) {
@@ -631,6 +693,11 @@
       } else {
         el.innerHTML = value;
       }
+    });
+
+    const symbol = CURRENCY_SYMBOL[currency];
+    document.querySelectorAll('.price-currency').forEach((el) => {
+      el.textContent = symbol;
     });
 
     document.querySelectorAll('[data-i18n-href]').forEach((el) => {
@@ -678,6 +745,39 @@
     });
   }
 
+  function detectInitialCurrency() {
+    const stored = (() => { try { return localStorage.getItem(STORAGE_KEY_CURRENCY); } catch (_) { return null; } })();
+    if (stored && SUPPORTED_CURRENCIES.includes(stored)) return stored;
+    const browser = (navigator.language || 'en').toLowerCase();
+    if (browser === 'en-us' || browser.startsWith('en-us')) return 'usd';
+    return 'eur';
+  }
+
+  function currentCurrency() {
+    const v = document.documentElement.getAttribute('data-currency');
+    return SUPPORTED_CURRENCIES.includes(v) ? v : 'eur';
+  }
+
+  function setCurrencyState(currency) {
+    if (!SUPPORTED_CURRENCIES.includes(currency)) currency = 'eur';
+    document.documentElement.setAttribute('data-currency', currency);
+    try { localStorage.setItem(STORAGE_KEY_CURRENCY, currency); } catch (_) { /* ignore */ }
+  }
+
+  function bindCurrencyToggle() {
+    const buttons = document.querySelectorAll('.currency-switch-btn');
+    if (!buttons.length) return;
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const next = btn.dataset.currency;
+        if (!SUPPORTED_CURRENCIES.includes(next)) return;
+        if (next === currentCurrency()) return;
+        setCurrencyState(next);
+        applyLang(document.documentElement.lang === 'es' ? 'es' : 'en');
+      });
+    });
+  }
+
   function detectInitialTheme() {
     const stored = (() => { try { return localStorage.getItem(STORAGE_KEY_THEME); } catch (_) { return null; } })();
     if (stored && SUPPORTED_THEMES.includes(stored)) return stored;
@@ -705,27 +805,38 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
+  function resolvePriceKey(dict, baseKey, edition, currency) {
+    if (!baseKey) return null;
+    const edSuffix = edition === 'pro' ? '_pro' : '';
+    const curSuffix = currency === 'usd' ? '_usd' : '';
+    const candidates = [];
+    if (edSuffix && curSuffix) candidates.push(baseKey + edSuffix + curSuffix);
+    if (edSuffix) candidates.push(baseKey + edSuffix);
+    if (curSuffix) candidates.push(baseKey + curSuffix);
+    candidates.push(baseKey);
+    return candidates.find((k) => dict[k] !== undefined) || baseKey;
+  }
+
   function applyEditionToCard(card) {
     const edition = card.getAttribute('data-edition') || 'basic';
     const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
     const dict = i18n[lang] || {};
+    const currency = currentCurrency();
 
     const priceNum = card.querySelector('.price-num');
     if (priceNum) {
-      const baseKey = priceNum.getAttribute('data-i18n');
-      const proKey = baseKey ? baseKey + '_pro' : null;
-      const useKey = edition === 'pro' && proKey && dict[proKey] !== undefined ? proKey : baseKey;
+      const useKey = resolvePriceKey(dict, priceNum.getAttribute('data-i18n'), edition, currency);
       if (useKey && dict[useKey] !== undefined) priceNum.textContent = dict[useKey];
     }
 
     const annualIcon = card.querySelector('.info-icon[data-annual-key]');
     if (annualIcon) {
-      const baseKey = annualIcon.getAttribute('data-annual-key');
-      const proKey = baseKey + '_pro';
-      const useKey = edition === 'pro' && dict[proKey] !== undefined ? proKey : baseKey;
+      const useKey = resolvePriceKey(dict, annualIcon.getAttribute('data-annual-key'), edition, currency);
       const value = dict[useKey];
       if (value !== undefined) {
-        const tmpl = dict['pricing.tooltip_annual_fmt'] || 'Annual: €{value}/year — save 17%';
+        const fmtKey = currency === 'usd' && dict['pricing.tooltip_annual_fmt_usd'] !== undefined
+          ? 'pricing.tooltip_annual_fmt_usd' : 'pricing.tooltip_annual_fmt';
+        const tmpl = dict[fmtKey] || 'Annual: €{value}/year — save 17%';
         const text = tmpl.replace('{value}', value);
         annualIcon.setAttribute('data-tooltip', text);
         annualIcon.setAttribute('title', text);
@@ -1151,9 +1262,11 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     applyTheme(detectInitialTheme());
+    setCurrencyState(detectInitialCurrency());
     applyLang(detectInitialLang());
     bindToggle();
     bindThemeToggle();
+    bindCurrencyToggle();
     bindPriceToggle();
     bindEditionTabs();
     bindContactModal();
