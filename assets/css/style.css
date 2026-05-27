@@ -805,6 +805,48 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   text-transform: none;
 }
 
+.currency-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 24px;
+  padding: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+}
+
+.currency-switch-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--text-mute);
+  padding: 0 8px 0 6px;
+  text-transform: uppercase;
+}
+
+.currency-switch-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.currency-switch-btn:hover { color: var(--text); }
+
+html[data-currency="eur"] .currency-switch-btn[data-currency="eur"],
+html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
+  background: var(--cyan);
+  color: #06212A;
+}
+
 .pricing-group-title + .pricing-grid { margin-bottom: 32px; }
 
 .pricing-grid {
