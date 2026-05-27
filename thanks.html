@@ -82,6 +82,9 @@
     const titleMap = { subscribe: 'thanks.title_subscribe' };
     if (body) body.setAttribute('data-i18n', bodyMap[form] || 'thanks.body_generic');
     if (title && titleMap[form]) title.setAttribute('data-i18n', titleMap[form]);
+    if (form && typeof gtag === 'function') {
+      gtag('event', 'form_submit', { form_name: form });
+    }
   })();
 </script>
 </body>

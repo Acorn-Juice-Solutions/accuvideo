@@ -788,6 +788,9 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_open', { form_name: 'trial', plan: plan || '', edition: edition || '' });
+    }
     if (plan) {
       const planSelect = modal.querySelector('select[name="plan"]');
       if (planSelect) {
@@ -889,6 +892,9 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_open', { form_name: 'subscribe', plan: plan || '', edition: edition || '' });
+    }
     const planSelect = modal.querySelector('select[name="plan"]');
     if (planSelect && plan) {
       const match = Array.from(planSelect.options).find((o) => o.value === plan);
@@ -1038,6 +1044,9 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_open', { form_name: 'contactus', topic: topic || '' });
+    }
 
     const form = modal.querySelector('#contactus-form');
     if (form) {

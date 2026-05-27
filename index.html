@@ -16,6 +16,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true });
+  </script>
 </head>
 <body>
 
@@ -270,5 +278,26 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener('click', function (e) {
+    const a = e.target.closest('a[href*="/releases/latest/download/"]');
+    if (!a) return;
+    const url = a.getAttribute('href') || '';
+    const file = url.split('/').pop() || '';
+    const lower = file.toLowerCase();
+    const ext = lower.includes('.') ? lower.split('.').pop() : '';
+    const edition = lower.includes('pro') ? 'pro' : (lower.includes('basic') ? 'basic' : 'unknown');
+    const os = ext === 'msi' ? 'windows' : (ext === 'dmg' ? 'macos' : 'other');
+    if (typeof gtag === 'function') {
+      gtag('event', 'file_download', {
+        file_name: file,
+        file_extension: ext,
+        link_url: url,
+        edition: edition,
+        os: os,
+      });
+    }
+  });
+</script>
 </body>
 </html>
