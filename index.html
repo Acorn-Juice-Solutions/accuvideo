@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-i18n="meta.title">AccuVideo — Find the moment</title>
   <meta name="description" data-i18n="meta.description" content="Semantic search over your video library. Ask in plain language, jump to the exact second. 100% local — your videos never leave your machine.">
+  <link rel="canonical" href="https://accuvideo.acornjuice.com/">
   <meta property="og:title" content="AccuVideo — Find the moment">
   <meta property="og:description" content="Semantic search over your video library. Ask in plain language, jump to the exact second.">
-  <meta property="og:image" content="assets/img/AccuVideo_Logo.png">
+  <meta property="og:image" content="https://accuvideo.acornjuice.com/assets/img/AccuVideo_Logo.png">
+  <meta property="og:url" content="https://accuvideo.acornjuice.com/">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/img/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -663,5 +665,26 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener('click', function (e) {
+    const a = e.target.closest('a[href*="/releases/latest/download/"]');
+    if (!a) return;
+    const url = a.getAttribute('href') || '';
+    const file = url.split('/').pop() || '';
+    const lower = file.toLowerCase();
+    const ext = lower.includes('.') ? lower.split('.').pop() : '';
+    const edition = lower.includes('pro') ? 'pro' : (lower.includes('basic') ? 'basic' : 'unknown');
+    const os = ext === 'msi' ? 'windows' : (ext === 'dmg' ? 'macos' : 'other');
+    if (typeof gtag === 'function') {
+      gtag('event', 'file_download', {
+        file_name: file,
+        file_extension: ext,
+        link_url: url,
+        edition: edition,
+        os: os,
+      });
+    }
+  });
+</script>
 </body>
 </html>
