@@ -303,6 +303,9 @@
       'contact.status.success': 'Request sent! We\'ll email you back within 2 business days.',
       'contact.status.error': 'Error sending. Please try again in a moment.',
       'contact.status.network': 'Network error. Please check your connection and try again.',
+      'contact.status.unavailable': 'The form service is temporarily unavailable. Please try again in a few minutes.',
+      'contact.status.required': 'Please fill in the highlighted required fields.',
+      'form.service.banner': 'The form service is temporarily unavailable. Please try again in a few minutes.',
       'contact.status.notconfigured': 'Form not configured. Paste your Web3Forms access key in main.js (WEB3FORMS_KEY).',
       'contact.autoresponse': 'Hi! We\'ve received your AccuVideo trial license request. We\'ll review it and email your 30-day trial license within 2 business days.\n\nIf you don\'t hear back, please check your spam folder or write to us again.\n\n— The AccuVideo team',
 
@@ -324,6 +327,7 @@
       'subscribe.status.redirecting': 'Opening Stripe checkout in a new tab…',
       'subscribe.status.notconfigured': 'This plan isn\'t available for online checkout yet. Use the contact form and we\'ll send you a manual payment link.',
       'subscribe.status.popup_blocked': 'Your browser blocked the new tab. Allow pop-ups for this site, or click here: ',
+      'subscribe.status.required': 'Please fill in the highlighted required fields.',
 
       'contactus.title': 'Contact us',
       'contactus.sub': 'Send us a message — we reply within 2 business days.',
@@ -336,6 +340,8 @@
       'contactus.status.success': 'Message sent! We\'ll reply within 2 business days.',
       'contactus.status.error': 'Error sending. Please try again in a moment.',
       'contactus.status.network': 'Network error. Please check your connection and try again.',
+      'contactus.status.unavailable': 'The form service is temporarily unavailable. Please try again in a few minutes.',
+      'contactus.status.required': 'Please fill in the highlighted required fields.',
       'contactus.subject.placeholder': '— Select a category —',
       'contactus.subject.technical': 'Technical enquiry',
       'contactus.subject.commercial': 'Sales enquiry',
@@ -610,6 +616,9 @@
       'contact.status.success': '¡Solicitud enviada! Te respondemos por email en hasta 2 días laborables.',
       'contact.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
       'contact.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
+      'contact.status.unavailable': 'El servicio del formulario no está disponible ahora mismo. Inténtalo de nuevo en unos minutos.',
+      'contact.status.required': 'Por favor, completa los campos obligatorios marcados.',
+      'form.service.banner': 'El servicio de formularios no está disponible ahora mismo. Por favor, inténtalo de nuevo en unos minutos.',
       'contact.status.notconfigured': 'Formulario sin configurar. Pega tu access key de Web3Forms en main.js (WEB3FORMS_KEY).',
       'contact.autoresponse': '¡Hola! Hemos recibido tu solicitud de licencia trial de AccuVideo. La revisaremos y te enviaremos tu licencia trial de 30 días en hasta 2 días laborables.\n\nSi no recibes respuesta, revisa la carpeta de spam o vuelve a escribirnos.\n\n— El equipo de AccuVideo',
 
@@ -631,6 +640,7 @@
       'subscribe.status.redirecting': 'Abriendo el checkout de Stripe en una pestaña nueva…',
       'subscribe.status.notconfigured': 'Este plan aún no está disponible para pago online. Usa el formulario de contacto y te enviamos un enlace de pago manual.',
       'subscribe.status.popup_blocked': 'Tu navegador bloqueó la pestaña nueva. Permite pop-ups para este sitio o pincha aquí: ',
+      'subscribe.status.required': 'Por favor, completa los campos obligatorios marcados.',
 
       'contactus.title': 'Contacta con nosotros',
       'contactus.sub': 'Escríbenos un mensaje — te respondemos en hasta 2 días laborables.',
@@ -643,6 +653,8 @@
       'contactus.status.success': '¡Mensaje enviado! Te respondemos en hasta 2 días laborables.',
       'contactus.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
       'contactus.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
+      'contactus.status.unavailable': 'El servicio del formulario no está disponible ahora mismo. Inténtalo de nuevo en unos minutos.',
+      'contactus.status.required': 'Por favor, completa los campos obligatorios marcados.',
       'contactus.subject.placeholder': '— Selecciona una categoría —',
       'contactus.subject.technical': 'Consulta técnica',
       'contactus.subject.commercial': 'Consulta comercial',
@@ -895,11 +907,38 @@
     return (i18n[lang] && i18n[lang][key]) || (i18n.en && i18n.en[key]) || key;
   }
 
+  // Banner shown inside every form modal when formsubmit.co is unreachable.
+  // Updated proactively on modal open (cached for 60s) and reactively after submit failures.
+  const formServiceState = { knownDown: false, lastCheck: 0 };
+  function setFormServiceBanner(down) {
+    formServiceState.knownDown = down;
+    document.querySelectorAll('[data-form-service-banner]').forEach((el) => {
+      el.hidden = !down;
+    });
+  }
+  async function checkFormService(force) {
+    if (!force && Date.now() - formServiceState.lastCheck < 60000) return;
+    formServiceState.lastCheck = Date.now();
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/_healthcheck?_t=' + Date.now(), {
+        method: 'GET',
+        cache: 'no-store',
+        headers: { 'Accept': 'application/json' },
+      });
+      // formsubmit returns a CORS-readable response (any status < 500) when up.
+      // Cloudflare 521/522/523 with no CORS headers either trips the catch or surfaces as 5xx.
+      setFormServiceBanner(res.status >= 500);
+    } catch (_) {
+      setFormServiceBanner(true);
+    }
+  }
+
   function openContactModal(plan, edition) {
     const modal = document.getElementById('contact-modal');
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    checkFormService();
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'trial', plan: plan || '', edition: edition || '' });
     }
@@ -960,6 +999,8 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
+        status.textContent = tt('contact.status.required');
+        status.className = 'contact-form-status error';
         form.reportValidity();
         return;
       }
@@ -978,22 +1019,39 @@
       status.textContent = tt('contact.status.sending');
       status.className = 'contact-form-status';
       try {
+        // Send as FormData (multipart/form-data) — CORS-safe content type, no preflight.
+        // JSON + Content-Type: application/json triggered a CORS preflight that often
+        // fails on mobile networks (carrier proxies, stricter tracking protection).
+        const body = new FormData();
+        Object.entries(payload).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
         const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          headers: { 'Accept': 'application/json' },
+          body,
         });
-        const json = await res.json();
+        if (!res.ok) {
+          setFormServiceBanner(true);
+          status.textContent = tt('contact.status.unavailable');
+          status.className = 'contact-form-status error';
+          return;
+        }
+        let json = {};
+        try { json = await res.json(); } catch (_) {}
         const ok = json.success === true || json.success === 'true';
         if (ok) {
+          setFormServiceBanner(false);
           form.reset();
           window.location.assign('thanks.html?form=trial');
         } else {
           status.textContent = json.message || tt('contact.status.error');
           status.className = 'contact-form-status error';
         }
-      } catch (_) {
-        status.textContent = tt('contact.status.network');
+      } catch (err) {
+        console.error('Trial form submit failed:', err);
+        if (navigator.onLine) setFormServiceBanner(true);
+        status.textContent = !navigator.onLine
+          ? tt('contact.status.network')
+          : tt('contact.status.unavailable');
         status.className = 'contact-form-status error';
       }
     });
@@ -1004,6 +1062,7 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    checkFormService();
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'subscribe', plan: plan || '', edition: edition || '' });
     }
@@ -1068,6 +1127,9 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
+        status.innerHTML = '';
+        status.textContent = tt('subscribe.status.required');
+        status.className = 'contact-form-status error';
         form.reportValidity();
         return;
       }
@@ -1091,20 +1153,21 @@
       }
 
       // Fire-and-forget notification email so we know who's about to pay.
+      // FormData body avoids CORS preflight (preflight is fragile on mobile networks).
       try {
+        const notify = new FormData();
+        notify.append('email', email);
+        notify.append('hardware_id', hwid);
+        notify.append('plan', plan);
+        notify.append('edition', edition);
+        notify.append('billing', billing);
+        notify.append('_subject', 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing);
+        notify.append('_template', 'table');
+        notify.append('_captcha', 'false');
         fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: email,
-            hardware_id: hwid,
-            plan: plan,
-            edition: edition,
-            billing: billing,
-            _subject: 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing,
-            _template: 'table',
-            _captcha: 'false',
-          }),
+          headers: { 'Accept': 'application/json' },
+          body: notify,
         }).catch(() => {});
       } catch (_) { /* ignore */ }
 
@@ -1156,6 +1219,7 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
+    checkFormService();
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'contactus', topic: topic || '' });
     }
@@ -1211,6 +1275,8 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
+        status.textContent = tt('contactus.status.required');
+        status.className = 'contact-form-status error';
         form.reportValidity();
         return;
       }
@@ -1239,22 +1305,36 @@
       status.textContent = tt('contactus.status.sending');
       status.className = 'contact-form-status';
       try {
+        const body = new FormData();
+        Object.entries(payload).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
         const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          headers: { 'Accept': 'application/json' },
+          body,
         });
-        const json = await res.json();
+        if (!res.ok) {
+          setFormServiceBanner(true);
+          status.textContent = tt('contactus.status.unavailable');
+          status.className = 'contact-form-status error';
+          return;
+        }
+        let json = {};
+        try { json = await res.json(); } catch (_) {}
         const ok = json.success === true || json.success === 'true';
         if (ok) {
+          setFormServiceBanner(false);
           form.reset();
           window.location.assign('thanks.html?form=contactus');
         } else {
           status.textContent = json.message || tt('contactus.status.error');
           status.className = 'contact-form-status error';
         }
-      } catch (_) {
-        status.textContent = tt('contactus.status.network');
+      } catch (err) {
+        console.error('Contact form submit failed:', err);
+        if (navigator.onLine) setFormServiceBanner(true);
+        status.textContent = !navigator.onLine
+          ? tt('contactus.status.network')
+          : tt('contactus.status.unavailable');
         status.className = 'contact-form-status error';
       }
     });

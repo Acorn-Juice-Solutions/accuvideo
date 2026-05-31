@@ -1452,6 +1452,18 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 .contact-form-status.success { color: var(--cyan); }
 .contact-form-status.error { color: #f87171; }
+.form-service-banner {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.08);
+  color: #fca5a5;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.form-service-banner[hidden] { display: none; }
+.form-service-banner a { color: inherit; text-decoration: underline; }
 .contact-form-fallback {
   margin: 6px 0 0;
   font-size: 12px;
