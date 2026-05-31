@@ -1,0 +1,15 @@
+name = "accuvideo-forms"
+main = "src/index.js"
+compatibility_date = "2026-05-31"
+
+# Secrets — set on the Cloudflare account before first deploy:
+#   wrangler secret put RESEND_API_KEY    # Resend API key (rs_...)
+#   wrangler secret put INBOX_ADDRESS     # e.g. info@acornjuice.com — destination
+#   wrangler secret put FROM_ADDRESS      # e.g. "AccuVideo Forms <forms@acornjuice.com>"
+# None of these are committed to git.
+
+# Custom route (uncomment after creating a CNAME/route in Cloudflare):
+# [[routes]]
+# pattern = "forms.acornjuice.com/*"
+# zone_name = "acornjuice.com"
+# custom_domain = true
