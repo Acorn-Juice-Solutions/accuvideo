@@ -9,10 +9,10 @@
   const SUPPORTED_CURRENCIES = ['eur', 'usd'];
   const CURRENCY_SYMBOL = { eur: '€', usd: '$' };
 
-  // Trial-license form submits to Formsubmit.co (free, no signup).
-  // Uses the random hash alias from formsubmit.co/<email> so the destination address
-  // never appears in the page source or network traffic.
-  const TRIAL_FORM_EMAIL = '6cf1f967d0cb185247342a2419502554';
+  // All site forms submit to Static Forms (https://staticforms.dev).
+  // CORS is open on all origins, so the browser POSTs straight to the API.
+  const STATICFORMS_URL = 'https://api.staticforms.dev/submit';
+  const STATICFORMS_API_KEY = 'sf_4d32929fdc91426750c7d382';
 
   // Stripe Payment Links — LIVE mode. Create one per (edition.plan.billing) combination in the Stripe
   // Dashboard with the toggle set to "Live mode" (https://dashboard.stripe.com/payment-links) and paste
@@ -907,30 +907,12 @@
     return (i18n[lang] && i18n[lang][key]) || (i18n.en && i18n.en[key]) || key;
   }
 
-  // Banner shown inside every form modal when formsubmit.co is unreachable.
-  // Updated proactively on modal open (cached for 60s) and reactively after submit failures.
-  const formServiceState = { knownDown: false, lastCheck: 0 };
+  // Banner shown inside every form modal when the form backend is unreachable.
+  // Surfaced reactively after a submit failure — Static Forms has no public health endpoint.
   function setFormServiceBanner(down) {
-    formServiceState.knownDown = down;
     document.querySelectorAll('[data-form-service-banner]').forEach((el) => {
       el.hidden = !down;
     });
-  }
-  async function checkFormService(force) {
-    if (!force && Date.now() - formServiceState.lastCheck < 60000) return;
-    formServiceState.lastCheck = Date.now();
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/_healthcheck?_t=' + Date.now(), {
-        method: 'GET',
-        cache: 'no-store',
-        headers: { 'Accept': 'application/json' },
-      });
-      // formsubmit returns a CORS-readable response (any status < 500) when up.
-      // Cloudflare 521/522/523 with no CORS headers either trips the catch or surfaces as 5xx.
-      setFormServiceBanner(res.status >= 500);
-    } catch (_) {
-      setFormServiceBanner(true);
-    }
   }
 
   function openContactModal(plan, edition) {
@@ -938,7 +920,6 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
-    checkFormService();
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'trial', plan: plan || '', edition: edition || '' });
     }
@@ -1006,27 +987,24 @@
       }
       const data = new FormData(form);
       const payload = {
+        apiKey: STATICFORMS_API_KEY,
+        subject: 'AccuVideo trial license request',
         email: data.get('email') || '',
         plan: data.get('plan') || '',
         edition: data.get('edition') || '',
         os: data.get('os') || '',
         message: data.get('message') || '',
-        _subject: 'AccuVideo trial license request',
-        _template: 'table',
-        _captcha: 'false',
-        _autoresponse: tt('contact.autoresponse'),
       };
       status.textContent = tt('contact.status.sending');
       status.className = 'contact-form-status';
       try {
-        // Send as FormData (multipart/form-data) — CORS-safe content type, no preflight.
-        // JSON + Content-Type: application/json triggered a CORS preflight that often
-        // fails on mobile networks (carrier proxies, stricter tracking protection).
-        const body = new FormData();
+        // Send as urlencoded — Static Forms accepts JSON, urlencoded and multipart;
+        // urlencoded keeps the request a CORS-safe "simple" request (no preflight),
+        // which is more resilient on mobile carrier networks.
+        const body = new URLSearchParams();
         Object.entries(payload).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
-        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
+        const res = await fetch(STATICFORMS_URL, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
           body,
         });
         if (!res.ok) {
@@ -1035,17 +1013,9 @@
           status.className = 'contact-form-status error';
           return;
         }
-        let json = {};
-        try { json = await res.json(); } catch (_) {}
-        const ok = json.success === true || json.success === 'true';
-        if (ok) {
-          setFormServiceBanner(false);
-          form.reset();
-          window.location.assign('thanks.html?form=trial');
-        } else {
-          status.textContent = json.message || tt('contact.status.error');
-          status.className = 'contact-form-status error';
-        }
+        setFormServiceBanner(false);
+        form.reset();
+        window.location.assign('thanks.html?form=trial');
       } catch (err) {
         console.error('Trial form submit failed:', err);
         if (navigator.onLine) setFormServiceBanner(true);
@@ -1062,7 +1032,6 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
-    checkFormService();
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'subscribe', plan: plan || '', edition: edition || '' });
     }
@@ -1153,20 +1122,18 @@
       }
 
       // Fire-and-forget notification email so we know who's about to pay.
-      // FormData body avoids CORS preflight (preflight is fragile on mobile networks).
+      // urlencoded body keeps the request CORS-"simple" (no preflight).
       try {
-        const notify = new FormData();
+        const notify = new URLSearchParams();
+        notify.append('apiKey', STATICFORMS_API_KEY);
+        notify.append('subject', 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing);
         notify.append('email', email);
         notify.append('hardware_id', hwid);
         notify.append('plan', plan);
         notify.append('edition', edition);
         notify.append('billing', billing);
-        notify.append('_subject', 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing);
-        notify.append('_template', 'table');
-        notify.append('_captcha', 'false');
-        fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
+        fetch(STATICFORMS_URL, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
           body: notify,
         }).catch(() => {});
       } catch (_) { /* ignore */ }
@@ -1219,7 +1186,6 @@
     if (!modal) return;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
-    checkFormService();
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'contactus', topic: topic || '' });
     }
@@ -1281,7 +1247,7 @@
         return;
       }
       const data = new FormData(form);
-      const categoryValue = String(data.get('subject') || '');
+      const categoryValue = String(data.get('category') || '');
       const categoryLabel = categoryValue
         ? tt('contactus.subject.' + categoryValue)
         : '';
@@ -1293,23 +1259,20 @@
         ? 'Consulta Enterprise - ' + categoryLabel
         : categoryLabel;
       const payload = {
+        apiKey: STATICFORMS_API_KEY,
+        subject: 'AccuVideo: ' + subjectLine,
         name: data.get('name') || '',
         email: data.get('email') || '',
         category: categoryLabel,
         message: data.get('message') || '',
-        _subject: 'AccuVideo: ' + subjectLine,
-        _template: 'table',
-        _captcha: 'false',
-        _autoresponse: tt('contactus.autoresponse'),
       };
       status.textContent = tt('contactus.status.sending');
       status.className = 'contact-form-status';
       try {
-        const body = new FormData();
+        const body = new URLSearchParams();
         Object.entries(payload).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
-        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(TRIAL_FORM_EMAIL), {
+        const res = await fetch(STATICFORMS_URL, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
           body,
         });
         if (!res.ok) {
@@ -1318,17 +1281,9 @@
           status.className = 'contact-form-status error';
           return;
         }
-        let json = {};
-        try { json = await res.json(); } catch (_) {}
-        const ok = json.success === true || json.success === 'true';
-        if (ok) {
-          setFormServiceBanner(false);
-          form.reset();
-          window.location.assign('thanks.html?form=contactus');
-        } else {
-          status.textContent = json.message || tt('contactus.status.error');
-          status.className = 'contact-form-status error';
-        }
+        setFormServiceBanner(false);
+        form.reset();
+        window.location.assign('thanks.html?form=contactus');
       } catch (err) {
         console.error('Contact form submit failed:', err);
         if (navigator.onLine) setFormServiceBanner(true);

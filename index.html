@@ -527,7 +527,9 @@
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
     <h3 id="contact-modal-title" data-i18n="contact.title">Request your trial license</h3>
     <p class="contact-modal-sub" data-i18n="contact.sub">We'll email it back within 2 business days.</p>
-    <form id="contact-form" class="contact-form" novalidate>
+    <form id="contact-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
+      <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
+      <input type="hidden" name="subject" value="AccuVideo trial license request">
       <p class="form-service-banner" data-form-service-banner role="alert" hidden data-i18n="form.service.banner">The form service is temporarily unavailable. Please try again in a few minutes.</p>
       <label>
         <span data-i18n="contact.field.email">Email</span>
@@ -577,7 +579,9 @@
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
     <h3 id="subscribe-modal-title" data-i18n="subscribe.title">Subscribe to AccuVideo</h3>
     <p class="contact-modal-sub" data-i18n="subscribe.sub">Fill in your details — we'll redirect you to Stripe to complete payment.</p>
-    <form id="subscribe-form" class="contact-form" novalidate>
+    <form id="subscribe-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
+      <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
+      <input type="hidden" name="subject" value="AccuVideo subscription started">
       <p class="form-service-banner" data-form-service-banner role="alert" hidden data-i18n="form.service.banner">The form service is temporarily unavailable. Please try again in a few minutes.</p>
       <label>
         <span data-i18n="subscribe.field.email">Email</span>
@@ -627,7 +631,9 @@
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
     <h3 id="contactus-modal-title" data-i18n="contactus.title">Contact us</h3>
     <p class="contact-modal-sub" data-i18n="contactus.sub">Send us a message — we reply within 2 business days.</p>
-    <form id="contactus-form" class="contact-form" novalidate>
+    <form id="contactus-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
+      <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
+      <input type="hidden" name="subject" value="AccuVideo contact">
       <p class="form-service-banner" data-form-service-banner role="alert" hidden data-i18n="form.service.banner">The form service is temporarily unavailable. Please try again in a few minutes.</p>
       <label>
         <span data-i18n="contactus.field.name">Name</span>
@@ -639,7 +645,7 @@
       </label>
       <label>
         <span data-i18n="contactus.field.subject">Subject</span>
-        <select name="subject" required>
+        <select name="category" required>
           <option value="" data-i18n="contactus.subject.placeholder">— Select a category —</option>
           <option value="technical" data-i18n="contactus.subject.technical">Technical enquiry</option>
           <option value="commercial" data-i18n="contactus.subject.commercial">Sales enquiry</option>
@@ -673,7 +679,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=3"></script>
+<script src="assets/js/main.js?v=4"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
