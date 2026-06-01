@@ -4,7 +4,10 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 
 > **📌 Note**: AccuVideo bundles **FFmpeg** for video re-encoding. Search vectors are stored in an **external managed DB**. The hardware requirements below refer **only to the local machine** running AccuVideo. The DB consumes no significant local resources (only a stable network connection).
 
-> **⚠️ GPU / CUDA acceleration**: The current version of AccuVideo **runs on CPU only**. GPU acceleration (CUDA on NVIDIA, MPS on Apple Silicon) is **planned for a future release**. GPU/CUDA references in this document describe the requirements expected once that support lands — for now they are **informational** and not needed to run AccuVideo.
+> **🟢 GPU / CUDA acceleration (Windows)**: AccuVideo now supports **optional NVIDIA CUDA acceleration** on Windows.
+> - **Basic**: ships with CUDA support built in. If a compatible NVIDIA GPU is detected, the app offers to enable GPU mode and downloads a small bundled DLL pack (.zip) on demand.
+> - **Pro**: the CUDA build is distributed as a **separate .zip (>2 GB)** hosted externally (GitHub asset size limit). The download link and SHA-256 hash are published in the release notes next to each GitHub release.
+> - **CPU is still the default** on all platforms and remains fully supported. **MPS** (Apple Silicon) and **CUDA on Linux** are still on the roadmap.
 
 ---
 
@@ -15,7 +18,7 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Intel Core i5 (8th gen) / AMD Ryzen 5 2600 or better |
 | **RAM** | 8 GB DDR4 |
-| **GPU** | Integrated (Intel UHD / AMD Radeon) — all ingestion runs on CPU in this release |
+| **GPU** | Integrated (Intel UHD / AMD Radeon) is enough for Basic on CPU. Optional NVIDIA CUDA acceleration available in Basic if a compatible GPU is detected (in-app opt-in + bundled DLL pack) |
 | **Storage (OS + AccuVideo + models)** | SSD 128 GB with at least 50 GB free |
 | **Storage (Videos)** | Configurable — from 50 GB (HDD or SSD) |
 | **Network** | Ethernet or WiFi 2.4/5 GHz |
@@ -25,13 +28,13 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 |-----------|------|
 | **CPU** | Intel Core i7 (10th gen+) / AMD Ryzen 7 3700X or better |
 | **RAM** | 16 GB DDR4 |
-| **GPU** | *(Future)* NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ — intended for upcoming CUDA support. Not used in the current release |
+| **GPU** | NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ with CUDA support — recommended for Pro visual indexing. The **Pro CUDA build** is a separate **.zip (>2 GB)** hosted externally; link and SHA-256 hash published next to each GitHub release |
 | **Storage (OS + models)** | NVMe SSD 256 GB |
 | **Storage (Videos)** | HDD 1-2 TB or SATA SSD — NVMe adds nothing for playback |
 | **Network** | Gigabit Ethernet (1 Gbps) or WiFi 5/6 |
 
 ### Windows Notes
-- **PyTorch CPU vs CUDA**: The current release uses **PyTorch CPU**: all ingestion (audio and visual) runs on CPU. CUDA support is **planned for a future release** and will require an NVIDIA GPU with ≥6 GB VRAM (Florence-2 fits in 6 GB). For now, visual ingestion works but is slow — consider overnight batches.
+- **PyTorch CPU vs CUDA**: AccuVideo now supports both on Windows. CPU is the default (always works, no extra download). **CUDA mode** requires an NVIDIA GPU with ≥6 GB VRAM (Florence-2 fits in 6 GB). For **Basic**, CUDA support is built in: when a compatible GPU is detected, the app offers to enable GPU mode and downloads a small bundled DLL pack (.zip) on demand. For **Pro**, the CUDA build is a separate **.zip (>2 GB)** hosted externally — link and SHA-256 hash published next to each GitHub release.
 - **FFmpeg**: Bundled with AccuVideo — accelerates video re-encoding
 - **DB**: External managed service (no local resource use). Requires a stable network connection.
 - **AI models**: BGE-M3 (~800 MB), Florence-2 (~2.6 GB), Whisper (~1.5 GB)
@@ -114,7 +117,7 @@ Guide to minimum and recommended specs for running AccuVideo on your system.
 | Batch 10 videos × 1h (visual) | ~152h 30min (~6.4 days) |
 | Batch 10 videos × 1h (audio only) | ~3h (CPU) |
 
-> **Visual processing note**: The Florence-2 model analyses frame by frame on CPU, which leads to long runtimes even on powerful hardware. Consider limiting visual analysis to key videos or running it in overnight batches. These times **will drop significantly once CUDA support is available** in a future release.
+> **Visual processing note**: The Florence-2 model analyses frame by frame on CPU, which leads to long runtimes even on powerful hardware. **CUDA mode** (Basic with the optional DLL pack, or the Pro CUDA build) typically cuts these times by an order of magnitude on a mid-range NVIDIA GPU. For pure-CPU runs, consider limiting visual analysis to key videos or running it in overnight batches.
 
 ### Runtime RAM Footprint
 | Phase | Typical use |
@@ -159,7 +162,7 @@ Before installing AccuVideo, verify:
 - [ ] **Free RAM**: At least 6 GB available during ingestion
 - [ ] **Network**: Stable connection for the managed DB and LAN streaming
 - [ ] **Permissions**: RW access to the video folder
-- [ ] **GPU**: Not needed in this release (all ingestion runs on CPU). *Once CUDA support ships in a future release, NVIDIA driver 525+ with ≥6 GB VRAM will be recommended.*
+- [ ] **GPU**: Not required — CPU mode always works. For optional **CUDA acceleration on Windows**: an NVIDIA GPU with ≥6 GB VRAM and driver 525+ is recommended. Basic enables CUDA via in-app opt-in (downloads a bundled DLL pack); Pro CUDA is a separate external **.zip (>2 GB)** linked from each GitHub release.
 
 ---
 

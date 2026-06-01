@@ -4,7 +4,10 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 
 > **📌 Nota**: AccuVideo incluye **FFmpeg** en el bundle para reencode de vídeos. Los vectores de búsqueda se almacenan en un **DB gestionado externo**. Los requisitos de hardware descritos abajo se refieren **solo a la máquina local** donde corre AccuVideo. El DB no consume recursos locales significativos (solo requiere conexión de red estable).
 
-> **⚠️ Aceleración GPU / CUDA**: La versión actual de AccuVideo **se ejecuta exclusivamente en CPU**. El soporte para aceleración por GPU (CUDA en NVIDIA, MPS en Apple Silicon) está **planificado para una versión futura**. Las referencias a GPU/CUDA en este documento describen los requisitos previstos cuando ese soporte esté disponible — por ahora son **informativos**, no necesarios para usar AccuVideo.
+> **🟢 Aceleración GPU / CUDA (Windows)**: AccuVideo ya soporta **aceleración NVIDIA CUDA opcional** en Windows.
+> - **Basic**: incluye soporte CUDA de serie. Si se detecta una GPU NVIDIA compatible, la app ofrece activar el modo GPU y descarga bajo demanda un pequeño pack de DLLs empaquetadas (.zip).
+> - **Pro**: el build CUDA se distribuye como **.zip aparte (>2 GB)** alojado externamente (por el límite de tamaño por asset de GitHub). El enlace de descarga y su hash SHA-256 se publican en las notas de cada release de GitHub.
+> - **CPU sigue siendo el modo por defecto** en todas las plataformas y está totalmente soportado. **MPS** (Apple Silicon) y **CUDA en Linux** siguen en la hoja de ruta.
 
 ---
 
@@ -15,7 +18,7 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 |-----------|----------------|
 | **CPU** | Intel Core i5 (8ª gen) / AMD Ryzen 5 2600 o superior |
 | **RAM** | 8 GB DDR4 |
-| **GPU** | Integrada (Intel UHD / AMD Radeon) — toda la ingesta corre en CPU en esta versión |
+| **GPU** | Integrada (Intel UHD / AMD Radeon) basta para Basic en CPU. Aceleración NVIDIA CUDA opcional disponible en Basic si se detecta una GPU compatible (opt-in en la app + pack de DLLs empaquetadas) |
 | **Almacenamiento (SO + AccuVideo + modelos)** | SSD 128 GB con al menos 50 GB libres |
 | **Almacenamiento (Vídeos)** | Configurable — desde 50 GB (HDD o SSD) |
 | **Red** | Ethernet o WiFi 2.4/5 GHz |
@@ -25,13 +28,13 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 |-----------|----------------|
 | **CPU** | Intel Core i7 (10ª gen+) / AMD Ryzen 7 3700X o superior |
 | **RAM** | 16 GB DDR4 |
-| **GPU** | *(Futuro)* NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ — pensado para el soporte CUDA previsto. No se usa en la versión actual |
+| **GPU** | NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ con soporte CUDA — recomendada para la indexación visual de Pro. El **build CUDA de Pro** es un **.zip aparte (>2 GB)** alojado externamente; enlace y hash SHA-256 publicados junto a cada release de GitHub |
 | **Almacenamiento (SO + modelos)** | SSD NVMe 256 GB |
 | **Almacenamiento (Vídeos)** | HDD 1-2 TB o SSD SATA — NVMe no aporta para reproducción |
 | **Red** | Ethernet Gigabit (1 Gbps) o WiFi 5/6 |
 
 ### Notas Windows
-- **PyTorch CPU vs CUDA**: La versión actual usa **PyTorch CPU**: toda la ingesta (audio y visual) corre en CPU. El soporte CUDA está **planificado para una versión futura** y requerirá GPU NVIDIA con ≥6 GB VRAM (Florence-2 cabe en 6 GB). Mientras tanto, la ingesta visual es funcional pero lenta — considera lotes nocturnos.
+- **PyTorch CPU vs CUDA**: AccuVideo ya soporta ambos en Windows. CPU es el modo por defecto (siempre funciona, sin descargas extra). El **modo CUDA** requiere una GPU NVIDIA con ≥6 GB VRAM (Florence-2 cabe en 6 GB). En **Basic**, el soporte CUDA viene de serie: cuando se detecta una GPU compatible, la app ofrece activar el modo GPU y descarga bajo demanda un pequeño pack de DLLs empaquetadas (.zip). En **Pro**, el build CUDA es un **.zip aparte (>2 GB)** alojado externamente — enlace y hash SHA-256 publicados junto a cada release de GitHub.
 - **FFmpeg**: Incluido en el bundle AccuVideo — acelera reencode de vídeos
 - **DB**: Servicio gestionado externo (no consume recursos locales). Requiere conexión de red estable.
 - **Modelos IA**: BGE-M3 (~800 MB), Florence-2 (~2.6 GB), Whisper (~1.5 GB)
@@ -114,7 +117,7 @@ Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistem
 | Batch 10 vídeos × 1h (visual) | ~152h 30min (~6.4 días) |
 | Batch 10 vídeos × 1h (solo audio) | ~3h (CPU) |
 
-> **Nota procesado visual**: El modelo Florence-2 analiza frame a frame en CPU, lo que resulta en tiempos muy elevados incluso en hardware potente. Considera limitar el análisis visual a vídeos clave o ejecutarlo en lotes nocturnos. Estos tiempos **se reducirán significativamente cuando el soporte CUDA esté disponible** en una versión futura.
+> **Nota procesado visual**: El modelo Florence-2 analiza frame a frame en CPU, lo que resulta en tiempos muy elevados incluso en hardware potente. El **modo CUDA** (Basic con el pack de DLLs opcional, o el build CUDA de Pro) suele recortar estos tiempos en un orden de magnitud con una GPU NVIDIA de gama media. Para ejecuciones en CPU puro, considera limitar el análisis visual a vídeos clave o ejecutarlo en lotes nocturnos.
 
 ### Requisitos de RAM en Ejecución
 | Fase | Consumo típico |
@@ -159,7 +162,7 @@ Antes de instalar AccuVideo, verifica:
 - [ ] **RAM libre**: Mínimo 6 GB disponible durante ingesta
 - [ ] **Conexión de red**: Estable para acceder al DB gestionado y streaming LAN
 - [ ] **Permisos**: Acceso RW a carpeta de vídeos
-- [ ] **GPU**: No necesaria en esta versión (toda la ingesta corre en CPU). *Cuando llegue el soporte CUDA en una versión futura, se recomendará NVIDIA driver 525+ con ≥6 GB VRAM.*
+- [ ] **GPU**: No imprescindible — el modo CPU siempre funciona. Para la **aceleración CUDA opcional en Windows**: se recomienda GPU NVIDIA con ≥6 GB VRAM y driver 525+. Basic activa CUDA con un opt-in dentro de la app (descarga un pack de DLLs empaquetadas); el Pro CUDA es un **.zip aparte (>2 GB)** externo enlazado desde cada release de GitHub.
 
 ---
 
