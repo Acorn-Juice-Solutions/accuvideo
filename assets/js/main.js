@@ -275,7 +275,7 @@
       'download.pro_mac': 'macOS Apple Silicon · .pkg',
       'download.subnote_link': 'View all release files',
       'download.subnote_suffix': ' — changelog, hashes, older versions.',
-      'download.gpu_note': '🟢 <strong>Want NVIDIA CUDA acceleration?</strong> <strong>Basic</strong> ships with CUDA support built in — if a compatible GPU is detected, the app offers to enable GPU mode and downloads a bundled DLL pack on first use. <strong>Pro CUDA</strong> is a separate <strong>.zip (&gt;2 GB)</strong> hosted externally because of GitHub\'s 2 GB asset limit; the download link and SHA-256 hash are published in the release notes next to each <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">GitHub release</a>.',
+      'download.gpu_note': '🟢 <strong>Want NVIDIA CUDA acceleration?</strong> <strong>Basic</strong> ships with CUDA support built in — if a compatible GPU is detected, the app offers to enable GPU mode and downloads a bundled DLL pack on first use. <strong>Pro CUDA</strong> is a separate <strong>.zip (&gt;2 GB)</strong> hosted externally because of GitHub\'s 2 GB asset limit — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip"><strong>download AccuVideoPro_GPU.zip</strong></a> (SHA-256 published in the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">GitHub release notes</a>).',
       'download.note': 'Need a Basic build for Intel macOS, an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.',
 
       'req.title': 'System requirements',
@@ -591,7 +591,7 @@
       'download.pro_mac': 'macOS Apple Silicon · .pkg',
       'download.subnote_link': 'Ver todos los ficheros del release',
       'download.subnote_suffix': ' — changelog, hashes, versiones anteriores.',
-      'download.gpu_note': '🟢 <strong>¿Quieres aceleración NVIDIA CUDA?</strong> <strong>Basic</strong> ya incluye soporte CUDA — si se detecta una GPU compatible, la app ofrece activar el modo GPU y descarga un pack de DLLs empaquetadas en el primer uso. <strong>Pro CUDA</strong> es un <strong>.zip aparte (&gt;2 GB)</strong> alojado externamente por la limitación de 2 GB por asset de GitHub; el enlace de descarga y su hash SHA-256 se publican en las notas de cada <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">release de GitHub</a>.',
+      'download.gpu_note': '🟢 <strong>¿Quieres aceleración NVIDIA CUDA?</strong> <strong>Basic</strong> ya incluye soporte CUDA — si se detecta una GPU compatible, la app ofrece activar el modo GPU y descarga un pack de DLLs empaquetadas en el primer uso. <strong>Pro CUDA</strong> es un <strong>.zip aparte (&gt;2 GB)</strong> alojado externamente por la limitación de 2 GB por asset de GitHub — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip"><strong>descarga AccuVideoPro_GPU.zip</strong></a> (SHA-256 publicado en las <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">notas del release de GitHub</a>).',
       'download.note': '¿Necesitas un build Basic para macOS Intel, una licencia enterprise o tienes una duda primero? <a href="#" data-open-form="contactus">Escríbenos</a>.',
 
       'req.title': 'Requisitos del sistema',
