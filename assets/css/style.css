@@ -1204,7 +1204,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   margin: 0 0 8px;
 }
 
-.download-gpu {
+.download-card > .download-gpu {
   text-align: center;
   margin: 14px auto 12px;
   max-width: 720px;
