@@ -1154,7 +1154,8 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   margin: 0;
   color: var(--text-dim);
   font-size: 14px;
-  max-width: 56ch;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 .pricing-consult .btn { flex-shrink: 0; }
