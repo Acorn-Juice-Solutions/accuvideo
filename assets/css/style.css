@@ -499,17 +499,67 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 
 .ingest-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
 .ingest-card {
+  position: relative;
   background: var(--navy-800);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 28px;
   display: flex;
   flex-direction: column;
+}
+
+.ingest-card-pro {
+  border-color: rgba(34, 211, 238, 0.5);
+  background:
+    radial-gradient(500px 200px at 80% 0%, rgba(34, 211, 238, 0.10), transparent 70%),
+    var(--navy-800);
+}
+
+.ingest-pro-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+}
+
+.ingest-cli-sample {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.ingest-cli-sample code { background: transparent; padding: 0; color: inherit; }
+
+.ingest-card li code,
+.ingest-tip code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12.5px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  color: var(--text);
 }
 
 .ingest-icon {
@@ -1278,6 +1328,10 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 .footer-links a:hover { color: var(--cyan); }
 
 /* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .ingest-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 @media (max-width: 880px) {
   .hero { padding: 56px 0 40px; }

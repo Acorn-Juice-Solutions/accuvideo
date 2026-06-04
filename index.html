@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=7">
+  <link rel="stylesheet" href="assets/css/style.css?v=8">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -48,7 +48,7 @@
       <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Language">
         <span class="lang-en">EN</span><span class="lang-sep">·</span><span class="lang-es">ES</span>
       </button>
-      <a href="#download" class="btn btn-primary btn-sm" data-i18n="nav.cta">Try free</a>
+      <a href="#trial" class="btn btn-primary btn-sm" data-i18n="nav.cta">Try free</a>
     </div>
   </div>
 </header>
@@ -173,8 +173,8 @@
 
   <section id="ingest" class="ingest">
     <div class="container">
-      <h2 class="section-title" data-i18n="ingest.title">Two ways to add videos</h2>
-      <p class="section-sub" data-i18n="ingest.sub">Pick whichever fits how your library is organised. You can mix and match — folders for the big archive, drag-and-drop for one-off files.</p>
+      <h2 class="section-title" data-i18n="ingest.title">Three ways to add videos</h2>
+      <p class="section-sub" data-i18n="ingest.sub">Pick whichever fits how your library is organised. You can mix and match — folders for the big archive, drag-and-drop for one-off files, and the headless CLI for overnight batches.</p>
       <div class="ingest-grid">
         <article class="ingest-card">
           <div class="ingest-icon" aria-hidden="true">📁</div>
@@ -196,6 +196,21 @@
             <li data-i18n="ingest.drop.b3">Heads-up: large drops can grow that managed folder significantly.</li>
           </ul>
           <p class="ingest-tip" data-i18n="ingest.drop.tip">💡 You can reclaim that space any time from <strong>Settings → Storage</strong>: clear the temporary copies without losing your index or search results.</p>
+        </article>
+        <article class="ingest-card ingest-card-pro">
+          <span class="ingest-pro-badge" data-i18n="ingest.cli.badge">Pro only</span>
+          <div class="ingest-icon" aria-hidden="true">⌨</div>
+          <h3 data-i18n="ingest.cli.title">Batch CLI — AccuVideoIngest</h3>
+          <p class="ingest-lead" data-i18n="ingest.cli.lead">Headless command-line tool for unattended batch ingestion of entire archives.</p>
+          <pre class="ingest-cli-sample" aria-label="AccuVideoIngest command example"><code>AccuVideoIngest.exe ingest "K:/MyVideos"</code></pre>
+          <ul>
+            <li data-i18n="ingest.cli.b1">Recursively scans a folder for <strong>mp4, mkv, avi, mov, wmv, flv, webm, m4v, ts, mpeg</strong> and indexes everything it finds.</li>
+            <li data-i18n="ingest.cli.b2">Two subcommands: <strong>ingest</strong> (transcribe + embed + upload to your vector index) and <strong>transcribe</strong> (transcripts to JSON only).</li>
+            <li data-i18n="ingest.cli.b3">Tunable per run: <strong>--model</strong>, <strong>--language</strong>, <strong>--gap</strong>, <strong>--max-seconds</strong>, <strong>--min-chars</strong>, <strong>--mode</strong> (audio / visual / both) and <strong>--force</strong> to re-transcribe.</li>
+            <li data-i18n="ingest.cli.b4">Reads <code>VIDEO_FOLDER</code> from the environment when no path is passed — perfect for Windows <strong>Task Scheduler</strong> overnight jobs.</li>
+            <li data-i18n="ingest.cli.b5">Progress logs and resume-on-failure built in: re-runs skip what's already indexed.</li>
+          </ul>
+          <p class="ingest-tip" data-i18n="ingest.cli.tip">💡 Ships with the Pro installer under <code>&lt;apps_dir&gt;/AccuVideo/AccuVideoIngest/</code>. Run <code>AccuVideoIngest --help</code> for the full option list.</p>
         </article>
       </div>
     </div>
@@ -242,7 +257,7 @@
   <section id="pricing" class="pricing">
     <div class="container">
       <h2 class="section-title" data-i18n="pricing.title">Plans &amp; pricing</h2>
-      <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library. Need something bigger? Talk to us.</p>
+      <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library.</p>
 
       <div class="currency-switch" role="group" aria-label="Currency">
         <span class="currency-switch-label" data-i18n="pricing.currency.switch_label">Currency</span>
@@ -250,7 +265,7 @@
         <button type="button" class="currency-switch-btn" data-currency="usd" aria-label="USD">$ USD</button>
       </div>
 
-      <div class="pricing-license">
+      <div id="trial" class="pricing-license">
         <div class="pricing-license-head">
           <span class="pricing-license-icon" aria-hidden="true">🔑</span>
           <h3 data-i18n="pricing.license.title">How to get your trial license</h3>
@@ -482,10 +497,9 @@
 
       <div class="pricing-consult">
         <div>
-          <h3 data-i18n="pricing.consult.title">Need a bigger setup?</h3>
+          <h3 data-i18n="pricing.consult.title">Need a bigger setup? <a href="#" data-open-form="contactus" data-form-topic="enterprise">Let's talk</a>.</h3>
           <p data-i18n="pricing.consult.body">Bigger libraries, more concurrent viewers, multi-site deployments or custom integrations — we tailor for it.</p>
         </div>
-        <a href="#" class="btn btn-primary" data-open-form="contactus" data-form-topic="enterprise" data-i18n="pricing.consult.cta">Talk to Acorn Juice Solutions</a>
       </div>
 
     </div>
@@ -681,7 +695,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=9"></script>
+<script src="assets/js/main.js?v=12"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');

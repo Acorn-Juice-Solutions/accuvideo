@@ -93,8 +93,8 @@
       'how.s3.title': 'Ask, and land on the second',
       'how.s3.body': 'Type a question. Pick the result. The player opens at the exact frame that answers it — with seek-back controls if you want context.',
 
-      'ingest.title': 'Two ways to add videos',
-      'ingest.sub': 'Pick whichever fits how your library is organised. You can mix and match — folders for the big archive, drag-and-drop for one-off files.',
+      'ingest.title': 'Three ways to add videos',
+      'ingest.sub': 'Pick whichever fits how your library is organised. You can mix and match — folders for the big archive, drag-and-drop for one-off files, and the headless CLI for overnight batches.',
       'ingest.folder.title': 'Select a folder',
       'ingest.folder.lead': 'Point AccuVideo at one or more folders on your disk.',
       'ingest.folder.b1': 'Videos are indexed <strong>in place</strong> — nothing is copied or moved.',
@@ -106,6 +106,15 @@
       'ingest.drop.b2': 'Convenient when files are scattered, on removable media, or you just want to try the app on a single clip.',
       'ingest.drop.b3': 'Heads-up: large drops can grow that managed folder significantly.',
       'ingest.drop.tip': '💡 You can reclaim that space any time from <strong>Settings → Storage</strong>: clear the temporary copies without losing your index or search results.',
+      'ingest.cli.badge': 'Pro only',
+      'ingest.cli.title': 'Batch CLI — AccuVideoIngest',
+      'ingest.cli.lead': 'Headless command-line tool for unattended batch ingestion of entire archives.',
+      'ingest.cli.b1': 'Recursively scans a folder for <strong>mp4, mkv, avi, mov, wmv, flv, webm, m4v, ts, mpeg</strong> and indexes everything it finds.',
+      'ingest.cli.b2': 'Two subcommands: <strong>ingest</strong> (transcribe + embed + upload to your vector index) and <strong>transcribe</strong> (transcripts to JSON only).',
+      'ingest.cli.b3': 'Tunable per run: <strong>--model</strong>, <strong>--language</strong>, <strong>--gap</strong>, <strong>--max-seconds</strong>, <strong>--min-chars</strong>, <strong>--mode</strong> (audio / visual) and <strong>--force</strong> to re-transcribe.',
+      'ingest.cli.b4': 'Reads <code>VIDEO_FOLDER</code> from the environment when no path is passed — perfect for Windows <strong>Task Scheduler</strong> overnight jobs.',
+      'ingest.cli.b5': 'Progress logs and resume-on-failure built in: re-runs skip what\'s already indexed.',
+      'ingest.cli.tip': '💡 Ships with the Pro installer under <code>&lt;apps_dir&gt;/AccuVideo/AccuVideoIngest/</code>. Run <code>AccuVideoIngest --help</code> for the full option list.',
 
       'usecases.title': 'Built for archives that nobody has time to rewatch',
       'usecases.academy.title': 'Online academies',
@@ -154,7 +163,7 @@
       'editions.pro.cta_mac': 'macOS · .pkg',
 
       'pricing.title': 'Plans &amp; pricing',
-      'pricing.sub': 'Pick the size that matches your library. Need something bigger? Talk to us.',
+      'pricing.sub': 'Pick the size that matches your library.',
       'pricing.period.monthly': '/mo',
       'pricing.period.annual': '/yr',
       'pricing.toggle.monthly': 'Monthly',
@@ -245,7 +254,7 @@
       'pricing.pro.feat1': 'Visual content search (Florence-2)',
       'pricing.pro.feat2': 'AccuVideoIngest CLI · scheduled batches',
       'pricing.pro.feat3': 'Multi-client LAN streaming',
-      'pricing.consult.title': 'Need a bigger setup?',
+      'pricing.consult.title': 'Need a bigger setup? <a href="#" data-open-form="contactus" data-form-topic="enterprise">Let\'s talk</a>.',
       'pricing.consult.body': 'Bigger libraries, more concurrent viewers, multi-site deployments or custom integrations — we tailor for it.',
       'pricing.consult.cta': 'Talk to Acorn Juice Solutions',
       'pricing.footnote': 'All plans include the 30-day free trial. Prices in EUR, VAT not included. Annual billing available — contact us for a quote.',
@@ -409,8 +418,8 @@
       'how.s3.title': 'Pregunta y aterriza en el segundo',
       'how.s3.body': 'Escribe una pregunta. Elige el resultado. El reproductor abre el fragmento exacto que la responde — con controles de retroceso si necesitas contexto.',
 
-      'ingest.title': 'Dos formas de añadir vídeos',
-      'ingest.sub': 'Elige la que mejor encaje con cómo tienes organizada tu videoteca. Puedes combinar ambas — carpetas para el archivo grande y arrastrar y soltar para ficheros sueltos.',
+      'ingest.title': 'Tres formas de añadir vídeos',
+      'ingest.sub': 'Elige la que mejor encaje con cómo tienes organizada tu videoteca. Puedes combinarlas — carpetas para el archivo grande, arrastrar y soltar para ficheros sueltos, y la CLI headless para lotes nocturnos.',
       'ingest.folder.title': 'Seleccionar una carpeta',
       'ingest.folder.lead': 'Apunta AccuVideo a una o varias carpetas de tu disco.',
       'ingest.folder.b1': 'Los vídeos se indexan <strong>en su sitio</strong> — no se copian ni se mueven.',
@@ -422,6 +431,15 @@
       'ingest.drop.b2': 'Cómodo cuando los ficheros están dispersos, están en un dispositivo extraíble o solo quieres probar la app con un clip.',
       'ingest.drop.b3': 'Aviso: soltar muchos vídeos puede hacer crecer bastante esa carpeta gestionada.',
       'ingest.drop.tip': '💡 Puedes liberar ese espacio cuando quieras desde <strong>Ajustes → Almacenamiento</strong>: borra las copias temporales sin perder el índice ni los resultados de búsqueda.',
+      'ingest.cli.badge': 'Solo Pro',
+      'ingest.cli.title': 'CLI de lotes — AccuVideoIngest',
+      'ingest.cli.lead': 'Herramienta de línea de comandos sin interfaz para ingestar archivos enteros en lote, de forma desatendida.',
+      'ingest.cli.b1': 'Escanea recursivamente una carpeta buscando <strong>mp4, mkv, avi, mov, wmv, flv, webm, m4v, ts, mpeg</strong> e indexa todo lo que encuentra.',
+      'ingest.cli.b2': 'Dos subcomandos: <strong>ingest</strong> (transcribe + genera embeddings + sube a tu índice vectorial) y <strong>transcribe</strong> (solo transcripciones en JSON).',
+      'ingest.cli.b3': 'Ajustable por ejecución: <strong>--model</strong>, <strong>--language</strong>, <strong>--gap</strong>, <strong>--max-seconds</strong>, <strong>--min-chars</strong>, <strong>--mode</strong> (audio / visual) y <strong>--force</strong> para retranscribir.',
+      'ingest.cli.b4': 'Lee <code>VIDEO_FOLDER</code> del entorno cuando no le pasas ruta — perfecto para tareas nocturnas con el <strong>Programador de tareas</strong> de Windows.',
+      'ingest.cli.b5': 'Logs de progreso y reanudación tras fallo incluidos: las reejecuciones omiten lo que ya está indexado.',
+      'ingest.cli.tip': '💡 El instalador Pro lo coloca en <code>&lt;dir_aplicaciones&gt;/AccuVideo/AccuVideoIngest/</code>. Ejecuta <code>AccuVideoIngest --help</code> para ver todas las opciones.',
 
       'usecases.title': 'Pensado para archivos que nadie tiene tiempo de volver a ver',
       'usecases.academy.title': 'Academias online',
@@ -470,7 +488,7 @@
       'editions.pro.cta_mac': 'macOS · .pkg',
 
       'pricing.title': 'Planes y precios',
-      'pricing.sub': 'Elige el tamaño que se ajuste a tu videoteca. ¿Necesitas algo más grande? Hablamos.',
+      'pricing.sub': 'Elige el tamaño que se ajuste a tu videoteca.',
       'pricing.period.monthly': '/mes',
       'pricing.period.annual': '/año',
       'pricing.toggle.monthly': 'Mensual',
@@ -561,7 +579,7 @@
       'pricing.pro.feat1': 'Búsqueda de contenido visual (Florence-2)',
       'pricing.pro.feat2': 'CLI AccuVideoIngest · lotes programados',
       'pricing.pro.feat3': 'Streaming multi-cliente en LAN',
-      'pricing.consult.title': '¿Necesitas algo más grande?',
+      'pricing.consult.title': '¿Necesitas algo más grande? <a href="#" data-open-form="contactus" data-form-topic="enterprise">Hablamos</a>.',
       'pricing.consult.body': 'Bibliotecas más grandes, más clientes simultáneos, despliegues multi-sede o integraciones a medida — lo adaptamos a ti.',
       'pricing.consult.cta': 'Consultar con Acorn Juice Solutions',
       'pricing.footnote': 'Todos los planes incluyen los 30 días de prueba gratuita. Precios en EUR, IVA no incluido. Facturación anual disponible — escríbenos para presupuesto.',
@@ -1232,12 +1250,14 @@
       if (e.key === 'Escape' && !modal.hidden) closeContactUsModal();
     });
 
-    document.querySelectorAll('[data-open-form="contactus"]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        const topic = el.getAttribute('data-form-topic') || '';
-        openContactUsModal(topic);
-      });
+    // Event delegation: covers both static links and any link injected via i18n
+    // innerHTML re-render (e.g. inside pricing.consult.title or download.note).
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-form="contactus"]');
+      if (!trigger) return;
+      e.preventDefault();
+      const topic = trigger.getAttribute('data-form-topic') || '';
+      openContactUsModal(topic);
     });
 
     const form = document.getElementById('contactus-form');
