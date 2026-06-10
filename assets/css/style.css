@@ -1154,8 +1154,9 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   margin: 0;
   color: var(--text-dim);
   font-size: 14px;
-  white-space: nowrap;
-  overflow-x: auto;
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .pricing-consult .btn { flex-shrink: 0; }
@@ -1348,6 +1349,9 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   .header-row { gap: 12px; }
   .brand-name { display: none; }
   .download-card { padding: 32px 22px; }
+  .pricing-consult { padding: 18px; gap: 12px; }
+  .pricing-consult h3 { font-size: 16px; line-height: 1.35; }
+  .pricing-consult p { font-size: 13px; }
 }
 
 /* ---------- Edition tabs (Basic/Pro per card) ---------- */
