@@ -11,11 +11,10 @@
   <meta property="og:image" content="https://accuvideo.acornjuice.com/assets/img/AccuVideo_Logo.png">
   <meta property="og:url" content="https://accuvideo.acornjuice.com/">
   <meta property="og:type" content="website">
+  <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=13">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -30,7 +29,7 @@
 <header class="site-header">
   <div class="container header-row">
     <a href="#top" class="brand">
-      <img src="assets/img/AccuVideo_Logo.png" alt="AccuVideo" class="brand-logo">
+      <img src="assets/img/AccuVideo_Logo.png" alt="AccuVideo" class="brand-logo" fetchpriority="high">
       <span class="brand-name">AccuVideo</span>
     </a>
     <nav class="site-nav" aria-label="Primary">
@@ -551,16 +550,9 @@
         <input type="email" name="email" required autocomplete="email">
       </label>
       <label>
-        <span data-i18n="contact.field.plan">Plan</span>
-        <select name="plan" required>
-          <option value="">—</option>
-          <option>Starter</option>
-          <option>Personal</option>
-          <option>Freelance</option>
-          <option>Academy</option>
-          <option>Academy Plus</option>
-          <option>Enterprise</option>
-        </select>
+        <span>Plan</span>
+        <span class="form-static-text">Trial</span>
+        <input type="hidden" name="plan" value="trial">
       </label>
       <label>
         <span data-i18n="contact.field.edition">Edition</span>
@@ -572,10 +564,8 @@
       <label>
         <span data-i18n="contact.field.os">Operating system</span>
         <select name="os" required>
-          <option value="">—</option>
-          <option>Windows 11</option>
-          <option>Windows 10</option>
-          <option>macOS Apple Silicon</option>
+          <option value="Windows" selected>Windows</option>
+          <option value="Mac">Mac</option>
         </select>
       </label>
       <label>
@@ -610,8 +600,7 @@
       <label>
         <span data-i18n="subscribe.field.plan">Plan</span>
         <select name="plan" required>
-          <option value="">—</option>
-          <option value="starter">Starter</option>
+          <option value="starter" selected>Starter</option>
           <option value="personal">Personal</option>
           <option value="freelance">Freelance</option>
           <option value="academy">Academy</option>
@@ -694,7 +683,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=13"></script>
+<script defer src="assets/js/main.min.js?v=13"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
