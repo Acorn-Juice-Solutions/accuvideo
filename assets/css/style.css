@@ -891,6 +891,37 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 
 .currency-switch-btn:hover { color: var(--text); }
 
+/* Force white for currency UI and step numbers when the site is in light theme
+   but components use a dark-blue background. This targets the currency label/buttons
+   in Pricing and the numeric step markers in "How it works" and license steps. */
+:root[data-theme="light"] .currency-switch-btn,
+:root[data-theme="light"] .price-currency,
+:root[data-theme="light"] .price-num {
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .step-num,
+:root[data-theme="light"] .license-step-num {
+  color: #ffffff;
+}
+
+/* Currency buttons: black when not selected, white when selected (dark background). */
+:root[data-theme="light"] .currency-switch-btn {
+  color: #000000;
+}
+
+/* When a currency is selected (html has data-currency), show white text on the selected button */
+:root[data-theme="light"][data-currency="eur"] .currency-switch-btn[data-currency="eur"],
+:root[data-theme="light"][data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
+  background: var(--cyan);
+  color: #ffffff;
+}
+
+/* Most popular badge should be white in light theme */
+:root[data-theme="light"] .price-badge {
+  color: #ffffff;
+}
+
 html[data-currency="eur"] .currency-switch-btn[data-currency="eur"],
 html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   background: var(--cyan);
