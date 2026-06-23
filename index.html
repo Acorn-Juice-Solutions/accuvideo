@@ -552,16 +552,9 @@
         <input type="email" name="email" required autocomplete="email">
       </label>
       <label>
-        <span data-i18n="contact.field.plan">Plan</span>
-        <select name="plan" required>
-          <option value="">—</option>
-          <option>Starter</option>
-          <option>Personal</option>
-          <option>Freelance</option>
-          <option>Academy</option>
-          <option>Academy Plus</option>
-          <option>Enterprise</option>
-        </select>
+        <span>Plan</span>
+        <span class="form-static-text">Trial</span>
+        <input type="hidden" name="plan" value="trial">
       </label>
       <label>
         <span data-i18n="contact.field.edition">Edition</span>
@@ -573,10 +566,8 @@
       <label>
         <span data-i18n="contact.field.os">Operating system</span>
         <select name="os" required>
-          <option value="">—</option>
-          <option>Windows 11</option>
-          <option>Windows 10</option>
-          <option>macOS Apple Silicon</option>
+          <option value="Windows" selected>Windows</option>
+          <option value="Mac">Mac</option>
         </select>
       </label>
       <label>
@@ -611,8 +602,7 @@
       <label>
         <span data-i18n="subscribe.field.plan">Plan</span>
         <select name="plan" required>
-          <option value="">—</option>
-          <option value="starter">Starter</option>
+          <option value="starter" selected>Starter</option>
           <option value="personal">Personal</option>
           <option value="freelance">Freelance</option>
           <option value="academy">Academy</option>
@@ -695,7 +685,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=13"></script>
+<script src="assets/js/main.min.js?v=13"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');

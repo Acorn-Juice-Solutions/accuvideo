@@ -1201,12 +1201,16 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 
 .download-trial-note {
   display: inline-block;
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto 24px;
-  padding: 10px 16px;
-  font-size: 14px;
-  color: var(--text-dim);
-  background: rgba(168, 85, 247, 0.10);
-  border: 1px solid rgba(168, 85, 247, 0.35);
+  padding: 16px 20px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #fdf2ff;
+  background: rgba(236, 95, 253, 0.22);
+  border: 1px solid rgba(236, 95, 253, 0.65);
   border-radius: var(--radius-sm);
 }
 
@@ -1504,7 +1508,8 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 .contact-form input,
 .contact-form select,
-.contact-form textarea {
+.contact-form textarea,
+.form-static-text {
   background: var(--navy-700);
   color: var(--text);
   border: 1px solid var(--line-strong);
@@ -1513,6 +1518,10 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   font: inherit;
   font-size: 14px;
   width: 100%;
+}
+.form-static-text {
+  display: inline-flex;
+  align-items: center;
 }
 .contact-form textarea { resize: vertical; min-height: 70px; }
 .contact-form input:focus,
