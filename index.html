@@ -13,10 +13,8 @@
   <meta property="og:type" content="website">
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=13">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -685,7 +683,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.min.js?v=13"></script>
+<script defer src="assets/js/main.min.js?v=13"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
