@@ -68,6 +68,10 @@
       'hero.cta_secondary': 'See how it works',
       'hero.note': '100% local · Windows · macOS (Apple Silicon) · optional GPU processing',
 
+      'demo.eyebrow': 'Product walkthrough',
+      'demo.title': 'See AccuVideo in action',
+      'demo.body': 'This nearly three-minute demo shows how the app indexes a library, searches by meaning, and jumps straight to the exact moment you need.',
+
       'mock.query': 'explain gradient descent',
       'mock.result1.title': 'ML Lecture 04 — Optimization',
       'mock.result2.title': 'Whiteboard derivation',
@@ -393,6 +397,10 @@
       'hero.cta_secondary': 'Ver cómo funciona',
       'hero.note': '100% local · Windows · macOS (Apple Silicon)',
 
+      'demo.eyebrow': 'Recorrido del producto',
+      'demo.title': 'Mira AccuVideo en acción',
+      'demo.body': 'Esta demo de casi tres minutos muestra cómo la app indexa una biblioteca, busca por significado y salta directamente al momento exacto que necesitas.',
+
       'mock.query': 'explica el descenso por gradiente',
       'mock.result1.title': 'Clase ML 04 — Optimización',
       'mock.result2.title': 'Pizarra: derivación',
@@ -709,6 +717,43 @@
     return 'en';
   }
 
+  function applyDemoSection(lang) {
+    const section = document.getElementById('demo');
+    if (!section) return;
+
+    const translations = {
+      en: {
+        eyebrow: 'Product walkthrough',
+        title: 'See AccuVideo in action',
+        body: 'This nearly three-minute demo shows how the app indexes a library, searches by meaning, and jumps straight to the exact moment you need.'
+      },
+      es: {
+        eyebrow: 'Recorrido del producto',
+        title: 'Mira AccuVideo en acción',
+        body: 'Esta demo de casi tres minutos muestra cómo la app indexa una biblioteca, busca por significado y salta directamente al momento exacto que necesitas.'
+      }
+    };
+
+    const t = translations[lang] || translations.en;
+    const eyebrow = section.querySelector('.eyebrow[data-i18n]');
+    const title = section.querySelector('.section-title[data-i18n]');
+    const body = section.querySelector('.section-sub[data-i18n]');
+
+    if (eyebrow) eyebrow.textContent = t.eyebrow;
+    if (title) title.textContent = t.title;
+    if (body) body.textContent = t.body;
+
+    const video = section.querySelector('.demo-video');
+    if (video) {
+      const poster = lang === 'es'
+        ? (video.getAttribute('data-demo-poster') || video.getAttribute('data-demo-poster-en'))
+        : (video.getAttribute('data-demo-poster-en') || video.getAttribute('data-demo-poster'));
+      if (poster) {
+        video.setAttribute('poster', poster);
+      }
+    }
+  }
+
   function applyLang(lang) {
     if (!SUPPORTED.includes(lang)) lang = 'en';
     document.documentElement.lang = lang;
@@ -730,6 +775,8 @@
         el.innerHTML = value;
       }
     });
+
+    applyDemoSection(lang);
 
     const symbol = CURRENCY_SYMBOL[currency];
     document.querySelectorAll('.price-currency').forEach((el) => {
@@ -768,6 +815,15 @@
         heroVideo.play().catch(() => {});
       }
     }
+
+    document.querySelectorAll('[data-demo-poster]').forEach((video) => {
+      const poster = lang === 'es'
+        ? video.getAttribute('data-demo-poster')
+        : video.getAttribute('data-demo-poster-en') || video.getAttribute('data-demo-poster');
+      if (poster) {
+        video.setAttribute('poster', poster);
+      }
+    });
 
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) { /* ignore */ }
   }

@@ -1,13 +1,16 @@
-const CACHE_NAME = 'accuvideo-v1';
+const CACHE_NAME = 'accuvideo-v15';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/thanks.html',
   '/assets/css/style.css?v=10',
-  '/assets/js/main.js?v=13',
+  '/assets/js/main.min.js?v=14',
+  '/assets/js/main.js?v=14',
   '/assets/img/AccuVideo_Logo.png',
   '/assets/img/favicon.ico',
-  '/assets/videos/demo-poster.jpg'
+  '/assets/videos/demo-poster.jpg',
+  '/assets/videos/AccuVideo_Horizontal_cover.svg',
+  '/assets/videos/AccuVideo_Horizontal_cover_en.svg'
 ];
 
 self.addEventListener('install', event => {

@@ -49,7 +49,7 @@
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css?v=10">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=13">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=15">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -108,6 +108,33 @@
                  preload="metadata"
                  poster="assets/videos/demo-poster.jpg"
                  aria-label="AccuVideo demo"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="demo-shell">
+        <div class="demo-copy">
+          <p class="eyebrow" data-i18n="demo.eyebrow">Product walkthrough</p>
+          <h2 class="section-title" data-i18n="demo.title">See AccuVideo in action</h2>
+          <p class="section-sub" data-i18n="demo.body">This nearly three-minute demo shows how the app indexes a library, searches by meaning, and jumps straight to the exact moment you need.</p>
+        </div>
+        <div class="demo-media">
+          <div class="demo-video-frame">
+            <video class="demo-video"
+                   controls
+                   preload="metadata"
+                   playsinline
+                   poster="assets/videos/AccuVideo_Horizontal_cover.svg"
+                   data-demo-poster="assets/videos/AccuVideo_Horizontal_cover.svg"
+                   data-demo-poster-en="assets/videos/AccuVideo_Horizontal_cover_en.svg"
+                   aria-label="AccuVideo walkthrough demo">
+              <source src="assets/videos/AccuVideo_Horizontal.mp4" type="video/mp4">
+              Your browser does not support embedded videos.
+            </video>
+          </div>
         </div>
       </div>
     </div>
@@ -718,7 +745,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=13"></script>
+<script defer src="assets/js/main.min.js?v=15"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');

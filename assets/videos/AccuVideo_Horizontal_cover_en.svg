@@ -1,0 +1,35 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#07111F"/>
+  <rect x="24" y="24" width="1552" height="852" rx="32" fill="url(#bg)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+  <path d="M0 708C220 592 440 562 640 630C840 698 1088 744 1600 612V900H0V708Z" fill="url(#glow)"/>
+  <circle cx="1228" cy="260" r="220" fill="#22D3EE" fill-opacity="0.16"/>
+  <circle cx="390" cy="278" r="176" fill="#A855F7" fill-opacity="0.14"/>
+  <rect x="220" y="214" width="1160" height="472" rx="28" fill="#091423" fill-opacity="0.82" stroke="#2D3A58" stroke-width="2"/>
+  <rect x="252" y="246" width="1096" height="24" rx="12" fill="#1C2A46"/>
+  <rect x="252" y="286" width="826" height="16" rx="8" fill="#334565"/>
+  <rect x="252" y="314" width="650" height="16" rx="8" fill="#334565"/>
+  <rect x="252" y="360" width="242" height="208" rx="20" fill="#0F172A" stroke="#334565" stroke-width="2"/>
+  <rect x="520" y="360" width="812" height="208" rx="20" fill="#0F172A" stroke="#334565" stroke-width="2"/>
+  <path d="M626 442L738 500L626 558V442Z" fill="#22D3EE"/>
+  <rect x="564" y="404" width="258" height="18" rx="9" fill="#22D3EE" fill-opacity="0.35"/>
+  <rect x="564" y="438" width="188" height="14" rx="7" fill="#5E6D8B"/>
+  <rect x="564" y="468" width="224" height="14" rx="7" fill="#5E6D8B"/>
+  <rect x="564" y="498" width="142" height="14" rx="7" fill="#5E6D8B"/>
+  <circle cx="1328" cy="452" r="104" fill="#22D3EE" fill-opacity="0.15"/>
+  <path d="M1288 410L1368 452L1288 494V410Z" fill="#F4F4F5"/>
+  <rect x="240" y="620" width="1120" height="2" rx="1" fill="#334565"/>
+  <text x="280" y="682" fill="#F4F4F5" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700">AccuVideo</text>
+  <text x="280" y="738" fill="#8B92A3" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="500">Full walkthrough · 3 min demo</text>
+  <rect x="280" y="766" width="244" height="52" rx="26" fill="#22D3EE" fill-opacity="0.18" stroke="#22D3EE" stroke-width="2"/>
+  <text x="336" y="800" fill="#22D3EE" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Play preview</text>
+  <defs>
+    <linearGradient id="bg" x1="160" y1="80" x2="1420" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111C32"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="560" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+</svg>
