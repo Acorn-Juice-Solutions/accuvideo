@@ -11,7 +11,7 @@
 ## Editions
 - **Basic**: Basic is ideal for individuals, students, and smaller collections.
 - **Pro**: Adds visual understanding, batch ingestion, scheduled processing, and multi-client LAN streaming for larger organizations and archives.
-- [Basic] ([Pricing]https://accuvideo.acornjuice.com/#editions): See editions section on the main website.
+- [Editions](https://accuvideo.acornjuice.com/#editions): See editions section on the main website.
 
 ## Pricing
 - [Pricing](https://accuvideo.acornjuice.com/#pricing): See the pricing section on the main site.
