@@ -1,0 +1,30 @@
+# AccuVideo
+
+AccuVideo is a local-first video intelligence application that helps users search large video libraries by meaning rather than by scrubbing through timelines. It analyzes spoken words, on-screen text, and visual content to answer natural-language questions and jump to the exact moment in a video.
+
+## Product overview
+- [Short demo in English] (https://accuvideo.acornjuice.com/assets/videos/demo-en.mp4): Short Engish demo.
+- [Short demo in Spanish] (https://accuvideo.acornjuice.com/assets/videos/demo-es.mp4): Short Spanish demo.
+- [Walkthrough video] (https://accuvideo.acornjuice.com/assets/videos/AccuVideo_Horizontal.mp4): 3 minutes Walkthrough video.
+
+
+## Editions
+- **Basic**: Basic is ideal for individuals, students, and smaller collections.
+- **Pro**: Adds visual understanding, batch ingestion, scheduled processing, and multi-client LAN streaming for larger organizations and archives.
+- [Basic] ([Pricing]https://accuvideo.acornjuice.com/#editions): See editions section on the main website.
+
+## Pricing
+- [Pricing](https://accuvideo.acornjuice.com/#pricing): See the pricing section on the main site.
+
+## Key features
+- Semantic search over spoken words, on-screen text, and visual content.
+- Exact-second navigation to the relevant moment in a video.
+- Local transcription and indexing with optional GPU acceleration on compatible NVIDIA hardware.
+- In-app ingestion for folders and files, plus a command-line tool for large-scale batch processing.
+- Multilingual transcription and optional translation-based search.
+- Support for large archives, scheduled overnight processing, and multi-client LAN streaming in Pro.
+- [Features](https://accuvideo.acornjuice.com/#features): See more on the website.
+
+## Additional references
+- [Sitemap](https://accuvideo.acornjuice.com/sitemap.xml): Full XML sitemap of all indexed pages.
+- [Global llms.txt](https://accuvideo.acornjuice.com/llms.txt): Global index across all AccuVideo content.
