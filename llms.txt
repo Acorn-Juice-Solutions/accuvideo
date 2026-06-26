@@ -1,6 +1,6 @@
 # AccuVideo
 
-AccuVideo is a local-first video intelligence application that helps users search large video libraries by meaning rather than by scrubbing through timelines. It analyzes spoken words, on-screen text, and visual content to answer natural-language questions and jump to the exact moment in a video.
+> AccuVideo is a local-first video intelligence application that helps users search large video libraries by meaning rather than by scrubbing through timelines. It analyzes spoken words, on-screen text, and visual content to answer natural-language questions and jump to the exact moment in a video.
 
 ## Product overview
 - [Short demo in English] (https://accuvideo.acornjuice.com/assets/videos/demo-en.mp4): Short Engish demo.
