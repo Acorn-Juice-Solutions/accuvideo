@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /assets/videos/
+Allow: /assets/img/
 
 Sitemap: https://accuvideo.acornjuice.com/sitemap.xml
