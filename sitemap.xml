@@ -13,7 +13,7 @@
       <video:description>Demostración en inglés de AccuVideo que muestra cómo indexa una biblioteca de videos, busca por significado y salta al momento exacto.</video:description>
       <video:content_loc>https://accuvideo.acornjuice.com/assets/videos/demo-en.mp4</video:content_loc>
       <video:thumbnail_loc>https://accuvideo.acornjuice.com/assets/videos/demo-poster.jpg</video:thumbnail_loc>
-      <video:player_loc>https://accuvideo.acornjuice.com/assets/videos/demo-en.mp4</video:player_loc>
+      <video:player_loc>https://accuvideo.acornjuice.com/assets/videos/player.html?video=demo-en.mp4</video:player_loc>
       <video:publication_date>2026-06-26</video:publication_date>
     </video:video>
   </url>
@@ -25,7 +25,7 @@
       <video:description>Demostración en español de AccuVideo mostrando cómo indexa una biblioteca de videos, busca por significado y salta al momento exacto.</video:description>
       <video:content_loc>https://accuvideo.acornjuice.com/assets/videos/demo-es.mp4</video:content_loc>
       <video:thumbnail_loc>https://accuvideo.acornjuice.com/assets/videos/demo-poster.jpg</video:thumbnail_loc>
-      <video:player_loc>https://accuvideo.acornjuice.com/assets/videos/demo-es.mp4</video:player_loc>
+      <video:player_loc>https://accuvideo.acornjuice.com/assets/videos/player.html?video=demo-es.mp4</video:player_loc>
       <video:publication_date>2026-06-26</video:publication_date>
     </video:video>
   </url>
@@ -37,8 +37,13 @@
       <video:description>Video explicativo de AccuVideo que muestra cómo encontrar momentos exactos dentro de una biblioteca de videos mediante búsquedas semánticas.</video:description>
       <video:content_loc>https://accuvideo.acornjuice.com/assets/videos/AccuVideo_Horizontal.mp4</video:content_loc>
       <video:thumbnail_loc>https://accuvideo.acornjuice.com/assets/videos/AccuVideo_Horizontal_cover.svg</video:thumbnail_loc>
-      <video:player_loc>https://accuvideo.acornjuice.com/assets/videos/AccuVideo_Horizontal.mp4</video:player_loc>
+      <video:player_loc>https://accuvideo.acornjuice.com/assets/videos/player.html?video=AccuVideo_Horizontal.mp4</video:player_loc>
       <video:publication_date>2026-06-26</video:publication_date>
     </video:video>
+  </url>
+
+  <url>
+    <loc>https://accuvideo.acornjuice.com/assets/videos/player.html</loc>
+    <lastmod>2026-06-26</lastmod>
   </url>
 </urlset>
