@@ -266,8 +266,8 @@
       'pricing.currency.switch_label': 'Currency',
       'pricing.license.title': 'How to get your trial license',
       'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days · Basic edition by default (Pro on request)',
-      'pricing.license.step1': 'Download the AccuVideo installer for your edition (Basic or Pro) from the <a href="#download">Download</a> section below.',
-      'pricing.license.step2': 'Open the <a href="#" data-open-form="trial">trial request form</a> (or click <strong>Request trial license</strong> on any plan below) and tell us your <strong>operating system</strong> and the <strong>plan</strong> you want to try. We email back your 30-day trial license within 2 business days — paste it into AccuVideo and you\'re in. <strong>No hardware ID needed for the trial.</strong>',
+      'pricing.license.step1': 'Before we unlock the installer download, we\'ll ask for your <strong>email</strong>, the <strong>edition</strong> you want, and your <strong>operating system</strong>.',
+      'pricing.license.step2': 'Once you send that request, we email your 30-day trial license and start the installer download. <strong>No hardware ID needed for the trial.</strong>',
       'pricing.license.notes': 'The trial runs for 30 days and the cap above is shared across all plans. When you\'re ready to subscribe, see below — paid plans are tied to your machine\'s hardware ID for security.',
       'pricing.subscribe.title': 'Ready to subscribe to a plan?',
       'pricing.subscribe.intro': 'Paid plans are activated against your machine\'s <strong>hardware ID</strong>, so each license stays bound to one specific computer.',
@@ -279,7 +279,7 @@
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
-      'download.trial_note': '📧 First time? <a href="#" data-open-form="trial">Request your trial license first</a> — the installer asks for a license key on first launch.',
+      'download.trial_note': '📧 Before downloading, we\'ll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>, then we send your trial license and unlock the installer.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -307,8 +307,9 @@
       'req.rec.net': 'Network: stable connection for the managed vector DB',
       'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
 
-      'contact.title': 'Request your trial license',
-      'contact.sub': 'We\'ll email it back within 2 business days.',
+      'contact.title': 'Download access',
+      'contact.sub': 'You\'ll receive it by email shortly.',
+      'contact.download_hint': 'Your download will start right after you submit this form.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edition',
@@ -368,9 +369,9 @@
       'thanks.meta_title': 'Thanks — AccuVideo',
       'thanks.title': 'Thanks! We got your request.',
       'thanks.title_subscribe': 'Payment confirmed — welcome to AccuVideo!',
-      'thanks.body_trial': 'We\'ll review your trial license request and email it back within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
+      'thanks.body_trial': 'We\'ll review your request and your license will be sent to your email. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
       'thanks.body_contactus': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
-      'thanks.body_subscribe': 'Your subscription is active. We\'ll email your AccuVideo license — tied to the hardware ID you provided — within 2 business days. Stripe has also sent you a payment receipt; if you don\'t see it, check your spam folder.',
+      'thanks.body_subscribe': 'Your subscription is active. Your license will be sent to your email — tied to the hardware ID you provided. Stripe has also sent you a payment receipt; if you don\'t see it, check your spam folder.',
       'thanks.body_generic': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation email — if you don\'t see it, check your spam folder.',
       'thanks.cta': 'Back to home',
 
@@ -595,8 +596,8 @@
       'pricing.currency.switch_label': 'Divisa',
       'pricing.license.title': 'Cómo conseguir tu licencia trial',
       'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días · edición Basic por defecto (Pro a petición)',
-      'pricing.license.step1': 'Descarga el instalador de AccuVideo para tu edición (Basic o Pro) desde la sección <a href="#download">Descarga</a> de abajo.',
-      'pricing.license.step2': 'Abre el <a href="#" data-open-form="trial">formulario de solicitud de trial</a> (o pulsa <strong>Solicitar licencia trial</strong> en cualquier plan de abajo) e indícanos tu <strong>sistema operativo</strong> y el <strong>plan</strong> que quieres probar. Te enviamos por email tu licencia trial de 30 días en hasta 2 días laborables — la pegas en AccuVideo y listo. <strong>No hace falta hardware ID para la trial.</strong>',
+      'pricing.license.step1': 'Antes de desbloquear la descarga del instalador, te pediremos tu <strong>email</strong>, la <strong>edición</strong> que quieres y tu <strong>sistema operativo</strong>.',
+      'pricing.license.step2': 'En cuanto envíes la solicitud, te mandamos por email tu licencia trial de 30 días y arrancamos la descarga del instalador. <strong>No hace falta hardware ID para la trial.</strong>',
       'pricing.license.notes': 'La trial dura 30 días y el cap de arriba se aplica a todos los planes. Cuando quieras suscribirte, mira más abajo — los planes de pago van ligados al hardware ID de tu equipo por seguridad.',
       'pricing.subscribe.title': '¿Listo para suscribirte a un plan?',
       'pricing.subscribe.intro': 'Los planes de pago se activan contra el <strong>hardware ID</strong> de tu equipo, así cada licencia queda vinculada a una máquina específica.',
@@ -608,7 +609,7 @@
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows y macOS (Apple Silicon) disponibles ya. Los builds de macOS están temporalmente sin firmar mientras finalizamos el alta del Apple Developer ID — en el primer arranque, haz clic derecho en el .pkg y elige <strong>Abrir</strong> para saltarte Gatekeeper. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
-      'download.trial_note': '📧 ¿Primera vez? <a href="#" data-open-form="trial">Solicita primero tu licencia trial</a> — el instalador pide la clave de licencia en el primer arranque.',
+      'download.trial_note': '📧 Antes de descargar, te pediremos tu <strong>email</strong>, <strong>edición</strong> y <strong>sistema operativo</strong>; después te enviamos la licencia trial y comenzará la descarga del instalador.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -637,7 +638,8 @@
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
 
       'contact.title': 'Solicita tu licencia trial',
-      'contact.sub': 'Te la enviamos por email en hasta 2 días laborables.',
+      'contact.sub': 'La recibirás en breve por email.',
+      'contact.download_hint': 'La descarga se iniciará justo después de enviar este formulario.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edición',
@@ -697,9 +699,9 @@
       'thanks.meta_title': 'Gracias — AccuVideo',
       'thanks.title': '¡Gracias! Hemos recibido tu petición.',
       'thanks.title_subscribe': 'Pago confirmado — ¡bienvenido a AccuVideo!',
-      'thanks.body_trial': 'Revisaremos tu solicitud y te enviaremos por email tu licencia trial en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_trial': 'Revisaremos tu solicitud y tu licencia será enviada a tu correo. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
       'thanks.body_contactus': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
-      'thanks.body_subscribe': 'Tu suscripción está activa. Te enviaremos por email tu licencia de AccuVideo — vinculada al hardware ID que indicaste — en hasta 2 días laborables. Stripe también te ha enviado un recibo de pago; si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_subscribe': 'Tu suscripción está activa. Tu licencia será enviada a tu correo — vinculada al hardware ID que indicaste. Stripe también te ha enviado un recibo de pago; si no lo ves, revisa la carpeta de spam.',
       'thanks.body_generic': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
       'thanks.cta': 'Volver al inicio',
 
@@ -987,6 +989,36 @@
     return (i18n[lang] && i18n[lang][key]) || (i18n.en && i18n.en[key]) || key;
   }
 
+  function getReleaseDownloadInfo(downloadUrl) {
+    if (!downloadUrl) return null;
+    let fileName = '';
+    try {
+      fileName = new URL(downloadUrl, window.location.href).pathname.split('/').pop() || '';
+    } catch (err) {
+      fileName = String(downloadUrl).split('/').pop() || '';
+    }
+    const lowerName = fileName.toLowerCase();
+    const extension = lowerName.includes('.') ? lowerName.split('.').pop() : '';
+    return {
+      fileName,
+      fileExtension: extension,
+      edition: /pro/i.test(fileName) ? 'pro' : 'basic',
+      os: extension === 'msi' ? 'windows' : (extension === 'pkg' ? 'macos' : 'other'),
+    };
+  }
+
+  function trackReleaseDownload(downloadUrl) {
+    const info = getReleaseDownloadInfo(downloadUrl);
+    if (!info || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'file_download', {
+      file_name: info.fileName,
+      file_extension: info.fileExtension,
+      link_url: downloadUrl,
+      edition: info.edition,
+      os: info.os,
+    });
+  }
+
   // Banner shown inside every form modal when the form backend is unreachable.
   // Surfaced reactively after a submit failure — Static Forms has no public health endpoint.
   function setFormServiceBanner(down) {
@@ -995,9 +1027,10 @@
     });
   }
 
-  function openContactModal(plan, edition) {
+  function openContactModal(plan, edition, downloadUrl) {
     const modal = document.getElementById('contact-modal');
     if (!modal) return;
+    modal.dataset.pendingDownload = downloadUrl || '';
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     if (typeof gtag === 'function') {
@@ -1019,6 +1052,7 @@
   function closeContactModal() {
     const modal = document.getElementById('contact-modal');
     if (!modal) return;
+    modal.dataset.pendingDownload = '';
     modal.hidden = true;
     document.body.style.overflow = '';
     const status = document.getElementById('contact-form-status');
@@ -1039,6 +1073,15 @@
     // Event delegation: covers both the static price-card CTAs and any link injected
     // via i18n innerHTML re-render (e.g. inside pricing.license.step2).
     document.addEventListener('click', (e) => {
+      const downloadTrigger = e.target.closest('a[data-requires-trial="true"]');
+      if (downloadTrigger) {
+        e.preventDefault();
+        const downloadUrl = downloadTrigger.href;
+        const info = getReleaseDownloadInfo(downloadUrl);
+        openContactModal('', info ? info.edition : 'basic', downloadUrl);
+        return;
+      }
+
       const trigger = e.target.closest('[data-open-form="trial"]');
       if (!trigger) return;
       e.preventDefault();
@@ -1094,7 +1137,14 @@
           return;
         }
         setFormServiceBanner(false);
+        const modal = document.getElementById('contact-modal');
+        const pendingDownload = modal?.dataset.pendingDownload || '';
         form.reset();
+        if (pendingDownload) {
+          trackReleaseDownload(pendingDownload);
+          window.location.assign(pendingDownload);
+          return;
+        }
         window.location.assign('thanks.html?form=trial');
       } catch (err) {
         console.error('Trial form submit failed:', err);
@@ -1239,15 +1289,10 @@
 
   function bindDownloadTracking() {
     if (typeof window.gtag !== 'function') return;
-    const links = document.querySelectorAll('a[href*="releases/latest/download"]');
+    const links = document.querySelectorAll('a[href*="releases/latest/download"]:not([data-requires-trial="true"])');
     links.forEach((a) => {
       a.addEventListener('click', () => {
-        const file = a.href.split('/').pop();
-        window.gtag('event', 'download_click', {
-          file_name: file,
-          edition: /Pro/i.test(file) ? 'pro' : 'basic',
-          os: /\.msi$/i.test(file) ? 'windows' : 'other',
-        });
+        trackReleaseDownload(a.href);
       });
     });
   }

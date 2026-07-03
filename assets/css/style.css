@@ -65,6 +65,11 @@ a:hover { color: #6ee7f3; }
   padding: 0 24px;
 }
 
+.pricing .container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* ---------- Header ---------- */
 
 .site-header {
@@ -229,7 +234,7 @@ html[data-theme="light"] .theme-toggle .theme-icon-moon { display: inline; }
 /* ---------- Hero ---------- */
 
 .hero {
-  padding: 80px 0 64px;
+  padding: 72px 0 56px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -504,7 +509,7 @@ html[data-theme="light"] .theme-toggle .theme-icon-moon { display: inline; }
 
 /* ---------- Section titles ---------- */
 
-section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+section { padding: 64px 0; border-bottom: 1px solid var(--line); }
 .section-title {
   font-size: clamp(26px, 3.2vw, 36px);
   font-weight: 700;
@@ -514,7 +519,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .section-sub {
   color: var(--text-dim);
   max-width: 64ch;
-  margin: 0 0 40px;
+  margin: 0 0 32px;
   font-size: 16px;
 }
 
@@ -523,7 +528,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .feature {
@@ -593,7 +598,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .ingest-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .ingest-card {
@@ -720,7 +725,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .usecase-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 
 .usecase {
@@ -763,7 +768,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .privacy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
   margin-top: 28px;
 }
 
@@ -812,7 +817,7 @@ section { padding: 72px 0; border-bottom: 1px solid var(--line); }
 .edition-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .edition {
@@ -1026,7 +1031,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 24px;
 }
 
 .price-card {
@@ -1135,7 +1140,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 
 .pricing-license {
-  margin-top: 36px;
+  margin-top: 0;
   padding: 26px 28px;
   background: var(--navy-800);
   border: 1px solid var(--line-strong);
@@ -1255,7 +1260,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 .license-notes strong { color: var(--text-dim); font-weight: 600; }
 
 .pricing-consult {
-  margin-top: 28px;
+  margin-top: 24px;
   padding: 24px 28px;
   display: flex;
   align-items: center;
@@ -1286,7 +1291,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 .pricing-consult .btn { flex-shrink: 0; }
 
 .pricing-footnote {
-  margin: 22px 0 0;
+  margin: 0;
   color: var(--text-mute);
   font-size: 13px;
   text-align: center;
@@ -1303,7 +1308,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 
 .pricing-download {
-  margin-top: 20px;
+  margin-top: 0;
   padding: 32px 28px;
 }
 
