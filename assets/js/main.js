@@ -266,8 +266,8 @@
       'pricing.currency.switch_label': 'Currency',
       'pricing.license.title': 'How to get your trial license',
       'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days · Basic edition by default (Pro on request)',
-      'pricing.license.step1': 'Open the <a href="#" data-open-form="trial">trial request form</a> first. We need that before we unlock the installer download below.',
-      'pricing.license.step2': 'Tell us your <strong>operating system</strong> and the <strong>plan</strong> you want to try. We email back your 30-day trial license within 2 business days, and then we unlock the installer download. <strong>No hardware ID needed for the trial.</strong>',
+      'pricing.license.step1': 'Before we unlock the installer download, we\'ll ask for your <strong>email</strong>, the <strong>edition</strong> you want, and your <strong>operating system</strong>.',
+      'pricing.license.step2': 'Once you send that request, we email your 30-day trial license and start the installer download. <strong>No hardware ID needed for the trial.</strong>',
       'pricing.license.notes': 'The trial runs for 30 days and the cap above is shared across all plans. When you\'re ready to subscribe, see below — paid plans are tied to your machine\'s hardware ID for security.',
       'pricing.subscribe.title': 'Ready to subscribe to a plan?',
       'pricing.subscribe.intro': 'Paid plans are activated against your machine\'s <strong>hardware ID</strong>, so each license stays bound to one specific computer.',
@@ -279,7 +279,7 @@
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
-      'download.trial_note': '📧 Before downloading, <a href="#" data-open-form="trial">request your trial license</a> — we unlock the installer right after the form is sent.',
+      'download.trial_note': '📧 Before downloading, we\'ll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>, then we send your trial license and unlock the installer.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -307,8 +307,9 @@
       'req.rec.net': 'Network: stable connection for the managed vector DB',
       'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
 
-      'contact.title': 'Request your trial license',
-      'contact.sub': 'We\'ll email it back within 2 business days.',
+      'contact.title': 'Download access',
+      'contact.sub': 'You\'ll receive it by email shortly.',
+      'contact.download_hint': 'Your download will start right after you submit this form.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edition',
@@ -595,8 +596,8 @@
       'pricing.currency.switch_label': 'Divisa',
       'pricing.license.title': 'Cómo conseguir tu licencia trial',
       'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días · edición Basic por defecto (Pro a petición)',
-      'pricing.license.step1': 'Abre primero el <a href="#" data-open-form="trial">formulario de solicitud de trial</a>. Lo necesitamos antes de desbloquear la descarga del instalador.',
-      'pricing.license.step2': 'Indícanos tu <strong>sistema operativo</strong> y el <strong>plan</strong> que quieres probar. Te enviamos por email tu licencia trial de 30 días en hasta 2 días laborables y después desbloqueamos la descarga del instalador. <strong>No hace falta hardware ID para la trial.</strong>',
+      'pricing.license.step1': 'Antes de desbloquear la descarga del instalador, te pediremos tu <strong>email</strong>, la <strong>edición</strong> que quieres y tu <strong>sistema operativo</strong>.',
+      'pricing.license.step2': 'En cuanto envíes la solicitud, te mandamos por email tu licencia trial de 30 días y arrancamos la descarga del instalador. <strong>No hace falta hardware ID para la trial.</strong>',
       'pricing.license.notes': 'La trial dura 30 días y el cap de arriba se aplica a todos los planes. Cuando quieras suscribirte, mira más abajo — los planes de pago van ligados al hardware ID de tu equipo por seguridad.',
       'pricing.subscribe.title': '¿Listo para suscribirte a un plan?',
       'pricing.subscribe.intro': 'Los planes de pago se activan contra el <strong>hardware ID</strong> de tu equipo, así cada licencia queda vinculada a una máquina específica.',
@@ -608,7 +609,7 @@
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows y macOS (Apple Silicon) disponibles ya. Los builds de macOS están temporalmente sin firmar mientras finalizamos el alta del Apple Developer ID — en el primer arranque, haz clic derecho en el .pkg y elige <strong>Abrir</strong> para saltarte Gatekeeper. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
-      'download.trial_note': '📧 Antes de descargar, <a href="#" data-open-form="trial">solicita tu licencia trial</a> — desbloqueamos el instalador justo después de enviar el formulario.',
+      'download.trial_note': '📧 Antes de descargar, te pediremos tu <strong>email</strong>, <strong>edición</strong> y <strong>sistema operativo</strong>; después te enviamos la licencia trial y comenzará la descarga del instalador.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -636,8 +637,9 @@
       'req.rec.net': 'Red: conexión estable para el DB vectorial gestionado',
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
 
-      'contact.title': 'Solicita tu licencia trial',
-      'contact.sub': 'Te la enviamos por email en hasta 2 días laborables.',
+      'contact.title': 'Acceso de descarga',
+      'contact.sub': 'La recibirás en breve por email.',
+      'contact.download_hint': 'La descarga se iniciará justo después de enviar este formulario.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edición',
@@ -1071,7 +1073,7 @@
     // Event delegation: covers both the static price-card CTAs and any link injected
     // via i18n innerHTML re-render (e.g. inside pricing.license.step2).
     document.addEventListener('click', (e) => {
-      const downloadTrigger = e.target.closest('a[href*="/releases/latest/download/"][data-requires-trial="true"]');
+      const downloadTrigger = e.target.closest('a[data-requires-trial="true"]');
       if (downloadTrigger) {
         e.preventDefault();
         const downloadUrl = downloadTrigger.href;

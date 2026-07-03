@@ -49,7 +49,7 @@
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css?v=10">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=15">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=16">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -82,7 +82,7 @@
       <button type="button" class="lang-toggle" id="lang-toggle" aria-label="Language">
         <span class="lang-en">EN</span><span class="lang-sep">·</span><span class="lang-es">ES</span>
       </button>
-      <a href="#trial" class="btn btn-primary btn-sm" data-i18n="nav.cta">Try free</a>
+      <a href="#download" class="btn btn-primary btn-sm" data-i18n="nav.cta">Try free</a>
     </div>
   </div>
 </header>
@@ -316,39 +316,11 @@
   </section>
 
   <section id="pricing" class="pricing">
-    <div class="container">
-      <h2 class="section-title" data-i18n="pricing.title">Plans &amp; pricing</h2>
-      <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library.</p>
-
-      <div class="currency-switch" role="group" aria-label="Currency">
-        <span class="currency-switch-label" data-i18n="pricing.currency.switch_label">Currency</span>
-        <button type="button" class="currency-switch-btn" data-currency="eur" aria-label="EUR">EUR</button>
-        <button type="button" class="currency-switch-btn" data-currency="usd" aria-label="USD">USD</button>
-      </div>
-
-      <div id="trial" class="pricing-license">
-        <div class="pricing-license-head">
-          <span class="pricing-license-icon" aria-hidden="true">🔑</span>
-          <h3 data-i18n="pricing.license.title">How to get your trial license</h3>
-        </div>
-        <p class="pricing-license-cap" data-i18n="pricing.license.cap"><strong>Trial:</strong> 50 videos · 500 points · 30 days</p>
-        <ol class="license-steps">
-          <li>
-            <span class="license-step-num">1</span>
-            <p data-i18n="pricing.license.step1">Open the <a href="#" data-open-form="trial">trial request form</a> first. We need that before we unlock the installer download below.</p>
-          </li>
-          <li>
-            <span class="license-step-num">2</span>
-            <p data-i18n="pricing.license.step2">Tell us your <strong>operating system</strong> and the <strong>plan</strong> you want to try. We email back your 30-day trial license within 2 business days, and then we unlock the installer download. <strong>No hardware ID needed for the trial.</strong></p>
-          </li>
-        </ol>
-        <p class="license-notes" data-i18n="pricing.license.notes">The trial runs for 30 days and the cap above is shared across all plans. When you're ready to subscribe, see below — paid plans are tied to your machine's hardware ID for security.</p>
-      </div>
-
+    <div class="container pricing-layout">
       <div id="download" class="download-card pricing-download">
         <h3 data-i18n="download.title">Download AccuVideo</h3>
         <p data-i18n="download.body">Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.</p>
-        <p class="download-trial-note" data-i18n="download.trial_note">📧 Before downloading, <a href="#" data-open-form="trial">request your trial license</a> — we unlock the installer right after the form is sent.</p>
+        <p class="download-trial-note" data-i18n="download.trial_note">📧 Before downloading, we\'ll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>, then we send your trial license and start the download of the installer.</p>
         <div class="download-matrix">
           <div class="download-row">
             <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
@@ -366,10 +338,12 @@
           </div>
         </div>
         <p class="download-subnote"><a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest" data-i18n="download.subnote_link">View all release files</a><span data-i18n="download.subnote_suffix"> — changelog, hashes, older versions.</span></p>
-        <p class="download-gpu" data-i18n="download.gpu_note">🟢 <strong>Want NVIDIA CUDA acceleration?</strong> <strong>Basic</strong> ships with CUDA support built in — if a compatible GPU is detected, the app offers to enable GPU mode and downloads a bundled DLL pack on first use. <strong>Pro CUDA</strong> is a separate <strong>.zip (&gt;2 GB)</strong> hosted externally because of GitHub's 2 GB asset limit — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip" download><strong>download AccuVideoPro_GPU.zip</strong></a> (SHA-256 published in the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">GitHub release notes</a>).</p>
+        <p class="download-gpu" data-i18n="download.gpu_note">🟢 <strong>Want NVIDIA CUDA acceleration?</strong> <strong>Basic</strong> ships with CUDA support built in — if a compatible GPU is detected, the app offers to enable GPU mode and downloads a bundled DLL pack on first use. <strong>Pro CUDA</strong> is a separate <strong>.zip (&gt;2 GB)</strong> hosted externally because of GitHub's 2 GB asset limit — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip" data-requires-trial="true" download><strong>download AccuVideoPro_GPU.zip</strong></a> (SHA-256 published in the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">GitHub release notes</a>).</p>
         <p class="download-note" data-i18n="download.note">Need a Basic build for Intel macOS, an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.</p>
       </div>
 
+      <h2 class="section-title" data-i18n="pricing.title">Plans &amp; pricing</h2>
+      <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library.</p>
       <p class="pricing-footnote" data-i18n="pricing.footnote">All plans include the 30-day free trial. Prices in EUR, VAT not included. Annual billing available — contact us for a quote.</p>
 
       <div class="pricing-license pricing-subscribe">
@@ -396,6 +370,14 @@
         <a href="#" class="btn btn-primary pricing-subscribe-cta" data-i18n="pricing.subscribe.cta">Request subscription</a>
       </div>
 
+      <br>
+
+      <div class="currency-switch" role="group" aria-label="Currency">
+        <span class="currency-switch-label" data-i18n="pricing.currency.switch_label">Currency</span>
+        <button type="button" class="currency-switch-btn" data-currency="eur" aria-label="EUR">EUR</button>
+        <button type="button" class="currency-switch-btn" data-currency="usd" aria-label="USD">USD</button>
+      </div>
+
       <h3 class="pricing-group-title" data-i18n="pricing.basic.group">Basic — for individuals, students and families</h3>
       <div class="pricing-grid">
         <article class="price-card" data-edition="basic" data-plan="starter">
@@ -420,7 +402,6 @@
             <li data-pro-only data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
             <li data-pro-only data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
           </ul>
-          <a href="#" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-open-form="trial">Request trial license</a>
           <button type="button" class="price-card-subscribe" data-action="subscribe" data-i18n="subscribe.cta_card">Subscribe to this plan →</button>
         </article>
         <article class="price-card price-card-featured" data-edition="basic" data-plan="personal">
@@ -446,7 +427,6 @@
             <li data-pro-only data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
             <li data-pro-only data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
           </ul>
-          <a href="#" class="btn btn-primary" data-i18n="pricing.cta_trial" data-open-form="trial">Request trial license</a>
           <button type="button" class="price-card-subscribe" data-action="subscribe" data-i18n="subscribe.cta_card">Subscribe to this plan →</button>
         </article>
         <article class="price-card" data-edition="basic" data-plan="freelance">
@@ -471,7 +451,6 @@
             <li data-pro-only data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
             <li data-pro-only data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
           </ul>
-          <a href="#" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-open-form="trial">Request trial license</a>
           <button type="button" class="price-card-subscribe" data-action="subscribe" data-i18n="subscribe.cta_card">Subscribe to this plan →</button>
         </article>
       </div>
@@ -500,7 +479,6 @@
             <li data-pro-only data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
             <li data-pro-only data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
           </ul>
-          <a href="#" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-open-form="trial">Request trial license</a>
           <button type="button" class="price-card-subscribe" data-action="subscribe" data-i18n="subscribe.cta_card">Subscribe to this plan →</button>
         </article>
         <article class="price-card price-card-featured" data-edition="basic" data-plan="academyplus">
@@ -526,7 +504,6 @@
             <li data-pro-only data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
             <li data-pro-only data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
           </ul>
-          <a href="#" class="btn btn-primary" data-i18n="pricing.cta_trial" data-open-form="trial">Request trial license</a>
           <button type="button" class="price-card-subscribe" data-action="subscribe" data-i18n="subscribe.cta_card">Subscribe to this plan →</button>
         </article>
         <article class="price-card" data-edition="basic" data-plan="enterprise">
@@ -551,7 +528,6 @@
             <li data-pro-only data-i18n="pricing.pro.feat2">AccuVideoIngest CLI · scheduled batches</li>
             <li data-pro-only data-i18n="pricing.pro.feat3">Multi-client LAN streaming</li>
           </ul>
-          <a href="#" class="btn btn-ghost" data-i18n="pricing.cta_trial" data-open-form="trial">Request trial license</a>
           <button type="button" class="price-card-subscribe" data-action="subscribe" data-i18n="subscribe.cta_card">Subscribe to this plan →</button>
         </article>
       </div>
@@ -601,8 +577,9 @@
   <div class="contact-modal-backdrop" data-close></div>
   <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
-    <h3 id="contact-modal-title" data-i18n="contact.title">Request your trial license</h3>
+    <h3 id="contact-modal-title" data-i18n="contact.title">Download access</h3>
     <p class="contact-modal-sub" data-i18n="contact.sub">We'll email it back within 2 business days.</p>
+    <p class="contact-modal-hint" data-i18n="contact.download_hint">Your download will start right after you submit this form.</p>
     <form id="contact-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo trial license request">
@@ -745,7 +722,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.js?v=16"></script>
+<script defer src="assets/js/main.min.js?v=16"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
