@@ -637,7 +637,7 @@
       'req.rec.net': 'Red: conexión estable para el DB vectorial gestionado',
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
 
-      'contact.title': 'Acceso de descarga',
+      'contact.title': 'Solicita tu licencia trial',
       'contact.sub': 'La recibirás en breve por email.',
       'contact.download_hint': 'La descarga se iniciará justo después de enviar este formulario.',
       'contact.field.email': 'Email',
