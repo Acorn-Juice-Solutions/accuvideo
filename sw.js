@@ -9,8 +9,8 @@ const PRECACHE_URLS = [
   '/assets/img/AccuVideo_Logo.png',
   '/assets/img/favicon.ico',
   '/assets/videos/demo-poster.jpg',
-  '/assets/videos/AccuVideo_Horizontal_cover.svg',
-  '/assets/videos/AccuVideo_Horizontal_cover_en.svg'
+  '/assets/videos/AccuVideo_Horizontal_cover.png',
+  '/assets/videos/AccuVideo_Horizontal_cover_en.png'
 ];
 
 self.addEventListener('install', event => {

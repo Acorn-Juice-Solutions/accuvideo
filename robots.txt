@@ -3,4 +3,4 @@ Allow: /
 Allow: /assets/videos/
 Allow: /assets/img/
 
-Sitemap: https://accuvideo.acornjuice.com/sitemap_v4.xml
+Sitemap: https://accuvideo.acornjuice.com/sitemap_v5.xml
