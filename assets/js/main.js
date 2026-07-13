@@ -279,7 +279,7 @@
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
-      'download.trial_note': '📧 Before downloading, we\'ll only ask for your <strong>email</strong>. The trial plan, edition and operating system are filled in automatically from the installer you choose.',
+      'download.trial_note': '📧 Before downloading, we\'ll only ask for your <strong>email</strong>. Please review it carefully.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -614,7 +614,7 @@
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows y macOS (Apple Silicon) disponibles ya. Los builds de macOS están temporalmente sin firmar mientras finalizamos el alta del Apple Developer ID — en el primer arranque, haz clic derecho en el .pkg y elige <strong>Abrir</strong> para saltarte Gatekeeper. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
-      'download.trial_note': '📧 Antes de descargar, solo te pediremos tu <strong>email</strong>; el plan trial, la edición y el sistema operativo se rellenan automáticamente según el instalador que elijas.',
+      'download.trial_note': '📧 Antes de descargar, solo te pediremos tu <strong>email</strong>; Asegúrate de que sea correcto.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',

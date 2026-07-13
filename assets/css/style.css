@@ -1637,8 +1637,7 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 .contact-form input,
 .contact-form select,
-.contact-form textarea,
-.form-static-text {
+.contact-form textarea {
   background: var(--navy-700);
   color: var(--text);
   border: 1px solid var(--line-strong);
@@ -1649,8 +1648,13 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   width: 100%;
 }
 .form-static-text {
-  display: inline-flex;
-  align-items: center;
+  display: block;
+  width: 100%;
+  padding: 2px 0 0;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.45;
 }
 .contact-form textarea { resize: vertical; min-height: 70px; }
 .contact-form input:focus,
@@ -1692,23 +1696,32 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   margin-top: 2px;
 }
 .price-card-subscribe {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  margin-top: 10px;
-  padding: 6px 4px;
-  background: transparent;
-  border: none;
-  color: var(--text-dim);
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: var(--cyan);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #06212A;
   font: inherit;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 600;
   text-align: center;
   cursor: pointer;
   text-decoration: none;
+  transition: transform 0.06s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .price-card-subscribe:hover {
-  color: var(--cyan);
-  text-decoration: underline;
+  background: #6ee7f3;
+  color: #06212A;
 }
+.price-card-subscribe:active { transform: translateY(1px); }
+
+:root[data-theme="light"] .price-card-subscribe { color: #ffffff; }
+:root[data-theme="light"] .price-card-subscribe:hover { background: #3060c8; color: #ffffff; }
 
 /* ---------- Thanks page ---------- */
 
