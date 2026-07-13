@@ -266,7 +266,7 @@
       'pricing.currency.switch_label': 'Currency',
       'pricing.license.title': 'How to get your trial license',
       'pricing.license.cap': '<strong>Trial:</strong> 50 videos · 500 points · 30 days · Basic edition by default (Pro on request)',
-      'pricing.license.step1': 'Before we unlock the installer download, we\'ll ask for your <strong>email</strong>, the <strong>edition</strong> you want, and your <strong>operating system</strong>.',
+      'pricing.license.step1': 'Before we unlock the installer download, we\'ll only ask for your <strong>email</strong>. The trial plan, edition and operating system are filled in automatically from the download you choose.',
       'pricing.license.step2': 'Once you send that request, we email your 30-day trial license and start the installer download. <strong>No hardware ID needed for the trial.</strong>',
       'pricing.license.notes': 'The trial runs for 30 days and the cap above is shared across all plans. When you\'re ready to subscribe, see below — paid plans are tied to your machine\'s hardware ID for security.',
       'pricing.subscribe.title': 'Ready to subscribe to a plan?',
@@ -279,7 +279,7 @@
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
-      'download.trial_note': '📧 Before downloading, we\'ll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>, then we send your trial license and unlock the installer.',
+      'download.trial_note': '📧 Before downloading, we\'ll only ask for your <strong>email</strong>. The trial plan, edition and operating system are filled in automatically from the installer you choose.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -314,7 +314,12 @@
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edition',
       'contact.field.os': 'Operating system',
-      'contact.field.notes': 'Notes',
+      'contact.value.plan_trial': 'Trial',
+      'contact.value.edition_basic': 'Basic',
+      'contact.value.edition_pro': 'Pro',
+      'contact.value.os_windows': 'Windows',
+      'contact.value.os_macos': 'macOS Apple Silicon',
+      'contact.value.os_other': 'Other',
       'contact.submit': 'Send request',
       'contact.status.sending': 'Sending…',
       'contact.status.success': 'Request sent! We\'ll email you back within 2 business days.',
@@ -596,7 +601,7 @@
       'pricing.currency.switch_label': 'Divisa',
       'pricing.license.title': 'Cómo conseguir tu licencia trial',
       'pricing.license.cap': '<strong>Trial:</strong> 50 vídeos · 500 puntos · 30 días · edición Basic por defecto (Pro a petición)',
-      'pricing.license.step1': 'Antes de desbloquear la descarga del instalador, te pediremos tu <strong>email</strong>, la <strong>edición</strong> que quieres y tu <strong>sistema operativo</strong>.',
+      'pricing.license.step1': 'Antes de desbloquear la descarga del instalador, solo te pediremos tu <strong>email</strong>. El plan trial, la edición y el sistema operativo se rellenan automáticamente según la descarga que elijas.',
       'pricing.license.step2': 'En cuanto envíes la solicitud, te mandamos por email tu licencia trial de 30 días y arrancamos la descarga del instalador. <strong>No hace falta hardware ID para la trial.</strong>',
       'pricing.license.notes': 'La trial dura 30 días y el cap de arriba se aplica a todos los planes. Cuando quieras suscribirte, mira más abajo — los planes de pago van ligados al hardware ID de tu equipo por seguridad.',
       'pricing.subscribe.title': '¿Listo para suscribirte a un plan?',
@@ -609,7 +614,7 @@
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows y macOS (Apple Silicon) disponibles ya. Los builds de macOS están temporalmente sin firmar mientras finalizamos el alta del Apple Developer ID — en el primer arranque, haz clic derecho en el .pkg y elige <strong>Abrir</strong> para saltarte Gatekeeper. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
-      'download.trial_note': '📧 Antes de descargar, te pediremos tu <strong>email</strong>, <strong>edición</strong> y <strong>sistema operativo</strong>; después te enviamos la licencia trial y comenzará la descarga del instalador.',
+      'download.trial_note': '📧 Antes de descargar, solo te pediremos tu <strong>email</strong>; el plan trial, la edición y el sistema operativo se rellenan automáticamente según el instalador que elijas.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -644,7 +649,12 @@
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edición',
       'contact.field.os': 'Sistema operativo',
-      'contact.field.notes': 'Notas',
+      'contact.value.plan_trial': 'Trial',
+      'contact.value.edition_basic': 'Basic',
+      'contact.value.edition_pro': 'Pro',
+      'contact.value.os_windows': 'Windows',
+      'contact.value.os_macos': 'macOS Apple Silicon',
+      'contact.value.os_other': 'Otro',
       'contact.submit': 'Enviar solicitud',
       'contact.status.sending': 'Enviando…',
       'contact.status.success': '¡Solicitud enviada! Te respondemos por email en hasta 2 días laborables.',
@@ -999,11 +1009,25 @@
     }
     const lowerName = fileName.toLowerCase();
     const extension = lowerName.includes('.') ? lowerName.split('.').pop() : '';
+    const isWindowsZip = extension === 'zip' && /gpu|windows|\.exe|\.msi/i.test(fileName);
     return {
       fileName,
       fileExtension: extension,
       edition: /pro/i.test(fileName) ? 'pro' : 'basic',
-      os: extension === 'msi' ? 'windows' : (extension === 'pkg' ? 'macos' : 'other'),
+      os: extension === 'msi' || isWindowsZip ? 'windows' : (extension === 'pkg' ? 'macos' : 'other'),
+    };
+  }
+
+  function getTrialDisplayValues(edition, os) {
+    return {
+      editionValue: edition === 'pro' ? 'Pro' : 'Basic',
+      editionLabel: tt(edition === 'pro' ? 'contact.value.edition_pro' : 'contact.value.edition_basic'),
+      osValue: os === 'macos' ? 'Mac' : (os === 'windows' ? 'Windows' : 'Other'),
+      osLabel: tt(
+        os === 'macos'
+          ? 'contact.value.os_macos'
+          : (os === 'windows' ? 'contact.value.os_windows' : 'contact.value.os_other')
+      ),
     };
   }
 
@@ -1030,22 +1054,32 @@
   function openContactModal(plan, edition, downloadUrl) {
     const modal = document.getElementById('contact-modal');
     if (!modal) return;
+    const info = getReleaseDownloadInfo(downloadUrl);
+    const form = modal.querySelector('#contact-form');
+    const effectiveEdition = info?.edition || edition || 'basic';
+    const effectiveOs = info?.os || 'windows';
+    const values = getTrialDisplayValues(effectiveEdition, effectiveOs);
     modal.dataset.pendingDownload = downloadUrl || '';
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     if (typeof gtag === 'function') {
-      gtag('event', 'form_open', { form_name: 'trial', plan: plan || '', edition: edition || '' });
+      gtag('event', 'form_open', { form_name: 'trial', plan: 'trial', edition: effectiveEdition || '' });
     }
-    if (plan) {
-      const planSelect = modal.querySelector('select[name="plan"]');
-      if (planSelect) {
-        const match = Array.from(planSelect.options).find((o) => o.value === plan || o.textContent.trim() === plan);
-        if (match) planSelect.value = match.value || match.textContent.trim();
-      }
+    if (form) {
+      const planInput = form.querySelector('input[name="plan"]');
+      const editionInput = form.querySelector('input[name="edition"]');
+      const osInput = form.querySelector('input[name="os"]');
+      if (planInput) planInput.value = 'trial';
+      if (editionInput) editionInput.value = values.editionValue;
+      if (osInput) osInput.value = values.osValue;
     }
-    const editionSelect = modal.querySelector('select[name="edition"]');
-    if (editionSelect) editionSelect.value = edition === 'pro' ? 'Pro' : 'Basic';
-    const firstField = modal.querySelector('input, select, textarea');
+    const planSummary = modal.querySelector('[data-contact-summary="plan"]');
+    const editionSummary = modal.querySelector('[data-contact-summary="edition"]');
+    const osSummary = modal.querySelector('[data-contact-summary="os"]');
+    if (planSummary) planSummary.textContent = tt('contact.value.plan_trial');
+    if (editionSummary) editionSummary.textContent = values.editionLabel;
+    if (osSummary) osSummary.textContent = values.osLabel;
+    const firstField = modal.querySelector('input[name="email"]');
     if (firstField) setTimeout(() => firstField.focus(), 50);
   }
 

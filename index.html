@@ -49,7 +49,7 @@
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css?v=10">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=16">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=17">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -583,33 +583,25 @@
     <form id="contact-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo trial license request">
+      <input type="hidden" name="plan" value="trial">
+      <input type="hidden" name="edition" value="Basic">
+      <input type="hidden" name="os" value="Windows">
       <p class="form-service-banner" data-form-service-banner role="alert" hidden data-i18n="form.service.banner">The form service is temporarily unavailable. Please try again in a few minutes.</p>
       <label>
         <span data-i18n="contact.field.email">Email</span>
         <input type="email" name="email" required autocomplete="email">
       </label>
       <label>
-        <span>Plan</span>
-        <span class="form-static-text">Trial</span>
-        <input type="hidden" name="plan" value="trial">
+        <span data-i18n="contact.field.plan">Plan</span>
+        <span class="form-static-text" data-contact-summary="plan" data-i18n="contact.value.plan_trial">Trial</span>
       </label>
       <label>
         <span data-i18n="contact.field.edition">Edition</span>
-        <select name="edition" required>
-          <option value="Basic" selected>Basic</option>
-          <option value="Pro">Pro</option>
-        </select>
+        <span class="form-static-text" data-contact-summary="edition" data-i18n="contact.value.edition_basic">Basic</span>
       </label>
       <label>
         <span data-i18n="contact.field.os">Operating system</span>
-        <select name="os" required>
-          <option value="Windows" selected>Windows</option>
-          <option value="Mac">Mac</option>
-        </select>
-      </label>
-      <label>
-        <span data-i18n="contact.field.notes">Notes</span>
-        <textarea name="message" rows="3"></textarea>
+        <span class="form-static-text" data-contact-summary="os" data-i18n="contact.value.os_windows">Windows</span>
       </label>
       <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Send request</button>
       <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
@@ -722,7 +714,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=16"></script>
+<script defer src="assets/js/main.min.js?v=17"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
