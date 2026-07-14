@@ -1132,16 +1132,20 @@
 
     const form = document.getElementById('contact-form');
     const status = document.getElementById('contact-form-status');
+    const submitButton = form ? form.querySelector('button[type="submit"]') : null;
     if (!form || !status) return;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (form.dataset.submitting === 'true') return;
       if (!form.checkValidity()) {
         status.textContent = tt('contact.status.required');
         status.className = 'contact-form-status error';
         form.reportValidity();
         return;
       }
+      form.dataset.submitting = 'true';
+      if (submitButton) submitButton.disabled = true;
       const data = new FormData(form);
       const payload = {
         apiKey: STATICFORMS_API_KEY,
@@ -1187,6 +1191,9 @@
           ? tt('contact.status.network')
           : tt('contact.status.unavailable');
         status.className = 'contact-form-status error';
+      } finally {
+        delete form.dataset.submitting;
+        if (submitButton) submitButton.disabled = false;
       }
     });
   }
