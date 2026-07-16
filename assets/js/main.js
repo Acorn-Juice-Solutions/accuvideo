@@ -322,6 +322,7 @@
       'contact.value.os_other': 'Other',
       'contact.submit': 'Send request',
       'contact.status.sending': 'Sending…',
+      'contact.status.downloading': 'Downloading…',
       'contact.status.success': 'Request sent! We\'ll email you back within 2 business days.',
       'contact.status.error': 'Error sending. Please try again in a moment.',
       'contact.status.network': 'Network error. Please check your connection and try again.',
@@ -374,7 +375,7 @@
       'thanks.meta_title': 'Thanks — AccuVideo',
       'thanks.title': 'Thanks! We got your request.',
       'thanks.title_subscribe': 'Payment confirmed — welcome to AccuVideo!',
-      'thanks.body_trial': 'We\'ll review your request and your license will be sent to your email. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
+      'thanks.body_trial': 'Your download should have started. We\'ll email your 30-day trial license within the next few hours.',
       'thanks.body_contactus': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
       'thanks.body_subscribe': 'Your subscription is active. Your license will be sent to your email — tied to the hardware ID you provided. Stripe has also sent you a payment receipt; if you don\'t see it, check your spam folder.',
       'thanks.body_generic': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation email — if you don\'t see it, check your spam folder.',
@@ -657,6 +658,7 @@
       'contact.value.os_other': 'Otro',
       'contact.submit': 'Enviar solicitud',
       'contact.status.sending': 'Enviando…',
+      'contact.status.downloading': 'Descargando…',
       'contact.status.success': '¡Solicitud enviada! Te respondemos por email en hasta 2 días laborables.',
       'contact.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
       'contact.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
@@ -709,7 +711,7 @@
       'thanks.meta_title': 'Gracias — AccuVideo',
       'thanks.title': '¡Gracias! Hemos recibido tu petición.',
       'thanks.title_subscribe': 'Pago confirmado — ¡bienvenido a AccuVideo!',
-      'thanks.body_trial': 'Revisaremos tu solicitud y tu licencia será enviada a tu correo. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_trial': 'La descarga debería haber comenzado. Te enviaremos tu licencia trial de 30 días en las próximas horas.',
       'thanks.body_contactus': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
       'thanks.body_subscribe': 'Tu suscripción está activa. Tu licencia será enviada a tu correo — vinculada al hardware ID que indicaste. Stripe también te ha enviado un recibo de pago; si no lo ves, revisa la carpeta de spam.',
       'thanks.body_generic': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
@@ -1091,6 +1093,14 @@
     document.body.style.overflow = '';
     const status = document.getElementById('contact-form-status');
     if (status) { status.textContent = ''; status.className = 'contact-form-status'; }
+    const form = document.getElementById('contact-form');
+    if (form) {
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        const arrow = submitButton.querySelector('.btn-download-arrow');
+        if (arrow) arrow.remove();
+      }
+    }
   }
 
   function bindContactModal() {
@@ -1145,7 +1155,14 @@
         return;
       }
       form.dataset.submitting = 'true';
-      if (submitButton) submitButton.disabled = true;
+      if (submitButton) {
+        submitButton.disabled = true;
+        const arrow = document.createElement('span');
+        arrow.className = 'btn-download-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '↓';
+        submitButton.appendChild(arrow);
+      }
       const data = new FormData(form);
       const payload = {
         apiKey: STATICFORMS_API_KEY,
@@ -1156,7 +1173,7 @@
         os: data.get('os') || '',
         message: data.get('message') || '',
       };
-      status.textContent = tt('contact.status.sending');
+      status.textContent = '';
       status.className = 'contact-form-status';
       try {
         // Send as urlencoded — Static Forms accepts JSON, urlencoded and multipart;
@@ -1180,7 +1197,11 @@
         form.reset();
         if (pendingDownload) {
           trackReleaseDownload(pendingDownload);
+          status.textContent = tt('contact.status.downloading');
+          status.className = 'contact-form-status success';
           window.location.assign(pendingDownload);
+          await new Promise((resolve) => setTimeout(resolve, 5000));
+          window.location.assign('thanks.html?form=trial');
           return;
         }
         window.location.assign('thanks.html?form=trial');
@@ -1193,7 +1214,11 @@
         status.className = 'contact-form-status error';
       } finally {
         delete form.dataset.submitting;
-        if (submitButton) submitButton.disabled = false;
+        if (submitButton) {
+          submitButton.disabled = false;
+          const arrow = submitButton.querySelector('.btn-download-arrow');
+          if (arrow) arrow.remove();
+        }
       }
     });
   }
