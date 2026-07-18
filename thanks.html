@@ -39,11 +39,17 @@
 <main class="thanks-main">
   <section class="thanks-section">
     <div class="container">
-      <div class="thanks-card">
-        <div class="thanks-icon" aria-hidden="true">✓</div>
-        <h1 data-i18n="thanks.title">Thanks! We got your request.</h1>
-        <p id="thanks-body" data-i18n="thanks.body_generic">We'll get back to you within 2 business days. We've also sent you a confirmation email — if you don't see it, check your spam folder.</p>
-        <a href="index.html" class="btn btn-primary" data-i18n="thanks.cta">Back to home</a>
+      <div class="thanks-layout">
+        <div class="thanks-card">
+          <div class="thanks-icon" aria-hidden="true">✓</div>
+          <h1 data-i18n="thanks.title">Thanks! We got your request.</h1>
+          <p id="thanks-body" data-i18n="thanks.body_generic">We'll get back to you within 2 business days. We've also sent you a confirmation email — if you don't see it, check your spam folder.</p>
+          <a href="index.html" class="btn btn-primary" data-i18n="thanks.cta">Back to home</a>
+        </div>
+        <aside id="thanks-download-progress" class="thanks-download-progress" hidden>
+          <span class="download-progress-en">Downloading is in progress,<br>check your downloads folder.</span>
+          <span class="download-progress-es">La descarga está en progreso;<br>revisa tu carpeta de descargas.</span>
+        </aside>
       </div>
     </div>
   </section>
@@ -72,6 +78,7 @@
     const form = params.get('form');
     const body = document.getElementById('thanks-body');
     const title = document.querySelector('.thanks-card h1');
+    const downloadProgress = document.getElementById('thanks-download-progress');
     const bodyMap = {
       trial: 'thanks.body_trial',
       contactus: 'thanks.body_contactus',
@@ -80,6 +87,7 @@
     const titleMap = { subscribe: 'thanks.title_subscribe' };
     if (body) body.setAttribute('data-i18n', bodyMap[form] || 'thanks.body_generic');
     if (title && titleMap[form]) title.setAttribute('data-i18n', titleMap[form]);
+    if (downloadProgress) downloadProgress.hidden = form !== 'trial';
     if (form && typeof gtag === 'function') {
       gtag('event', 'form_submit', { form_name: form });
     }
