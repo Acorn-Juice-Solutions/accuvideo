@@ -8,8 +8,8 @@
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://accuvideo.acornjuice.com/privacy.html">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=23">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=28">
+  <link rel="stylesheet" href="assets/css/style.css?v=24">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=29">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -17,12 +17,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
-    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true, client_storage: 'none' });
+    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true });
   </script>
 </head>
 <body>
@@ -133,73 +133,34 @@
 </footer>
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="privacy.cookie.banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
+  <p data-l10n-key="privacy.cookie.banner">Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
   <div class="cookie-actions">
     <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="privacy.cookie.accept">Entendido</button>
   </div>
 </div>
 
-<script defer src="assets/js/main.min.js?v=28"></script>
+<script defer src="assets/js/main.min.js?v=29"></script>
 <script>
   (function () {
-    const KEY = 'accuvideo-cookie-consent';
     const banner = document.getElementById('cookie-banner');
 
-    function showBanner() {
-      if (!banner) return;
-      banner.hidden = false;
-      banner.style.display = 'flex';
-      banner.removeAttribute('aria-hidden');
-    }
-
-    function applyConsent(state) {
+    function applyConsent() {
       if (typeof gtag !== 'function') return;
-      const granted = state === 'accepted';
       gtag('consent', 'update', {
-        analytics_storage: granted ? 'granted' : 'denied',
+        analytics_storage: 'granted',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
       });
     }
 
-    function setDecision(state) {
-      try { localStorage.setItem(KEY, state); } catch (_) {}
-      applyConsent(state);
+    document.addEventListener('DOMContentLoaded', function () {
+      applyConsent();
       if (banner) {
         banner.hidden = true;
         banner.style.display = 'none';
         banner.setAttribute('aria-hidden', 'true');
       }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const stored = (function () {
-        try { return localStorage.getItem(KEY); } catch (_) { return null; }
-      })();
-      if (!banner) return;
-
-      if (stored === 'accepted' || stored === 'rejected') {
-        applyConsent(stored);
-        banner.hidden = true;
-        banner.style.display = 'none';
-        banner.setAttribute('aria-hidden', 'true');
-      } else {
-        applyConsent('rejected');
-        showBanner();
-      }
-
-      const acceptBtn = document.getElementById('cookie-accept');
-      const rejectBtn = document.getElementById('cookie-reject');
-      if (acceptBtn) acceptBtn.addEventListener('click', function () { setDecision('accepted'); });
-      if (rejectBtn) rejectBtn.addEventListener('click', function () { setDecision('rejected'); });
-
-      document.addEventListener('click', function (e) {
-        const trigger = e.target.closest('[data-cookie-preferences]');
-        if (!trigger) return;
-        e.preventDefault();
-        showBanner();
-      });
     });
   })();
 
@@ -235,13 +196,13 @@
         'privacy.erasure.p1': 'Puedes pedir el borrado de tus datos personales (email, nombre y hardware ID, cuando exista) mediante solicitud en el formulario de contacto de la web principal.',
         'privacy.erasure.p2': 'Para agilizar la gestión, indica en el mensaje el email asociado y, si aplica, el hardware ID vinculado a tu licencia.',
         'privacy.cookies.title': 'Cookies y analítica',
-        'privacy.cookies.p1': 'Esta web utiliza Google Analytics con IP anonimizada y configuración sin almacenamiento persistente en cliente (client_storage: none).',
+        'privacy.cookies.p1': 'Esta web utiliza Google Analytics con IP anonimizada para medir uso y rendimiento del sitio.',
         'privacy.footer.home': 'Inicio',
         'privacy.footer.privacy': 'Política de privacidad',
         'privacy.footer.cookie_preferences': 'Cambiar preferencias de cookies',
-        'privacy.cookie.banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
+        'privacy.cookie.banner': 'Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
         'privacy.cookie.reject': 'Rechazar',
-        'privacy.cookie.accept': 'Aceptar'
+        'privacy.cookie.accept': 'Entendido'
       },
       en: {
         pageTitle: 'Privacy Policy - AccuVideo',
@@ -273,13 +234,13 @@
         'privacy.erasure.p1': 'You can request deletion of your personal data (email, name, and hardware ID when available) through the contact form on the main website.',
         'privacy.erasure.p2': 'To speed up handling, include the related email and, if applicable, the hardware ID linked to your license.',
         'privacy.cookies.title': 'Cookies and Analytics',
-        'privacy.cookies.p1': 'This website uses Google Analytics with anonymized IP and no persistent client storage (client_storage: none).',
+        'privacy.cookies.p1': 'This website uses Google Analytics with anonymized IP to measure website usage and performance.',
         'privacy.footer.home': 'Home',
         'privacy.footer.privacy': 'Privacy policy',
         'privacy.footer.cookie_preferences': 'Change cookie preferences',
-        'privacy.cookie.banner': 'We use Google Analytics in no-storage mode to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'privacy.cookie.banner': 'Google Analytics is always enabled to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
         'privacy.cookie.reject': 'Reject',
-        'privacy.cookie.accept': 'Accept'
+        'privacy.cookie.accept': 'Understood'
       }
     };
 

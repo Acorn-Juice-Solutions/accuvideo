@@ -48,8 +48,8 @@
   </script>
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=23">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=28">
+  <link rel="stylesheet" href="assets/css/style.css?v=24">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=29">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -57,12 +57,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
     });
-    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true, client_storage: 'none' });
+    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true });
   </script>
 </head>
 <body>
@@ -744,71 +744,34 @@
 </footer>
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
+  <p data-l10n-key="legal.cookie_banner">Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
   <div class="cookie-actions">
     <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Entendido</button>
   </div>
 </div>
 
-<script defer src="assets/js/main.min.js?v=28"></script>
+<script defer src="assets/js/main.min.js?v=29"></script>
 <script>
   (function () {
-    const KEY = 'accuvideo-cookie-consent';
     const banner = document.getElementById('cookie-banner');
 
-    function showBanner() {
-      if (!banner) return;
-      banner.hidden = false;
-      banner.style.display = 'flex';
-      banner.removeAttribute('aria-hidden');
-    }
-
-    function applyConsent(state) {
+    function applyConsent() {
       if (typeof gtag !== 'function') return;
-      const granted = state === 'accepted';
       gtag('consent', 'update', {
-        analytics_storage: granted ? 'granted' : 'denied',
+        analytics_storage: 'granted',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
       });
     }
 
-    function setDecision(state) {
-      try { localStorage.setItem(KEY, state); } catch (_) {}
-      applyConsent(state);
+    document.addEventListener('DOMContentLoaded', function () {
+      applyConsent();
       if (banner) {
         banner.hidden = true;
         banner.style.display = 'none';
         banner.setAttribute('aria-hidden', 'true');
       }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const stored = (function () {
-        try { return localStorage.getItem(KEY); } catch (_) { return null; }
-      })();
-      if (!banner) return;
-
-      if (stored === 'accepted' || stored === 'rejected') {
-        applyConsent(stored);
-        banner.hidden = true;
-        banner.style.display = 'none';
-        banner.setAttribute('aria-hidden', 'true');
-      } else {
-        applyConsent('rejected');
-        showBanner();
-      }
-
-      const acceptBtn = document.getElementById('cookie-accept');
-      if (acceptBtn) acceptBtn.addEventListener('click', function () { setDecision('accepted'); });
-
-      document.addEventListener('click', function (e) {
-        const trigger = e.target.closest('[data-cookie-preferences]');
-        if (!trigger) return;
-        e.preventDefault();
-        showBanner();
-      });
     });
   })();
 
@@ -820,7 +783,7 @@
         'legal.privacy_link': 'Ver Política de Privacidad completa',
         'legal.form_consent': 'Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.',
         'legal.privacy_nav': 'Política de privacidad',
-        'legal.cookie_banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
+        'legal.cookie_banner': 'Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
         'legal.cookie_accept': 'Entendido'
       },
       en: {
@@ -829,7 +792,7 @@
         'legal.privacy_link': 'View Full Privacy Policy',
         'legal.form_consent': 'I agree to the sending and processing of my data (email and, when applicable, name and/or hardware ID) to handle my request. <a href="privacy.html" target="_blank" rel="noopener">View privacy policy</a>.',
         'legal.privacy_nav': 'Privacy policy',
-        'legal.cookie_banner': 'We use Google Analytics in no-storage mode to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'legal.cookie_banner': 'Google Analytics is always enabled to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
         'legal.cookie_accept': 'Understood'
       }
     };

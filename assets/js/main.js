@@ -827,7 +827,7 @@
 
     const heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
-      const desired = `assets/videos/demo-${lang}.mp4?v=5`;
+      const desired = `assets/videos/demo-${lang}.mp4`;
       if (heroVideo.getAttribute('src') !== desired) {
         heroVideo.setAttribute('src', desired);
         heroVideo.load();
