@@ -28,3 +28,4 @@
 ## Additional references
 - [Sitemap](https://accuvideo.acornjuice.com/sitemap.xml): Full XML sitemap of all indexed pages.
 - [Global llms.txt](https://accuvideo.acornjuice.com/llms.txt): Global index across all AccuVideo content.
+- [Privacy policy](https://accuvideo.acornjuice.com/privacy.html): Data processing, cookies, and contact rights.

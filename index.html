@@ -48,14 +48,20 @@
   </script>
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=20">
+  <link rel="stylesheet" href="assets/css/style.css?v=23">
   <link rel="preload" as="script" href="assets/js/main.min.js?v=28">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
     gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true, client_storage: 'none' });
   </script>
 </head>
@@ -312,6 +318,11 @@
           <p data-i18n="privacy.isolation.body"><strong>Every user gets a fully isolated collection</strong>, keyed to their license. No other AccuVideo user can query your library, see your snippets, or even know that your collection exists. Multi-tenant by design, single-tenant in practice.</p>
         </article>
       </div>
+      <article class="privacy-policy-standard" aria-labelledby="privacy-policy-title">
+        <h3 id="privacy-policy-title" data-l10n-key="legal.privacy_title">Política de Privacidad</h3>
+        <p data-l10n-key="legal.privacy_summary">Consulta la política completa de privacidad y tratamiento de datos en la página dedicada, incluyendo desistimiento de 14 días y derecho de borrado de información mediante formulario de contacto.</p>
+        <p><a href="privacy.html" data-l10n-key="legal.privacy_link">Ver Política de Privacidad completa</a></p>
+      </article>
     </div>
   </section>
 
@@ -603,6 +614,10 @@
         <span data-i18n="contact.field.os">Operating system</span>
         <span class="form-static-text" data-contact-summary="os" data-i18n="contact.value.os_windows">Windows</span>
       </label>
+      <label class="form-consent">
+        <input type="checkbox" name="data_consent" value="yes" required checked>
+        <span data-l10n-key="legal.form_consent">Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.</span>
+      </label>
       <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Send request</button>
       <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
     </form>
@@ -653,6 +668,10 @@
           <option value="annual" data-i18n="subscribe.billing.annual">Annual</option>
         </select>
       </label>
+      <label class="form-consent">
+        <input type="checkbox" name="data_consent" value="yes" required checked>
+        <span data-l10n-key="legal.form_consent">Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.</span>
+      </label>
       <button type="submit" class="btn btn-primary" data-i18n="subscribe.submit">Continue to payment</button>
       <p class="contact-form-status" id="subscribe-form-status" role="status" aria-live="polite"></p>
       <p class="contact-form-fallback"><span data-i18n="subscribe.fallback">Trouble with payment?</span> <a href="#" data-open-form="contactus" data-form-topic="payment" data-i18n="subscribe.fallback_cta">Contact us</a></p>
@@ -694,6 +713,10 @@
         <span data-i18n="contactus.field.message">Message</span>
         <textarea name="message" rows="5" required></textarea>
       </label>
+      <label class="form-consent">
+        <input type="checkbox" name="data_consent" value="yes" required checked>
+        <span data-l10n-key="legal.form_consent">Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.</span>
+      </label>
       <button type="submit" class="btn btn-primary" data-i18n="contactus.submit">Send message</button>
       <p class="contact-form-status" id="contactus-form-status" role="status" aria-live="polite"></p>
     </form>
@@ -712,12 +735,149 @@
     <div class="footer-links">
       <a href="#" data-open-form="contactus" data-i18n="footer.contact">Contact us</a>
       <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md" data-i18n="footer.docs" data-i18n-href="footer.docs_url">Documentation</a>
+      <a href="privacy.html" data-l10n-key="legal.privacy_nav">Política de privacidad</a>
+      <a href="#" data-cookie-preferences data-l10n-key="legal.cookie_preferences">Cambiar preferencias de cookies</a>
     </div>
+  </div>
+  <div class="container footer-legal" aria-label="Legal information">
+    <p class="footer-legal-line"><span class="legal-chunk">ACORN JUICE SOLUTIONS SL - CIF B71336218</span><span class="legal-sep">·</span><span class="legal-chunk">Calle Bosquecillo, 6, 31191, Beriáin (Navarra)</span><span class="legal-sep">·</span><span class="legal-chunk">Contacto: <a href="mailto:info@acornjuice.com">info@acornjuice.com</a></span></p>
   </div>
 </footer>
 
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm" data-l10n-key="legal.cookie_reject">Rechazar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Aceptar</button>
+  </div>
+</div>
+
 <script defer src="assets/js/main.min.js?v=28"></script>
 <script>
+  (function () {
+    const KEY = 'accuvideo-cookie-consent';
+    const banner = document.getElementById('cookie-banner');
+
+    function showBanner() {
+      if (!banner) return;
+      banner.hidden = false;
+      banner.style.display = 'flex';
+      banner.removeAttribute('aria-hidden');
+    }
+
+    function applyConsent(state) {
+      if (typeof gtag !== 'function') return;
+      const granted = state === 'accepted';
+      gtag('consent', 'update', {
+        analytics_storage: granted ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    }
+
+    function setDecision(state) {
+      try { localStorage.setItem(KEY, state); } catch (_) {}
+      applyConsent(state);
+      if (banner) {
+        banner.hidden = true;
+        banner.style.display = 'none';
+        banner.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const stored = (function () {
+        try { return localStorage.getItem(KEY); } catch (_) { return null; }
+      })();
+      if (!banner) return;
+
+      if (stored === 'accepted' || stored === 'rejected') {
+        applyConsent(stored);
+        banner.hidden = true;
+        banner.style.display = 'none';
+        banner.setAttribute('aria-hidden', 'true');
+      } else {
+        applyConsent('rejected');
+        showBanner();
+      }
+
+      const acceptBtn = document.getElementById('cookie-accept');
+      const rejectBtn = document.getElementById('cookie-reject');
+      if (acceptBtn) acceptBtn.addEventListener('click', function () { setDecision('accepted'); });
+      if (rejectBtn) rejectBtn.addEventListener('click', function () { setDecision('rejected'); });
+
+      document.addEventListener('click', function (e) {
+        const trigger = e.target.closest('[data-cookie-preferences]');
+        if (!trigger) return;
+        e.preventDefault();
+        showBanner();
+      });
+    });
+  })();
+
+  (function () {
+    const legalI18n = {
+      es: {
+        'legal.privacy_title': 'Política de Privacidad',
+        'legal.privacy_summary': 'Consulta la política completa de privacidad y tratamiento de datos en la página dedicada, incluyendo desistimiento de 14 días y derecho de borrado de información mediante formulario de contacto.',
+        'legal.privacy_link': 'Ver Política de Privacidad completa',
+        'legal.form_consent': 'Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.',
+        'legal.privacy_nav': 'Política de privacidad',
+        'legal.cookie_preferences': 'Cambiar preferencias de cookies',
+        'legal.cookie_banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.',
+        'legal.cookie_reject': 'Rechazar',
+        'legal.cookie_accept': 'Aceptar'
+      },
+      en: {
+        'legal.privacy_title': 'Privacy Policy',
+        'legal.privacy_summary': 'See the full privacy and data processing policy on the dedicated page, including the 14-day withdrawal policy and data deletion rights through the contact form.',
+        'legal.privacy_link': 'View Full Privacy Policy',
+        'legal.form_consent': 'I agree to the sending and processing of my data (email and, when applicable, name and/or hardware ID) to handle my request. <a href="privacy.html" target="_blank" rel="noopener">View privacy policy</a>.',
+        'legal.privacy_nav': 'Privacy policy',
+        'legal.cookie_preferences': 'Change cookie preferences',
+        'legal.cookie_banner': 'We use Google Analytics in no-storage mode to measure website usage. You can accept or reject analytics. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'legal.cookie_reject': 'Reject',
+        'legal.cookie_accept': 'Accept'
+      }
+    };
+
+    function applyLegalI18n() {
+      const lang = (document.documentElement.lang || 'en').toLowerCase().startsWith('es') ? 'es' : 'en';
+      const dict = legalI18n[lang];
+      document.querySelectorAll('[data-l10n-key]').forEach(function (el) {
+        const key = el.getAttribute('data-l10n-key');
+        if (!dict[key]) return;
+        el.innerHTML = dict[key];
+      });
+    }
+
+    function bindLangObserver() {
+      const root = document.documentElement;
+      if (!root || typeof MutationObserver === 'undefined') return;
+      const observer = new MutationObserver(function (mutations) {
+        for (const mutation of mutations) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+            applyLegalI18n();
+            break;
+          }
+        }
+      });
+      observer.observe(root, { attributes: true, attributeFilter: ['lang'] });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      applyLegalI18n();
+      setTimeout(applyLegalI18n, 0);
+      bindLangObserver();
+    });
+    document.addEventListener('click', function (e) {
+      const toggle = e.target.closest('#lang-toggle');
+      if (!toggle) return;
+      setTimeout(applyLegalI18n, 0);
+    });
+  })();
+
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
     if (!a) return;
