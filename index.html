@@ -736,7 +736,6 @@
       <a href="#" data-open-form="contactus" data-i18n="footer.contact">Contact us</a>
       <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md" data-i18n="footer.docs" data-i18n-href="footer.docs_url">Documentation</a>
       <a href="privacy.html" data-l10n-key="legal.privacy_nav">Política de privacidad</a>
-      <a href="#" data-cookie-preferences data-l10n-key="legal.cookie_preferences">Cambiar preferencias de cookies</a>
     </div>
   </div>
   <div class="container footer-legal" aria-label="Legal information">
@@ -745,10 +744,9 @@
 </footer>
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
+  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
   <div class="cookie-actions">
-    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm" data-l10n-key="legal.cookie_reject">Rechazar</button>
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Aceptar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Entendido</button>
   </div>
 </div>
 
@@ -803,9 +801,7 @@
       }
 
       const acceptBtn = document.getElementById('cookie-accept');
-      const rejectBtn = document.getElementById('cookie-reject');
       if (acceptBtn) acceptBtn.addEventListener('click', function () { setDecision('accepted'); });
-      if (rejectBtn) rejectBtn.addEventListener('click', function () { setDecision('rejected'); });
 
       document.addEventListener('click', function (e) {
         const trigger = e.target.closest('[data-cookie-preferences]');
@@ -824,10 +820,8 @@
         'legal.privacy_link': 'Ver Política de Privacidad completa',
         'legal.form_consent': 'Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.',
         'legal.privacy_nav': 'Política de privacidad',
-        'legal.cookie_preferences': 'Cambiar preferencias de cookies',
-        'legal.cookie_banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.',
-        'legal.cookie_reject': 'Rechazar',
-        'legal.cookie_accept': 'Aceptar'
+        'legal.cookie_banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
+        'legal.cookie_accept': 'Entendido'
       },
       en: {
         'legal.privacy_title': 'Privacy Policy',
@@ -835,10 +829,8 @@
         'legal.privacy_link': 'View Full Privacy Policy',
         'legal.form_consent': 'I agree to the sending and processing of my data (email and, when applicable, name and/or hardware ID) to handle my request. <a href="privacy.html" target="_blank" rel="noopener">View privacy policy</a>.',
         'legal.privacy_nav': 'Privacy policy',
-        'legal.cookie_preferences': 'Change cookie preferences',
-        'legal.cookie_banner': 'We use Google Analytics in no-storage mode to measure website usage. You can accept or reject analytics. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'legal.cookie_reject': 'Reject',
-        'legal.cookie_accept': 'Accept'
+        'legal.cookie_banner': 'We use Google Analytics in no-storage mode to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'legal.cookie_accept': 'Understood'
       }
     };
 
