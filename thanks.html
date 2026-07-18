@@ -73,7 +73,6 @@
     <div class="footer-links">
       <a href="index.html" data-i18n="footer.docs">Home</a>
       <a href="privacy.html" data-l10n-key="legal.privacy_nav">Política de privacidad</a>
-      <a href="#" data-cookie-preferences data-l10n-key="legal.cookie_preferences">Cambiar preferencias de cookies</a>
     </div>
   </div>
   <div class="container footer-legal" aria-label="Legal information">
@@ -82,10 +81,9 @@
 </footer>
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
+  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
   <div class="cookie-actions">
-    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm" data-l10n-key="legal.cookie_reject">Rechazar</button>
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Aceptar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Entendido</button>
   </div>
 </div>
 
@@ -157,17 +155,13 @@
     const legalI18n = {
       es: {
         'legal.privacy_nav': 'Política de privacidad',
-        'legal.cookie_preferences': 'Cambiar preferencias de cookies',
-        'legal.cookie_banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Puedes aceptar o rechazar analítica. Más info en <a href="privacy.html">Política de privacidad</a>.',
-        'legal.cookie_reject': 'Rechazar',
-        'legal.cookie_accept': 'Aceptar'
+        'legal.cookie_banner': 'Usamos Google Analytics en modo sin almacenamiento para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
+        'legal.cookie_accept': 'Entendido'
       },
       en: {
         'legal.privacy_nav': 'Privacy policy',
-        'legal.cookie_preferences': 'Change cookie preferences',
-        'legal.cookie_banner': 'We use Google Analytics in no-storage mode to measure website usage. You can accept or reject analytics. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'legal.cookie_reject': 'Reject',
-        'legal.cookie_accept': 'Accept'
+        'legal.cookie_banner': 'We use Google Analytics in no-storage mode to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'legal.cookie_accept': 'Understood'
       }
     };
 
