@@ -523,6 +523,15 @@ section { padding: 64px 0; border-bottom: 1px solid var(--line); }
   font-size: 16px;
 }
 
+.pricing .section-title {
+  margin-top: 48px;
+  margin-bottom: 10px;
+}
+
+.pricing .section-sub {
+  margin-bottom: 20px;
+}
+
 /* ---------- Features ---------- */
 
 .feature-grid {
@@ -1209,6 +1218,17 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 .pricing-subscribe-cta {
   margin-top: 16px;
   display: inline-flex;
+}
+
+.pricing-cancel-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--text-mute);
+}
+
+.pricing-cancel-note a {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .license-steps {

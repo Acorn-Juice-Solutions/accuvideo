@@ -48,8 +48,8 @@
   </script>
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=17">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=24">
+  <link rel="stylesheet" href="assets/css/style.css?v=20">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=28">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7"></script>
   <script>
@@ -362,11 +362,12 @@
           </li>
           <li>
             <span class="license-step-num">3</span>
-            <p data-i18n="pricing.subscribe.step3">Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card below). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. Your license activates automatically once payment clears.</p>
+            <p data-i18n="pricing.subscribe.step3">Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card below). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. You will receive a new license that auto-renews until you cancel the subscription.</p>
           </li>
         </ol>
         <p class="license-notes" data-i18n="pricing.subscribe.notes">Each paid license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (15 / 45 / 150); viewers connect to your server and <strong>don't consume their own license</strong>.</p>
         <a href="#" class="btn btn-primary pricing-subscribe-cta" data-i18n="pricing.subscribe.cta">Request subscription</a>
+        <p class="pricing-cancel-note" data-i18n="pricing.subscribe.cancel_note">Want to cancel your subscription? Send your Hardware ID here: <a href="#" data-open-form="contactus" data-form-topic="cancellation">Contact us</a>.</p>
       </div>
 
       <br>
@@ -684,6 +685,8 @@
           <option value="technical" data-i18n="contactus.subject.technical">Technical enquiry</option>
           <option value="commercial" data-i18n="contactus.subject.commercial">Sales enquiry</option>
           <option value="support" data-i18n="contactus.subject.support">Support</option>
+          <option value="cancellation" data-i18n="contactus.subject.cancellation">Cancellation</option>
+          <option value="payment" data-i18n="contactus.subject.payment">Payment</option>
           <option value="other" data-i18n="contactus.subject.other">Other</option>
         </select>
       </label>
@@ -713,7 +716,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=24"></script>
+<script defer src="assets/js/main.min.js?v=28"></script>
 <script>
   document.addEventListener('click', function (e) {
     const a = e.target.closest('a[href*="/releases/latest/download/"]');
