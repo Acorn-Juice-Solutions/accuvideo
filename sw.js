@@ -1,4 +1,4 @@
-const CACHE_NAME = 'accuvideo-v31';
+const CACHE_NAME = 'accuvideo-v32';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
@@ -38,6 +38,12 @@ self.addEventListener('fetch', event => {
 
   const requestURL = new URL(event.request.url);
   if (requestURL.origin !== self.location.origin) {
+    return;
+  }
+
+  const isMediaRequest = event.request.destination === 'video' || event.request.headers.has('range');
+  if (isMediaRequest) {
+    event.respondWith(fetch(event.request));
     return;
   }
 
