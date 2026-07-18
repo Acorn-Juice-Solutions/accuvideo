@@ -272,9 +272,10 @@
       'pricing.subscribe.intro': 'Paid plans are activated against your machine\'s <strong>hardware ID</strong>, so each license stays bound to one specific computer.',
       'pricing.subscribe.step1': 'Install AccuVideo on the machine you\'ll use as the indexer / server.',
       'pricing.subscribe.step2': 'Open <strong>Settings → Account</strong> and copy your <strong>hardware ID</strong>. It\'s a short alphanumeric string unique to that machine.',
-      'pricing.subscribe.step3': 'Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card below). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. Your license activates automatically once payment clears.',
+      'pricing.subscribe.step3': 'Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card below). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. You will receive a new license that auto-renews until you cancel the subscription.',
       'pricing.subscribe.notes': 'Each paid license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (15 / 45 / 150); viewers connect to your server and <strong>don\'t consume their own license</strong>.',
       'pricing.subscribe.cta': 'Request subscription',
+      'pricing.subscribe.cancel_note': 'Want to cancel your subscription? <a href="#" data-open-form="contactus" data-form-topic="cancellation">Contact us</a>.',
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
@@ -368,6 +369,8 @@
       'contactus.subject.technical': 'Technical enquiry',
       'contactus.subject.commercial': 'Sales enquiry',
       'contactus.subject.support': 'Support',
+      'contactus.subject.cancellation': 'Cancellation',
+      'contactus.subject.payment': 'Payment',
       'contactus.subject.other': 'Other',
       'contactus.autoresponse': 'Hi! We\'ve received your message and will reply within 2 business days.\n\nIf the matter is urgent, just reply to this email with more detail.\n\n— The AccuVideo team',
 
@@ -611,6 +614,7 @@
       'pricing.subscribe.step3': 'Abre el <a href="#" data-open-form="subscribe">formulario de suscripción</a> (o pulsa <strong>Suscribirse a este plan</strong> en cualquier tarjeta de abajo). Pega tu <strong>hardware ID</strong>, elige <strong>plan</strong>, <strong>edición</strong> y <strong>periodo de facturación</strong> (mensual / anual), y te llevamos al checkout de Stripe. Recibirás una nueva licencia que se renovará automáticamente hasta cancelar la suscripción.',
       'pricing.subscribe.notes': 'Cada licencia de pago está vinculada a ese hardware ID — un indexador / servidor por seat. ¿Cambias de equipo o reinstalas el SO? Escríbenos con el nuevo hardware ID y la re-emitimos sin preguntas. Los planes Pro incluyen clientes en LAN (15 / 45 / 150); los clientes se conectan a tu servidor y <strong>no consumen licencia propia</strong>.',
       'pricing.subscribe.cta': 'Solicitar suscripción',
+      'pricing.subscribe.cancel_note': 'Quéres cancelar tu suscripción? Envíanos tu Hardware ID aquí:  <a href="#" data-open-form="contactus" data-form-topic="cancellation">Contáctanos</a>.',
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows y macOS (Apple Silicon) disponibles ya. Los builds de macOS están temporalmente sin firmar mientras finalizamos el alta del Apple Developer ID — en el primer arranque, haz clic derecho en el .pkg y elige <strong>Abrir</strong> para saltarte Gatekeeper. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
@@ -704,6 +708,8 @@
       'contactus.subject.technical': 'Consulta técnica',
       'contactus.subject.commercial': 'Consulta comercial',
       'contactus.subject.support': 'Soporte',
+      'contactus.subject.cancellation': 'Cancelación',
+      'contactus.subject.payment': 'Pago',
       'contactus.subject.other': 'Otro',
       'contactus.autoresponse': '¡Hola! Hemos recibido tu mensaje y te responderemos en hasta 2 días laborables.\n\nSi se trata de algo urgente, responde a este email con más detalle.\n\n— El equipo de AccuVideo',
 
@@ -821,7 +827,7 @@
 
     const heroVideo = document.getElementById('hero-video');
     if (heroVideo) {
-      const desired = `assets/videos/demo-${lang}.mp4?v=3`;
+      const desired = `assets/videos/demo-${lang}.mp4?v=4`;
       if (heroVideo.getAttribute('src') !== desired) {
         heroVideo.setAttribute('src', desired);
         heroVideo.load();
@@ -1367,7 +1373,8 @@
   // on the form so the submit handler can prefix the email subject (e.g. enterprise → "Consulta Enterprise - …").
   const CONTACTUS_TOPIC_TO_CATEGORY = {
     enterprise: 'commercial',
-    payment: 'support',
+    payment: 'payment',
+    cancellation: 'cancellation',
     intelmac: 'support',
   };
 
@@ -1386,7 +1393,7 @@
       else form.removeAttribute('data-topic');
     }
 
-    const subjectSelect = modal.querySelector('select[name="subject"]');
+    const subjectSelect = modal.querySelector('select[name="category"]');
     if (subjectSelect) {
       const category = topic ? CONTACTUS_TOPIC_TO_CATEGORY[topic] : '';
       subjectSelect.value = category || '';

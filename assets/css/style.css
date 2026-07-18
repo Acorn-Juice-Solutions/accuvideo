@@ -1220,6 +1220,17 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   display: inline-flex;
 }
 
+.pricing-cancel-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--text-mute);
+}
+
+.pricing-cancel-note a {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .license-steps {
   list-style: none;
   padding: 0;
