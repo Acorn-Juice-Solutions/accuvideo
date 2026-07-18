@@ -1678,6 +1678,11 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 .contact-form-status.success { color: var(--cyan); }
 .contact-form-status.error { color: #f87171; }
+#contact-form-status.success {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+}
 .form-service-banner {
   margin: 0 0 12px;
   padding: 10px 12px;
