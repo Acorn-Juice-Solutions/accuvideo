@@ -128,6 +128,8 @@ a:hover { color: #6ee7f3; }
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .lang-toggle {
@@ -170,6 +172,34 @@ html[lang="es"] .lang-toggle .lang-es { color: var(--cyan); }
 .theme-toggle .theme-icon-moon { display: none; }
 html[data-theme="light"] .theme-toggle .theme-icon-sun { display: none; }
 html[data-theme="light"] .theme-toggle .theme-icon-moon { display: inline; }
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  width: 34px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-toggle:hover { border-color: var(--cyan); }
+.nav-toggle-bar {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: var(--text-dim);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* ---------- Buttons ---------- */
 
@@ -1618,7 +1648,32 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
   .feature-grid, .how-steps, .req-grid, .edition-grid, .ingest-grid, .privacy-grid, .pricing-grid, .license-steps { grid-template-columns: 1fr; }
   .usecase-grid { grid-template-columns: repeat(2, 1fr); }
-  .site-nav { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin-left: 0;
+    padding: 8px 20px 14px;
+    background: var(--header-bg);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav a {
+    padding: 14px 4px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #38bdf8;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav a:last-child { border-bottom: none; }
+  :root[data-theme="light"] .site-nav a { color: #0369a1; }
   section { padding: 56px 0; }
 }
 

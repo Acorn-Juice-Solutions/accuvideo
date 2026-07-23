@@ -48,8 +48,8 @@
   </script>
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=26">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=32">
+  <link rel="stylesheet" href="assets/css/style.css?v=28">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=33">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -73,7 +73,7 @@
       <img src="assets/img/AccuVideo_Logo.png" alt="AccuVideo" class="brand-logo" fetchpriority="high">
       <span class="brand-name">AccuVideo</span>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
       <a href="#features" data-i18n="nav.features">Features</a>
       <a href="#editions" data-i18n="nav.editions">Editions</a>
       <a href="#how" data-i18n="nav.how">How it works</a>
@@ -82,6 +82,11 @@
       <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
     </nav>
     <div class="header-actions">
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-controls="site-nav" aria-expanded="false">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Theme">
         <span class="theme-icon-sun" aria-hidden="true">☀</span><span class="theme-icon-moon" aria-hidden="true">☾</span>
       </button>
@@ -751,7 +756,7 @@
   </div>
 </div>
 
-<script defer src="assets/js/main.min.js?v=32"></script>
+<script defer src="assets/js/main.min.js?v=33"></script>
 <script>
   (function () {
     const banner = document.getElementById('cookie-banner');

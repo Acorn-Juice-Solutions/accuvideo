@@ -913,6 +913,32 @@
     });
   }
 
+  function bindNavToggle() {
+    const btn = document.getElementById('nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if (!btn || !nav) return;
+    const close = () => {
+      nav.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', close);
+    });
+    document.addEventListener('click', (e) => {
+      if (!nav.classList.contains('is-open')) return;
+      if (nav.contains(e.target) || btn.contains(e.target)) return;
+      close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+
   function setFooterYear() {
     const el = document.getElementById('footer-year');
     if (el) el.textContent = String(new Date().getFullYear());
@@ -1502,6 +1528,7 @@
     applyLang(detectInitialLang());
     bindToggle();
     bindThemeToggle();
+    bindNavToggle();
     bindCurrencyToggle();
     bindPriceToggle();
     bindEditionTabs();
