@@ -1411,6 +1411,13 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 
 .download-trial-note a { color: var(--cyan); }
 
+:root[data-theme="light"] .download-trial-note {
+  color: #4a1057;
+  background: rgba(236, 95, 253, 0.14);
+  border-color: #c04ad0;
+}
+:root[data-theme="light"] .download-trial-note strong { color: #2a0033; }
+
 .download-matrix {
   display: flex;
   flex-direction: column;
@@ -1775,6 +1782,41 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 .contact-modal-close:hover { color: var(--text); }
 .contact-modal-card h3 { margin: 0 0 6px; font-size: 20px; }
 .contact-modal-sub { margin: 0 0 20px; color: var(--text-dim); font-size: 14px; }
+.contact-modal-notice {
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fdf2ff;
+  background: rgba(236, 95, 253, 0.18);
+  border: 1px solid rgba(236, 95, 253, 0.6);
+  border-radius: var(--radius-sm);
+}
+.contact-modal-notice strong { color: #ffffff; }
+.contact-modal-notice ol {
+  margin: 8px 0 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.contact-modal-notice li { margin: 0; }
+.contact-modal-notice code {
+  background: rgba(0, 0, 0, 0.28);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12.5px;
+}
+:root[data-theme="light"] .contact-modal-notice {
+  color: #4a1057;
+  background: rgba(236, 95, 253, 0.14);
+  border-color: #c04ad0;
+}
+:root[data-theme="light"] .contact-modal-notice strong { color: #2a0033; }
+:root[data-theme="light"] .contact-modal-notice code {
+  background: rgba(74, 16, 87, 0.12);
+  color: #2a0033;
+}
 
 .contact-form { display: flex; flex-direction: column; gap: 14px; }
 .contact-form label {
