@@ -2100,3 +2100,86 @@ html[lang="es"] .thanks-download-progress .download-progress-es {
   animation: download-arrow-bounce 1.2s ease-in-out infinite;
   margin-left: 6px;
 }
+
+/* ---------- Requirements tables ---------- */
+
+.req-table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 20px;
+  border-radius: var(--radius-sm);
+}
+
+.req-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  color: var(--text-dim);
+  background: var(--navy-800);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.req-table thead th {
+  background: var(--navy-700);
+  color: var(--text);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.req-table tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.req-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.req-table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+:root[data-theme="light"] .req-table tbody tr:nth-child(even) td {
+  background: rgba(22, 22, 58, 0.03);
+}
+
+.req-table tbody tr:hover td {
+  background: rgba(34, 211, 238, 0.06);
+}
+
+:root[data-theme="light"] .req-table tbody tr:hover td {
+  background: rgba(32, 80, 160, 0.06);
+}
+
+.req-table td strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.req-table code {
+  background: var(--navy-700);
+  color: var(--cyan);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (max-width: 640px) {
+  .req-table {
+    font-size: 13px;
+  }
+  .req-table thead th,
+  .req-table tbody td {
+    padding: 8px 10px;
+  }
+}

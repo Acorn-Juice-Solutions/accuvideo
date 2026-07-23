@@ -305,7 +305,7 @@
       'req.rec.gpu': 'GPU: optional but strongly recommended for visual indexing — NVIDIA GPU with ≥6 GB VRAM and CUDA support. The <strong>GPU build of Pro</strong> ships as a separate <strong>.zip (&gt;2 GB)</strong> hosted externally; the download link and SHA-256 hash are published next to each GitHub release.',
       'req.rec.disk': 'Disk: SSD for OS + models; HDD or SSD for the video library',
       'req.rec.net': 'Network: stable connection for the managed vector DB',
-      'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md">hardware requirements doc</a>.',
+      'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="requirements.html">hardware requirements page</a>.',
 
       'contact.title': 'Download access',
       'contact.sub': 'You\'ll receive it by email shortly.',
@@ -386,7 +386,7 @@
 
       'footer.contact': 'Contact us',
       'footer.docs': 'Documentation',
-      'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_EN.md'
+      'footer.docs_url': 'requirements.html'
     },
     es: {
       'meta.title': 'AccuVideo — Encuentra el momento',
@@ -645,7 +645,7 @@
       'req.rec.gpu': 'GPU: opcional pero muy recomendada para la indexación visual — GPU NVIDIA con ≥6 GB VRAM y soporte CUDA. El <strong>build con GPU de Pro</strong> se distribuye como <strong>.zip aparte (&gt;2 GB)</strong> alojado externamente; el enlace de descarga y su hash SHA-256 se publican junto a cada release de GitHub.',
       'req.rec.disk': 'Disco: SSD para SO + modelos; HDD o SSD para la videoteca',
       'req.rec.net': 'Red: conexión estable para el DB vectorial gestionado',
-      'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver el <a href="https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md">documento de requisitos</a>.',
+      'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver la <a href="requisitos.html">página de requisitos</a>.',
 
       'contact.title': 'Solicita tu licencia trial',
       'contact.sub': 'La recibirás en breve por email.',
@@ -726,7 +726,7 @@
 
       'footer.contact': 'Contacta',
       'footer.docs': 'Documentación',
-      'footer.docs_url': 'https://github.com/Acorn-Juice-Solutions/accuvideo/blob/main/HARDWARE_REQUIREMENTS_ES.md'
+      'footer.docs_url': 'requisitos.html'
     }
   };
 

@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Requisitos de hardware — AccuVideo</title>
+  <meta name="description" content="Requisitos mínimos y recomendados de hardware para ejecutar AccuVideo en Windows, macOS y Linux. CPU, RAM, GPU, almacenamiento y red, con aceleración NVIDIA CUDA opcional en Windows.">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+  <link rel="canonical" href="https://accuvideo.acornjuice.com/requisitos.html">
+  <link rel="alternate" hreflang="es" href="https://accuvideo.acornjuice.com/requisitos.html">
+  <link rel="alternate" hreflang="en" href="https://accuvideo.acornjuice.com/requirements.html">
+  <link rel="alternate" hreflang="x-default" href="https://accuvideo.acornjuice.com/requirements.html">
+  <meta property="og:title" content="Requisitos de hardware de AccuVideo">
+  <meta property="og:description" content="Requisitos mínimos y recomendados para ejecutar AccuVideo en Windows, macOS y Linux.">
+  <meta property="og:url" content="https://accuvideo.acornjuice.com/requisitos.html">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://accuvideo.acornjuice.com/assets/img/AccuVideo_Logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.ico">
+  <link rel="stylesheet" href="assets/css/style.css?v=29">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=34">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    gtag('config', 'G-JSM7Q772H7', { anonymize_ip: true });
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a href="index.html" class="brand">
+      <img src="assets/img/AccuVideo_Logo.png" alt="AccuVideo" class="brand-logo" fetchpriority="high">
+      <span class="brand-name">AccuVideo</span>
+    </a>
+    <div class="header-actions">
+      <a href="requirements.html" class="lang-toggle" aria-label="Switch to English" style="text-decoration:none">
+        <span class="lang-en">EN</span><span class="lang-sep">·</span><span class="lang-es">ES</span>
+      </a>
+      <a href="index.html" class="btn btn-primary btn-sm">Inicio</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="local">
+    <div class="container">
+      <div class="local-banner">
+        <h1>Requisitos de hardware — AccuVideo</h1>
+        <p>Guía de requisitos mínimos y recomendados para ejecutar AccuVideo en tu sistema.</p>
+      </div>
+
+      <article class="privacy-policy-standard">
+        <p><strong>Nota:</strong> AccuVideo incluye <strong>FFmpeg</strong> en el bundle para reencode de vídeos. Los vectores de búsqueda se almacenan en un <strong>DB gestionado externo</strong>. Los requisitos descritos abajo se refieren solo a la máquina local donde corre AccuVideo. El DB no consume recursos locales significativos (solo requiere conexión de red estable).</p>
+        <p><strong>Aceleración GPU / CUDA (Windows):</strong> AccuVideo soporta aceleración NVIDIA CUDA opcional en Windows.</p>
+        <ul>
+          <li><strong>Basic:</strong> incluye soporte CUDA de serie. Si se detecta una GPU NVIDIA compatible, la app ofrece activar el modo GPU y descarga bajo demanda un pequeño pack de DLLs empaquetadas (.zip).</li>
+          <li><strong>Pro:</strong> el build CUDA se distribuye como .zip aparte (&gt;2 GB) alojado externamente (por el límite de tamaño por asset de GitHub). El enlace de descarga y su hash SHA-256 se publican en las notas de cada release de GitHub.</li>
+          <li><strong>CPU sigue siendo el modo por defecto</strong> en todas las plataformas y está totalmente soportado. MPS (Apple Silicon) y CUDA en Linux siguen en la hoja de ruta.</li>
+        </ul>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-windows">
+        <h2 id="req-windows">Windows</h2>
+
+        <h3>Requisitos mínimos</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Componente</th><th>Especificación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CPU</strong></td><td>Intel Core i5 (8ª gen) / AMD Ryzen 5 2600 o superior</td></tr>
+            <tr><td><strong>RAM</strong></td><td>8 GB DDR4</td></tr>
+            <tr><td><strong>GPU</strong></td><td>Integrada (Intel UHD / AMD Radeon) basta para Basic en CPU. Aceleración NVIDIA CUDA opcional disponible en Basic si se detecta una GPU compatible (opt-in en la app + pack de DLLs empaquetadas)</td></tr>
+            <tr><td><strong>Almacenamiento (SO + AccuVideo + modelos)</strong></td><td>SSD 128 GB con al menos 50 GB libres</td></tr>
+            <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>Configurable — desde 50 GB (HDD o SSD)</td></tr>
+            <tr><td><strong>Red</strong></td><td>Ethernet o WiFi 2.4/5 GHz</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Requisitos recomendados</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Componente</th><th>Especificación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CPU</strong></td><td>Intel Core i7 (10ª gen+) / AMD Ryzen 7 3700X o superior</td></tr>
+            <tr><td><strong>RAM</strong></td><td>16 GB DDR4</td></tr>
+            <tr><td><strong>GPU</strong></td><td>NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ con soporte CUDA — recomendada para la indexación visual de Pro. El build CUDA de Pro es un .zip aparte (&gt;2 GB) alojado externamente; enlace y hash SHA-256 publicados junto a cada release de GitHub</td></tr>
+            <tr><td><strong>Almacenamiento (SO + modelos)</strong></td><td>SSD NVMe 256 GB</td></tr>
+            <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>HDD 1-2 TB o SSD SATA — NVMe no aporta para reproducción</td></tr>
+            <tr><td><strong>Red</strong></td><td>Ethernet Gigabit (1 Gbps) o WiFi 5/6</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Notas Windows</h3>
+        <ul>
+          <li><strong>PyTorch CPU vs CUDA:</strong> AccuVideo ya soporta ambos en Windows. CPU es el modo por defecto (siempre funciona, sin descargas extra). El modo CUDA requiere una GPU NVIDIA con ≥6 GB VRAM (Florence-2 cabe en 6 GB). En Basic el soporte CUDA viene de serie y descarga bajo demanda un pequeño pack de DLLs (.zip). En Pro, el build CUDA es un .zip aparte (&gt;2 GB) alojado externamente.</li>
+          <li><strong>FFmpeg:</strong> incluido en el bundle AccuVideo — acelera reencode de vídeos.</li>
+          <li><strong>DB:</strong> servicio gestionado externo (no consume recursos locales). Requiere conexión de red estable.</li>
+          <li><strong>Modelos IA:</strong> BGE-M3 (~800 MB), Florence-2 (~2.6 GB), Whisper (~1.5 GB).</li>
+          <li><strong>Streaming LAN:</strong> para múltiples clientes, aumenta <code>WAITRESS_THREADS</code> a 12-16.</li>
+        </ul>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-macos">
+        <h2 id="req-macos">macOS</h2>
+
+        <h3>Requisitos mínimos</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Componente</th><th>Especificación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CPU</strong></td><td>Intel Core i5 (6ª gen+) / Apple Silicon M1</td></tr>
+            <tr><td><strong>RAM</strong></td><td>8 GB unificada</td></tr>
+            <tr><td><strong>GPU</strong></td><td>Integrada (Intel Iris / Apple Neural Engine)</td></tr>
+            <tr><td><strong>Almacenamiento (SO + modelos)</strong></td><td>SSD con 50 GB libres (macOS 12+)</td></tr>
+            <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>Configurable — desde 50 GB</td></tr>
+            <tr><td><strong>Red</strong></td><td>WiFi 2.4/5 GHz o Ethernet</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Requisitos recomendados</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Componente</th><th>Especificación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CPU</strong></td><td>Apple Silicon M2 / M3 o Intel Core i7 (10ª gen+)</td></tr>
+            <tr><td><strong>RAM</strong></td><td>16 GB unificada (M-series) o DDR4 (Intel)</td></tr>
+            <tr><td><strong>GPU</strong></td><td>Apple Neural Engine — MPS planificado para una versión futura; la versión actual corre en CPU</td></tr>
+            <tr><td><strong>Almacenamiento (SO + modelos)</strong></td><td>SSD 256 GB</td></tr>
+            <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>HDD externo USB-C 1-2 TB o SSD interno</td></tr>
+            <tr><td><strong>Red</strong></td><td>WiFi 5/6 o Ethernet Gigabit (adaptador)</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Notas macOS</h3>
+        <ul>
+          <li><strong>Apple Silicon (M1/M2/M3):</strong> PyTorch nativo + framework Accelerate → eficiente en CPU. MPS está planificado para una versión futura.</li>
+          <li><strong>Intel Mac:</strong> PyTorch x86_64 en CPU. El soporte para eGPU (AMD Radeon RX 6600 XT+) no está disponible en esta versión.</li>
+          <li><strong>Deployment target:</strong> x86_64 macOS 10.12+, ARM64 macOS 13.0+.</li>
+          <li><strong>FFmpeg:</strong> incluido en el bundle AccuVideo.</li>
+          <li><strong>Gestión térmica:</strong> M-series mantiene temperaturas bajas (~70°C con carga).</li>
+          <li><strong>Streaming remoto:</strong> WiFi 5/6 recomendado para múltiples clientes concurrentes.</li>
+        </ul>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-linux">
+        <h2 id="req-linux">Linux (Ubuntu 20.04+ / Debian 11+)</h2>
+
+        <h3>Requisitos mínimos</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Componente</th><th>Especificación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CPU</strong></td><td>Intel Core i5 / AMD Ryzen 5 2600 o superior</td></tr>
+            <tr><td><strong>RAM</strong></td><td>8 GB DDR4</td></tr>
+            <tr><td><strong>GPU</strong></td><td>Integrada — toda la ingesta corre en CPU en esta versión</td></tr>
+            <tr><td><strong>Almacenamiento (SO + modelos)</strong></td><td>SSD 128 GB con 50 GB libres</td></tr>
+            <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>Configurable — desde 50 GB (HDD o SSD)</td></tr>
+            <tr><td><strong>Red</strong></td><td>Ethernet o WiFi</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Requisitos recomendados</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Componente</th><th>Especificación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CPU</strong></td><td>Desktop: Core i7 / Ryzen 7. Servidor: Xeon Silver 4310+ / EPYC 7402+</td></tr>
+            <tr><td><strong>RAM</strong></td><td>16 GB (desktop) / 32 GB DDR4 ECC (servidor)</td></tr>
+            <tr><td><strong>GPU</strong></td><td>(Futuro) RTX 3060 12 GB / RTX 4060 (desktop). Servidor: NVIDIA L4, A4000 o RTX 4070 Ti+ — previsto para el soporte CUDA futuro; no se usa en la versión actual</td></tr>
+            <tr><td><strong>Almacenamiento (SO + modelos)</strong></td><td>SSD NVMe 256 GB</td></tr>
+            <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>HDD 2 TB+ o SSD SATA (RAID opcional en servidor)</td></tr>
+            <tr><td><strong>Red</strong></td><td>Ethernet 1 Gbps (desktop) / 2.5-10 Gbps (servidor con muchos clientes)</td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Notas Linux</h3>
+        <ul>
+          <li><strong>CUDA:</strong> no soportado en esta versión — toda la ingesta corre en CPU. Cuando se añada CUDA, <code>nvidia-smi</code> deberá reportar la GPU y se requerirá NVIDIA driver 525+.</li>
+          <li><strong>PyTorch:</strong> actualmente se usan binarios CPU. Los binarios con CUDA 12.4 se incorporarán cuando el soporte GPU esté disponible.</li>
+          <li><strong>FFmpeg:</strong> incluido en el bundle AccuVideo.</li>
+          <li><strong>DB:</strong> servicio gestionado externo. Acceso por endpoint HTTPS configurado en la app.</li>
+          <li><strong>Multithreading:</strong> para servidor con 6+ clientes concurrentes, usa <code>WAITRESS_THREADS=20+</code>.</li>
+          <li><strong>Monitoreo:</strong> <code>htop</code> para supervisar CPU y RAM (<code>nvidia-smi dmon</code> solo será útil cuando exista soporte GPU).</li>
+        </ul>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-benchmarks">
+        <h2 id="req-benchmarks">Comparativa rápida</h2>
+
+        <h3>Ingesta de vídeos (transcripción + embedding) — solo CPU</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Operación</th><th>Tiempo estimado (config recomendada)</th></tr></thead>
+          <tbody>
+            <tr><td>Vídeo 1h (audio)</td><td>16-24 min (CPU)</td></tr>
+            <tr><td>Vídeo 1h (visual)</td><td>~15h 15min (extrapolado)</td></tr>
+            <tr><td>Película 80 min (visual)</td><td>~20h 20min (medición real en hardware recomendado)</td></tr>
+            <tr><td>Batch 10 vídeos × 1h (visual)</td><td>~152h 30min (~6.4 días)</td></tr>
+            <tr><td>Batch 10 vídeos × 1h (solo audio)</td><td>~3h (CPU)</td></tr>
+          </tbody>
+        </table></div>
+        <p><strong>Nota procesado visual:</strong> el modelo Florence-2 analiza frame a frame en CPU, lo que resulta en tiempos muy elevados incluso en hardware potente. El modo CUDA (Basic con el pack de DLLs opcional, o el build CUDA de Pro) suele recortar estos tiempos en un orden de magnitud con una GPU NVIDIA de gama media. Para ejecuciones en CPU puro, considera limitar el análisis visual a vídeos clave o ejecutarlo en lotes nocturnos.</p>
+
+        <h3>Requisitos de RAM en ejecución</h3>
+        <div class="req-table-wrap"><table class="req-table">
+          <thead><tr><th>Fase</th><th>Consumo típico</th></tr></thead>
+          <tbody>
+            <tr><td>App idle (sin vídeos cargados)</td><td>300-500 MB</td></tr>
+            <tr><td>Búsqueda embeddings (acceso a DB remoto)</td><td>200-400 MB (local)</td></tr>
+            <tr><td>Reencode 1 vídeo simultáneamente</td><td>+800 MB - 1.5 GB</td></tr>
+            <tr><td>5 clientes reproduciendo simultáneamente</td><td>Base + 2-3 GB</td></tr>
+          </tbody>
+        </table></div>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-usecases">
+        <h2 id="req-usecases">Recomendaciones por caso de uso</h2>
+
+        <h3>Usuario individual (1-2 clientes)</h3>
+        <p><strong>Configuración recomendada:</strong> mínima.</p>
+        <ul>
+          <li>Laptop/desktop con config mínima es suficiente.</li>
+          <li>Ingesta nocturna (batch processing).</li>
+          <li>SSD para SO + modelos; HDD para vídeos.</li>
+        </ul>
+
+        <h3>Equipo pequeño (3-5 clientes concurrentes)</h3>
+        <p><strong>Configuración recomendada:</strong> recomendada (solo CPU).</p>
+        <ul>
+          <li>Desktop/mini-PC con CPU i7+ (la GPU dedicada no aporta en esta versión; será relevante cuando llegue CUDA).</li>
+          <li><code>WAITRESS_THREADS</code> = 12-14.</li>
+          <li>16 GB RAM mínimo.</li>
+          <li>SSD NVMe para modelos; HDD para vídeos.</li>
+        </ul>
+
+        <h3>Empresa / escuela (10+ clientes concurrentes)</h3>
+        <p><strong>Configuración recomendada:</strong> servidor Linux (CPU potente).</p>
+        <ul>
+          <li>Servidor con CPU Xeon Silver / Scalable o Ryzen EPYC — la ingesta corre en CPU, así que prioriza núcleos y frecuencia.</li>
+          <li>32+ GB RAM (ECC recomendado para servidor 24/7).</li>
+          <li>HDD/SSD para vídeos; NVMe solo para SO + modelos.</li>
+          <li>Load balancer si hay múltiples servidores.</li>
+          <li>(Futuro) GPUs NVIDIA L4, A4000, RTX 4070 Ti+ o RTX 4090 (24 GB VRAM) serán recomendables cuando el soporte CUDA esté disponible. A100/H100 quedará reservado para ingesta visual masiva en paralelo en datasets muy grandes.</li>
+        </ul>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-checklist">
+        <h2 id="req-checklist">Checklist de setup</h2>
+        <p>Antes de instalar AccuVideo, verifica:</p>
+        <ul>
+          <li><strong>Almacenamiento:</strong> SSD con ~50 GB libres (SO + modelos + caché temporal).</li>
+          <li><strong>RAM libre:</strong> mínimo 6 GB disponible durante ingesta.</li>
+          <li><strong>Conexión de red:</strong> estable para acceder al DB gestionado y streaming LAN.</li>
+          <li><strong>Permisos:</strong> acceso RW a carpeta de vídeos.</li>
+          <li><strong>GPU:</strong> no imprescindible — el modo CPU siempre funciona. Para la aceleración CUDA opcional en Windows: se recomienda GPU NVIDIA con ≥6 GB VRAM y driver 525+. Basic activa CUDA con opt-in dentro de la app (descarga un pack de DLLs empaquetadas); el Pro CUDA es un .zip aparte (&gt;2 GB) externo enlazado desde cada release de GitHub.</li>
+        </ul>
+      </article>
+
+      <article class="privacy-policy-standard" aria-labelledby="req-support">
+        <h2 id="req-support">Soporte</h2>
+        <p>¿Dudas sobre tu configuración?</p>
+        <ul>
+          <li><strong>Windows:</strong> envía salida de <code>systeminfo</code>.</li>
+          <li><strong>macOS:</strong> envía salida de <code>system_profiler SPHardwareDataType</code>.</li>
+          <li><strong>Linux:</strong> envía salida de <code>lscpu</code>, <code>free -h</code>.</li>
+        </ul>
+        <p><strong>Contacto:</strong> usa el formulario <a href="index.html">Contacta</a> en la web de AccuVideo.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <div class="footer-brand">
+      <img src="assets/img/AccuVideo_Logo.png" alt="" class="brand-logo">
+      <div>
+        <div class="footer-product">AccuVideo</div>
+        <div class="footer-company">© <span id="footer-year">2026</span> Acorn Juice Solutions S.L.</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Inicio</a>
+      <a href="requisitos.html">Requisitos de hardware</a>
+      <a href="privacy.html">Política de privacidad</a>
+    </div>
+  </div>
+  <div class="container footer-legal" aria-label="Legal information">
+    <p class="footer-legal-line"><span class="legal-chunk">ACORN JUICE SOLUTIONS SL - CIF B71336218</span><span class="legal-sep">·</span><span class="legal-chunk">Calle Bosquecillo, 6, 31191, Beriáin (Navarra)</span><span class="legal-sep">·</span><span class="legal-chunk">Contacto: <a href="mailto:info@acornjuice.com">info@acornjuice.com</a></span></p>
+  </div>
+</footer>
+
+<script defer src="assets/js/main.min.js?v=34"></script>
+</body>
+</html>

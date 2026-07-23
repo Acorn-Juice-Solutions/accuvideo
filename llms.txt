@@ -1,31 +1,59 @@
 # AccuVideo
 
-> AccuVideo is a local-first video intelligence application that helps users search large video libraries by meaning rather than by scrubbing through timelines. It analyzes spoken words, on-screen text, and visual content to answer natural-language questions and jump to the exact moment in a video.
+> AccuVideo is a local-first video intelligence application that helps users search large video libraries by meaning rather than by scrubbing through timelines. It analyzes spoken words (via local Whisper transcription), on-screen text (OCR), and visual content (via a vision-language model) to answer natural-language questions and jump to the exact second in a video. Runs on Windows and macOS (Apple Silicon), with optional NVIDIA CUDA acceleration on Windows. Video files never leave the local machine — only abstract embeddings are stored in the search index.
 
 ## Product overview
-- [Short demo in English] (https://accuvideo.acornjuice.com/assets/videos/demo-en.mp4): Short Engish demo.
-- [Short demo in Spanish] (https://accuvideo.acornjuice.com/assets/videos/demo-es.mp4): Short Spanish demo.
-- [Walkthrough video] (https://accuvideo.acornjuice.com/assets/videos/AccuVideo_Horizontal.mp4): 3 minutes Walkthrough video.
-
+- [Home](https://accuvideo.acornjuice.com/): Main product page — feature overview, demos, editions, pricing, and download links.
+- [Short demo in English](https://accuvideo.acornjuice.com/assets/videos/demo-en.mp4): Short English demo of AccuVideo in action.
+- [Short demo in Spanish](https://accuvideo.acornjuice.com/assets/videos/demo-es.mp4): Short Spanish demo of AccuVideo in action.
+- [Walkthrough video](https://accuvideo.acornjuice.com/assets/videos/AccuVideo_Horizontal.mp4): Three-minute walkthrough showing how AccuVideo indexes a library and jumps to exact moments.
 
 ## Editions
-- **Basic**: Basic is ideal for individuals, students, and smaller collections.
-- **Pro**: Adds visual understanding, batch ingestion, scheduled processing, and multi-client LAN streaming for larger organizations and archives.
-- [Editions](https://accuvideo.acornjuice.com/#editions): See editions section on the main website.
+- **Basic**: Semantic search over spoken words (Whisper transcription) and on-screen text (OCR). Multilingual transcription with optional translation for cross-language search. Optional NVIDIA CUDA acceleration bundled in-app. Ideal for individuals, students, and modest video collections.
+- **Pro**: Everything in Basic plus visual content search (Florence-2 vision-language model), cross-modal re-ranking of audio + text + visual signals, the headless AccuVideoIngest CLI for large-scale batch processing, scheduled overnight ingestion, and multi-client LAN streaming. The Pro CUDA build is distributed as a separate external .zip (>2 GB) because of GitHub's asset size limit. Ideal for academies, corporate training, schools, and large archives.
+- [Editions](https://accuvideo.acornjuice.com/#editions): Full Basic vs Pro comparison on the main site.
 
 ## Pricing
-- [Pricing](https://accuvideo.acornjuice.com/#pricing): See the pricing section on the main site.
+- 30-day free trial available for both editions (50 videos · 500 points · Basic by default; Pro on request).
+- Paid plans are tied to the machine's hardware ID for security. Monthly and annual billing (annual = 2 months free).
+- Basic plans: Starter, Personal, Freelance — by video and point capacity.
+- Pro plans: Academy, Academy Plus, Enterprise — include concurrent LAN viewer allowances (15 / 45 / 150).
+- [Pricing](https://accuvideo.acornjuice.com/#pricing): Live pricing with EUR/USD toggle and monthly/annual switch.
 
 ## Key features
-- Semantic search over spoken words, on-screen text, and visual content.
-- Exact-second navigation to the relevant moment in a video.
-- Local transcription and indexing with optional GPU acceleration on compatible NVIDIA hardware.
-- In-app ingestion for folders and files, plus a command-line tool for large-scale batch processing.
-- Multilingual transcription and optional translation-based search.
-- Support for large archives, scheduled overnight processing, and multi-client LAN streaming in Pro.
-- [Features](https://accuvideo.acornjuice.com/#features): See more on the website.
+- Semantic search over spoken words, on-screen text, and visual content — searchable in plain natural language.
+- Exact-second navigation: results open the player at the frame that answers the query.
+- 100% local processing: video files stay on disk. Only abstract embeddings reach the vector index, and each user's collection is fully isolated by license.
+- Local transcription with Whisper — multilingual, with optional translation for cross-language search.
+- Optional NVIDIA CUDA GPU acceleration on Windows (Basic bundles a DLL pack on demand; Pro ships as a separate CUDA build).
+- In-app ingestion of folders (indexed in place, no copies) and drag-and-drop of individual files.
+- AccuVideoIngest CLI (Pro): headless batch tool with resume-on-failure and Task Scheduler integration for overnight ingestion.
+- Supported video formats: MP4, MKV, AVI, MOV, WMV, FLV, WebM, M4V, TS, MPEG.
+- Multi-client LAN streaming in Pro — serve multiple concurrent viewers from a single indexing server.
+- [Features](https://accuvideo.acornjuice.com/#features): Feature breakdown on the site.
 
-## Additional references
-- [Sitemap](https://accuvideo.acornjuice.com/sitemap.xml): Full XML sitemap of all indexed pages.
-- [Global llms.txt](https://accuvideo.acornjuice.com/llms.txt): Global index across all AccuVideo content.
-- [Privacy policy](https://accuvideo.acornjuice.com/privacy.html): Data processing, cookies, and contact rights.
+## Hardware requirements
+- [Hardware requirements (English)](https://accuvideo.acornjuice.com/requirements.html): Minimum and recommended specs for Windows, macOS, and Linux, plus ingestion timing benchmarks (Whisper + Florence-2), runtime RAM footprint, and multi-client setup guidance.
+- [Requisitos de hardware (Español)](https://accuvideo.acornjuice.com/requisitos.html): Requisitos mínimos y recomendados para Windows, macOS y Linux en español.
+
+## Platforms
+- **Windows 10 / 11**: Full support. Optional NVIDIA CUDA acceleration (GPU with ≥6 GB VRAM, driver 525+). Distributed as .msi installer.
+- **macOS 13+ (Apple Silicon M1/M2/M3)**: Native ARM64 build using PyTorch + Accelerate framework. MPS acceleration planned for a future release. Distributed as .pkg installer.
+- **macOS Intel (10.12+)**: Basic edition available on request; evaluated case by case.
+- **Linux (Ubuntu 20.04+ / Debian 11+)**: CPU-only ingestion supported. CUDA support on the roadmap.
+
+## Use cases
+- Online academies: search across hundreds of lessons to find the exact moment a topic was covered.
+- Corporate training: skip to the relevant slide or discussion inside multi-hour all-hands recordings.
+- Students: locate the moment a concept was explained in a recorded lecture.
+- Families: search years of home footage semantically instead of scrubbing through files.
+- Video archives without audio: Pro's visual indexing covers silent footage on its own.
+
+## Legal and contact
+- **Publisher**: Acorn Juice Solutions S.L. (CIF B71336218), Calle Bosquecillo, 6, 31191, Beriáin (Navarra), Spain.
+- **Contact**: info@acornjuice.com — or the contact form on the main site.
+- [Privacy policy](https://accuvideo.acornjuice.com/privacy.html): Data processing, cookies, GDPR rights, and 14-day withdrawal policy for consumer subscriptions.
+
+## Optional
+- [Sitemap](https://accuvideo.acornjuice.com/sitemap.xml): Full XML sitemap listing indexed pages and video content.
+- [GitHub releases](https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest): Latest .msi and .pkg installers, changelog, and SHA-256 hashes.
