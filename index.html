@@ -48,8 +48,8 @@
   </script>
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=29">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=34">
+  <link rel="stylesheet" href="assets/css/style.css?v=31">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=37">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -331,12 +331,12 @@
     </div>
   </section>
 
-  <section id="pricing" class="pricing">
+  <section class="pricing">
     <div class="container pricing-layout">
       <div id="download" class="download-card pricing-download">
         <h3 data-i18n="download.title">Download AccuVideo</h3>
         <p data-i18n="download.body">Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.</p>
-        <p class="download-trial-note" data-i18n="download.trial_note">📧 Before downloading, we'll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>. We then email you the trial license together with the installer download link — nothing starts downloading in the browser.</p>
+        <p class="download-trial-note" data-i18n="download.trial_note">📧 We'll ask for your <strong>email</strong> — the edition and operating system are taken from the download button you clicked. We'll then email you your <strong>trial license</strong> and a <strong>download link</strong> within 2 business days.</p>
         <div class="download-matrix">
           <div class="download-row">
             <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
@@ -358,7 +358,7 @@
         <p class="download-note" data-i18n="download.note">Need a Basic build for Intel macOS, an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.</p>
       </div>
 
-      <h2 class="section-title" data-i18n="pricing.title">Plans &amp; pricing</h2>
+      <h2 id="pricing" class="section-title" style="scroll-margin-top:80px" data-i18n="pricing.title">Plans &amp; pricing</h2>
       <p class="section-sub" data-i18n="pricing.sub">Pick the size that matches your library.</p>
 
       <div class="pricing-license pricing-subscribe">
@@ -589,9 +589,8 @@
   <div class="contact-modal-backdrop" data-close></div>
   <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
-    <h3 id="contact-modal-title" data-i18n="contact.title">Download Access - Trial license</h3>
-    <p class="contact-modal-sub" data-i18n="contact.sub">We'll email it back within 2 business days.</p>
-    <p class="contact-modal-hint" data-i18n="contact.download_hint">We'll email you your trial license along with the installer download link.</p>
+    <h3 id="contact-modal-title" data-i18n="contact.title">Request your trial license</h3>
+    <p class="contact-modal-sub" data-i18n="contact.sub">We'll email you your trial license and download link within 2 business days.</p>
     <form id="contact-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo trial license request">
@@ -744,7 +743,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=18"></script>
+<script defer src="assets/js/main.min.js?v=37"></script>
 <script>
   (function () {
     const banner = document.getElementById('cookie-banner');

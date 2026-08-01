@@ -273,7 +273,7 @@
 
       'download.title': 'Download AccuVideo',
       'download.body': 'Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.',
-      'download.trial_note': '📧 Before downloading, we\'ll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>. We then email you the trial license together with the installer download link — nothing starts downloading in the browser.',
+      'download.trial_note': '📧 We\'ll ask for your <strong>email</strong> — the edition and operating system are taken from the download button you clicked. We\'ll then email you your <strong>trial license</strong> and a <strong>download link</strong> within 2 business days.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -301,9 +301,8 @@
       'req.rec.net': 'Network: stable connection for the managed vector DB',
       'req.footnote': 'Full hardware notes, multi-client setup and ingestion timing benchmarks: see the <a href="requirements.html">hardware requirements page</a>.',
 
-      'contact.title': 'Download access',
-      'contact.sub': 'You\'ll receive it by email shortly.',
-      'contact.download_hint': 'We\'ll email you your trial license along with the installer download link.',
+      'contact.title': 'Request your trial license',
+      'contact.sub': 'We\'ll email you your trial license and download link within 2 business days.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edition',
@@ -316,14 +315,14 @@
       'contact.value.os_other': 'Other',
       'contact.submit': 'Send request',
       'contact.status.sending': 'Sending…',
-      'contact.status.success': 'Request sent! We\'ll email you the trial license and the installer download link within 2 business days.',
+      'contact.status.success': 'Request sent! We\'ll email you your trial license and download link within 2 business days.',
       'contact.status.error': 'Error sending. Please try again in a moment.',
       'contact.status.network': 'Network error. Please check your connection and try again.',
       'contact.status.unavailable': 'The form service is temporarily unavailable. Please try again in a few minutes.',
       'contact.status.required': 'Please fill in the highlighted required fields.',
       'form.service.banner': 'The form service is temporarily unavailable. Please try again in a few minutes.',
       'contact.status.notconfigured': 'Form not configured. Paste your Web3Forms access key in main.js (WEB3FORMS_KEY).',
-      'contact.autoresponse': 'Hi! We\'ve received your AccuVideo trial license request. We\'ll review it and email your 30-day trial license — together with the installer download link — within 2 business days.\n\nIf you don\'t hear back, please check your spam folder or write to us again.\n\n— The AccuVideo team',
+      'contact.autoresponse': 'Hi! We\'ve received your AccuVideo trial license request. We\'ll review it and email your 30-day trial license and download link within 2 business days.\n\nIf you don\'t hear back, please check your spam folder or write to us again.\n\n— The AccuVideo team',
 
       'subscribe.cta_card': 'Subscribe to this plan →',
       'subscribe.title': 'Subscribe to AccuVideo',
@@ -370,7 +369,7 @@
       'thanks.meta_title': 'Thanks — AccuVideo',
       'thanks.title': 'Thanks! We got your request.',
       'thanks.title_subscribe': 'Payment confirmed — welcome to AccuVideo!',
-      'thanks.body_trial': 'We\'ll review your request and email you the trial license along with the installer download link. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
+      'thanks.body_trial': 'We\'ll email you your trial license and download link within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
       'thanks.body_contactus': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation — if you don\'t see it, check your spam folder.',
       'thanks.body_subscribe': 'Your subscription is active. Your license will be sent to your email — tied to the hardware ID you provided. Stripe has also sent you a payment receipt; if you don\'t see it, check your spam folder.',
       'thanks.body_generic': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation email — if you don\'t see it, check your spam folder.',
@@ -605,7 +604,7 @@
 
       'download.title': 'Descarga AccuVideo',
       'download.body': 'Builds para Windows y macOS (Apple Silicon) disponibles ya. Los builds de macOS están temporalmente sin firmar mientras finalizamos el alta del Apple Developer ID — en el primer arranque, haz clic derecho en el .pkg y elige <strong>Abrir</strong> para saltarte Gatekeeper. macOS Intel: sólo Basic, bajo petición — evaluamos los requisitos de hardware caso por caso.',
-      'download.trial_note': '📧 Antes de descargar, te pediremos tu <strong>email</strong>, <strong>edición</strong> y <strong>sistema operativo</strong>. Después te enviamos por email la licencia trial junto con el enlace de descarga del instalador — no se dispara ninguna descarga en el navegador.',
+      'download.trial_note': '📧 Sólo te pediremos tu <strong>email</strong> — la edición y el sistema operativo se toman del botón de descarga que hayas pulsado. Después te enviamos por email tu <strong>licencia trial</strong> y el <strong>enlace de descarga</strong> en hasta 2 días laborables.',
       'download.row_basic': 'Basic',
       'download.row_pro': 'Pro',
       'download.basic_win': 'Windows · .msi',
@@ -634,8 +633,7 @@
       'req.footnote': 'Notas completas de hardware, configuración multi-cliente y benchmarks de ingesta: ver la <a href="requisitos.html">página de requisitos</a>.',
 
       'contact.title': 'Solicita tu licencia trial',
-      'contact.sub': 'La recibirás en breve por email.',
-      'contact.download_hint': 'Te enviaremos por email tu licencia trial junto con el enlace de descarga del instalador.',
+      'contact.sub': 'Te enviaremos por email tu licencia trial y el enlace de descarga en hasta 2 días laborables.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edición',
@@ -648,14 +646,14 @@
       'contact.value.os_other': 'Otro',
       'contact.submit': 'Enviar solicitud',
       'contact.status.sending': 'Enviando…',
-      'contact.status.success': '¡Solicitud enviada! Te enviaremos por email la licencia trial y el enlace de descarga del instalador en hasta 2 días laborables.',
+      'contact.status.success': '¡Solicitud enviada! Te enviaremos por email tu licencia trial y el enlace de descarga en hasta 2 días laborables.',
       'contact.status.error': 'Error al enviar. Inténtalo de nuevo en unos minutos.',
       'contact.status.network': 'Error de red. Comprueba tu conexión e inténtalo de nuevo.',
       'contact.status.unavailable': 'El servicio del formulario no está disponible ahora mismo. Inténtalo de nuevo en unos minutos.',
       'contact.status.required': 'Por favor, completa los campos obligatorios marcados.',
       'form.service.banner': 'El servicio de formularios no está disponible ahora mismo. Por favor, inténtalo de nuevo en unos minutos.',
       'contact.status.notconfigured': 'Formulario sin configurar. Pega tu access key de Web3Forms en main.js (WEB3FORMS_KEY).',
-      'contact.autoresponse': '¡Hola! Hemos recibido tu solicitud de licencia trial de AccuVideo. La revisaremos y te enviaremos tu licencia trial de 30 días — junto con el enlace de descarga del instalador — en hasta 2 días laborables.\n\nSi no recibes respuesta, revisa la carpeta de spam o vuelve a escribirnos.\n\n— El equipo de AccuVideo',
+      'contact.autoresponse': '¡Hola! Hemos recibido tu solicitud de licencia trial de AccuVideo. La revisaremos y te enviaremos tu licencia trial de 30 días y el enlace de descarga en hasta 2 días laborables.\n\nSi no recibes respuesta, revisa la carpeta de spam o vuelve a escribirnos.\n\n— El equipo de AccuVideo',
 
       'subscribe.cta_card': 'Suscribirse a este plan →',
       'subscribe.title': 'Suscríbete a AccuVideo',
@@ -702,7 +700,7 @@
       'thanks.meta_title': 'Gracias — AccuVideo',
       'thanks.title': '¡Gracias! Hemos recibido tu petición.',
       'thanks.title_subscribe': 'Pago confirmado — ¡bienvenido a AccuVideo!',
-      'thanks.body_trial': 'Revisaremos tu solicitud y te enviaremos por email la licencia trial junto con el enlace de descarga del instalador. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
+      'thanks.body_trial': 'Te enviaremos por email tu licencia trial y el enlace de descarga en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
       'thanks.body_contactus': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
       'thanks.body_subscribe': 'Tu suscripción está activa. Tu licencia será enviada a tu correo — vinculada al hardware ID que indicaste. Stripe también te ha enviado un recibo de pago; si no lo ves, revisa la carpeta de spam.',
       'thanks.body_generic': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
@@ -1070,14 +1068,16 @@
     });
   }
 
-  function openContactModal(plan, edition) {
+  function openContactModal(edition, os) {
     const modal = document.getElementById('contact-modal');
     if (!modal) return;
+    const values = getTrialDisplayValues(edition || 'basic', os || 'windows');
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     if (typeof gtag === 'function') {
-      gtag('event', 'form_open', { form_name: 'trial', plan: 'trial', edition: effectiveEdition || '' });
+      gtag('event', 'form_open', { form_name: 'trial', plan: 'trial', edition: values.editionValue });
     }
+    const form = document.getElementById('contact-form');
     if (form) {
       const planInput = form.querySelector('input[name="plan"]');
       const editionInput = form.querySelector('input[name="edition"]');
@@ -1103,14 +1103,6 @@
     document.body.style.overflow = '';
     const status = document.getElementById('contact-form-status');
     if (status) { status.textContent = ''; status.className = 'contact-form-status'; }
-    const form = document.getElementById('contact-form');
-    if (form) {
-      const submitButton = form.querySelector('button[type="submit"]');
-      if (submitButton) {
-        const arrow = submitButton.querySelector('.btn-download-arrow');
-        if (arrow) arrow.remove();
-      }
-    }
   }
 
   function bindContactModal() {
@@ -1131,22 +1123,19 @@
       if (downloadTrigger) {
         e.preventDefault();
         const info = getReleaseDownloadInfo(downloadTrigger.href);
-        openContactModal('', info ? info.edition : 'basic');
+        openContactModal(info ? info.edition : 'basic', info ? info.os : 'windows');
         return;
       }
 
       const trigger = e.target.closest('[data-open-form="trial"]');
       if (!trigger) return;
       e.preventDefault();
-      let plan = '';
       let edition = 'basic';
       const card = trigger.closest('.price-card');
       if (card) {
-        const name = card.querySelector('.price-name');
-        if (name) plan = name.textContent.trim();
         edition = card.getAttribute('data-edition') || 'basic';
       }
-      openContactModal(plan, edition);
+      openContactModal(edition, 'windows');
     });
 
     const form = document.getElementById('contact-form');
@@ -1164,14 +1153,7 @@
         return;
       }
       form.dataset.submitting = 'true';
-      if (submitButton) {
-        submitButton.disabled = true;
-        const arrow = document.createElement('span');
-        arrow.className = 'btn-download-arrow';
-        arrow.setAttribute('aria-hidden', 'true');
-        arrow.textContent = '↓';
-        submitButton.appendChild(arrow);
-      }
+      if (submitButton) submitButton.disabled = true;
       const data = new FormData(form);
       const payload = {
         apiKey: STATICFORMS_API_KEY,
@@ -1212,11 +1194,7 @@
         status.className = 'contact-form-status error';
       } finally {
         delete form.dataset.submitting;
-        if (submitButton) {
-          submitButton.disabled = false;
-          const arrow = submitButton.querySelector('.btn-download-arrow');
-          if (arrow) arrow.remove();
-        }
+        if (submitButton) submitButton.disabled = false;
       }
     });
   }
