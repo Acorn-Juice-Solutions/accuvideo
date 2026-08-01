@@ -336,7 +336,7 @@
       <div id="download" class="download-card pricing-download">
         <h3 data-i18n="download.title">Download AccuVideo</h3>
         <p data-i18n="download.body">Windows and macOS (Apple Silicon) builds available now. macOS builds are temporarily unsigned while we finish Apple Developer ID enrollment — on first launch, right-click the .pkg and choose <strong>Open</strong> to bypass Gatekeeper. Intel macOS: only Basic, on request — we evaluate hardware requirements case by case.</p>
-        <p class="download-trial-note" data-i18n="download.trial_note">📧 Before downloading, we'll only ask for your <strong>email</strong> — make sure it's correct. We'll send your trial license there. <strong>Then install the app; during the initial setup you'll be asked for the license — paste it when that step appears.</strong></p>
+        <p class="download-trial-note" data-i18n="download.trial_note">📧 Before downloading, we'll ask for your <strong>email</strong>, <strong>edition</strong> and <strong>operating system</strong>. We then email you the trial license together with the installer download link — nothing starts downloading in the browser.</p>
         <div class="download-matrix">
           <div class="download-row">
             <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
@@ -370,15 +370,11 @@
         <ol class="license-steps">
           <li>
             <span class="license-step-num">1</span>
-            <p data-i18n="pricing.subscribe.step1">Install AccuVideo on the machine you'll use as the indexer / server.</p>
+            <p data-i18n="pricing.subscribe.step1">Install AccuVideo and launch it. On first launch the app asks for your license — if you don't have one yet, use the in-app buttons to request a <strong>free trial</strong> or a <strong>paid subscription</strong>. No hardware ID to copy, no menus to hunt through.</p>
           </li>
           <li>
             <span class="license-step-num">2</span>
-            <p data-i18n="pricing.subscribe.step2">Open <strong>Settings → Account</strong> and copy your <strong>hardware ID</strong>. It's a short alphanumeric string unique to that machine.</p>
-          </li>
-          <li>
-            <span class="license-step-num">3</span>
-            <p data-i18n="pricing.subscribe.step3">Open the <a href="#" data-open-form="subscribe">subscription form</a> (or click <strong>Subscribe to this plan</strong> on any card below). Paste your <strong>hardware ID</strong>, pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual), and we send you to Stripe checkout. You will receive a new license that auto-renews until you cancel the subscription.</p>
+            <p data-i18n="pricing.subscribe.step2">Click <strong>Request subscription</strong> in the app, or use the <a href="#" data-open-form="subscribe">subscription form</a> here. Pick your <strong>plan</strong>, <strong>edition</strong> and <strong>billing period</strong> (monthly / annual) and we send you to Stripe checkout. Your license activates automatically on that machine once payment clears.</p>
           </li>
         </ol>
         <p class="license-notes" data-i18n="pricing.subscribe.notes">Each paid license is bound to that hardware ID — one indexer / server per seat. Switching computers or reinstalling the OS? Email us with the new hardware ID and we re-issue, no questions. Pro plans include LAN viewers (15 / 45 / 150); viewers connect to your server and <strong>don't consume their own license</strong>.</p>
@@ -595,8 +591,7 @@
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
     <h3 id="contact-modal-title" data-i18n="contact.title">Download Access - Trial license</h3>
     <p class="contact-modal-sub" data-i18n="contact.sub">We'll email it back within 2 business days.</p>
-    <p class="contact-modal-hint" data-i18n="contact.download_hint">Your download will start right after you submit this form.</p>
-    <div class="contact-modal-notice" role="note" data-i18n="contact.install_notice">⚠️ <strong>Important — how to activate your trial:</strong><ol><li><strong>Install AccuVideo</strong> on your computer by running the <code>.msi</code> (Windows) or <code>.pkg</code> (macOS) you're about to download.</li><li>Open the app and go through the <strong>initial setup</strong> (files folder, models folder, port…) — one of the steps will ask for your license.</li><li>Paste the trial license we email you. Done.</li></ol></div>
+    <p class="contact-modal-hint" data-i18n="contact.download_hint">We'll email you your trial license along with the installer download link.</p>
     <form id="contact-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo trial license request">
@@ -749,14 +744,7 @@
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="legal.cookie_banner">Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
-  <div class="cookie-actions">
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Entendido</button>
-  </div>
-</div>
-
-<script defer src="assets/js/main.min.js?v=34"></script>
+<script defer src="assets/js/main.min.js?v=18"></script>
 <script>
   (function () {
     const banner = document.getElementById('cookie-banner');
