@@ -6,8 +6,8 @@
   <meta name="robots" content="noindex">
   <title data-i18n="thanks.meta_title">Thanks — AccuVideo</title>
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=29">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=34">
+  <link rel="stylesheet" href="assets/css/style.css?v=31">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=37">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -45,17 +45,11 @@
 <main class="thanks-main">
   <section class="thanks-section">
     <div class="container">
-      <div class="thanks-layout">
-        <div class="thanks-card">
-          <div class="thanks-icon" aria-hidden="true">✓</div>
-          <h1 data-i18n="thanks.title">Thanks! We got your request.</h1>
-          <p id="thanks-body" data-i18n="thanks.body_generic">We'll get back to you within 2 business days. We've also sent you a confirmation email — if you don't see it, check your spam folder.</p>
-          <a href="index.html" class="btn btn-primary" data-i18n="thanks.cta">Back to home</a>
-        </div>
-        <aside id="thanks-download-progress" class="thanks-download-progress" hidden>
-          <span class="download-progress-en">Downloading is in progress,<br>check your downloads folder.</span>
-          <span class="download-progress-es">La descarga está en progreso;<br>revisa tu carpeta de descargas.</span>
-        </aside>
+      <div class="thanks-card">
+        <div class="thanks-icon" aria-hidden="true">✓</div>
+        <h1 data-i18n="thanks.title">Thanks! We got your request.</h1>
+        <p id="thanks-body" data-i18n="thanks.body_generic">We'll get back to you within 2 business days. We've also sent you a confirmation email — if you don't see it, check your spam folder.</p>
+        <a href="index.html" class="btn btn-primary" data-i18n="thanks.cta">Back to home</a>
       </div>
     </div>
   </section>
@@ -80,14 +74,7 @@
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="legal.cookie_banner">Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.</p>
-  <div class="cookie-actions">
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Entendido</button>
-  </div>
-</div>
-
-<script defer src="assets/js/main.min.js?v=34"></script>
+<script defer src="assets/js/main.min.js?v=37"></script>
 <script>
   (function () {
     const banner = document.getElementById('cookie-banner');
@@ -168,7 +155,6 @@
     const form = params.get('form');
     const body = document.getElementById('thanks-body');
     const title = document.querySelector('.thanks-card h1');
-    const downloadProgress = document.getElementById('thanks-download-progress');
     const bodyMap = {
       trial: 'thanks.body_trial',
       contactus: 'thanks.body_contactus',
@@ -177,7 +163,6 @@
     const titleMap = { subscribe: 'thanks.title_subscribe' };
     if (body) body.setAttribute('data-i18n', bodyMap[form] || 'thanks.body_generic');
     if (title && titleMap[form]) title.setAttribute('data-i18n', titleMap[form]);
-    if (downloadProgress) downloadProgress.hidden = form !== 'trial';
     if (form && typeof gtag === 'function') {
       gtag('event', 'form_submit', { form_name: form });
     }
