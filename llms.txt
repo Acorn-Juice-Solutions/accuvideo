@@ -39,7 +39,6 @@
 ## Platforms
 - **Windows 10 / 11**: Full support. Optional NVIDIA CUDA acceleration (GPU with ≥6 GB VRAM, driver 525+). Distributed as .msi installer.
 - **macOS 13+ (Apple Silicon M1/M2/M3)**: Native ARM64 build using PyTorch + Accelerate framework. MPS acceleration planned for a future release. Distributed as .pkg installer.
-- **macOS Intel (10.12+)**: Basic edition available on request; evaluated case by case.
 - **Linux (Ubuntu 20.04+ / Debian 11+)**: CPU-only ingestion supported. CUDA support on the roadmap.
 
 ## Use cases

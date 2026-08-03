@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css?v=31">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=37">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=39">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -115,10 +115,10 @@
         <div class="req-table-wrap"><table class="req-table">
           <thead><tr><th>Component</th><th>Spec</th></tr></thead>
           <tbody>
-            <tr><td><strong>CPU</strong></td><td>Intel Core i5 (6th gen+) / Apple Silicon M1</td></tr>
+            <tr><td><strong>CPU</strong></td><td>Apple Silicon M1</td></tr>
             <tr><td><strong>RAM</strong></td><td>8 GB unified</td></tr>
-            <tr><td><strong>GPU</strong></td><td>Integrated (Intel Iris / Apple Neural Engine)</td></tr>
-            <tr><td><strong>Storage (OS + models)</strong></td><td>SSD with 50 GB free (macOS 12+)</td></tr>
+            <tr><td><strong>GPU</strong></td><td>Apple Neural Engine (integrated)</td></tr>
+            <tr><td><strong>Storage (OS + models)</strong></td><td>SSD with 50 GB free (macOS 13+)</td></tr>
             <tr><td><strong>Storage (Videos)</strong></td><td>Configurable — from 50 GB</td></tr>
             <tr><td><strong>Network</strong></td><td>WiFi 2.4/5 GHz or Ethernet</td></tr>
           </tbody>
@@ -128,8 +128,8 @@
         <div class="req-table-wrap"><table class="req-table">
           <thead><tr><th>Component</th><th>Spec</th></tr></thead>
           <tbody>
-            <tr><td><strong>CPU</strong></td><td>Apple Silicon M2 / M3 or Intel Core i7 (10th gen+)</td></tr>
-            <tr><td><strong>RAM</strong></td><td>16 GB unified (M-series) or DDR4 (Intel)</td></tr>
+            <tr><td><strong>CPU</strong></td><td>Apple Silicon M2 / M3</td></tr>
+            <tr><td><strong>RAM</strong></td><td>16 GB unified</td></tr>
             <tr><td><strong>GPU</strong></td><td>Apple Neural Engine — MPS planned for a future release; the current version runs on CPU</td></tr>
             <tr><td><strong>Storage (OS + models)</strong></td><td>SSD 256 GB</td></tr>
             <tr><td><strong>Storage (Videos)</strong></td><td>External USB-C HDD 1-2 TB or internal SSD</td></tr>
@@ -140,8 +140,7 @@
         <h3>macOS notes</h3>
         <ul>
           <li><strong>Apple Silicon (M1/M2/M3):</strong> native PyTorch + Accelerate framework → efficient on CPU. MPS acceleration is planned for a future release.</li>
-          <li><strong>Intel Mac:</strong> PyTorch x86_64 on CPU. eGPU support (AMD Radeon RX 6600 XT+) is not available in this release.</li>
-          <li><strong>Deployment target:</strong> x86_64 macOS 10.12+, ARM64 macOS 13.0+.</li>
+          <li><strong>Deployment target:</strong> ARM64 macOS 13.0+.</li>
           <li><strong>FFmpeg:</strong> bundled with AccuVideo.</li>
           <li><strong>Thermal management:</strong> M-series stays cool (~70°C under load).</li>
           <li><strong>Remote streaming:</strong> WiFi 5/6 recommended for multiple concurrent clients.</li>
@@ -293,6 +292,6 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=37"></script>
+<script defer src="assets/js/main.min.js?v=39"></script>
 </body>
 </html>
