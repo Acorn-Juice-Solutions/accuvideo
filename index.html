@@ -57,7 +57,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'granted',
+      analytics_storage: 'denied',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -80,6 +80,7 @@
       <a href="#ingest" data-i18n="nav.ingest">Ingestion</a>
       <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
       <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
+      <a href="#about" data-i18n="nav.about">About</a>
     </nav>
     <div class="header-actions">
       <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-controls="site-nav" aria-expanded="false">
@@ -193,8 +194,8 @@
           </ul>
           <p class="edition-bestfor" data-i18n="editions.basic.bestfor"><strong>Best for:</strong> students, individuals and families with a modest video collection.</p>
           <div class="edition-ctas">
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoBasic.msi" class="btn btn-primary" data-requires-trial="true" data-i18n="editions.basic.cta_win">Windows · .msi</a>
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoMacBasic.pkg" class="btn btn-primary" data-requires-trial="true" data-i18n="editions.basic.cta_mac">macOS · .pkg</a>
+            <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="basic" data-os="windows" data-i18n="editions.basic.cta_win">Windows · .msi</button>
+            <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="basic" data-os="macos" data-i18n="editions.basic.cta_mac">macOS · .pkg</button>
           </div>
         </article>
         <article class="edition">
@@ -212,8 +213,8 @@
           </ul>
           <p class="edition-bestfor" data-i18n="editions.pro.bestfor"><strong>Best for:</strong> online academies, corporate training, schools, large family archives and any multi-user setup.</p>
           <div class="edition-ctas">
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-requires-trial="true" data-i18n="editions.pro.cta_win">Windows · .msi</a>
-            <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoMacPro.pkg" class="btn btn-primary" data-requires-trial="true" data-i18n="editions.pro.cta_mac">macOS · .pkg</a>
+            <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="pro" data-os="windows" data-i18n="editions.pro.cta_win">Windows · .msi</button>
+            <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="pro" data-os="macos" data-i18n="editions.pro.cta_mac">macOS · .pkg</button>
           </div>
         </article>
       </div>
@@ -331,6 +332,26 @@
     </div>
   </section>
 
+  <section id="about" class="local">
+    <div class="container">
+      <div class="local-banner">
+        <h2 data-i18n="about.title">About the developer</h2>
+        <p data-i18n="about.body"><strong>ACORN JUICE SOLUTIONS SL</strong> is the developer and sole owner of the AccuVideo software. AccuVideo is distributed directly from this website — we are not a reseller and no third-party distributors are authorized to sell it.</p>
+      </div>
+      <article class="privacy-policy-standard" aria-labelledby="about-legal-title">
+        <h3 id="about-legal-title" data-i18n="about.legal.title">Company details</h3>
+        <ul>
+          <li data-i18n="about.legal.name"><strong>Company:</strong> ACORN JUICE SOLUTIONS SL</li>
+          <li data-i18n="about.legal.cif"><strong>Spanish Tax ID (CIF):</strong> B71336218</li>
+          <li data-i18n="about.legal.address"><strong>Registered address:</strong> Calle Bosquecillo, 6, 31191, Beriáin (Navarra), Spain</li>
+          <li data-i18n="about.legal.email"><strong>Contact email:</strong> <a href="mailto:info@acornjuice.com">info@acornjuice.com</a></li>
+          <li data-i18n="about.legal.site"><strong>Official website:</strong> <a href="https://accuvideo.acornjuice.com/">accuvideo.acornjuice.com</a></li>
+        </ul>
+        <p data-i18n="about.legal.note">AccuVideo is trademarked, developed and maintained by Acorn Juice Solutions. All installers and updates are provided directly by us; the download link for your license is delivered by email after you sign up for a trial or a paid subscription.</p>
+      </article>
+    </div>
+  </section>
+
   <section class="pricing">
     <div class="container pricing-layout">
       <div id="download" class="download-card pricing-download">
@@ -341,20 +362,19 @@
           <div class="download-row">
             <div class="download-row-label" data-i18n="download.row_basic">Basic</div>
             <div class="download-row-ctas">
-              <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoBasic.msi" class="btn btn-primary" data-requires-trial="true" data-i18n="download.basic_win">Windows · .msi</a>
-              <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoMacBasic.pkg" class="btn btn-primary" data-requires-trial="true" data-i18n="download.basic_mac">macOS Apple Silicon · .pkg</a>
+              <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="basic" data-os="windows" data-i18n="download.basic_win">Windows · .msi</button>
+              <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="basic" data-os="macos" data-i18n="download.basic_mac">macOS Apple Silicon · .pkg</button>
             </div>
           </div>
           <div class="download-row">
             <div class="download-row-label" data-i18n="download.row_pro">Pro</div>
             <div class="download-row-ctas">
-              <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoPro.msi" class="btn btn-primary" data-requires-trial="true" data-i18n="download.pro_win">Windows · .msi</a>
-              <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest/download/AccuVideoMacPro.pkg" class="btn btn-primary" data-requires-trial="true" data-i18n="download.pro_mac">macOS Apple Silicon · .pkg</a>
+              <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="pro" data-os="windows" data-i18n="download.pro_win">Windows · .msi</button>
+              <button type="button" class="btn btn-primary" data-requires-trial="true" data-edition="pro" data-os="macos" data-i18n="download.pro_mac">macOS Apple Silicon · .pkg</button>
             </div>
           </div>
         </div>
-        <p class="download-subnote"><a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest" data-i18n="download.subnote_link">View all release files</a><span data-i18n="download.subnote_suffix"> — changelog, hashes, older versions.</span></p>
-        <p class="download-gpu" data-i18n="download.gpu_note">🟢 <strong>Want NVIDIA CUDA acceleration?</strong> <strong>Basic</strong> ships with CUDA support built in — if a compatible GPU is detected, the app offers to enable GPU mode and downloads a bundled DLL pack on first use. <strong>Pro CUDA</strong> is a separate <strong>.zip (&gt;2 GB)</strong> hosted externally because of GitHub's 2 GB asset limit — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip" data-requires-trial="true" download><strong>download AccuVideoPro_GPU.zip</strong></a> (SHA-256 published in the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">GitHub release notes</a>).</p>
+        <p class="download-gpu" data-i18n="download.gpu_note">🟢 <strong>Want NVIDIA CUDA acceleration?</strong> <strong>Basic</strong> ships with CUDA support built in — if a compatible GPU is detected, the app offers to enable GPU mode and downloads a bundled DLL pack on first use. <strong>Pro CUDA</strong> is a separate <strong>.zip (&gt;2 GB)</strong> distributed on request; the download link and its SHA-256 hash are sent by email to Pro subscribers.</p>
         <p class="download-note" data-i18n="download.note">Need an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.</p>
       </div>
 
@@ -743,28 +763,74 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=39"></script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm" data-l10n-key="legal.cookie_reject">Rechazar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Aceptar</button>
+  </div>
+</div>
+
+<script defer src="assets/js/main.min.js?v=40"></script>
 <script>
   (function () {
+    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
     const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
 
-    function applyConsent() {
+    function applyConsent(granted) {
       if (typeof gtag !== 'function') return;
       gtag('consent', 'update', {
-        analytics_storage: 'granted',
+        analytics_storage: granted ? 'granted' : 'denied',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
       });
     }
 
+    function hideBanner() {
+      if (!banner) return;
+      banner.hidden = true;
+      banner.setAttribute('aria-hidden', 'true');
+    }
+
+    function showBanner() {
+      if (!banner) return;
+      banner.hidden = false;
+      banner.removeAttribute('aria-hidden');
+    }
+
+    function storeChoice(value) {
+      try { localStorage.setItem(STORAGE_KEY, value); } catch (err) { /* private mode */ }
+    }
+
+    function readChoice() {
+      try { return localStorage.getItem(STORAGE_KEY); } catch (err) { return null; }
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
-      applyConsent();
-      if (banner) {
-        banner.hidden = true;
-        banner.style.display = 'none';
-        banner.setAttribute('aria-hidden', 'true');
+      const saved = readChoice();
+      if (saved === 'granted') {
+        applyConsent(true);
+        hideBanner();
+      } else if (saved === 'denied') {
+        applyConsent(false);
+        hideBanner();
+      } else {
+        applyConsent(false);
+        showBanner();
       }
+      if (acceptBtn) acceptBtn.addEventListener('click', function () {
+        storeChoice('granted');
+        applyConsent(true);
+        hideBanner();
+      });
+      if (rejectBtn) rejectBtn.addEventListener('click', function () {
+        storeChoice('denied');
+        applyConsent(false);
+        hideBanner();
+      });
     });
   })();
 
@@ -776,8 +842,9 @@
         'legal.privacy_link': 'Ver Política de Privacidad completa',
         'legal.form_consent': 'Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.',
         'legal.privacy_nav': 'Política de privacidad',
-        'legal.cookie_banner': 'Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
-        'legal.cookie_accept': 'Entendido'
+        'legal.cookie_banner': 'Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.',
+        'legal.cookie_accept': 'Aceptar',
+        'legal.cookie_reject': 'Rechazar'
       },
       en: {
         'legal.privacy_title': 'Privacy Policy',
@@ -785,8 +852,9 @@
         'legal.privacy_link': 'View Full Privacy Policy',
         'legal.form_consent': 'I agree to the sending and processing of my data (email and, when applicable, name and/or hardware ID) to handle my request. <a href="privacy.html" target="_blank" rel="noopener">View privacy policy</a>.',
         'legal.privacy_nav': 'Privacy policy',
-        'legal.cookie_banner': 'Google Analytics is always enabled to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'legal.cookie_accept': 'Understood'
+        'legal.cookie_banner': 'We use Google Analytics (anonymized IP) to measure website usage. It only loads after you accept. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'legal.cookie_accept': 'Accept',
+        'legal.cookie_reject': 'Reject'
       }
     };
 
@@ -826,26 +894,6 @@
     });
   })();
 
-  document.addEventListener('click', function (e) {
-    const a = e.target.closest('a[href*="/releases/latest/download/"]');
-    if (!a) return;
-    if (a.hasAttribute('data-requires-trial')) return;
-    const url = a.getAttribute('href') || '';
-    const file = url.split('/').pop() || '';
-    const lower = file.toLowerCase();
-    const ext = lower.includes('.') ? lower.split('.').pop() : '';
-    const edition = lower.includes('pro') ? 'pro' : (lower.includes('basic') ? 'basic' : 'unknown');
-    const os = ext === 'msi' ? 'windows' : (ext === 'dmg' ? 'macos' : 'other');
-    if (typeof gtag === 'function') {
-      gtag('event', 'file_download', {
-        file_name: file,
-        file_extension: ext,
-        link_url: url,
-        edition: edition,
-        os: os,
-      });
-    }
-  });
 </script>
 </body>
 </html>

@@ -15,7 +15,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'granted',
+      analytics_storage: 'denied',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -74,28 +74,43 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=39"></script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm" data-l10n-key="legal.cookie_reject">Rechazar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Aceptar</button>
+  </div>
+</div>
+
+<script defer src="assets/js/main.min.js?v=40"></script>
 <script>
   (function () {
+    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
     const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
 
-    function applyConsent() {
+    function applyConsent(granted) {
       if (typeof gtag !== 'function') return;
       gtag('consent', 'update', {
-        analytics_storage: 'granted',
+        analytics_storage: granted ? 'granted' : 'denied',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
       });
     }
+    function hideBanner() { if (banner) { banner.hidden = true; banner.setAttribute('aria-hidden','true'); } }
+    function showBanner() { if (banner) { banner.hidden = false; banner.removeAttribute('aria-hidden'); } }
+    function storeChoice(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {} }
+    function readChoice() { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } }
 
     document.addEventListener('DOMContentLoaded', function () {
-      applyConsent();
-      if (banner) {
-        banner.hidden = true;
-        banner.style.display = 'none';
-        banner.setAttribute('aria-hidden', 'true');
-      }
+      const saved = readChoice();
+      if (saved === 'granted') { applyConsent(true); hideBanner(); }
+      else if (saved === 'denied') { applyConsent(false); hideBanner(); }
+      else { applyConsent(false); showBanner(); }
+      if (acceptBtn) acceptBtn.addEventListener('click', function () { storeChoice('granted'); applyConsent(true); hideBanner(); });
+      if (rejectBtn) rejectBtn.addEventListener('click', function () { storeChoice('denied'); applyConsent(false); hideBanner(); });
     });
   })();
 
@@ -103,13 +118,15 @@
     const legalI18n = {
       es: {
         'legal.privacy_nav': 'Política de privacidad',
-        'legal.cookie_banner': 'Google Analytics está siempre activo para medir uso de la web. Más info en <a href="privacy.html">Política de privacidad</a>.',
-        'legal.cookie_accept': 'Entendido'
+        'legal.cookie_banner': 'Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.',
+        'legal.cookie_accept': 'Aceptar',
+        'legal.cookie_reject': 'Rechazar'
       },
       en: {
         'legal.privacy_nav': 'Privacy policy',
-        'legal.cookie_banner': 'Google Analytics is always enabled to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'legal.cookie_accept': 'Understood'
+        'legal.cookie_banner': 'We use Google Analytics (anonymized IP) to measure website usage. It only loads after you accept. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'legal.cookie_accept': 'Accept',
+        'legal.cookie_reject': 'Reject'
       }
     };
 

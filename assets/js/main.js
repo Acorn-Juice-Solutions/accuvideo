@@ -59,7 +59,18 @@
       'nav.editions': 'Editions',
       'nav.pricing': 'Pricing',
       'nav.requirements': 'Requirements',
+      'nav.about': 'About',
       'nav.cta': 'Try free',
+
+      'about.title': 'About the developer',
+      'about.body': '<strong>ACORN JUICE SOLUTIONS SL</strong> is the developer and sole owner of the AccuVideo software. AccuVideo is distributed directly from this website — we are not a reseller and no third-party distributors are authorized to sell it.',
+      'about.legal.title': 'Company details',
+      'about.legal.name': '<strong>Company:</strong> ACORN JUICE SOLUTIONS SL',
+      'about.legal.cif': '<strong>Spanish Tax ID (CIF):</strong> B71336218',
+      'about.legal.address': '<strong>Registered address:</strong> Calle Bosquecillo, 6, 31191, Beriáin (Navarra), Spain',
+      'about.legal.email': '<strong>Contact email:</strong> <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>',
+      'about.legal.site': '<strong>Official website:</strong> <a href="https://accuvideo.acornjuice.com/">accuvideo.acornjuice.com</a>',
+      'about.legal.note': 'AccuVideo is trademarked, developed and maintained by Acorn Juice Solutions. All installers and updates are provided directly by us; the download link for your license is delivered by email after you sign up for a trial or a paid subscription.',
 
       'hero.eyebrow': 'By Acorn Juice Solutions',
       'hero.title': 'Stop scrubbing the timeline. <span class="accent">Just ask.</span>',
@@ -280,9 +291,7 @@
       'download.basic_mac': 'macOS Apple Silicon · .pkg',
       'download.pro_win': 'Windows · .msi',
       'download.pro_mac': 'macOS Apple Silicon · .pkg',
-      'download.subnote_link': 'View all release files',
-      'download.subnote_suffix': ' — changelog, hashes, older versions.',
-      'download.gpu_note': '🟢 <strong>Want faster local processing?</strong> On compatible NVIDIA GPUs, AccuVideo can use GPU acceleration for indexing and analysis while keeping your videos on your machine. <strong>Basic</strong> can enable this automatically when a compatible card is detected; <strong>Pro</strong> offers a separate CUDA build packaged as a <strong>.zip (&gt;2 GB)</strong> hosted externally because of GitHub\'s 2 GB asset limit — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip" download><strong>download AccuVideoPro_GPU.zip</strong></a> (SHA-256 published in the <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">GitHub release notes</a>).',
+      'download.gpu_note': '🟢 <strong>Want faster local processing?</strong> On compatible NVIDIA GPUs, AccuVideo can use GPU acceleration for indexing and analysis while keeping your videos on your machine. <strong>Basic</strong> can enable this automatically when a compatible card is detected; <strong>Pro</strong> offers a separate CUDA build packaged as a <strong>.zip (&gt;2 GB)</strong> distributed on request — the download link and its SHA-256 hash are sent by email to Pro subscribers.',
       'download.note': 'Need an enterprise license, or have a question first? <a href="#" data-open-form="contactus">Contact us</a>.',
 
       'req.title': 'System requirements',
@@ -389,7 +398,18 @@
       'nav.editions': 'Ediciones',
       'nav.pricing': 'Precios',
       'nav.requirements': 'Requisitos',
+      'nav.about': 'Sobre nosotros',
       'nav.cta': 'Probar gratis',
+
+      'about.title': 'Sobre la desarrolladora',
+      'about.body': '<strong>ACORN JUICE SOLUTIONS SL</strong> es la desarrolladora y titular exclusiva del software AccuVideo. AccuVideo se distribuye directamente desde este sitio web — no somos revendedores ni hay distribuidores de terceros autorizados para venderlo.',
+      'about.legal.title': 'Datos de la empresa',
+      'about.legal.name': '<strong>Empresa:</strong> ACORN JUICE SOLUTIONS SL',
+      'about.legal.cif': '<strong>CIF:</strong> B71336218',
+      'about.legal.address': '<strong>Domicilio social:</strong> Calle Bosquecillo, 6, 31191, Beriáin (Navarra), España',
+      'about.legal.email': '<strong>Email de contacto:</strong> <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>',
+      'about.legal.site': '<strong>Web oficial:</strong> <a href="https://accuvideo.acornjuice.com/">accuvideo.acornjuice.com</a>',
+      'about.legal.note': 'AccuVideo es una marca registrada, desarrollada y mantenida por Acorn Juice Solutions. Todos los instaladores y actualizaciones los proporcionamos directamente nosotros; el enlace de descarga vinculado a tu licencia se envía por email tras dar de alta la prueba o una suscripción de pago.',
 
       'hero.eyebrow': 'Por Acorn Juice Solutions',
       'hero.title': 'Deja de arrastrar la barra. <span class="accent">Solo pregúntalo.</span>',
@@ -611,9 +631,7 @@
       'download.basic_mac': 'macOS Apple Silicon · .pkg',
       'download.pro_win': 'Windows · .msi',
       'download.pro_mac': 'macOS Apple Silicon · .pkg',
-      'download.subnote_link': 'Ver todos los ficheros del release',
-      'download.subnote_suffix': ' — changelog, hashes, versiones anteriores.',
-      'download.gpu_note': '🟢 <strong>¿Quieres un procesamiento local más rápido?</strong> En GPUs NVIDIA compatibles, AccuVideo puede usar aceleración por GPU para indexar y analizar mientras tus vídeos se quedan en tu máquina. <strong>Basic</strong> puede activarlo automáticamente cuando detecta una tarjeta compatible; <strong>Pro</strong> ofrece un build CUDA aparte empaquetado como <strong>.zip (&gt;2 GB)</strong> alojado externamente por la limitación de 2 GB de GitHub — <a href="https://cdn.accuvideo.acornjuice.com/AccuVideoPro_GPU.zip" download><strong>descarga AccuVideoPro_GPU.zip</strong></a> (SHA-256 publicado en las <a href="https://github.com/Acorn-Juice-Solutions/accuvideo-releases/releases/latest">notas del release de GitHub</a>).',
+      'download.gpu_note': '🟢 <strong>¿Quieres un procesamiento local más rápido?</strong> En GPUs NVIDIA compatibles, AccuVideo puede usar aceleración por GPU para indexar y analizar mientras tus vídeos se quedan en tu máquina. <strong>Basic</strong> puede activarlo automáticamente cuando detecta una tarjeta compatible; <strong>Pro</strong> ofrece un build CUDA aparte empaquetado como <strong>.zip (&gt;2 GB)</strong> que se distribuye bajo petición — el enlace de descarga y su hash SHA-256 se envían por email a las personas suscritas a Pro.',
       'download.note': '¿Necesitas una licencia enterprise o tienes una duda primero? <a href="#" data-open-form="contactus">Escríbenos</a>.',
 
       'req.title': 'Requisitos del sistema',
@@ -1119,11 +1137,16 @@
     // Event delegation: covers the download buttons that require a trial and any
     // [data-open-form="trial"] trigger (including links injected via i18n innerHTML).
     document.addEventListener('click', (e) => {
-      const downloadTrigger = e.target.closest('a[data-requires-trial="true"]');
+      const downloadTrigger = e.target.closest('[data-requires-trial="true"]');
       if (downloadTrigger) {
         e.preventDefault();
-        const info = getReleaseDownloadInfo(downloadTrigger.href);
-        openContactModal(info ? info.edition : 'basic', info ? info.os : 'windows');
+        const edition = downloadTrigger.getAttribute('data-edition')
+          || (downloadTrigger.href ? (getReleaseDownloadInfo(downloadTrigger.href) || {}).edition : null)
+          || 'basic';
+        const os = downloadTrigger.getAttribute('data-os')
+          || (downloadTrigger.href ? (getReleaseDownloadInfo(downloadTrigger.href) || {}).os : null)
+          || 'windows';
+        openContactModal(edition, os);
         return;
       }
 
