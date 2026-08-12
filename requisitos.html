@@ -26,7 +26,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'granted',
+      analytics_storage: 'denied',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -64,7 +64,7 @@
         <p><strong>Aceleración GPU / CUDA (Windows):</strong> AccuVideo soporta aceleración NVIDIA CUDA opcional en Windows.</p>
         <ul>
           <li><strong>Basic:</strong> incluye soporte CUDA de serie. Si se detecta una GPU NVIDIA compatible, la app ofrece activar el modo GPU y descarga bajo demanda un pequeño pack de DLLs empaquetadas (.zip).</li>
-          <li><strong>Pro:</strong> el build CUDA se distribuye como .zip aparte (&gt;2 GB) alojado externamente (por el límite de tamaño por asset de GitHub). El enlace de descarga y su hash SHA-256 se publican en las notas de cada release de GitHub.</li>
+          <li><strong>Pro:</strong> el build CUDA se distribuye como .zip aparte (&gt;2 GB) bajo petición. El enlace de descarga y su hash SHA-256 se envían por email a las personas suscritas a Pro.</li>
           <li><strong>CPU sigue siendo el modo por defecto</strong> en todas las plataformas y está totalmente soportado. MPS (Apple Silicon) y CUDA en Linux siguen en la hoja de ruta.</li>
         </ul>
       </article>
@@ -91,7 +91,7 @@
           <tbody>
             <tr><td><strong>CPU</strong></td><td>Intel Core i7 (10ª gen+) / AMD Ryzen 7 3700X o superior</td></tr>
             <tr><td><strong>RAM</strong></td><td>16 GB DDR4</td></tr>
-            <tr><td><strong>GPU</strong></td><td>NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ con soporte CUDA — recomendada para la indexación visual de Pro. El build CUDA de Pro es un .zip aparte (&gt;2 GB) alojado externamente; enlace y hash SHA-256 publicados junto a cada release de GitHub</td></tr>
+            <tr><td><strong>GPU</strong></td><td>NVIDIA RTX 3060 12 GB / RTX 4060 8 GB / RTX 3060 Ti+ con soporte CUDA — recomendada para la indexación visual de Pro. El build CUDA de Pro es un .zip aparte (&gt;2 GB) bajo petición; enlace y hash SHA-256 enviados por email a las personas suscritas a Pro</td></tr>
             <tr><td><strong>Almacenamiento (SO + modelos)</strong></td><td>SSD NVMe 256 GB</td></tr>
             <tr><td><strong>Almacenamiento (Vídeos)</strong></td><td>HDD 1-2 TB o SSD SATA — NVMe no aporta para reproducción</td></tr>
             <tr><td><strong>Red</strong></td><td>Ethernet Gigabit (1 Gbps) o WiFi 5/6</td></tr>
@@ -254,7 +254,7 @@
           <li><strong>RAM libre:</strong> mínimo 6 GB disponible durante ingesta.</li>
           <li><strong>Conexión de red:</strong> estable para acceder al DB gestionado y streaming LAN.</li>
           <li><strong>Permisos:</strong> acceso RW a carpeta de vídeos.</li>
-          <li><strong>GPU:</strong> no imprescindible — el modo CPU siempre funciona. Para la aceleración CUDA opcional en Windows: se recomienda GPU NVIDIA con ≥6 GB VRAM y driver 525+. Basic activa CUDA con opt-in dentro de la app (descarga un pack de DLLs empaquetadas); el Pro CUDA es un .zip aparte (&gt;2 GB) externo enlazado desde cada release de GitHub.</li>
+          <li><strong>GPU:</strong> no imprescindible — el modo CPU siempre funciona. Para la aceleración CUDA opcional en Windows: se recomienda GPU NVIDIA con ≥6 GB VRAM y driver 525+. Basic activa CUDA con opt-in dentro de la app (descarga un pack de DLLs empaquetadas); el Pro CUDA es un .zip aparte (&gt;2 GB) que se envía por email a las personas suscritas a Pro, junto con su hash SHA-256.</li>
         </ul>
       </article>
 
@@ -292,6 +292,45 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=39"></script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p>Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm">Rechazar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm">Aceptar</button>
+  </div>
+</div>
+
+<script defer src="assets/js/main.min.js?v=40"></script>
+<script>
+  (function () {
+    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    function applyConsent(granted) {
+      if (typeof gtag !== 'function') return;
+      gtag('consent', 'update', {
+        analytics_storage: granted ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    }
+    function hideBanner() { if (banner) { banner.hidden = true; banner.setAttribute('aria-hidden','true'); } }
+    function showBanner() { if (banner) { banner.hidden = false; banner.removeAttribute('aria-hidden'); } }
+    function storeChoice(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {} }
+    function readChoice() { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const saved = readChoice();
+      if (saved === 'granted') { applyConsent(true); hideBanner(); }
+      else if (saved === 'denied') { applyConsent(false); hideBanner(); }
+      else { applyConsent(false); showBanner(); }
+      if (acceptBtn) acceptBtn.addEventListener('click', function () { storeChoice('granted'); applyConsent(true); hideBanner(); });
+      if (rejectBtn) rejectBtn.addEventListener('click', function () { storeChoice('denied'); applyConsent(false); hideBanner(); });
+    });
+  })();
+</script>
 </body>
 </html>

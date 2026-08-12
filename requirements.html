@@ -26,7 +26,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'granted',
+      analytics_storage: 'denied',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -254,7 +254,7 @@
           <li><strong>Free RAM:</strong> at least 6 GB available during ingestion.</li>
           <li><strong>Network:</strong> stable connection for the managed DB and LAN streaming.</li>
           <li><strong>Permissions:</strong> RW access to the video folder.</li>
-          <li><strong>GPU:</strong> not required — CPU mode always works. For optional CUDA acceleration on Windows: an NVIDIA GPU with ≥6 GB VRAM and driver 525+ is recommended. Basic enables CUDA via in-app opt-in (downloads a bundled DLL pack); Pro CUDA is a separate external .zip (&gt;2 GB) linked from each GitHub release.</li>
+          <li><strong>GPU:</strong> not required — CPU mode always works. For optional CUDA acceleration on Windows: an NVIDIA GPU with ≥6 GB VRAM and driver 525+ is recommended. Basic enables CUDA via in-app opt-in (downloads a bundled DLL pack); Pro CUDA is a separate external .zip (&gt;2 GB) distributed on request, sent by email with its SHA-256 hash to Pro subscribers.</li>
         </ul>
       </article>
 
@@ -292,6 +292,45 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=39"></script>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p>We use Google Analytics (anonymized IP) to measure website usage. It only loads after you accept. More info in the <a href="privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm">Reject</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm">Accept</button>
+  </div>
+</div>
+
+<script defer src="assets/js/main.min.js?v=40"></script>
+<script>
+  (function () {
+    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    function applyConsent(granted) {
+      if (typeof gtag !== 'function') return;
+      gtag('consent', 'update', {
+        analytics_storage: granted ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    }
+    function hideBanner() { if (banner) { banner.hidden = true; banner.setAttribute('aria-hidden','true'); } }
+    function showBanner() { if (banner) { banner.hidden = false; banner.removeAttribute('aria-hidden'); } }
+    function storeChoice(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {} }
+    function readChoice() { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const saved = readChoice();
+      if (saved === 'granted') { applyConsent(true); hideBanner(); }
+      else if (saved === 'denied') { applyConsent(false); hideBanner(); }
+      else { applyConsent(false); showBanner(); }
+      if (acceptBtn) acceptBtn.addEventListener('click', function () { storeChoice('granted'); applyConsent(true); hideBanner(); });
+      if (rejectBtn) rejectBtn.addEventListener('click', function () { storeChoice('denied'); applyConsent(false); hideBanner(); });
+    });
+  })();
+</script>
 </body>
 </html>
