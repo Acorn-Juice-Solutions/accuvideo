@@ -8,8 +8,8 @@
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://accuvideo.acornjuice.com/privacy.html">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=31">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=40">
+  <link rel="stylesheet" href="assets/css/style.css?v=32">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=41">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -191,25 +191,23 @@
 </footer>
 
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="privacy.cookie.banner">Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
+  <p data-l10n-key="privacy.cookie.banner">Usamos Google Analytics (IP anonimizada) para medir el uso de la web. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
   <div class="cookie-actions">
-    <button type="button" id="cookie-reject" class="btn btn-ghost btn-sm" data-l10n-key="privacy.cookie.reject">Rechazar</button>
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="privacy.cookie.accept">Aceptar</button>
+    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="privacy.cookie.accept">Entendido</button>
   </div>
 </div>
 
-<script defer src="assets/js/main.min.js?v=40"></script>
+<script defer src="assets/js/main.min.js?v=41"></script>
 <script>
   (function () {
     const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept');
-    const rejectBtn = document.getElementById('cookie-reject');
 
-    function applyConsent(granted) {
+    function grantConsent() {
       if (typeof gtag !== 'function') return;
       gtag('consent', 'update', {
-        analytics_storage: granted ? 'granted' : 'denied',
+        analytics_storage: 'granted',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
@@ -237,25 +235,15 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      const saved = readChoice();
-      if (saved === 'granted') {
-        applyConsent(true);
-        hideBanner();
-      } else if (saved === 'denied') {
-        applyConsent(false);
+      if (readChoice() === 'granted') {
+        grantConsent();
         hideBanner();
       } else {
-        applyConsent(false);
         showBanner();
       }
       if (acceptBtn) acceptBtn.addEventListener('click', function () {
         storeChoice('granted');
-        applyConsent(true);
-        hideBanner();
-      });
-      if (rejectBtn) rejectBtn.addEventListener('click', function () {
-        storeChoice('denied');
-        applyConsent(false);
+        grantConsent();
         hideBanner();
       });
     });
@@ -335,9 +323,8 @@
         'privacy.changes.p1': 'Podemos actualizar esta política para reflejar cambios legales, técnicos o del servicio. La fecha de "Última actualización" al inicio del documento indica cuándo se publicó la versión vigente. Si los cambios son sustanciales, avisaremos por email a las personas suscritas.',
         'privacy.footer.home': 'Inicio',
         'privacy.footer.privacy': 'Política de privacidad',
-        'privacy.cookie.banner': 'Usamos Google Analytics (IP anonimizada) para medir el uso de la web. No se activa hasta que aceptes. Más info en la <a href="privacy.html">Política de privacidad</a>.',
-        'privacy.cookie.reject': 'Rechazar',
-        'privacy.cookie.accept': 'Aceptar'
+        'privacy.cookie.banner': 'Usamos Google Analytics (IP anonimizada) para medir el uso de la web. Más info en la <a href="privacy.html">Política de privacidad</a>.',
+        'privacy.cookie.accept': 'Entendido'
       },
       en: {
         pageTitle: 'Privacy Policy - AccuVideo',
@@ -411,9 +398,8 @@
         'privacy.changes.p1': 'We may update this policy to reflect legal, technical, or service changes. The "Last updated" date at the top of the document indicates when the current version was published. If changes are substantial, we will notify subscribers by email.',
         'privacy.footer.home': 'Home',
         'privacy.footer.privacy': 'Privacy policy',
-        'privacy.cookie.banner': 'We use Google Analytics (anonymized IP) to measure website usage. It only loads after you accept. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'privacy.cookie.reject': 'Reject',
-        'privacy.cookie.accept': 'Accept'
+        'privacy.cookie.banner': 'We use Google Analytics (anonymized IP) to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
+        'privacy.cookie.accept': 'Understood'
       }
     };
 
