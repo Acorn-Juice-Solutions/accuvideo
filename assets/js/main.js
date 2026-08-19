@@ -312,6 +312,7 @@
 
       'contact.title': 'Request your trial license',
       'contact.sub': 'We\'ll email you your trial license and download link within 2 business days.',
+      'contact.notice_expiry': 'Due to high demand for licenses, trial licenses not activated within the first 7 days will be revoked to allow new users to try the app.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edition',
@@ -652,6 +653,7 @@
 
       'contact.title': 'Solicita tu licencia trial',
       'contact.sub': 'Te enviaremos por email tu licencia trial y el enlace de descarga en hasta 2 días laborables.',
+      'contact.notice_expiry': 'Debido a la alta demanda de licencias, aquellas que no sean activadas durante los primeros 7 días serán dadas de baja para permitir a nuevos usuarios utilizar la aplicación.',
       'contact.field.email': 'Email',
       'contact.field.plan': 'Plan',
       'contact.field.edition': 'Edición',

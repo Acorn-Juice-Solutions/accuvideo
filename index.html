@@ -48,8 +48,8 @@
   </script>
   <link rel="preload" as="image" href="assets/img/AccuVideo_Logo.png" fetchpriority="high">
   <link rel="icon" href="assets/img/favicon.ico">
-  <link rel="stylesheet" href="assets/css/style.css?v=32">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=41">
+  <link rel="stylesheet" href="assets/css/style.css?v=34">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=42">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -611,13 +611,14 @@
     <button type="button" class="contact-modal-close" data-close aria-label="Close">&times;</button>
     <h3 id="contact-modal-title" data-i18n="contact.title">Request your trial license</h3>
     <p class="contact-modal-sub" data-i18n="contact.sub">We'll email you your trial license and download link within 2 business days.</p>
+    <p class="contact-modal-notice" data-i18n="contact.notice_expiry">Due to high demand for licenses, trial licenses not activated within the first 7 days will be revoked to allow new users to try the app.</p>
     <form id="contact-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo trial license request">
       <input type="hidden" name="plan" value="trial">
       <input type="hidden" name="edition" value="Basic">
       <input type="hidden" name="os" value="Windows">
-      <div class="hp-field" aria-hidden="true">
+      <div class="hp-field" aria-hidden="true" hidden>
         <label for="contact-form-website">Website</label>
         <input type="text" id="contact-form-website" name="website" tabindex="-1" autocomplete="off" value="">
       </div>
@@ -657,7 +658,7 @@
     <form id="subscribe-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo subscription started">
-      <div class="hp-field" aria-hidden="true">
+      <div class="hp-field" aria-hidden="true" hidden>
         <label for="subscribe-form-website">Website</label>
         <input type="text" id="subscribe-form-website" name="website" tabindex="-1" autocomplete="off" value="">
       </div>
@@ -716,7 +717,7 @@
     <form id="contactus-form" class="contact-form" action="https://api.staticforms.dev/submit" method="POST" novalidate>
       <input type="hidden" name="apiKey" value="sf_4d32929fdc91426750c7d382">
       <input type="hidden" name="subject" value="AccuVideo contact">
-      <div class="hp-field" aria-hidden="true">
+      <div class="hp-field" aria-hidden="true" hidden>
         <label for="contactus-form-website">Website</label>
         <input type="text" id="contactus-form-website" name="website" tabindex="-1" autocomplete="off" value="">
       </div>
@@ -775,7 +776,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=41"></script>
+<script defer src="assets/js/main.min.js?v=42"></script>
 <script>
   (function () {
     const legalI18n = {
