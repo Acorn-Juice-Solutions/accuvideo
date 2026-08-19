@@ -1,4 +1,4 @@
-const CACHE_NAME = 'accuvideo-v44';
+const CACHE_NAME = 'accuvideo-v45';
 const PRECACHE_URLS = [
   '/',
   '/index.html',

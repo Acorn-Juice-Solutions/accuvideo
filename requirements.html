@@ -26,7 +26,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -292,40 +292,6 @@
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p>We use Google Analytics (anonymized IP) to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.</p>
-  <div class="cookie-actions">
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm">Understood</button>
-  </div>
-</div>
-
 <script defer src="assets/js/main.min.js?v=41"></script>
-<script>
-  (function () {
-    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept');
-
-    function grantConsent() {
-      if (typeof gtag !== 'function') return;
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-    }
-    function hideBanner() { if (banner) { banner.hidden = true; banner.setAttribute('aria-hidden','true'); } }
-    function showBanner() { if (banner) { banner.hidden = false; banner.removeAttribute('aria-hidden'); } }
-    function storeChoice(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) {} }
-    function readChoice() { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      if (readChoice() === 'granted') { grantConsent(); hideBanner(); }
-      else { showBanner(); }
-      if (acceptBtn) acceptBtn.addEventListener('click', function () { storeChoice('granted'); grantConsent(); hideBanner(); });
-    });
-  })();
-</script>
 </body>
 </html>

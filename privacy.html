@@ -17,7 +17,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -158,9 +158,8 @@
 
       <article class="privacy-policy-standard" aria-labelledby="privacy-cookies">
         <h2 id="privacy-cookies" data-l10n-key="privacy.cookies.title">Cookies y analítica</h2>
-        <p data-l10n-key="privacy.cookies.p1">Este sitio utiliza cookies y almacenamiento local propios estrictamente necesarios para recordar tus preferencias (idioma, tema, decisión sobre cookies). Estos no requieren consentimiento porque son imprescindibles para el funcionamiento del servicio.</p>
-        <p data-l10n-key="privacy.cookies.p2">Adicionalmente, usamos <strong>Google Analytics 4</strong> con IP anonimizada para medir de forma agregada el uso del sitio. GA4 <strong>no se activa hasta que aceptas</strong> las cookies analíticas en el banner. Puedes rechazarlas y seguir usando la web con normalidad.</p>
-        <p data-l10n-key="privacy.cookies.p3">Puedes cambiar tu decisión en cualquier momento borrando la clave <code>accuvideo_cookie_consent_v1</code> del almacenamiento local de tu navegador o utilizando la configuración de privacidad del navegador.</p>
+        <p data-l10n-key="privacy.cookies.p1">Este sitio utiliza cookies y almacenamiento local propios estrictamente necesarios para recordar tus preferencias (idioma y tema). Estos no requieren consentimiento porque son imprescindibles para el funcionamiento del servicio.</p>
+        <p data-l10n-key="privacy.cookies.p2">Adicionalmente, usamos <strong>Google Analytics 4</strong> con IP anonimizada para medir de forma agregada el uso del sitio (páginas vistas y eventos básicos). Estos datos no se comparten con terceros con fines publicitarios ni se usan para perfilar individualmente. Puedes desactivar la analítica desde la configuración de privacidad de tu navegador o con extensiones anti-tracking.</p>
       </article>
 
       <article class="privacy-policy-standard" aria-labelledby="privacy-changes">
@@ -190,65 +189,8 @@
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="privacy.cookie.banner">Usamos Google Analytics (IP anonimizada) para medir el uso de la web. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
-  <div class="cookie-actions">
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="privacy.cookie.accept">Entendido</button>
-  </div>
-</div>
-
 <script defer src="assets/js/main.min.js?v=41"></script>
 <script>
-  (function () {
-    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept');
-
-    function grantConsent() {
-      if (typeof gtag !== 'function') return;
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-    }
-
-    function hideBanner() {
-      if (!banner) return;
-      banner.hidden = true;
-      banner.setAttribute('aria-hidden', 'true');
-    }
-
-    function showBanner() {
-      if (!banner) return;
-      banner.hidden = false;
-      banner.removeAttribute('aria-hidden');
-    }
-
-    function storeChoice(value) {
-      try { localStorage.setItem(STORAGE_KEY, value); } catch (err) { /* private mode */ }
-    }
-
-    function readChoice() {
-      try { return localStorage.getItem(STORAGE_KEY); } catch (err) { return null; }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      if (readChoice() === 'granted') {
-        grantConsent();
-        hideBanner();
-      } else {
-        showBanner();
-      }
-      if (acceptBtn) acceptBtn.addEventListener('click', function () {
-        storeChoice('granted');
-        grantConsent();
-        hideBanner();
-      });
-    });
-  })();
-
   (function () {
     const dict = {
       es: {
@@ -316,15 +258,12 @@
         'privacy.minors.title': 'Menores de edad',
         'privacy.minors.p1': 'AccuVideo y sus servicios asociados están dirigidos a personas mayores de <strong>14 años</strong>, edad de consentimiento digital establecida en España por la LOPDGDD. Si eres menor de esta edad, no facilites datos personales sin la autorización de tu representante legal.',
         'privacy.cookies.title': 'Cookies y analítica',
-        'privacy.cookies.p1': 'Este sitio utiliza cookies y almacenamiento local propios estrictamente necesarios para recordar tus preferencias (idioma, tema, decisión sobre cookies). Estos no requieren consentimiento porque son imprescindibles para el funcionamiento del servicio.',
-        'privacy.cookies.p2': 'Adicionalmente, usamos <strong>Google Analytics 4</strong> con IP anonimizada para medir de forma agregada el uso del sitio. GA4 <strong>no se activa hasta que aceptas</strong> las cookies analíticas en el banner. Puedes rechazarlas y seguir usando la web con normalidad.',
-        'privacy.cookies.p3': 'Puedes cambiar tu decisión en cualquier momento borrando la clave <code>accuvideo_cookie_consent_v1</code> del almacenamiento local de tu navegador o utilizando la configuración de privacidad del navegador.',
+        'privacy.cookies.p1': 'Este sitio utiliza cookies y almacenamiento local propios estrictamente necesarios para recordar tus preferencias (idioma y tema). Estos no requieren consentimiento porque son imprescindibles para el funcionamiento del servicio.',
+        'privacy.cookies.p2': 'Adicionalmente, usamos <strong>Google Analytics 4</strong> con IP anonimizada para medir de forma agregada el uso del sitio (páginas vistas y eventos básicos). Estos datos no se comparten con terceros con fines publicitarios ni se usan para perfilar individualmente. Puedes desactivar la analítica desde la configuración de privacidad de tu navegador o con extensiones anti-tracking.',
         'privacy.changes.title': 'Cambios en esta política',
         'privacy.changes.p1': 'Podemos actualizar esta política para reflejar cambios legales, técnicos o del servicio. La fecha de "Última actualización" al inicio del documento indica cuándo se publicó la versión vigente. Si los cambios son sustanciales, avisaremos por email a las personas suscritas.',
         'privacy.footer.home': 'Inicio',
-        'privacy.footer.privacy': 'Política de privacidad',
-        'privacy.cookie.banner': 'Usamos Google Analytics (IP anonimizada) para medir el uso de la web. Más info en la <a href="privacy.html">Política de privacidad</a>.',
-        'privacy.cookie.accept': 'Entendido'
+        'privacy.footer.privacy': 'Política de privacidad'
       },
       en: {
         pageTitle: 'Privacy Policy - AccuVideo',
@@ -391,15 +330,12 @@
         'privacy.minors.title': 'Minors',
         'privacy.minors.p1': 'AccuVideo and its associated services are intended for individuals aged <strong>14 or older</strong>, the digital consent age set in Spain by the LOPDGDD. If you are younger, do not submit personal data without authorization from your legal guardian.',
         'privacy.cookies.title': 'Cookies and analytics',
-        'privacy.cookies.p1': 'This site uses first-party cookies and local storage that are strictly necessary to remember your preferences (language, theme, cookie decision). These do not require consent as they are essential to the service.',
-        'privacy.cookies.p2': 'Additionally, we use <strong>Google Analytics 4</strong> with anonymized IP to measure aggregate usage of the site. GA4 <strong>only loads once you accept</strong> analytics cookies in the banner. You may reject them and continue using the site normally.',
-        'privacy.cookies.p3': 'You can change your decision at any time by deleting the <code>accuvideo_cookie_consent_v1</code> key from your browser\'s local storage or via your browser\'s privacy settings.',
+        'privacy.cookies.p1': 'This site uses first-party cookies and local storage that are strictly necessary to remember your preferences (language and theme). These do not require consent as they are essential to the service.',
+        'privacy.cookies.p2': 'Additionally, we use <strong>Google Analytics 4</strong> with anonymized IP to measure aggregate site usage (page views and basic events). This data is not shared with third parties for advertising and is not used for individual profiling. You can disable analytics through your browser\'s privacy settings or via anti-tracking extensions.',
         'privacy.changes.title': 'Changes to this policy',
         'privacy.changes.p1': 'We may update this policy to reflect legal, technical, or service changes. The "Last updated" date at the top of the document indicates when the current version was published. If changes are substantial, we will notify subscribers by email.',
         'privacy.footer.home': 'Home',
-        'privacy.footer.privacy': 'Privacy policy',
-        'privacy.cookie.banner': 'We use Google Analytics (anonymized IP) to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'privacy.cookie.accept': 'Understood'
+        'privacy.footer.privacy': 'Privacy policy'
       }
     };
 

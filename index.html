@@ -57,7 +57,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('consent', 'default', {
-      analytics_storage: 'denied',
+      analytics_storage: 'granted',
       ad_storage: 'denied',
       ad_user_data: 'denied',
       ad_personalization: 'denied'
@@ -763,65 +763,8 @@
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
-  <p data-l10n-key="legal.cookie_banner">Usamos Google Analytics (IP anonimizada) para medir el uso de la web. Más info en la <a href="privacy.html">Política de privacidad</a>.</p>
-  <div class="cookie-actions">
-    <button type="button" id="cookie-accept" class="btn btn-primary btn-sm" data-l10n-key="legal.cookie_accept">Entendido</button>
-  </div>
-</div>
-
 <script defer src="assets/js/main.min.js?v=41"></script>
 <script>
-  (function () {
-    const STORAGE_KEY = 'accuvideo_cookie_consent_v1';
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept');
-
-    function grantConsent() {
-      if (typeof gtag !== 'function') return;
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-    }
-
-    function hideBanner() {
-      if (!banner) return;
-      banner.hidden = true;
-      banner.setAttribute('aria-hidden', 'true');
-    }
-
-    function showBanner() {
-      if (!banner) return;
-      banner.hidden = false;
-      banner.removeAttribute('aria-hidden');
-    }
-
-    function storeChoice(value) {
-      try { localStorage.setItem(STORAGE_KEY, value); } catch (err) { /* private mode */ }
-    }
-
-    function readChoice() {
-      try { return localStorage.getItem(STORAGE_KEY); } catch (err) { return null; }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      if (readChoice() === 'granted') {
-        grantConsent();
-        hideBanner();
-      } else {
-        showBanner();
-      }
-      if (acceptBtn) acceptBtn.addEventListener('click', function () {
-        storeChoice('granted');
-        grantConsent();
-        hideBanner();
-      });
-    });
-  })();
-
   (function () {
     const legalI18n = {
       es: {
@@ -829,18 +772,14 @@
         'legal.privacy_summary': 'Consulta la política completa de privacidad y tratamiento de datos en la página dedicada, incluyendo desistimiento de 14 días y derecho de borrado de información mediante formulario de contacto.',
         'legal.privacy_link': 'Ver Política de Privacidad completa',
         'legal.form_consent': 'Acepto el envío y tratamiento de mis datos (email y, cuando aplique, nombre y/o hardware ID) para gestionar mi solicitud. <a href="privacy.html" target="_blank" rel="noopener">Ver política de privacidad</a>.',
-        'legal.privacy_nav': 'Política de privacidad',
-        'legal.cookie_banner': 'Usamos Google Analytics (IP anonimizada) para medir el uso de la web. Más info en la <a href="privacy.html">Política de privacidad</a>.',
-        'legal.cookie_accept': 'Entendido'
+        'legal.privacy_nav': 'Política de privacidad'
       },
       en: {
         'legal.privacy_title': 'Privacy Policy',
         'legal.privacy_summary': 'See the full privacy and data processing policy on the dedicated page, including the 14-day withdrawal policy and data deletion rights through the contact form.',
         'legal.privacy_link': 'View Full Privacy Policy',
         'legal.form_consent': 'I agree to the sending and processing of my data (email and, when applicable, name and/or hardware ID) to handle my request. <a href="privacy.html" target="_blank" rel="noopener">View privacy policy</a>.',
-        'legal.privacy_nav': 'Privacy policy',
-        'legal.cookie_banner': 'We use Google Analytics (anonymized IP) to measure website usage. More info in the <a href="privacy.html">Privacy Policy</a>.',
-        'legal.cookie_accept': 'Understood'
+        'legal.privacy_nav': 'Privacy policy'
       }
     };
 
