@@ -1874,6 +1874,16 @@ html[data-currency="usd"] .currency-switch-btn[data-currency="usd"] {
 }
 
 .contact-form { display: flex; flex-direction: column; gap: 14px; }
+.contact-form .hp-field {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 .contact-form label {
   display: flex;
   flex-direction: column;
