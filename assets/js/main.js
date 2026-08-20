@@ -1099,6 +1099,7 @@
     }
     const form = document.getElementById('contact-form');
     if (form) {
+      form.dataset.openedAt = String(Date.now());
       const planInput = form.querySelector('input[name="plan"]');
       const editionInput = form.querySelector('input[name="edition"]');
       const osInput = form.querySelector('input[name="os"]');
@@ -1170,6 +1171,18 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const hp = form.querySelector('input[name="website"]');
+      if (hp && hp.value.trim() !== '') {
+        form.reset();
+        window.location.assign('thanks.html?form=trial');
+        return;
+      }
+      const openedAt = Number(form.dataset.openedAt || 0);
+      if (openedAt && Date.now() - openedAt < 2000) {
+        form.reset();
+        window.location.assign('thanks.html?form=trial');
+        return;
+      }
       if (form.dataset.submitting === 'true') return;
       if (!form.checkValidity()) {
         status.textContent = tt('contact.status.required');
@@ -1232,6 +1245,8 @@
     if (typeof gtag === 'function') {
       gtag('event', 'form_open', { form_name: 'subscribe', plan: plan || '', edition: edition || '' });
     }
+    const subForm = modal.querySelector('#subscribe-form');
+    if (subForm) subForm.dataset.openedAt = String(Date.now());
     const planSelect = modal.querySelector('select[name="plan"]');
     if (planSelect && plan) {
       const match = Array.from(planSelect.options).find((o) => o.value === plan);
@@ -1292,6 +1307,18 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const hp = form.querySelector('input[name="website"]');
+      if (hp && hp.value.trim() !== '') {
+        form.reset();
+        window.location.assign('thanks.html?form=subscribe');
+        return;
+      }
+      const openedAt = Number(form.dataset.openedAt || 0);
+      if (openedAt && Date.now() - openedAt < 2000) {
+        form.reset();
+        window.location.assign('thanks.html?form=subscribe');
+        return;
+      }
       if (!form.checkValidity()) {
         status.innerHTML = '';
         status.textContent = tt('subscribe.status.required');
@@ -1385,6 +1412,7 @@
 
     const form = modal.querySelector('#contactus-form');
     if (form) {
+      form.dataset.openedAt = String(Date.now());
       if (topic) form.setAttribute('data-topic', topic);
       else form.removeAttribute('data-topic');
     }
@@ -1435,6 +1463,18 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const hp = form.querySelector('input[name="website"]');
+      if (hp && hp.value.trim() !== '') {
+        form.reset();
+        window.location.assign('thanks.html?form=contactus');
+        return;
+      }
+      const openedAt = Number(form.dataset.openedAt || 0);
+      if (openedAt && Date.now() - openedAt < 2000) {
+        form.reset();
+        window.location.assign('thanks.html?form=contactus');
+        return;
+      }
       if (!form.checkValidity()) {
         status.textContent = tt('contactus.status.required');
         status.className = 'contact-form-status error';
