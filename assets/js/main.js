@@ -69,7 +69,7 @@
       'about.legal.cif': '<strong>Spanish Tax ID (CIF):</strong> B71336218',
       'about.legal.address': '<strong>Registered address:</strong> Calle Bosquecillo, 6, 31191, Beriáin (Navarra), Spain',
       'about.legal.email': '<strong>Contact email:</strong> <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>',
-      'about.legal.site': '<strong>Official website:</strong> <a href="https://accuvideo.acornjuice.com/">accuvideo.acornjuice.com</a>',
+      'about.legal.site': '<strong>Company website:</strong> <a href="https://www.acornjuice.com/">www.acornjuice.com</a>',
       'about.legal.note': 'AccuVideo is trademarked, developed and maintained by Acorn Juice Solutions. All installers and updates are provided directly by us; the download link for your license is delivered by email after you sign up for a trial or a paid subscription.',
 
       'hero.eyebrow': 'By Acorn Juice Solutions',
@@ -409,7 +409,7 @@
       'about.legal.cif': '<strong>CIF:</strong> B71336218',
       'about.legal.address': '<strong>Domicilio social:</strong> Calle Bosquecillo, 6, 31191, Beriáin (Navarra), España',
       'about.legal.email': '<strong>Email de contacto:</strong> <a href="mailto:info@acornjuice.com">info@acornjuice.com</a>',
-      'about.legal.site': '<strong>Web oficial:</strong> <a href="https://accuvideo.acornjuice.com/">accuvideo.acornjuice.com</a>',
+      'about.legal.site': '<strong>Web corporativa:</strong> <a href="https://www.acornjuice.com/">www.acornjuice.com</a>',
       'about.legal.note': 'AccuVideo es una marca registrada, desarrollada y mantenida por Acorn Juice Solutions. Todos los instaladores y actualizaciones los proporcionamos directamente nosotros; el enlace de descarga vinculado a tu licencia se envía por email tras dar de alta la prueba o una suscripción de pago.',
 
       'hero.eyebrow': 'Por Acorn Juice Solutions',
