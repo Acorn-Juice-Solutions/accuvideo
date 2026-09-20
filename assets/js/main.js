@@ -14,6 +14,113 @@
   const STATICFORMS_URL = 'https://api.staticforms.dev/submit';
   const STATICFORMS_API_KEY = 'sf_4d32929fdc91426750c7d382';
 
+  // Honeypot field shared by the three forms. Deliberately NOT named `website`/`url`/
+  // `homepage`: password managers and browser autofill happily fill those even when the
+  // field is hidden, which made real users trip the trap and get silently dropped.
+  const HONEYPOT_SELECTOR = 'input[name="contact_ref"]';
+
+  // A submission only counts once Static Forms has accepted it. The handlers below write
+  // this single-use token on confirmed delivery and `thanks.html` consumes it to decide
+  // whether to fire `form_submit` — the event the Google Ads conversion is built on.
+  // Anything reaching the thanks page without a token (a crawler or a prefetch hitting the
+  // URL, or a submission dropped by the anti-bot traps) is deliberately not tracked.
+  const DELIVERY_TOKEN_KEY = 'accuvideo-form-delivered';
+  // Generous enough for a slow redirect, short enough that a token left behind by a failed
+  // navigation can't be picked up by an unrelated visit to the thanks page later on.
+  const DELIVERY_TOKEN_TTL_MS = 120000;
+  const DELIVERY_FORMS = ['trial', 'subscribe', 'contactus'];
+
+  function markFormDelivered(formName) {
+    if (DELIVERY_FORMS.indexOf(formName) === -1) return false;
+    try {
+      sessionStorage.setItem(DELIVERY_TOKEN_KEY, JSON.stringify({ form: formName, at: Date.now() }));
+      return true;
+    } catch (_) {
+      // Private mode or storage disabled. We lose the conversion, never the submission.
+      return false;
+    }
+  }
+
+  // Returns the form name behind a confirmed delivery, or null. Single use.
+  function consumeFormDelivery() {
+    let raw = null;
+    try {
+      raw = sessionStorage.getItem(DELIVERY_TOKEN_KEY);
+      // Removed before parsing, so a malformed value can't wedge the slot and a reload of
+      // the thanks page can never fire a second conversion.
+      if (raw !== null) sessionStorage.removeItem(DELIVERY_TOKEN_KEY);
+    } catch (_) {
+      return null;
+    }
+    if (!raw) return null;
+    let parsed = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (_) {
+      return null;
+    }
+    if (!parsed || typeof parsed !== 'object') return null;
+    if (typeof parsed.at !== 'number' || !isFinite(parsed.at)) return null;
+    const age = Date.now() - parsed.at;
+    if (age < 0 || age > DELIVERY_TOKEN_TTL_MS) return null;
+    return DELIVERY_FORMS.indexOf(parsed.form) === -1 ? null : parsed.form;
+  }
+
+  // Static Forms answers 200 with a JSON body even when it rejects a submission (bad
+  // apiKey, spam filter), so `res.ok` on its own would report a dropped message as
+  // delivered. Resolves true only when nothing in the response says otherwise; rejects if
+  // the request itself failed, which the callers surface to the user.
+  async function postToStaticForms(fields, options) {
+    // urlencoded — Static Forms accepts JSON, urlencoded and multipart; urlencoded keeps
+    // the request a CORS-safe "simple" one (no preflight), which is more resilient on
+    // mobile carrier networks.
+    const body = new URLSearchParams();
+    Object.entries(fields).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
+    const res = await fetch(STATICFORMS_URL, {
+      method: 'POST',
+      body,
+      // Only for fire-and-forget posts: `keepalive` caps the body at 64KB.
+      keepalive: !!(options && options.keepalive),
+    });
+    if (!res.ok) return false;
+    let text = '';
+    try {
+      text = await res.text();
+    } catch (_) {
+      return true; // 2xx with an unreadable body: take the status at its word.
+    }
+    let payload = null;
+    try {
+      payload = JSON.parse(text);
+    } catch (_) {
+      return true; // Non-JSON 2xx (e.g. a plain "OK").
+    }
+    if (!payload || typeof payload !== 'object') return true;
+    if (payload.success === false || payload.ok === false) return false;
+    if (typeof payload.error === 'string' && payload.error.trim() !== '') return false;
+    return true;
+  }
+
+  // The subscribe flow never lands on `thanks.html` — it hands the user straight to
+  // Stripe — so its conversion has to be fired here, when checkout actually opens.
+  // Until now the only `form_submit` with form_name=subscribe came from the anti-bot
+  // traps, i.e. the Ads conversion counted bots and nothing else.
+  function trackSubscribeConversion(plan, edition, billing) {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'form_submit', {
+      form_name: 'subscribe',
+      plan: plan || '',
+      edition: edition || '',
+      billing: billing || '',
+    });
+  }
+
+  // `thanks.html` runs its own inline script and needs to read the delivery token.
+  if (typeof window !== 'undefined') {
+    window.AccuVideo = window.AccuVideo || {};
+    window.AccuVideo.consumeFormDelivery = consumeFormDelivery;
+  }
+
   // Stripe Payment Links — LIVE mode. Create one per (edition.plan.billing) combination in the Stripe
   // Dashboard with the toggle set to "Live mode" (https://dashboard.stripe.com/payment-links) and paste
   // each URL below. Live URLs look like `https://buy.stripe.com/<id>` (no `test_` prefix). While a key
@@ -1171,7 +1278,9 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const hp = form.querySelector('input[name="website"]');
+      // Both traps fake success — the bot gets a thanks page and no hint it was caught —
+      // but neither calls markFormDelivered(), so nothing is sent and nothing is tracked.
+      const hp = form.querySelector(HONEYPOT_SELECTOR);
       if (hp && hp.value.trim() !== '') {
         form.reset();
         window.location.assign('thanks.html?form=trial');
@@ -1205,22 +1314,15 @@
       status.textContent = '';
       status.className = 'contact-form-status';
       try {
-        // Send as urlencoded — Static Forms accepts JSON, urlencoded and multipart;
-        // urlencoded keeps the request a CORS-safe "simple" request (no preflight),
-        // which is more resilient on mobile carrier networks.
-        const body = new URLSearchParams();
-        Object.entries(payload).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
-        const res = await fetch(STATICFORMS_URL, {
-          method: 'POST',
-          body,
-        });
-        if (!res.ok) {
+        const delivered = await postToStaticForms(payload);
+        if (!delivered) {
           setFormServiceBanner(true);
           status.textContent = tt('contact.status.unavailable');
           status.className = 'contact-form-status error';
           return;
         }
         setFormServiceBanner(false);
+        markFormDelivered('trial');
         form.reset();
         window.location.assign('thanks.html?form=trial');
       } catch (err) {
@@ -1307,7 +1409,9 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const hp = form.querySelector('input[name="website"]');
+      // Both traps fake success — the bot gets a thanks page and no hint it was caught —
+      // but neither calls markFormDelivered(), so nothing is sent and nothing is tracked.
+      const hp = form.querySelector(HONEYPOT_SELECTOR);
       if (hp && hp.value.trim() !== '') {
         form.reset();
         window.location.assign('thanks.html?form=subscribe');
@@ -1345,35 +1449,42 @@
         return;
       }
 
-      // Fire-and-forget notification email so we know who's about to pay.
-      // urlencoded body keeps the request CORS-"simple" (no preflight).
+      // Fire-and-forget notification email so we know who's about to pay. We can't block
+      // the redirect to Stripe on it, but a rejection has to be visible in the console
+      // instead of vanishing into an empty catch.
       try {
-        const notify = new URLSearchParams();
-        notify.append('apiKey', STATICFORMS_API_KEY);
-        notify.append('subject', 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing);
-        notify.append('email', email);
-        notify.append('hardware_id', hwid);
-        notify.append('plan', plan);
-        notify.append('edition', edition);
-        notify.append('billing', billing);
-        fetch(STATICFORMS_URL, {
-          method: 'POST',
-          body: notify,
-        }).catch(() => {});
+        postToStaticForms({
+          apiKey: STATICFORMS_API_KEY,
+          subject: 'AccuVideo subscription started — ' + edition + '/' + plan + '/' + billing,
+          email: email,
+          hardware_id: hwid,
+          plan: plan,
+          edition: edition,
+          billing: billing,
+        }, { keepalive: true }).then((delivered) => {
+          if (!delivered) console.error('Subscribe notification rejected by Static Forms');
+        }).catch((err) => {
+          console.error('Subscribe notification failed:', err);
+        });
       } catch (_) { /* ignore */ }
 
       const checkoutUrl = buildStripeUrl(baseUrl, email, hwid);
       const win = window.open(checkoutUrl, '_blank', 'noopener');
       if (win) {
+        trackSubscribeConversion(plan, edition, billing);
         status.textContent = tt('subscribe.status.redirecting');
         status.className = 'contact-form-status success';
       } else {
-        // Popup blocked — render a clickable fallback link.
+        // Popup blocked — render a clickable fallback link. The conversion waits for the
+        // click: until then the user hasn't reached checkout.
         const fallback = document.createElement('a');
         fallback.href = checkoutUrl;
         fallback.target = '_blank';
         fallback.rel = 'noopener';
         fallback.textContent = checkoutUrl;
+        fallback.addEventListener('click', () => {
+          trackSubscribeConversion(plan, edition, billing);
+        }, { once: true });
         status.textContent = tt('subscribe.status.popup_blocked');
         status.appendChild(fallback);
         status.className = 'contact-form-status error';
@@ -1463,7 +1574,9 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const hp = form.querySelector('input[name="website"]');
+      // Both traps fake success — the bot gets a thanks page and no hint it was caught —
+      // but neither calls markFormDelivered(), so nothing is sent and nothing is tracked.
+      const hp = form.querySelector(HONEYPOT_SELECTOR);
       if (hp && hp.value.trim() !== '') {
         form.reset();
         window.location.assign('thanks.html?form=contactus');
@@ -1504,19 +1617,15 @@
       status.textContent = tt('contactus.status.sending');
       status.className = 'contact-form-status';
       try {
-        const body = new URLSearchParams();
-        Object.entries(payload).forEach(([k, v]) => body.append(k, v == null ? '' : String(v)));
-        const res = await fetch(STATICFORMS_URL, {
-          method: 'POST',
-          body,
-        });
-        if (!res.ok) {
+        const delivered = await postToStaticForms(payload);
+        if (!delivered) {
           setFormServiceBanner(true);
           status.textContent = tt('contactus.status.unavailable');
           status.className = 'contact-form-status error';
           return;
         }
         setFormServiceBanner(false);
+        markFormDelivered('contactus');
         form.reset();
         window.location.assign('thanks.html?form=contactus');
       } catch (err) {
@@ -1552,4 +1661,18 @@
       });
     }
   });
+
+  // Test hook: Node loads this file with a DOM stub to exercise the delivery-token and
+  // Static Forms response handling (see tests/). `module` is undefined in the browser, so
+  // this is dead code there.
+  if (typeof module === 'object' && module !== null && module.exports) {
+    module.exports = {
+      markFormDelivered,
+      consumeFormDelivery,
+      postToStaticForms,
+      DELIVERY_TOKEN_KEY,
+      DELIVERY_TOKEN_TTL_MS,
+      HONEYPOT_SELECTOR,
+    };
+  }
 })();

@@ -1,10 +1,10 @@
-const CACHE_NAME = 'accuvideo-v48';
+const CACHE_NAME = 'accuvideo-v49';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/thanks.html',
-  '/assets/css/style.css?v=32',
-  '/assets/js/main.min.js?v=41',
+  '/assets/css/style.css?v=36',
+  '/assets/js/main.min.js?v=47',
   '/assets/img/AccuVideo_Logo.png',
   '/assets/img/favicon.ico',
   '/assets/videos/demo-poster.jpg',

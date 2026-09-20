@@ -7,7 +7,7 @@
   <title data-i18n="thanks.meta_title">Thanks — AccuVideo</title>
   <link rel="icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css?v=36">
-  <link rel="preload" as="script" href="assets/js/main.min.js?v=46">
+  <link rel="preload" as="script" href="assets/js/main.min.js?v=47">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSM7Q772H7" onerror="window.__gtagLoadFailed=true"></script>
   <script>
@@ -74,7 +74,7 @@
   </div>
 </footer>
 
-<script defer src="assets/js/main.min.js?v=46"></script>
+<script defer src="assets/js/main.min.js?v=47"></script>
 <script>
   (function () {
     const legalI18n = {
@@ -136,9 +136,20 @@
     const titleMap = { subscribe: 'thanks.title_subscribe' };
     if (body) body.setAttribute('data-i18n', bodyMap[form] || 'thanks.body_generic');
     if (title && titleMap[form]) title.setAttribute('data-i18n', titleMap[form]);
-    if (form && typeof gtag === 'function') {
-      gtag('event', 'form_submit', { form_name: form });
-    }
+    // `form_submit` — and the Google Ads conversion built on it — must only fire for a
+    // submission Static Forms actually accepted. The `?form=` parameter drives the copy
+    // above and nothing else: it is just a URL, so a crawler, a prefetch or a submission
+    // dropped by the anti-bot traps can set it. The proof of delivery is the single-use
+    // token main.js writes on success. main.min.js is deferred, so its global is ready by
+    // DOMContentLoaded; if it failed to load we fire nothing, which is the safe default.
+    document.addEventListener('DOMContentLoaded', function () {
+      const api = window.AccuVideo;
+      if (!api || typeof api.consumeFormDelivery !== 'function') return;
+      const delivered = api.consumeFormDelivery();
+      if (delivered && typeof gtag === 'function') {
+        gtag('event', 'form_submit', { form_name: delivered });
+      }
+    });
   })();
 </script>
 </body>
