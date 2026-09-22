@@ -52,7 +52,11 @@ function loadMain(options) {
   const storage = opts.storage || makeStorage();
   globalThis.sessionStorage = storage;
   globalThis.window = {};
-  globalThis.document = { addEventListener() {} };
+  // `documentElement.lang` is what tt() reads to pick a dictionary.
+  globalThis.document = {
+    addEventListener() {},
+    documentElement: { lang: opts.lang || 'en' },
+  };
   if (opts.fetch) globalThis.fetch = opts.fetch;
   delete require.cache[require.resolve(MAIN_JS)];
   const api = require(MAIN_JS);
@@ -212,6 +216,50 @@ test('keepalive is opt-in, so the contact form is not capped at 64KB', async () 
   assert.deepStrictEqual(calls, [false, true]);
 });
 
+// --- trapped submissions ----------------------------------------------------
+
+// Records every way a trapped submission could leak a signal that Google Ads might
+// count: a request, an event, or a navigation to the thanks page.
+function watchForSignals() {
+  const seen = { fetch: 0, gtag: 0, navigations: 0 };
+  globalThis.fetch = async () => { seen.fetch += 1; return makeResponse(200, '{"success":true}'); };
+  globalThis.gtag = () => { seen.gtag += 1; };
+  globalThis.window.location = { assign: () => { seen.navigations += 1; } };
+  return seen;
+}
+
+test('a trapped submission sends nothing, tracks nothing and goes nowhere', () => {
+  const { api } = loadMain();
+  const seen = watchForSignals();
+  const form = { reset() { this.wasReset = true; }, wasReset: false };
+  const status = { textContent: '', className: '' };
+
+  api.fakeFormSuccess(form, status, 'contact.status.success');
+
+  assert.deepStrictEqual(seen, { fetch: 0, gtag: 0, navigations: 0 });
+  assert.strictEqual(form.wasReset, true);
+});
+
+test('a trapped submission is shown the ordinary success message', () => {
+  const { api } = loadMain();
+  const status = { textContent: '', className: '' };
+  api.fakeFormSuccess(null, status, 'contact.status.success');
+  assert.strictEqual(status.className, 'contact-form-status success');
+  assert.match(status.textContent, /Request sent/);
+});
+
+test('the fake success message is translated, not a raw i18n key', () => {
+  const { api } = loadMain({ lang: 'es' });
+  const status = { textContent: '', className: '' };
+  api.fakeFormSuccess(null, status, 'contactus.status.success');
+  assert.match(status.textContent, /Mensaje enviado/);
+});
+
+test('faking success survives a missing status element', () => {
+  const { api } = loadMain();
+  assert.doesNotThrow(() => api.fakeFormSuccess(null, null, 'contact.status.success'));
+});
+
 // --- source invariants ------------------------------------------------------
 // These guard the shape of the fix in code paths that would need a full DOM to drive.
 
@@ -226,10 +274,13 @@ test('the anti-bot traps fake success without recording a delivery', () => {
     const preceding = src.slice(Math.max(0, i - 200), i);
     (preceding.includes('markFormDelivered(') ? tracked : untracked).push(i);
   }
-  // Six trap exits (honeypot + timing, on three forms) and two confirmed deliveries
+  // The thanks page fires a page_view of its own, and a Google Ads conversion can be
+  // built on that page_view rather than on the `form_submit` event — which is how bot
+  // submissions kept converting even once the event was gated on a real delivery. So
+  // nothing may navigate there without a confirmed delivery: two exits, both tracked
   // (trial and contact us). The subscribe flow goes to Stripe, not to the thanks page.
-  assert.strictEqual(untracked.length, 6, 'expected 6 untracked exits to thanks.html');
-  assert.strictEqual(tracked.length, 2, 'expected 2 tracked exits to thanks.html');
+  assert.strictEqual(untracked.length, 0, 'a dropped submission must not reach thanks.html');
+  assert.strictEqual(tracked.length, 2, 'expected 2 confirmed-delivery exits to thanks.html');
 });
 
 test('thanks.html tracks the delivery token, never the ?form= parameter', () => {

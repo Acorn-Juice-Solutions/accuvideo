@@ -115,6 +115,18 @@
     });
   }
 
+  // A submission caught by one of the anti-bot traps is dropped without a trace: the
+  // sender sees the ordinary success message and we send, navigate and track nothing.
+  // It must not reach `thanks.html` either — that page's own page_view is enough for
+  // Google Ads to count a conversion, which is how bots kept converting even after the
+  // `form_submit` event had been gated on a confirmed delivery.
+  function fakeFormSuccess(form, status, messageKey) {
+    if (form) form.reset();
+    if (!status) return;
+    status.textContent = tt(messageKey);
+    status.className = 'contact-form-status success';
+  }
+
   // `thanks.html` runs its own inline script and needs to read the delivery token.
   if (typeof window !== 'undefined') {
     window.AccuVideo = window.AccuVideo || {};
@@ -491,6 +503,7 @@
       'thanks.body_subscribe': 'Your subscription is active. Your license will be sent to your email — tied to the hardware ID you provided. Stripe has also sent you a payment receipt; if you don\'t see it, check your spam folder.',
       'thanks.body_generic': 'We\'ll get back to you within 2 business days. We\'ve also sent you a confirmation email — if you don\'t see it, check your spam folder.',
       'thanks.cta': 'Back to home',
+      'thanks.discover': 'Discover more about us: <a href="https://www.acornjuice.com">www.acornjuice.com</a>',
 
       'footer.contact': 'Contact us',
       'footer.docs': 'Documentation',
@@ -832,6 +845,7 @@
       'thanks.body_subscribe': 'Tu suscripción está activa. Tu licencia será enviada a tu correo — vinculada al hardware ID que indicaste. Stripe también te ha enviado un recibo de pago; si no lo ves, revisa la carpeta de spam.',
       'thanks.body_generic': 'Te responderemos en hasta 2 días laborables. Te hemos enviado un email de confirmación — si no lo ves, revisa la carpeta de spam.',
       'thanks.cta': 'Volver al inicio',
+      'thanks.discover': 'Descubre más sobre nosotros: <a href="https://www.acornjuice.com">www.acornjuice.com</a>',
 
       'footer.contact': 'Contacta',
       'footer.docs': 'Documentación',
@@ -1278,18 +1292,17 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // Both traps fake success — the bot gets a thanks page and no hint it was caught —
-      // but neither calls markFormDelivered(), so nothing is sent and nothing is tracked.
+      // Both traps fake success in place: no POST, no navigation, no analytics event.
+      // The sender gets no hint it was caught, and nothing downstream can read it as a
+      // conversion. See fakeFormSuccess().
       const hp = form.querySelector(HONEYPOT_SELECTOR);
       if (hp && hp.value.trim() !== '') {
-        form.reset();
-        window.location.assign('thanks.html?form=trial');
+        fakeFormSuccess(form, status, 'contact.status.success');
         return;
       }
       const openedAt = Number(form.dataset.openedAt || 0);
       if (openedAt && Date.now() - openedAt < 2000) {
-        form.reset();
-        window.location.assign('thanks.html?form=trial');
+        fakeFormSuccess(form, status, 'contact.status.success');
         return;
       }
       if (form.dataset.submitting === 'true') return;
@@ -1409,18 +1422,17 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Both traps fake success — the bot gets a thanks page and no hint it was caught —
-      // but neither calls markFormDelivered(), so nothing is sent and nothing is tracked.
+      // Both traps fake success in place: no POST, no navigation, no analytics event.
+      // The sender gets no hint it was caught, and nothing downstream can read it as a
+      // conversion. See fakeFormSuccess().
       const hp = form.querySelector(HONEYPOT_SELECTOR);
       if (hp && hp.value.trim() !== '') {
-        form.reset();
-        window.location.assign('thanks.html?form=subscribe');
+        fakeFormSuccess(form, status, 'subscribe.status.redirecting');
         return;
       }
       const openedAt = Number(form.dataset.openedAt || 0);
       if (openedAt && Date.now() - openedAt < 2000) {
-        form.reset();
-        window.location.assign('thanks.html?form=subscribe');
+        fakeFormSuccess(form, status, 'subscribe.status.redirecting');
         return;
       }
       if (!form.checkValidity()) {
@@ -1574,18 +1586,17 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // Both traps fake success — the bot gets a thanks page and no hint it was caught —
-      // but neither calls markFormDelivered(), so nothing is sent and nothing is tracked.
+      // Both traps fake success in place: no POST, no navigation, no analytics event.
+      // The sender gets no hint it was caught, and nothing downstream can read it as a
+      // conversion. See fakeFormSuccess().
       const hp = form.querySelector(HONEYPOT_SELECTOR);
       if (hp && hp.value.trim() !== '') {
-        form.reset();
-        window.location.assign('thanks.html?form=contactus');
+        fakeFormSuccess(form, status, 'contactus.status.success');
         return;
       }
       const openedAt = Number(form.dataset.openedAt || 0);
       if (openedAt && Date.now() - openedAt < 2000) {
-        form.reset();
-        window.location.assign('thanks.html?form=contactus');
+        fakeFormSuccess(form, status, 'contactus.status.success');
         return;
       }
       if (!form.checkValidity()) {
@@ -1670,6 +1681,8 @@
       markFormDelivered,
       consumeFormDelivery,
       postToStaticForms,
+      fakeFormSuccess,
+      i18n,
       DELIVERY_TOKEN_KEY,
       DELIVERY_TOKEN_TTL_MS,
       HONEYPOT_SELECTOR,
