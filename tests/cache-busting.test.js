@@ -87,6 +87,6 @@ test('the cache name is bumped whenever a precached version changes', () => {
   const sw = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
   const name = sw.match(/const CACHE_NAME = '([^']+)'/);
   assert.ok(name, 'CACHE_NAME not found in sw.js');
-  assert.strictEqual(name[1], 'accuvideo-v49');
-  assert.ok(sw.includes("'/assets/js/main.min.js?v=47'"), 'bundle version changed: bump CACHE_NAME');
+  assert.strictEqual(name[1], 'accuvideo-v50');
+  assert.ok(sw.includes("'/assets/js/main.min.js?v=48'"), 'bundle version changed: bump CACHE_NAME');
 });

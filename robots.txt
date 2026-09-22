@@ -3,4 +3,10 @@ Allow: /
 Allow: /assets/videos/
 Allow: /assets/img/
 
+# The thanks page fires a page_view of its own, and a crawler that renders JS would
+# trigger it without a form ever being submitted. It carries a noindex, but a crawler
+# has to render the page to read that -- by which point the hit is already counted.
+# Nothing links here: it is reached by redirect after a confirmed submission.
+Disallow: /thanks.html
+
 Sitemap: https://accuvideo.acornjuice.com/sitemap.xml
