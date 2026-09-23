@@ -1,0 +1,22 @@
+# gitleaks configuration for the AccuVideo marketing site.
+#
+# Only noise suppression lives here — patterns that are provably not
+# credentials. Accepted real exposures go in .gitleaksignore instead, pinned to
+# an exact file and line, so that widening one can never widen the other.
+#
+# The value of this file is in how short it stays.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = """
+i18n attribute names, not credentials. The generic-api-key rule fires on the
+literal word "key" inside data-l10n-key="privacy.who.p1" and similar markup:
+13 matches in privacy.html alone, every one of them an attribute name.
+"""
+regexTarget = "match"
+regexes = [
+  '''data-l10n-key\s*=\s*["'][^"']+["']''',
+  '''data-i18n(?:-[a-z]+)?\s*=\s*["'][^"']+["']''',
+]

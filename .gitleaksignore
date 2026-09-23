@@ -1,0 +1,21 @@
+# Accepted findings, pinned to an exact file, rule and line.
+#
+# A fingerprint stops matching the moment the line moves, which is deliberate:
+# relocating the key forces someone to look at it again rather than inheriting
+# a blanket exemption. Do not replace these with a regex allowlist — a pattern
+# broad enough to cover this key is broad enough to hide the next one.
+#
+# ---------------------------------------------------------------------------
+# StaticForms client key (assets/js/main.js, and its minified copy)
+#
+# Publishable by StaticForms' design: it identifies the form owner from
+# browser-side JavaScript, so it is served to every visitor and cannot be kept
+# secret. It grants no access to anything we hold.
+#
+# That is not the same as harmless. Anyone can lift it and submit forms against
+# our quota, or send mail that appears to originate from our forms. If that
+# starts happening: rotate the key in the StaticForms dashboard, and if it
+# recurs, move form delivery behind something that can authenticate the caller.
+# ---------------------------------------------------------------------------
+assets/js/main.js:generic-api-key:15
+assets/js/main.min.js:generic-api-key:1

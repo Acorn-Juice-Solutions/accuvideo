@@ -1,0 +1,181 @@
+name: Supply chain
+
+# pages.yml goes straight from checkout to deploy: the tests in tests/ have
+# never run in CI, so nothing has been verifying this site before it ships.
+# This workflow closes that, and adds the supply-chain checks on top.
+#
+# The site's real third-party surface is not packages — it is Google Analytics
+# executing in the visitor's session, StaticForms receiving contact details and
+# 25 live Stripe Payment Links. tests/external-origins.test.js is what keeps
+# that list honest, and it runs first here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "23 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supply-chain-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  OSV_SCANNER_VERSION: "2.6.0"
+  OSV_SCANNER_SHA256: "ca69b3d3cd08f889a49dc0a383122f71cc528b83803671df5fd874d97485b108"
+  GITLEAKS_VERSION: "8.30.1"
+  GITLEAKS_SHA256: "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb"
+
+jobs:
+  tests:
+    name: Site tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+
+      # Explicit glob rather than the directory: `node --test tests/` does not
+      # discover reliably on every platform, and a silent zero-test pass is
+      # worse than no test job at all.
+      - name: Run tests
+        run: node --test tests/*.test.js
+
+  dependencies:
+    name: SBOM + dependency scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@3ad7283483fc7af8ff2b4ea19663c2d5ca935e26 # v0.24.2
+        with:
+          path: .
+          format: cyclonedx-json
+          artifact-name: accuvideo-site.cdx.json
+          output-file: accuvideo-site.cdx.json
+
+      - name: Install osv-scanner
+        run: |
+          set -euo pipefail
+          url="https://github.com/google/osv-scanner/releases/download/v${OSV_SCANNER_VERSION}/osv-scanner_linux_amd64"
+          curl -fsSL "$url" -o /tmp/osv-scanner
+          echo "${OSV_SCANNER_SHA256}  /tmp/osv-scanner" | sha256sum -c -
+          chmod +x /tmp/osv-scanner
+
+      - name: Scan dependencies
+        run: |
+          set -uo pipefail
+          /tmp/osv-scanner scan source --format json --output osv.json . || true
+          test -s osv.json || echo '{"results":[]}' > osv.json
+
+      - name: Block on malicious packages
+        run: |
+          set -euo pipefail
+          jq -r '
+            [ .results[]?.packages[]?
+              | .package.name as $pkg
+              | .vulnerabilities[]?
+              | ([.id] + (.aliases // []))[]
+              | select(startswith("MAL-"))
+              | "\($pkg)\t\(.)"
+            ] | unique | .[]
+          ' osv.json > malicious.txt || true
+
+          if [ -s malicious.txt ]; then
+            {
+              echo "### Malicious packages detected"
+              echo ""
+              echo "| Package | Advisory |"
+              echo "| --- | --- |"
+              awk -F'\t' '{printf "| `%s` | %s |\n", $1, $2}' malicious.txt
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::Known-malicious package present."
+            cat malicious.txt
+            exit 1
+          fi
+          echo "No known-malicious packages." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Report vulnerabilities (non-blocking)
+        run: |
+          set -euo pipefail
+          jq -r '
+            [ .results[]?.packages[]?
+              | .package.name as $pkg
+              | .package.version as $ver
+              | .vulnerabilities[]?
+              | "\($pkg)\t\($ver)\t\(.id)"
+            ] | unique | .[]
+          ' osv.json > vulns.txt || true
+          n=$(wc -l < vulns.txt | tr -d ' ')
+          {
+            echo "### Vulnerabilities: $n"
+            if [ "$n" -gt 0 ]; then
+              echo ""
+              echo "| Package | Version | Advisory |"
+              echo "| --- | --- | --- |"
+              awk -F'\t' '{printf "| `%s` | %s | %s |\n", $1, $2, $3}' vulns.txt
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload scan reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: supply-chain-reports
+          path: |
+            accuvideo-site.cdx.json
+            osv.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Full history: main.js carries a StaticForms client key in the open,
+          # and anything that was committed and later removed is still leaked.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install gitleaks
+        run: |
+          set -euo pipefail
+          url="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -fsSL "$url" -o /tmp/gitleaks.tar.gz
+          echo "${GITLEAKS_SHA256}  /tmp/gitleaks.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+          chmod +x /tmp/gitleaks
+
+      # .gitleaks.toml suppresses the i18n attribute noise; .gitleaksignore
+      # carries the two accepted findings for the publishable StaticForms key,
+      # pinned to exact lines so moving them forces a fresh look.
+      - name: Scan history for secrets
+        run: /tmp/gitleaks git --redact --verbose --exit-code 1 --config .gitleaks.toml .
+
+  workflows:
+    name: Workflow audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install zizmor
+        run: pipx install zizmor
+
+      - name: Audit workflows
+        run: zizmor --no-progress --min-severity high --persona regular .github/workflows/

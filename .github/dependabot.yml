@@ -1,0 +1,36 @@
+version: 2
+
+# This site has no package manager for its own code — main.js is hand-written
+# vanilla JS with no dependencies. What it does have is a build-time Python
+# tool and a set of GitHub Actions, and those are the two things that can be
+# compromised upstream.
+#
+# The cooldown windows are the substance here: malicious releases are published
+# from stolen maintainer tokens and are therefore correctly signed, but they get
+# caught and yanked within hours to days. Not adopting anything younger than a
+# week avoids most of that class without needing anyone to have catalogued the
+# compromise first. Security updates bypass cooldown by design.
+
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    cooldown:
+      # pip versions are not semver, so only default-days applies.
+      default-days: 7
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns:
+          - "*"
